@@ -25,7 +25,7 @@ Původní HTML soubory z `../Older/` upravené:
 
 ## Doporučení pro další vývoj
 
-### 1. Svatba_001.html jako základ pro v3
+### 1. Svatba_001.html jako zaklad pro v0 (archivni baseline)
 22KB, 20 úkolů, čistý design. Když se k tomu přidá:
 - Budget bar (z LastSvatba)
 - Filtr podle osoby (z PuvodnuApp)
@@ -70,10 +70,11 @@ Nad 40 KB už to chce rozdělit (data zvlášť, appka zvlášť) — což je ak
 ### 6. Deployment
 
 Všechny verze jsou dostupné na:
-- `../Older_up2date/` — opravené verze (tento adresář)
-- `../Older/` — původní neupravené originály
-- `../` — aktuální produkční verze (v1)
-- `../v2/` — aktuální v2 (git-backed)
+- `../Older_up2date/` — opravene verze (tento adresar)
+- `../Older/` — puvodni neupravene originaly
+- `../v0/` — archivni baseline (Svatba_001, 20 ukolu, 29.8.)
+- `../` — aktualni produkcni verze (v1)
+- `../v2/` — aktualni v2 (git-backed)
 
 Pro porovnání s Mamkou a Žanetkou otevřít `index.html` v tomto adresáři —
 je tam přehledná stránka se všemi verzemi a doporučeními.

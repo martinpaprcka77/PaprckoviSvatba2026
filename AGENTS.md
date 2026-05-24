@@ -7,6 +7,7 @@ Dual wedding planner — v1 (single-file) + v2 (git-backed). No build, no npm.
 Live: https://doma77git.github.io/PaprckoviSvatba2026/
 
 ## Architecture
+- **v0:** `v0/index.html` — archive baseline (Svatba_001, 20 tasks, Aug 29 date)
 - **v1:** `index.html` — single-file, inline CSS/JS, localStorage (`svatba_state_v3`)
 - **v2:** `v2/index.html` — fetches `data/tasks.md` + `data/guests.md` from GitHub Raw, writes via GitHub API (AES-GCM PAT, PIN)
 - **Data:** `data/tasks.md` (36 tasks, authoritative), `data/guests.md` (guest list)

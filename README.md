@@ -68,6 +68,7 @@ Git-backed architektura: data v MD souborech, appka je čte a renderuje. Bez npm
 ```
 ./
 ├── index.html              ← v1 (single-file, localStorage, inline data)
+├── v0/index.html           ← v0 archive (Svatba_001 baseline, 20 tasks, Aug 29)
 ├── v2/index.html           ← v2 (fetches MD z GitHubu, PIN write)
 ├── data/
 │   ├── tasks.md            ← 36 úkolů — AUTORITATIVNÍ zdroj

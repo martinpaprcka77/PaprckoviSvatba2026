@@ -17,6 +17,7 @@ Dual wedding planner — v1 (single-file) + v2 (git-backed). No build, no npm.
 - **Deploy:** Push to master -> GitHub Actions -> gh-pages (`/` + `/v2/`)
 
 ### Architecture
+- v0: `v0/index.html` — archive baseline (Svatba_001, 20 tasks, Aug 29 date)
 - v1: `index.html` — single-file, inline CSS/JS, localStorage (`svatba_state_v3`)
 - v2: `v2/index.html` — fetches `data/*.md` from GitHub Raw, writes via GitHub API (AES-GCM PAT, PIN)
 - Data: `data/tasks.md` (36 tasks), `data/guests.md` (guests by side)
