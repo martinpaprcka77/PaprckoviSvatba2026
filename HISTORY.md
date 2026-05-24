@@ -1,5 +1,12 @@
 # HISTORY — Svatba Paprčkovi 2026
 
+## 2026-05-24 (večer/noc)
+
+- **v0 baseline:** `v0/index.html` vytvořen z `Older/Svatba_001.html`. Všechna data posunuta z 15.6.→29.8.2026 (+75 dní). 20 úkolů, 81 500 Kč budget — čistý referenční bod před PRD expanzí na 36 úkolů. Push na GitHub + deploy přes Pages.
+- **Docs sync:** 6 souborů aktualizováno — CLAUDE.md (20→36 úkolů, 81.5K→100K budget, people counts), data/budget.md (kompletní přepis 20→36 položek dle tasks.md), README/AGENTS/copilot-instructions (architektura rozšířena o v0/), Older_up2date/README.md (v3→v0 reference fix).
+- **Deploy workflow fix:** `peaceiris/actions-gh-pages` (push do gh-pages větve) → `actions/deploy-pages` (nativní Actions deployment). Repo používá `build_type: workflow` — peaceiris push do gh-pages už nespouštěl deployment. v0/ vracelo 404 do opravy.
+- **Stale workflow:** `pages-build-deployment` (GitHub auto-created) deaktivován — poslední běh 10:40 UTC před přepnutím na workflow typ. GitHub nedovolil ruční disable (built-in workflow).
+
 ## 2026-05-24 (odpoledne)
 
 - **Docs cleanup:** 24 PAPROS/Brain leftover files removed (Architecture, CrossAgent, KnowledgeBase, Generated, Workflows, CommandReference, ProjectOverview, Roadmap_v2, PAPROS_history, AI_Instructions, SessionMemory). Repo 60→42 tracked files.

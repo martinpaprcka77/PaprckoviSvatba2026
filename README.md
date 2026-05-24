@@ -9,6 +9,7 @@ Git-backed architektura: data v MD souborech, appka je čte a renderuje. Bez npm
 |----|-----|
 | **Plánovač v1** (produkce) | https://doma77git.github.io/PaprckoviSvatba2026/ |
 | **Plánovač v2** (testovací) | https://doma77git.github.io/PaprckoviSvatba2026/v2/ |
+| **v0 (archivní baseline)** | https://doma77git.github.io/PaprckoviSvatba2026/v0/ |
 | **Úkoly** | [data/tasks.md](data/tasks.md) |
 | **Hosté** | [data/guests.md](data/guests.md) |
 | **Rozpočet Excel** | [data/rozpocet-svatba-2026.xlsx](data/rozpocet-svatba-2026.xlsx) |
@@ -89,6 +90,7 @@ Git-backed architektura: data v MD souborech, appka je čte a renderuje. Bez npm
 4. Push do `master` → GitHub Actions → `gh-pages` → live
 
 ### Dual deploy
+- **`/v0/`** — archivní baseline (Svatba_001, 20 úkolů, 29.8.)
 - **`/`** — v1 produkce (stabilní, offline-first, localStorage)
 - **`/v2/`** — v2 testovací (git-backed, PIN sync, live data)
 
