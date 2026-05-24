@@ -41,18 +41,17 @@
 | 2026-08-25 | Confetti a prskavky | Žanetka | optional | 0 | _ | [ ] | _ | _ |
 | 2026-08-25 | Fotograf / dokumentace | Děti | optional | 0 | _ | [ ] | _ | Focení — role Dětí |
 | 2026-09-05 | Změna příjmení (po svatbě) | Mamka | mandatory | 0 | _ | [ ] | _ | _ |
-| 2026-05-25 | Schůzka — prstýnky (Dáda+Taťka+Žanetka) | Dáda, Taťka, Žanetka | important | 0 | _ | [ ] | _ | výběr prstýnků dle Excelu |
+| 2026-05-25 | Schůzka — prstýnky (Mamka+Taťka+Žanetka) | Mamka, Taťka, Žanetka | important | 0 | _ | [ ] | _ | výběr prstýnků dle Excelu |
 
 ## Lidé
 
 | Kdo | Role | Úkolů |
 |-----|------|--------|
-| **Mamka** | Nevěsta | 16 |
+| **Mamka** | Nevěsta | 18 |
 | **Taťka** | Ženich | 9 |
 | **Žanetka** | Hlavní organizátorka, svědkyně ženicha | 6 |
 | **Kikinka** | Svědkyně nevěsty | 3 |
 | **Děti** | 4 dcery: Gabriela, Kristýnka, Natálka, Kačka — výzdoba, dort, focení | 3 |
-| **Dáda** | Pomoc s prstýnky | 1 |
 
 ## Rozpočet
 

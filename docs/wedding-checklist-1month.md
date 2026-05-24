@@ -1,5 +1,8 @@
 # 🎯 Poslední měsíc před svatbou — Checklist Paprčkovi 2026
 
+> **HISTORICKÝ DOKUMENT z ~16.5.2026** — 38 úkolů, projekt C:\dev\PS7.
+> Aktuální stav viz CLAUDE.md nebo data/tasks.md (36 úkolů, 5 osob, 100k Kč).
+
 > **Svatba:** **29. srpna 2026** (potvrzeno ✅) | 11:15 Nová radnice Ostrava | U Miloše Zlatá koliba
 > **Organizuje:** Žanetka (hlavní) + Mamka + Taťka
 > **Svědci:** Kikinka (za Mamku), Žanetka (za Taťku)

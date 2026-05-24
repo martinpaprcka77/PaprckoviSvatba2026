@@ -1,5 +1,8 @@
 # Výsledek overhaulu — Svatební appka + checklist
 
+> **HISTORICKÝ DOKUMENT z 16.5.2026** — 38 úkolů, 4 osoby, projekt C:\dev\PS7.
+> Aktuální stav viz CLAUDE.md nebo data/tasks.md (36 úkolů, 5 osob, 100k Kč).
+
 **Datum:** 16. května 2026
 **Rozsah:** Kompletní přepis svatebních dat — appka + Brain docs
 **Stav:** ✅ Úspěšně dokončeno

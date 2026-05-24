@@ -1262,7 +1262,7 @@
                         </svg>
                         <div class="circular-progress-text">
                             <span class="pct" id="totalPercentCircle">0%</span>
-                            <span class="sub" id="doneCountCircle">0/35</span>
+                            <span class="sub" id="doneCountCircle">0/36</span>
                         </div>
                     </div>
                     <div class="dashboard-info">
@@ -1590,7 +1590,7 @@
             { id: 33, title: "Confetti a prskavky", deadline: "2026-08-25", assign: "Žanetka", cat: "optional", price: 0, timeline: "2026-08-25" },
             { id: 34, title: "Fotograf / dokumentace", deadline: "2026-08-25", assign: "Děti", cat: "optional", price: 0, timeline: "2026-08-25" },
             { id: 35, title: "Změna příjmení (po svatbě)", deadline: "2026-09-05", assign: "Mamka", cat: "mandatory", price: 0, timeline: "2026-09-05" },
-            { id: 36, title: "Schůzka — prstýnky (Dáda+Taťka+Žanetka)", deadline: "2026-05-25", assign: "Dáda, Taťka, Žanetka", cat: "important", price: 0, timeline: "2026-05-25" }
+            { id: 36, title: "Schůzka — prstýnky (Mamka+Taťka+Žanetka)", deadline: "2026-05-25", assign: "Mamka, Taťka, Žanetka", cat: "important", price: 0, timeline: "2026-05-25" }
         ];
 
         // ===== APPLICATION STATE =====
@@ -1755,7 +1755,7 @@
                 { key: 'optional', label: '🟢 Volitelné' }
             ];
 
-            const persons = ['Mamka', 'Taťka', 'Žanetka', 'Kikinka', 'Děti', 'Dáda'];
+            const persons = ['Mamka', 'Taťka', 'Žanetka', 'Kikinka', 'Děti'];
             persons.forEach(p => {
                 const count = state.tasks.filter(t => t.assign.includes(p)).length;
                 if (count > 0) {
@@ -1943,7 +1943,7 @@
             const mandatory = state.tasks.filter(t => t.cat === 'mandatory');
             const mandatoryDone = mandatory.filter(t => state.done.has(t.id)).length;
 
-            const byPerson = { 'Mamka': { t: 0, d: 0 }, 'Taťka': { t: 0, d: 0 }, 'Žanetka': { t: 0, d: 0 }, 'Kikinka': { t: 0, d: 0 }, 'Děti': { t: 0, d: 0 }, 'Dáda': { t: 0, d: 0 } };
+            const byPerson = { 'Mamka': { t: 0, d: 0 }, 'Taťka': { t: 0, d: 0 }, 'Žanetka': { t: 0, d: 0 }, 'Kikinka': { t: 0, d: 0 }, 'Děti': { t: 0, d: 0 } };
             
             state.tasks.forEach(t => {
                 Object.keys(byPerson).forEach(p => {

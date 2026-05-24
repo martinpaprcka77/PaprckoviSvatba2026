@@ -1,7 +1,7 @@
 # PRD — Svatba Paprčkovi 2026
 
 > Product Requirements Document — 14. 5. 2026
-> Status: active — 21. 5. 2026 (36 úkolů, 6 osob, 100 000 Kč)
+> Status: active — 24. 5. 2026 (36 úkolů, 5 osob, 100 000 Kč)
 
 ---
 
@@ -26,8 +26,7 @@
 | **Taťka** | Ženich | Hlavní hrdina dne |
 | **Kikinka** | Svědkyně nevěsty | Za Mamku |
 | **Žanetka** | Svědkyně ženicha + **Hlavní organizátor** | Za Taťku, sestra |
-| **Děti** | 4 dcery | Výzdoba, dort, focení
-| **Dáda** | Pomoc s prstýnky |
+| **Děti** | 4 dcery | Výzdoba, dort, focení |
 
 ---
 
@@ -63,7 +62,7 @@
 | Ubytování pro hosty | 5 000 | Žanetka |
 | Dekorace a květiny na radnici | 3 000 | Kikinka |
 | Doprava (radnice → Zlatá koliba) | 3 000 | Taťka |
-| Svatební dort | 3 000 | Mamka |
+| Svatební dort | 3 000 | Děti, Mamka |
 | Doplňky (boty, šperky) | 3 000 | Mamka |
 | Svatební oznámení | 1 500 | Mamka |
 | Domluva oddávajícího (hotovo ✓) | 0 | Mamka |
@@ -81,7 +80,7 @@
 | Položka | Odhad (Kč) | Kdo |
 |---|---|---|
 | Líčení / nehty / vlasy (Mamka) | 1 500 | Mamka |
-| Dekorace Zlaté koliby | 1 000 | Žanetka |
+| Dekorace Zlaté koliby | 1 000 | Děti |
 | Fotokoutek / selfie zóna | 1 000 | Taťka |
 | Dárky pro svědky | 500 | Mamka |
 | Dárky pro rodiče a poděkování | 500 | Taťka |
@@ -92,7 +91,7 @@
 | První tanec | 0 | Mamka |
 | Playlist / hudba | 0 | Taťka |
 | Proslovy | 0 | Kikinka |
-| Schůzka — prstýnky (Dáda+Taťka+Žanetka) | 0 | Dáda, Taťka, Žanetka |
+| Schůzka — prstýnky (Mamka+Taťka+Žanetka) | 0 | Mamka, Taťka, Žanetka |
 | **Subtotal** | **5 000** | |
 
 ### VOLITELNÉ (optional) — 4 tasky, 500 Kč
@@ -101,7 +100,7 @@
 |---|---|---|
 | Drobnosti pro hosty (guestbook + favory) | 500 | Mamka |
 | Confetti a prskavky | 0 | Žanetka |
-| Fotograf / dokumentace | 0 | Kikinka |
+| Fotograf / dokumentace | 0 | Děti |
 | Svatební cesta — termín, ubytování, program | 0 | Taťka |
 | **Subtotal** | **500** | |
 
@@ -119,6 +118,7 @@
 | 29. 5. | Návštěva radnice (Nová radnice Ostrava) | Mamka | ✅ |
 | 29. 5. | Informování dětí | Mamka | ✅ |
 | 29. 5. | Svědci domluveni (Kikinka + Žanetka) | Mamka | ✅ |
+| 25. 5. | Schůzka — prstýnky (Mamka+Taťka+Žanetka) | Mamka, Taťka, Žanetka | [ ] |
 
 ### Červen 2026
 
@@ -147,11 +147,11 @@
 | 1. 8. | Ubytování pro hosty | Žanetka | Povinné |
 | 10. 8. | Dárky pro svědky | Mamka | Důležité |
 | 15. 8. | Dekorace a květiny na radnici | Kikinka | Povinné |
-| 15. 8. | Dekorace Zlaté koliby | Žanetka | Důležité |
+| 15. 8. | Dekorace Zlaté koliby | Děti | Důležité |
 | 15. 8. | Dárky pro rodiče | Taťka | Důležité |
 | 15. 8. | První tanec (nácvik) | Mamka | Důležité |
 | 20. 8. | Doprava (radnice → Zlatá koliba) | Taťka | Povinné |
-| 20. 8. | Svatební dort | Mamka | Povinné |
+| 20. 8. | Svatební dort | Děti, Mamka | Povinné |
 | 20. 8. | Oddací list, podpisy, doklady | Kikinka | Povinné |
 | 20. 8. | Fotokoutek / selfie zóna | Taťka | Důležité |
 | 20. 8. | Uvítací cedule, místa k sezení | Mamka | Důležité |
@@ -163,7 +163,7 @@
 | 25. 8. | Líčení / nehty / vlasy (Mamka) | Mamka | Důležité |
 | 25. 8. | Střih a úprava (Taťka) | Taťka | Důležité |
 | 25. 8. | Confetti a prskavky | Žanetka | Volitelné |
-| 25. 8. | Fotograf / dokumentace | Kikinka | Volitelné |
+| 25. 8. | Fotograf / dokumentace | Děti | Volitelné |
 | **29. 8.** | **💒 SVATBA 🎉** | Všichni | |
 
 ### Září 2026 (po svatbě)
@@ -178,7 +178,7 @@
 
 - **GitHub repo:** `doma77git/PaprckoviSvatba2026`
 - **Live URL:** https://doma77git.github.io/PaprckoviSvatba2026/
-- **Zdrojový soubor:** `index.html` (single file, inline CSS/JS, 35 tasků)
+- **Zdrojový soubor:** `index.html` (single file, inline CSS/JS, 36 úkolů)
 - **Deploy:** Push do masteru → GitHub Action → `gh-pages` → live
 - **Storage key:** `svatba_state_v3` (localStorage)
 
@@ -221,7 +221,8 @@
 | 21. 5. | **Autoritativní Excel:** `data/rozpocet-svatba-2026.xlsx` — SUMIF/COUNTIF vzorce, podmíněné formátování, přehled na osobu | Jeden zdroj pravdy pro budget |
 | 21. 5. | **Manuální Excel:** `data/manualrozpocet-svatba-2026.xlsx` — uživatelův vlastní formát budgetu | Uživatel preferuje vlastní strukturu |
 | 21. 5. | **Hooks:** PreToolUse chrání .env/.git, PostToolUse přegeneruje Excel, Notification idle alert | Automatizace v `.claude/settings.json` |
-| 21. 5. | **35→36 úkolů:** 19 mandatory + 13 important + 4 optional = 100 000 Kč | Dáda přidán jako 6. osoba, úkol #36 schůzka prstýnky 25.5. |
+| 21. 5. | **35→36 úkolů:** 19 mandatory + 13 important + 4 optional = 100 000 Kč | Úkol #36 schůzka prstýnky (Mamka+Taťka+Žanetka); Dáda = Mamka (Dagmar Sobková) |
+| 24. 5. | **Oprava:** Dáda = Mamka = Dagmar Sobková — sloučeno do 5 osob, Mamka 18 úkolů | Uživatel upřesnil: Dáda je přezdívka Mamky |
 
 ---
 
@@ -299,16 +300,15 @@ _Zatím prázdné — doplní Mamka_
 
 ---
 
-## 12. Lidé — upřesněno 21. 5. 2026 (6 osob)
+## 12. Lidé — upřesněno 24. 5. 2026 (5 osob)
 
 | Kdo | Role | Úkolů v tasks.md |
 |-----|------|------------------|
-| **Mamka** | Nevěsta | 16 |
+| **Mamka** | Nevěsta (Dagmar Sobková, "Dáda") | 18 |
 | **Taťka** | Ženich | 9 |
 | **Žanetka** | Hlavní organizátorka, svědkyně ženicha | 6 |
 | **Kikinka** | Svědkyně nevěsty | 3 |
 | **Děti** | 4 dcery: **Gabriela, Kristýnka, Natálka, Kačka** — výzdoba, dort, focení | 3 |
-| **Dáda** | Pomoc s prstýnky | 1 |
 
 Děti jako skupina = 1 filter v appce. Individuální jména pro host list a kontakt.
 

@@ -1,68 +1,110 @@
 # 💒 Svatba Paprčkovi 2026
 
-Plánovací aplikace — **29. srpna 2026, 11:15**
-Git-backed architektura: data v MD souborech, appka je čte a renderuje.
+Svatební plánovač — **29. srpna 2026, 11:15**
+Git-backed architektura: data v MD souborech, appka je čte a renderuje. Bez npm, bez backendu.
 
-## Odkazy
+## ⚡ Rychlé odkazy
 
-| Link | URL |
-|------|-----|
-| **Plánovač v1** | https://doma77git.github.io/PaprckoviSvatba2026/ |
-| **Plánovač v2** | https://doma77git.github.io/PaprckoviSvatba2026/v2/ |
-| **Data — úkoly** | https://github.com/doma77git/PaprckoviSvatba2026/blob/master/data/tasks.md |
-| **Data — hosté** | https://github.com/doma77git/PaprckoviSvatba2026/blob/master/data/guests.md |
-| **Data — rozpočet Excel** | https://github.com/doma77git/PaprckoviSvatba2026/blob/master/data/rozpocet-svatba-2026.xlsx |
+| Co | Kde |
+|----|-----|
+| **Plánovač v1** (produkce) | https://doma77git.github.io/PaprckoviSvatba2026/ |
+| **Plánovač v2** (testovací) | https://doma77git.github.io/PaprckoviSvatba2026/v2/ |
+| **Úkoly** | [data/tasks.md](data/tasks.md) |
+| **Hosté** | [data/guests.md](data/guests.md) |
+| **Rozpočet Excel** | [data/rozpocet-svatba-2026.xlsx](data/rozpocet-svatba-2026.xlsx) |
+| **Manuální Excel** | [data/manualrozpocet-svatba-2026.xlsx](data/manualrozpocet-svatba-2026.xlsx) |
+| **PRD (specifikace)** | [docs/PRD-svatba-paprckovi-2026.md](docs/PRD-svatba-paprckovi-2026.md) |
 | **Repozitář** | https://github.com/doma77git/PaprckoviSvatba2026 |
-| **Dokumentace** | [PRD](docs/PRD-svatba-paprckovi-2026.md) |
-| **Archivní verze (001!)** | https://doma77git.github.io/PaprckoviSvatba2026/Older_up2date/ |
-| **WhatsApp** | _[doplň odkaz na skupinu]_ |
+| **Archivní verze** | https://doma77git.github.io/PaprckoviSvatba2026/Older_up2date/ |
 
-## Klíčové informace
+## 📊 Aktuální stav
 
-- **Datum:** 29. srpna 2026, 11:15
-- **Obřad:** Nová radnice Ostrava
+```
+✅ 5/36 splněno  ·  💰 0/100 000 Kč utraceno
+```
+
+| Kategorie | Úkolů | Plán |
+|-----------|-------|------|
+| 🔴 Povinné (mandatory) | 19 | 94 500 Kč |
+| 🟡 Důležité (important) | 13 | 5 000 Kč |
+| 🟢 Volitelné (optional) | 4 | 500 Kč |
+| **Celkem** | **36** | **100 000 Kč** |
+
+**Hotovo (5):** termín ✓ · radnice ✓ · děti ✓ · svědci ✓ · oddávající ✓
+
+## 👥 Lidé
+
+| Kdo | Role | Úkolů |
+|-----|------|--------|
+| **Mamka** | Nevěsta | 18 |
+| **Taťka** | Ženich | 9 |
+| **Žanetka** | Hlavní organizátorka, svědkyně ženicha | 6 |
+| **Kikinka** | Svědkyně nevěsty | 3 |
+| **Děti** | 4 dcery: Gabriela, Kristýnka, Natálka, Kačka — výzdoba, dort, focení | 3 |
+
+## 📅 Klíčové milníky
+
+| Kdy | Co |
+|-----|-----|
+| ~~29. 5. 2025~~ | ✅ Termín, radnice, děti, svědci |
+| ~~15. 5. 2026~~ | ✅ Oddávající domluven |
+| **25. 5. 2026** | 💍 Schůzka prstýnky (Mamka+Taťka+Žanetka) |
+| 10. 7. 2026 | Svatební oznámení |
+| 15. 7. 2026 | Koliba catering, šaty, oblek, prstýnky, hosté |
+| 1. 8. 2026 | Nápoje, doplňky, ubytování |
+| 10.–20. 8. 2026 | Výzdoba, dárky, program |
+| 25. 8. 2026 | Poslední úpravy |
+| **29. 8. 2026** | **💒 SVATBA 🎉** |
+
+## 🏛️ Místo
+
+- **Obřad:** 11:15, Nová radnice Ostrava
 - **Hostina:** Koliba U Zlatého Jarouše (U Miloše), Karasova 1130/23, 709 00 Ostrava
-- **Rozpočet:** MAX 100 000 Kč (hard cap) · 36 úkolů · 6 osob
-- **Nevěsta:** Mamka (Dagmar) | **Ženich:** Taťka
-- **Svědci:** Kikinka (za nevěstu), Žanetka (za ženicha)
-- **Organizátorka:** Žanetka
-- **Děti (4 dcery):** Gabriela, Kristýnka, Natálka, Kačka — výzdoba, dort, focení
-- **Dáda:** pomoc s prstýnky
-- **Hotovo (5/36):** termín ✓, radnice ✓, děti ✓, svědci ✓, oddávající ✓
+- **Potvrzeno:** 21. 5. 2026 (Mamka + Žanetka osobně u Miloše)
+- [📍 Navigovat](https://maps.google.com/?q=Karasova+1130/23,+709+00+Ostrava)
 
-## Struktura
+## 🏗️ Architektura
 
 ```
 ./
-├── index.html              ← plánovač v1 (single-file, localStorage)
-├── v2/index.html           ← plánovač v2 (git-backed, fetch MD z GitHubu)
+├── index.html              ← v1 (single-file, localStorage, inline data)
+├── v2/index.html           ← v2 (fetches MD z GitHubu, PIN write)
 ├── data/
-│   ├── tasks.md            ← 36 úkolů — autoritativní zdroj
+│   ├── tasks.md            ← 36 úkolů — AUTORITATIVNÍ zdroj
 │   ├── guests.md           ← seznam hostů
-│   ├── rozpocet-svatba-2026.xlsx        ← auto-generovaný Excel (SUMIF)
-│   └── manualrozpocet-svatba-2026.xlsx  ← manuální Excel (user edituje)
+│   ├── rozpocet-svatba-2026.xlsx        ← auto-gen Excel (SUMIF vzorce)
+│   └── manualrozpocet-svatba-2026.xlsx  ← manuální Excel
+├── docs/                   ← PRD, design spec, knowledge base
 ├── public/                 ← favicon, manifest, 404
-├── .github/workflows/      ← auto-deploy na push do masteru
-├── .claude/settings.json   ← hooks (PreToolUse, PostToolUse, Notification)
-├── docs/                   ← PRD, design spec
-├── README.md
-├── CLAUDE.md
-├── AGENTS.md
-├── HISTORY.md
-└── .gitignore
+├── Older/                  ← archivní verze (001–v42)
+├── Older_up2date/          ← opravené archivní verze
+└── .github/workflows/      ← auto-deploy na push do masteru
 ```
 
-## Deployment
+### Data flow
+1. Editace `data/tasks.md` / `data/guests.md` → commit + push
+2. v2 appka automaticky fetchuje z GitHub Raw
+3. PostToolUse hook přegeneruje `rozpocet-svatba-2026.xlsx`
+4. Push do `master` → GitHub Actions → `gh-pages` → live
 
-Push do `master` → GitHub Actions → `gh-pages`:
-- `/` — v1 (produkce)
-- `/v2/` — v2 (nová verze)
+### Dual deploy
+- **`/`** — v1 produkce (stabilní, offline-first, localStorage)
+- **`/v2/`** — v2 testovací (git-backed, PIN sync, live data)
 
-**Nepotřebuje npm, node, build.** Data v `data/*.md`, appky v `index.html` + `v2/index.html`.
+## 🔒 Pravidla
 
-## Progress
+1. **Budget 100 000 Kč hard cap** — jakákoliv změna ceny musí být vyrovnána jinde
+2. **Nikdy neodebírat Děti** z úkolů — co-assign (`Děti, Mamka`), nikdy nenahrazovat
+3. **Jména bez háčků, bez příjmení** — Mikesovi (ne Mikešovi), jen křestní / přezdívky
+4. **Append-only poznámky** v tasks.md; oddělovač `; `
+5. **Po editaci tasks.md:** aktualizovat header, people tabulku, budget tabulku
+6. **PRD je autoritativní spec** — `docs/PRD-svatba-paprckovi-2026.md`
 
-✅ 5/36 splněno · 💰 0/100 000 Kč utraceno · 📅 ~100 dní do svatby
-🍽️ Koliba U Zlatého Jarouše: potvrzeno 21.5.2026 (Mamka + Žanetka u Miloše)
-💍 Schůzka prstýnky: Dáda+Taťka+Žanetka 25.5.2026
-📍 [Navigovat](https://maps.google.com/?q=Karasova+1130/23,+709+00+Ostrava)
+## 🔧 Automatizace
+
+| Hook | Co dělá |
+|------|---------|
+| **PreToolUse** | Blokuje editace `.env`, `package-lock.json`, `.git/` |
+| **PostToolUse** | Přegeneruje Excel po změně tasks.md |
+| **Notification** | Desktop notifikace při čekání na input |
+| **GitHub Actions** | Auto-deploy na push do masteru |

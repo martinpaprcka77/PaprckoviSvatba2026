@@ -40,7 +40,7 @@ se budget nekontrolovaně nafukuje. Excel s podmíněným formátováním (aktu�
 
 ### 3. Neztratit lidi
 Ve verzi 17.5. (LastSvatba) Děti úplně zmizely z přiřazení úkolů — jen 4 osoby.
-Verze 19.5. má jen 3 osoby. Aktuální stav (6 osob) je správný.
+Verze 19.5. má jen 3 osoby. Aktuální stav (5 osob) je správný.
 Pravidlo "nikdy neodebírat Děti" v CLAUDE.md je nutné.
 
 ### 4. Velikost souboru = indikátor složitosti

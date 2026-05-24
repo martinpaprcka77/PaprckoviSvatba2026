@@ -1,6 +1,8 @@
 # Wedding Data Consistency Rules
 
-> Created: 16.5.2026 — po overhaulu svatební appky
+> **Created: 16.5.2026** — historický dokument. Sync body (§KDE VŠE) odkazují na starý projekt C:\dev\PS7 + C:\Brain.
+> Immutable Facts + Assignment Rules stále platné. Aktuální workflow viz CLAUDE.md.
+
 > Purpose: Kodifikovat jak udržovat svatební data konzistentní napříč Brainem a appkou
 
 ---
@@ -52,22 +54,22 @@ Při jakékoliv změně svatebních dat aktualizovat VŽDY:
 
 Po každé změně svatebních dat ověřit:
 
-1. [ ] Suma všech task prices = přesně 100 000 Kč? (mandatory 86 500 + important 11 500 + optional 2 000)
+1. [ ] Suma všech task prices = přesně 100 000 Kč? (mandatory 94 500 + important 5 000 + optional 500)
 2. [ ] Všechny deadliny před 29.8.2026 (kromě post-svatebních — změna příjmení 5.9.)?
-3. [ ] Všechny 4 hotové tasky (IDs 1-4) jsou marked done?
+3. [ ] Všechny 5 hotové tasky (IDs 1-5) jsou marked done?
 4. [ ] Žádné reference na Terasa?
 5. [ ] Všechny názvy mají správnou diakritiku?
 6. [ ] Appka deploynutá a funkční na GitHub Pages?
-7. [ ] Person filter ukazuje 4 jména: Mamka, Taťka, Žanetka, Kikinka?
+7. [ ] Person filter ukazuje 5 jmen: Mamka, Taťka, Žanetka, Kikinka, Děti?
 8. [ ] Countdown ukazuje dny do 29.8.2026?
 9. [ ] Budget bar ukazuje limit 100 000 Kč?
 
 ## Budget Breakdown
 
 ```
-POVINNÉ (mandatory):      86 500 Kč (19 tasků)
-DŮLEŽITÉ (important):     11 500 Kč (12 tasků)
-VOLITELNÉ (optional):      2 000 Kč (4 tasky)
+POVINNÉ (mandatory):      94 500 Kč (19 tasků)
+DŮLEŽITÉ (important):      5 000 Kč (13 tasků)
+VOLITELNÉ (optional):        500 Kč (4 tasky)
 ─────────────────────────────────────────
-CELKEM:                  100 000 Kč (35 tasků)
+CELKEM:                  100 000 Kč (36 tasků)
 ```

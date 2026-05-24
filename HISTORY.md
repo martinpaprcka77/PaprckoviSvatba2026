@@ -1,5 +1,24 @@
 # HISTORY — Svatba Paprčkovi 2026
 
+## 2026-05-24 (odpoledne)
+
+- **Docs cleanup:** 24 PAPROS/Brain leftover files removed (Architecture, CrossAgent, KnowledgeBase, Generated, Workflows, CommandReference, ProjectOverview, Roadmap_v2, PAPROS_history, AI_Instructions, SessionMemory). Repo 60→42 tracked files.
+- **build_excel.py:** Vytvořen skript pro auto-generování Excelu z tasks.md. 3 listy (Všechny úkoly, Podle osoby, Rozpočet). Hook nyní funkční.
+- **Excel hook fix:** `sys.exit(0 if not tasks.md else 0)` → `(sys.exit(0) if not tasks.md else None)` — původní kód vždy ukončil proces, Excel se nikdy negeneroval.
+- **PRD timeline:** Doplněn chybějící task #36 (Schůzka prstýnky, 25.5.)
+- **Deploy conflict:** Odstraněn redundantní `static.yml` (uploadoval celý repo root), `deploy.yml` zůstává (kurátované soubory).
+- **Cross-doc sync:** Opraveny zastaralé počty — 6→5 osob (Older_up2date/README.md), budget 86.5/11.5/2k→94.5/5/0.5k, 35→36 tasků (wedding-data-instructions.md).
+- **Git:** Orphan→sync s origin/master, user.email→noreply, .gitignore rozšířen o ralph-loop.
+- **Úklid:** 14 PNG screenshotů, 2 .original.md backupů, run_v2.py, test_v2.py, .playwright-mcp/, :USERPROFILE/ — vše smazáno.
+
+## 2026-05-24 (ráno/dopoledne)
+
+- **Git history squash:** 117→1 commit (master), 82→1 commit (gh-pages). Clean repo.
+- **Deep cross-check:** 7 discrepancies found → Mamka 16→17 (oddávající reassigned), then 17→18 (Dáda merged as Mamka alias). Děti assignee opravy v PRD, PRD 35→36 tasků
+- **Dáda = Mamka = Dagmar Sobková** — sloučeno do 5 osob, Mamka 18 úkolů. Schůzka prstýnky Mamka+Taťka+Žanetka.
+- **README přepsán:** přehlednější struktura, aktuální stav, milníky, pravidla, automatizace
+- **Code review:** 6 stale Dáda references found & fixed in copilot-instructions.md + v1 index.html (persons filter, stats, task #36)
+
 ## 2026-05-21 (večer)
 
 - **CLAUDE.md + copilot-instructions** sesynchronizovány na aktuální stav (36 úkolů, 6 osob, v2 architektura)
