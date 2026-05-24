@@ -1,0 +1,7 @@
+node_modules/
+chat_export_*.md
+.superpowers/
+.deepseek/
+dist/
+.vite/
+.vscode/

@@ -1,0 +1,1606 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>💍 Svatba Paprčkovi 2026 | Plánovač</title>
+    <style>
+        :root {
+            --primary: #8b3a3a;
+            --primary-light: #c46a6a;
+            --accent: #c0392b;
+            --warning: #d4a017;
+            --success: #27ae60;
+            --bg-dark: #faf7f2;
+            --card-bg: #ffffff;
+            --text-dark: #2d2a24;
+            --text-muted: #888888;
+            --border-light: #e8e0d8;
+            --border-dark: #d5ccc4;
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            font-family: 'Georgia', 'Garamond', serif;
+            background: linear-gradient(135deg, var(--bg-dark) 0%, #f5ede4 100%);
+            color: var(--text-dark);
+            margin: 0;
+            padding: 0 0 80px;
+            min-height: 100vh;
+            line-height: 1.5;
+        }
+
+        /* ===== HEADER ===== */
+        .header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            padding: 24px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(139, 58, 58, 0.2);
+        }
+
+        .header::before {
+            content: '💍';
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            font-size: 140px;
+            opacity: 0.08;
+            transform: rotate(-15deg);
+            pointer-events: none;
+        }
+
+        .header h1 {
+            font-size: 1.9rem;
+            font-weight: 700;
+            margin: 0;
+            letter-spacing: -0.5px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header .subtitle {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin: 6px 0 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .countdown-display {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-top: 8px;
+            position: relative;
+            z-index: 1;
+            letter-spacing: -1px;
+        }
+
+        .countdown-label {
+            font-size: 0.75rem;
+            opacity: 0.8;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ===== TABS ===== */
+        .tabs-container {
+            background: white;
+            display: flex;
+            gap: 0;
+            border-bottom: 2px solid var(--border-light);
+            padding: 0 16px;
+            max-width: 1200px;
+            margin: 0 auto;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+        }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            padding: 12px 16px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .tab-btn:hover {
+            color: var(--primary);
+        }
+
+        .tab-btn.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        /* ===== MAIN CONTAINER ===== */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 16px;
+        }
+
+        .view {
+            display: none;
+        }
+
+        .view.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* ===== CARDS ===== */
+        .card {
+            background: var(--card-bg);
+            border-radius: 14px;
+            padding: 16px;
+            margin-bottom: 16px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+        }
+
+        .card h2 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin: 0 0 12px;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* ===== DASHBOARD ===== */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .dashboard-item {
+            background: linear-gradient(135deg, rgba(139, 58, 58, 0.05) 0%, rgba(196, 106, 106, 0.05) 100%);
+            padding: 16px;
+            border-radius: 12px;
+            border: 1px solid var(--border-light);
+            text-align: center;
+        }
+
+        .dashboard-item .label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+            font-weight: 600;
+        }
+
+        .dashboard-item .value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        /* ===== PROGRESS ===== */
+        .progress-section {
+            margin-bottom: 16px;
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 6px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .progress-bar {
+            background: var(--border-light);
+            height: 8px;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-fill {
+            background: linear-gradient(90deg, var(--primary), var(--primary-light));
+            height: 100%;
+            border-radius: 10px;
+            transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            width: 0%;
+        }
+
+        /* ===== MANDATORY TASKS WIDGET ===== */
+        .mandatory-widget {
+            border-left: 4px solid var(--accent);
+            padding-left: 16px;
+        }
+
+        .mandatory-widget .item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 0;
+            font-size: 0.85rem;
+            border-bottom: 1px solid var(--border-light);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .mandatory-widget .item:last-child {
+            border-bottom: none;
+        }
+
+        .mandatory-widget .item.done {
+            opacity: 0.5;
+        }
+
+        .mandatory-widget .checkbox {
+            width: 16px;
+            height: 16px;
+            border: 2px solid var(--border-dark);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .mandatory-widget .checkbox.checked {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: white;
+            font-size: 10px;
+        }
+
+        .mandatory-widget .task-name {
+            flex: 1;
+        }
+
+        .mandatory-widget .deadline {
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 0.75rem;
+            white-space: nowrap;
+        }
+
+        /* ===== FILTERS ===== */
+        .filter-group {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+
+        .filter-btn {
+            padding: 6px 14px;
+            border-radius: 20px;
+            border: 1.5px solid var(--border-dark);
+            background: white;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .filter-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .filter-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .filter-btn.mandatory {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .filter-btn.mandatory.active {
+            background: var(--accent);
+            border-color: var(--accent);
+        }
+
+        .filter-btn.important {
+            border-color: var(--warning);
+            color: var(--warning);
+        }
+
+        .filter-btn.important.active {
+            background: var(--warning);
+            border-color: var(--warning);
+            color: white;
+        }
+
+        .filter-btn.optional {
+            border-color: var(--success);
+            color: var(--success);
+        }
+
+        .filter-btn.optional.active {
+            background: var(--success);
+            border-color: var(--success);
+            color: white;
+        }
+
+        /* ===== TASKS ===== */
+        .tasks-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .section-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--primary);
+            padding: 12px 0 6px;
+            border-bottom: 2px solid var(--border-light);
+            margin-top: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .section-title:first-child {
+            margin-top: 0;
+        }
+
+        .section-count {
+            font-size: 0.7rem;
+            background: var(--border-light);
+            padding: 2px 8px;
+            border-radius: 10px;
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+
+        .task-card {
+            background: white;
+            border: 1px solid var(--border-light);
+            border-radius: 10px;
+            padding: 12px;
+            margin: 8px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-left: 4px solid var(--border-light);
+            max-height: 300px;
+            overflow: hidden;
+        }
+
+        .task-card:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .task-card.done {
+            opacity: 0;
+            max-height: 0;
+            margin: 0;
+            padding: 0;
+            border: none;
+            pointer-events: none;
+        }
+
+        .task-card.done.show {
+            opacity: 0.5;
+            max-height: 300px;
+            margin: 8px 0;
+            padding: 12px;
+            border: 1px solid var(--border-light);
+            pointer-events: auto;
+        }
+
+        .task-card.done.show .task-title {
+            text-decoration: line-through;
+            color: var(--text-muted);
+        }
+
+        .task-checkbox {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--border-dark);
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-top: 1px;
+        }
+
+        .task-checkbox.checked {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: white;
+            font-size: 12px;
+        }
+
+        .task-body {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .task-title {
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 4px;
+            color: var(--text-dark);
+            word-break: break-word;
+        }
+
+        .task-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            font-size: 0.7rem;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 3px;
+            padding: 3px 8px;
+            border-radius: 12px;
+            background: var(--border-light);
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+
+        .badge.mandatory {
+            background: rgba(192, 57, 43, 0.15);
+            color: var(--accent);
+        }
+
+        .badge.important {
+            background: rgba(212, 160, 23, 0.15);
+            color: var(--warning);
+        }
+
+        .badge.optional {
+            background: rgba(39, 174, 96, 0.15);
+            color: var(--success);
+        }
+
+        .badge.person {
+            background: var(--border-light);
+            color: var(--text-muted);
+        }
+
+        .badge.deadline {
+            background: var(--border-light);
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+
+        .badge.deadline.urgent {
+            background: rgba(192, 57, 43, 0.2);
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        .task-description {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 6px;
+            line-height: 1.4;
+        }
+
+        .show-done-btn {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 0.75rem;
+            cursor: pointer;
+            padding: 6px 0;
+            margin-top: 4px;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .show-done-btn:hover {
+            color: var(--primary);
+        }
+
+        /* ===== BUDGET ===== */
+        .budget-section {
+            background: linear-gradient(135deg, rgba(139, 58, 58, 0.05) 0%, rgba(196, 106, 106, 0.05) 100%);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+
+        .budget-section h3 {
+            font-size: 0.9rem;
+            margin: 0 0 8px;
+            color: var(--primary);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .budget-bar {
+            background: white;
+            height: 6px;
+            border-radius: 6px;
+            overflow: hidden;
+            margin-bottom: 12px;
+        }
+
+        .budget-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--primary-light));
+            transition: width 0.5s ease;
+        }
+
+        .budget-fill.warning {
+            background: linear-gradient(90deg, var(--warning), #e8b923);
+        }
+
+        .budget-fill.alert {
+            background: linear-gradient(90deg, var(--accent), #e74c3c);
+        }
+
+        .budget-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            font-size: 0.85rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .budget-item:last-child {
+            border-bottom: none;
+        }
+
+        .budget-total {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-top: 2px solid white;
+            margin-top: 8px;
+            font-weight: 700;
+            font-size: 0.95rem;
+        }
+
+        .budget-price {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        /* ===== TIMELINE ===== */
+        .timeline {
+            position: relative;
+        }
+
+        .timeline-month {
+            margin-bottom: 20px;
+        }
+
+        .timeline-month h3 {
+            font-size: 0.9rem;
+            color: var(--primary);
+            margin: 0 0 12px;
+            font-weight: 700;
+        }
+
+        .timeline-event {
+            display: flex;
+            gap: 12px;
+            padding: 10px 0;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border-left: 3px solid var(--border-light);
+            padding-left: 12px;
+        }
+
+        .timeline-event:hover {
+            border-left-color: var(--primary);
+            transform: translateX(2px);
+        }
+
+        .timeline-event.done {
+            opacity: 0.5;
+        }
+
+        .timeline-date {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--primary);
+            white-space: nowrap;
+        }
+
+        .timeline-content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .timeline-title {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--text-dark);
+            margin-bottom: 2px;
+        }
+
+        .timeline-meta {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+        }
+
+        /* ===== STATS ===== */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .stat-box {
+            background: linear-gradient(135deg, rgba(139, 58, 58, 0.08) 0%, rgba(196, 106, 106, 0.08) 100%);
+            padding: 16px;
+            border-radius: 12px;
+            border: 1px solid var(--border-light);
+            text-align: center;
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+
+        .stat-value {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .stat-detail {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        .stats-text {
+            background: white;
+            padding: 14px;
+            border-radius: 12px;
+            border: 1px solid var(--border-light);
+            font-size: 0.85rem;
+            line-height: 1.6;
+            color: var(--text-dark);
+        }
+
+        .stats-text strong {
+            color: var(--primary);
+        }
+
+        /* ===== ACTIONS ===== */
+        .actions-bar {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+            padding: 0 0 16px;
+            border-bottom: 2px solid var(--border-light);
+        }
+
+        .action-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .action-btn:hover {
+            background: var(--primary-light);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(139, 58, 58, 0.2);
+        }
+
+        .action-btn.secondary {
+            background: white;
+            color: var(--primary);
+            border: 1.5px solid var(--primary);
+        }
+
+        .action-btn.secondary:hover {
+            background: rgba(139, 58, 58, 0.05);
+        }
+
+        .action-btn.danger {
+            background: var(--accent);
+        }
+
+        .action-btn.danger:hover {
+            background: #a03020;
+        }
+
+        /* ===== MODALS ===== */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+        }
+
+        .modal.active {
+            display: flex;
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            max-width: 500px;
+            width: 100%;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .modal-header {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--primary);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-muted);
+        }
+
+        .modal-form {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .form-label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .form-input,
+        .form-select,
+        .form-textarea {
+            padding: 10px 12px;
+            border: 1.5px solid var(--border-dark);
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-family: inherit;
+            transition: border-color 0.2s ease;
+        }
+
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(139, 58, 58, 0.1);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        /* ===== NOTIFICATIONS ===== */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: white;
+            border-left: 4px solid var(--primary);
+            padding: 16px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            max-width: 300px;
+            animation: slideInRight 0.3s ease;
+            z-index: 2000;
+        }
+
+        .toast.success {
+            border-left-color: var(--success);
+        }
+
+        .toast.error {
+            border-left-color: var(--accent);
+        }
+
+        .toast.warning {
+            border-left-color: var(--warning);
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* ===== BOTTOM NAV ===== */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            border-top: 2px solid var(--border-light);
+            display: flex;
+            justify-content: space-around;
+            padding: 8px 0;
+            z-index: 100;
+        }
+
+        .nav-item {
+            background: none;
+            border: none;
+            padding: 8px 12px;
+            cursor: pointer;
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            flex: 1;
+            transition: color 0.2s ease;
+            font-weight: 500;
+        }
+
+        .nav-item.active {
+            color: var(--primary);
+        }
+
+        .nav-item span {
+            font-size: 1.3rem;
+        }
+
+        /* ===== EMPTY STATE ===== */
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-muted);
+        }
+
+        .empty-state-icon {
+            font-size: 3rem;
+            margin-bottom: 12px;
+        }
+
+        .empty-state-text {
+            font-size: 0.95rem;
+        }
+
+        /* ===== UTILITY ===== */
+        .hidden {
+            display: none !important;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .text-muted {
+            color: var(--text-muted);
+        }
+
+        @media (max-width: 640px) {
+            .container {
+                padding: 12px;
+            }
+
+            .header h1 {
+                font-size: 1.5rem;
+            }
+
+            .countdown-display {
+                font-size: 2.2rem;
+            }
+
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .tabs-container {
+                padding: 0 8px;
+            }
+
+            .tab-btn {
+                padding: 10px 12px;
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <div class="header">
+        <h1>💒 Svatba Paprčkovi 2026</h1>
+        <div class="subtitle">📍 Nová radnice Ostrava + U Miloše, Zlatá koliba • 29. srpen 2026 • 11:15</div>
+        <div class="countdown-display" id="countdown">0</div>
+        <div class="countdown-label" id="countdownLabel">dní do svatby</div>
+    </div>
+
+    <!-- TABS -->
+    <div class="tabs-container">
+        <button class="tab-btn active" data-view="checklist">📋 Checklist</button>
+        <button class="tab-btn" data-view="timeline">📅 Harmonogram</button>
+        <button class="tab-btn" data-view="budget">💰 Rozpočet</button>
+        <button class="tab-btn" data-view="stats">📊 Statistiky</button>
+        <button class="tab-btn" data-view="settings">⚙️ Nastavení</button>
+    </div>
+
+    <div class="container">
+
+        <!-- CHECKLIST VIEW -->
+        <div id="checklist" class="view active">
+            <div class="card">
+                <h2>🔴 Klíčové úkoly (MUST-DO)</h2>
+                <div class="mandatory-widget">
+                    <div id="mandatoryList"></div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="dashboard-grid">
+                    <div class="dashboard-item">
+                        <div class="label">Celkový pokrok</div>
+                        <div class="value" id="totalPercent">0%</div>
+                    </div>
+                    <div class="dashboard-item">
+                        <div class="label">Hotovo / Celkem</div>
+                        <div class="value" id="doneCount">0/0</div>
+                    </div>
+                </div>
+
+                <div class="progress-section">
+                    <div class="progress-header">
+                        <span>Pokrok všech úkolů</span>
+                        <span id="progressLabel">0%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2 style="margin-bottom: 12px;">🔍 Filtry</h2>
+                <div class="filter-group" id="filterGroup"></div>
+            </div>
+
+            <div class="card">
+                <h2>📌 Úkoly</h2>
+                <div class="tasks-list" id="tasksList"></div>
+            </div>
+        </div>
+
+        <!-- TIMELINE VIEW -->
+        <div id="timeline" class="view">
+            <div class="card">
+                <h2>⏱️ Harmonogram příprav</h2>
+                <div class="timeline" id="timelineContainer"></div>
+            </div>
+
+            <div class="card">
+                <h2>⏰ Průběh svatebního dne (29.8.)</h2>
+                <div style="font-size: 0.9rem; line-height: 1.8; color: var(--text-dark);">
+                    <strong>🕚 11:15</strong> – Obřad, Nová radnice Ostrava<br>
+                    <strong>🕛 12:00</strong> – Gratulace, focení<br>
+                    <strong>🕐 13:00</strong> – Přesun do Zlaté koliby (U Miloše)<br>
+                    <strong>🕑 14:00</strong> – Hostina, raut<br>
+                    <strong>🕔 17:00</strong> – Hudba, zábava<br>
+                    <strong>🕖 19:00</strong> – Přípitek, krájení dortu 🍰<br>
+                    <strong>🕘 21:00</strong> – Volný konec, úklid
+                </div>
+            </div>
+        </div>
+
+        <!-- BUDGET VIEW -->
+        <div id="budget" class="view">
+            <div class="card">
+                <h2>💰 Rozpočet svatby</h2>
+                
+                <div class="budget-section">
+                    <h3>
+                        Celkový rozpočet
+                        <span id="budgetPercent">0%</span>
+                    </h3>
+                    <div class="budget-bar">
+                        <div class="budget-fill" id="budgetFill"></div>
+                    </div>
+                    <div class="budget-item" style="padding: 8px 0; border-bottom: none; margin-bottom: 0;">
+                        <span>Celkem</span>
+                        <span class="budget-price" id="totalBudget">0 Kč</span>
+                    </div>
+                </div>
+
+                <div class="budget-section" style="margin-top: 16px;">
+                    <h3 style="border-bottom: none; margin-bottom: 12px;">Rozpad po kategoriích</h3>
+                    <div id="budgetDetails"></div>
+                    <div class="budget-total">
+                        <span>Maximální rozpočet (+20%)</span>
+                        <span class="budget-price" id="maxBudget">0 Kč</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- STATS VIEW -->
+        <div id="stats" class="view">
+            <div class="card">
+                <h2>📊 Statistika příprav</h2>
+                <div class="stats-grid" id="statsGrid"></div>
+                <div class="stats-text" id="statsText"></div>
+            </div>
+        </div>
+
+        <!-- SETTINGS VIEW -->
+        <div id="settings" class="view">
+            <div class="card">
+                <h2>⚙️ Nastavení a akce</h2>
+                <div class="actions-bar">
+                    <button class="action-btn" onclick="exportData()">📥 Stáhnout JSON</button>
+                    <button class="action-btn secondary" onclick="shareApp()">🔗 Sdílet aplikaci</button>
+                    <button class="action-btn danger" onclick="resetChecked()">⟳ Resetovat zaškrtnutí</button>
+                    <button class="action-btn danger" onclick="resetAll()">🗑️ Smazat všechno</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>📋 Pomocné informace</h2>
+                <div style="font-size: 0.9rem; line-height: 1.8; color: var(--text-dark);">
+                    <p><strong>💾 Automatické ukládání:</strong> Všechna zaškrtnutí se ukládají do vašeho zařízení automaticky.</p>
+                    <p><strong>👥 Skupinové sdílení:</strong> Sdílejte odkaz na tuto aplikaci se všemi členy rodiny.</p>
+                    <p><strong>📱 Mobilní přístup:</strong> Aplikace funguje na všech zařízeních (mobil, tablet, počítač).</p>
+                    <p><strong>🔔 Notifikace:</strong> Aktivujte notifikace pro připomenutí důležitých termínů.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- BOTTOM NAV -->
+    <div class="bottom-nav">
+        <button class="nav-item active" data-view="checklist"><span>📋</span> Úkoly</button>
+        <button class="nav-item" data-view="timeline"><span>📅</span> Plán</button>
+        <button class="nav-item" data-view="budget"><span>💰</span> Rozpočet</button>
+        <button class="nav-item" data-view="stats"><span>📊</span> Stats</button>
+        <button class="nav-item" data-view="settings"><span>⚙️</span> Více</button>
+    </div>
+
+    <script>
+        // ===== CONFIG =====
+        const WEDDING_DATE = new Date('2026-08-29T11:15:00');
+        const BUDGET_MAX = 100000;
+
+        const CAT_LABELS = {
+            mandatory: '🔴 Povinné',
+            important: '🟡 Důležité',
+            optional: '🟢 Volitelné'
+        };
+
+        const CAT_COLORS = {
+            mandatory: '#c0392b',
+            important: '#d4a017',
+            optional: '#27ae60'
+        };
+
+        // ===== TASKS DATA =====
+        const TASKS = [
+            { id: 1, title: "Ověřit termín na matrice + podat žádost", deadline: "2026-05-12", assign: "Mamka, Taťka", cat: "mandatory", price: 0, timeline: "2026-05-10" },
+            { id: 2, title: "Koupě snubních prstýnků (oba)", deadline: "2026-05-28", assign: "Mamka, Taťka", cat: "mandatory", price: 20000, timeline: "2026-05-25" },
+            { id: 3, title: "Svatební šaty – finální zkouška + úpravy", deadline: "2026-06-01", assign: "Mamka, Děti", cat: "mandatory", price: 14000, timeline: "2026-05-20" },
+            { id: 4, title: "Oblek pro ženicha", deadline: "2026-05-25", assign: "Taťka", cat: "mandatory", price: 7000, timeline: "2026-05-20" },
+            { id: 5, title: "Pronájem terasy / sálu – smlouva a záloha", deadline: "2026-05-10", assign: "Mamka, Taťka", cat: "mandatory", price: 15000, timeline: "2026-04-20" },
+            { id: 6, title: "Catering – výběr menu, počet osob", deadline: "2026-05-30", assign: "Mamka, Taťka", cat: "mandatory", price: 35000, timeline: "2026-05-15" },
+            { id: 7, title: "Svědci – oslovení a potvrzení", deadline: "2026-05-18", assign: "Mamka, Taťka", cat: "mandatory", price: 0, timeline: "2026-05-15" },
+            { id: 8, title: "Pozvánky – rozeslání + RSVP", deadline: "2026-05-20", assign: "Děti", cat: "important", price: 1800, timeline: "2026-05-01" },
+            { id: 9, title: "Účes a make-up – vyzkoušet a zamluvit", deadline: "2026-05-25", assign: "Mamka", cat: "important", price: 3000, timeline: "2026-05-20" },
+            { id: 10, title: "Dekorace – květiny, girlandy, svíčky", deadline: "2026-06-10", assign: "Mamka, Děti", cat: "important", price: 7000, timeline: "2026-05-30" },
+            { id: 11, title: "Dort a sladké – objednat", deadline: "2026-06-01", assign: "Mamka", cat: "important", price: 7000, timeline: "2026-05-15" },
+            { id: 12, title: "Fotovýbava a tisk (táta fotograf)", deadline: "2026-06-10", assign: "Taťka", cat: "optional", price: 3000, timeline: "2026-06-01" },
+            { id: 13, title: "DJ výbava / pronájem repráků", deadline: "2026-06-10", assign: "Taťka, Děti", cat: "optional", price: 2000, timeline: "2026-05-20" },
+            { id: 14, title: "Pozvání pro blízkou rodinu (osobně)", deadline: "2026-05-15", assign: "Mamka", cat: "important", price: 0, timeline: "2026-05-10" },
+            { id: 15, title: "Ubytování hostů (zajistit info)", deadline: "2026-05-20", assign: "Taťka", cat: "optional", price: 0, timeline: "2026-05-10" },
+            { id: 16, title: "Povolení a koordinace s lokalitou", deadline: "2026-05-05", assign: "Mamka, Taťka", cat: "mandatory", price: 0, timeline: "2026-04-15" },
+            { id: 17, title: "Seznam hostů - finální počet", deadline: "2026-06-05", assign: "Mamka", cat: "important", price: 0, timeline: "2026-05-25" },
+            { id: 18, title: "Seating chart & jmenné kartičky", deadline: "2026-06-08", assign: "Děti", cat: "optional", price: 500, timeline: "2026-06-01" },
+            { id: 19, title: "Pohlednice na stůl + hvězdy (tisková příprava)", deadline: "2026-06-10", assign: "Mamka, Děti", cat: "optional", price: 800, timeline: "2026-06-01" },
+            { id: 20, title: "Kontrola všech detailů (2 dny před)", deadline: "2026-06-13", assign: "Mamka, Taťka", cat: "mandatory", price: 0, timeline: "2026-06-13" }
+        ];
+
+        // ===== STATE =====
+        let state = {
+            done: new Set(),
+            filter: 'all',
+            view: 'checklist',
+            showDone: false
+        };
+
+        // ===== STORAGE =====
+        function loadState() {
+            try {
+                const saved = localStorage.getItem('svatba_state_v2');
+                if (saved) {
+                    const data = JSON.parse(saved);
+                    state.done = new Set(data.done || []);
+                    state.filter = data.filter || 'all';
+                    state.view = data.view || 'checklist';
+                    state.showDone = data.showDone || false;
+                }
+            } catch (e) {
+                console.error('Error loading state:', e);
+            }
+        }
+
+        function saveState() {
+            try {
+                localStorage.setItem('svatba_state_v2', JSON.stringify({
+                    done: Array.from(state.done),
+                    filter: state.filter,
+                    view: state.view,
+                    showDone: state.showDone
+                }));
+            } catch (e) {
+                console.error('Error saving state:', e);
+            }
+        }
+
+        // ===== RENDERING =====
+        function render() {
+            updateCountdown();
+            renderMandatory();
+            renderProgress();
+            renderFilters();
+            renderTasks();
+            renderTimeline();
+            renderBudget();
+            renderStats();
+        }
+
+        function updateCountdown() {
+            const now = new Date();
+            const diff = Math.ceil((WEDDING_DATE - now) / (1000 * 60 * 60 * 24));
+            const countEl = document.getElementById('countdown');
+            const labelEl = document.getElementById('countdownLabel');
+            
+            if (diff > 0) {
+                countEl.textContent = diff;
+                labelEl.textContent = diff === 1 ? 'den do svatby' : 'dní do svatby';
+            } else if (diff === 0) {
+                countEl.textContent = '🎉';
+                labelEl.textContent = 'Dnes je ten den!';
+            } else {
+                countEl.textContent = '💍';
+                labelEl.textContent = 'Svatba už byla!';
+            }
+        }
+
+        function renderMandatory() {
+            const mandatory = TASKS.filter(t => t.cat === 'mandatory');
+            let html = '';
+            mandatory.forEach(t => {
+                const isDone = state.done.has(t.id);
+                html += `
+                    <div class="item ${isDone ? 'done' : ''}" onclick="toggleTask(${t.id})">
+                        <div class="checkbox ${isDone ? 'checked' : ''}">${isDone ? '✓' : ''}</div>
+                        <span class="task-name">${t.title}</span>
+                        <span class="deadline">⏰ ${formatDate(t.deadline)}</span>
+                    </div>
+                `;
+            });
+            document.getElementById('mandatoryList').innerHTML = html;
+        }
+
+        function renderProgress() {
+            const total = TASKS.length;
+            const done = TASKS.filter(t => state.done.has(t.id)).length;
+            const pct = total > 0 ? Math.round((done / total) * 100) : 0;
+
+            document.getElementById('totalPercent').textContent = pct + '%';
+            document.getElementById('doneCount').textContent = done + '/' + total;
+            document.getElementById('progressLabel').textContent = pct + '%';
+            document.getElementById('progressFill').style.width = pct + '%';
+        }
+
+        function renderFilters() {
+            const filters = [
+                { key: 'all', label: '✨ Vše' },
+                { key: 'mandatory', label: '🔴 Povinné', className: 'mandatory' },
+                { key: 'important', label: '🟡 Důležité', className: 'important' },
+                { key: 'optional', label: '🟢 Volitelné', className: 'optional' }
+            ];
+
+            const persons = ['Mamka', 'Taťka', 'Děti'];
+            persons.forEach(p => {
+                const count = TASKS.filter(t => t.assign.includes(p)).length;
+                if (count > 0) {
+                    filters.push({ key: p, label: `👤 ${p}` });
+                }
+            });
+
+            let html = '';
+            filters.forEach(f => {
+                const isActive = state.filter === f.key;
+                html += `<button class="filter-btn ${f.className || ''} ${isActive ? 'active' : ''}" onclick="setFilter('${f.key}')">${f.label}</button>`;
+            });
+            document.getElementById('filterGroup').innerHTML = html;
+        }
+
+        function renderTasks() {
+            let filtered = TASKS;
+            const cats = { mandatory: [], important: [], optional: [] };
+
+            if (state.filter === 'all') {
+                filtered = TASKS;
+            } else if (['mandatory', 'important', 'optional'].includes(state.filter)) {
+                filtered = TASKS.filter(t => t.cat === state.filter);
+            } else {
+                filtered = TASKS.filter(t => t.assign.includes(state.filter));
+            }
+
+            filtered.sort((a, b) => a.deadline.localeCompare(b.deadline));
+            filtered.forEach(t => cats[t.cat].push(t));
+
+            let html = '';
+            for (const cat of ['mandatory', 'important', 'optional']) {
+                const items = cats[cat];
+                if (items.length === 0) continue;
+
+                const doneCount = items.filter(t => state.done.has(t.id)).length;
+                html += `<div class="section-title"><span>${CAT_LABELS[cat]}</span><span class="section-count">${doneCount}/${items.length}</span></div>`;
+
+                items.forEach(t => {
+                    const isDone = state.done.has(t.id);
+                    const daysLeft = Math.ceil((new Date(t.deadline) - new Date()) / (1000 * 60 * 60 * 24));
+                    const isUrgent = daysLeft < 0 || daysLeft <= 7;
+
+                    html += `
+                        <div class="task-card ${isDone ? 'done' : ''} ${isDone && state.showDone ? 'show' : ''}" style="border-left-color: ${CAT_COLORS[cat]}" onclick="toggleTask(${t.id})">
+                            <div class="task-checkbox ${isDone ? 'checked' : ''}">${isDone ? '✓' : ''}</div>
+                            <div class="task-body">
+                                <div class="task-title">${t.title}</div>
+                                <div class="task-meta">
+                                    <span class="badge ${t.cat}">${CAT_LABELS[t.cat]}</span>
+                                    <span class="badge person">👤 ${t.assign}</span>
+                                    <span class="badge deadline ${isUrgent ? 'urgent' : ''}">📅 ${formatDate(t.deadline)}</span>
+                                    ${t.price ? `<span class="badge" style="background: rgba(39, 174, 96, 0.15); color: #27ae60;">💰 ${t.price.toLocaleString('cs')} Kč</span>` : ''}
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                const hasDone = items.some(t => state.done.has(t.id));
+                if (hasDone) {
+                    html += `<div style="text-align: center; padding: 8px 0;"><button class="show-done-btn" onclick="event.stopPropagation(); toggleShowDone()">${state.showDone ? '🔽 Skrýt hotové' : '🔼 Zobrazit hotové (' + doneCount + ')'}</button></div>`;
+                }
+            }
+
+            if (html === '') {
+                html = '<div class="empty-state"><div class="empty-state-icon">🍀</div><div class="empty-state-text">Žádné úkoly neodpovídají filtrům</div></div>';
+            }
+
+            document.getElementById('tasksList').innerHTML = html;
+        }
+
+        function renderTimeline() {
+            const months = {};
+            TASKS.forEach(t => {
+                const month = t.timeline.substring(0, 7);
+                if (!months[month]) months[month] = [];
+                months[month].push(t);
+            });
+
+            const monthNames = {
+                '2026-04': 'Duben',
+                '2026-05': 'Květen',
+                '2026-06': 'Červen',
+                '2026-07': 'Červenec',
+                '2026-08': 'Srpen'
+            };
+
+            let html = '';
+            Object.keys(months).sort().forEach(month => {
+                html += `<div class="timeline-month"><h3>${monthNames[month] || month}</h3>`;
+                months[month].sort((a, b) => a.timeline.localeCompare(b.timeline)).forEach(t => {
+                    const isDone = state.done.has(t.id);
+                    const day = t.timeline.substring(8);
+                    html += `
+                        <div class="timeline-event ${isDone ? 'done' : ''}" onclick="toggleTask(${t.id})">
+                            <div class="timeline-date">${day}. ${month.substring(5)}.</div>
+                            <div class="timeline-content">
+                                <div class="timeline-title">${isDone ? '✅ ' : ''}${t.title}</div>
+                                <div class="timeline-meta">👤 ${t.assign} · ${CAT_LABELS[t.cat]}</div>
+                            </div>
+                        </div>
+                    `;
+                });
+                html += '</div>';
+            });
+
+            document.getElementById('timelineContainer').innerHTML = html;
+        }
+
+        function renderBudget() {
+            const mandatory = TASKS.filter(t => t.cat === 'mandatory').reduce((s, t) => s + t.price, 0);
+            const important = TASKS.filter(t => t.cat === 'important').reduce((s, t) => s + t.price, 0);
+            const optional = TASKS.filter(t => t.cat === 'optional').reduce((s, t) => s + t.price, 0);
+            const total = mandatory + important + optional;
+            const pct = Math.min(total / BUDGET_MAX * 100, 100);
+            const color = pct <= 80 ? '#27ae60' : pct <= 100 ? '#d4a017' : '#c0392b';
+
+            document.getElementById('budgetFill').style.width = pct + '%';
+            document.getElementById('budgetFill').className = 'budget-fill ' + (pct > 100 ? 'alert' : pct > 80 ? 'warning' : '');
+            document.getElementById('budgetPercent').textContent = Math.round(pct) + '%';
+            document.getElementById('totalBudget').textContent = total.toLocaleString('cs') + ' Kč';
+            document.getElementById('maxBudget').textContent = Math.round(BUDGET_MAX).toLocaleString('cs') + ' Kč';
+
+            document.getElementById('budgetDetails').innerHTML = `
+                <div class="budget-item"><span>Povinné</span><span class="budget-price">${mandatory.toLocaleString('cs')} Kč</span></div>
+                <div class="budget-item"><span>Důležité</span><span class="budget-price">${important.toLocaleString('cs')} Kč</span></div>
+                <div class="budget-item"><span>Volitelné</span><span class="budget-price">${optional.toLocaleString('cs')} Kč</span></div>
+            `;
+        }
+
+        function renderStats() {
+            const total = TASKS.length;
+            const done = TASKS.filter(t => state.done.has(t.id)).length;
+            const mandatory = TASKS.filter(t => t.cat === 'mandatory');
+            const mandatoryDone = mandatory.filter(t => state.done.has(t.id)).length;
+
+            const by = { 'Mamka': { t: 0, d: 0 }, 'Taťka': { t: 0, d: 0 }, 'Děti': { t: 0, d: 0 } };
+            TASKS.forEach(t => {
+                Object.keys(by).forEach(p => {
+                    if (t.assign.includes(p)) {
+                        by[p].t++;
+                        if (state.done.has(t.id)) by[p].d++;
+                    }
+                });
+            });
+
+            let statsHtml = `<strong>Celkem:</strong> ${done}/${total} hotovo (${total ? Math.round(done / total * 100) : 0}%)<br>`;
+            statsHtml += `<strong>Povinné:</strong> ${mandatoryDone}/${mandatory.length} hotovo<br><br>`;
+            statsHtml += `<strong>Podle osob:</strong><br>`;
+            Object.keys(by).forEach(p => {
+                statsHtml += `👤 ${p}: ${by[p].d}/${by[p].t} (${by[p].t ? Math.round(by[p].d / by[p].t * 100) : 0}%)<br>`;
+            });
+
+            document.getElementById('statsText').innerHTML = statsHtml;
+            document.getElementById('statsGrid').innerHTML = `
+                <div class="stat-box">
+                    <div class="stat-label">Všechny úkoly</div>
+                    <div class="stat-value">${done}/${total}</div>
+                    <div class="stat-detail">${Math.round(done / total * 100)}% hotovo</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Povinné úkoly</div>
+                    <div class="stat-value">${mandatoryDone}/${mandatory.length}</div>
+                    <div class="stat-detail">${mandatory.length ? Math.round(mandatoryDone / mandatory.length * 100) : 0}% hotovo</div>
+                </div>
+            `;
+        }
+
+        // ===== INTERACTIONS =====
+        function toggleTask(id) {
+            if (state.done.has(id)) {
+                state.done.delete(id);
+            } else {
+                state.done.add(id);
+                showToast('✅ Úkol označen jako hotový!', 'success');
+            }
+            saveState();
+            render();
+        }
+
+        function setFilter(key) {
+            state.filter = key;
+            saveState();
+            render();
+        }
+
+        function toggleShowDone() {
+            state.showDone = !state.showDone;
+            saveState();
+            render();
+        }
+
+        function switchView(view) {
+            state.view = view;
+            saveState();
+
+            document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+            document.getElementById(view).classList.add('active');
+
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.querySelector(`[data-view="${view}"]`).classList.add('active');
+
+            document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
+            document.querySelector(`.nav-item[data-view="${view}"]`).classList.add('active');
+        }
+
+        // ===== ACTIONS =====
+        function exportData() {
+            const data = {
+                timestamp: new Date().toISOString(),
+                wedding: 'Svatba Paprčkovi 2026',
+                tasks: TASKS.map(t => ({
+                    ...t,
+                    done: state.done.has(t.id)
+                }))
+            };
+
+            const json = JSON.stringify(data, null, 2);
+            const blob = new Blob([json], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'svatba_planner_' + new Date().toISOString().split('T')[0] + '.json';
+            a.click();
+            URL.revokeObjectURL(url);
+
+            showToast('📥 Data byla stažena!', 'success');
+        }
+
+        function shareApp() {
+            const url = window.location.href;
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Svatba Paprčkovi 2026 - Plánovač',
+                    text: 'Sdílím s vámi plánovač svatby',
+                    url: url
+                });
+            } else {
+                const text = `Svatba Paprčkovi 2026 - Plánovač: ${url}`;
+                navigator.clipboard.writeText(text);
+                showToast('🔗 Odkaz zkopírován do schránky!', 'success');
+            }
+        }
+
+        function resetChecked() {
+            if (confirm('Opravdu chcete resetovat všechna zaškrtnutí?')) {
+                state.done.clear();
+                saveState();
+                render();
+                showToast('⟳ Všechna zaškrtnutí byla obnovena', 'warning');
+            }
+        }
+
+        function resetAll() {
+            if (confirm('⚠️ Opravdu chcete SMAZAT VŠECHNA data? Tuto akci nelze vrátit!')) {
+                localStorage.removeItem('svatba_state_v2');
+                state = { done: new Set(), filter: 'all', view: 'checklist', showDone: false };
+                render();
+                showToast('🗑️ Všechna data byla smazána', 'error');
+            }
+        }
+
+        // ===== UTILITIES =====
+        function formatDate(dateStr) {
+            const date = new Date(dateStr + 'T00:00:00');
+            const options = { day: 'numeric', month: 'long', year: 'numeric' };
+            return new Intl.DateTimeFormat('cs-CZ', options).format(date);
+        }
+
+        function showToast(message, type = 'info') {
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            toast.textContent = message;
+            document.body.appendChild(toast);
+
+            setTimeout(() => {
+                toast.remove();
+            }, 3000);
+        }
+
+        // ===== INITIALIZATION =====
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => switchView(btn.dataset.view));
+        });
+
+        document.querySelectorAll('.nav-item').forEach(btn => {
+            btn.addEventListener('click', () => switchView(btn.dataset.view));
+        });
+
+        loadState();
+        render();
+
+        // Re-render countdown every minute
+        setInterval(() => {
+            updateCountdown();
+        }, 60000);
+    </script>
+
+</body>
+</html>
