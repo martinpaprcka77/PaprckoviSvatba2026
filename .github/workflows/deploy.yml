@@ -8,7 +8,12 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     permissions:
-      contents: write
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
       - name: Prepare deploy files
@@ -20,8 +25,9 @@ jobs:
           cp -r v2 deploy_out/ 2>/dev/null || true
           cp -r Older deploy_out/ 2>/dev/null || true
           cp -r Older_up2date deploy_out/ 2>/dev/null || true
-      - name: Deploy to gh-pages
-        uses: peaceiris/actions-gh-pages@v4
+      - uses: actions/configure-pages@v4
+      - uses: actions/upload-pages-artifact@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./deploy_out
+          path: ./deploy_out
+      - uses: actions/deploy-pages@v4
+        id: deployment
