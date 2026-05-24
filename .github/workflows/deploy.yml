@@ -16,6 +16,7 @@ jobs:
           mkdir deploy_out
           cp index.html deploy_out/
           cp -r public/* deploy_out/ 2>/dev/null || true
+          cp -r v0 deploy_out/ 2>/dev/null || true
           cp -r v2 deploy_out/ 2>/dev/null || true
           cp -r Older deploy_out/ 2>/dev/null || true
           cp -r Older_up2date deploy_out/ 2>/dev/null || true
