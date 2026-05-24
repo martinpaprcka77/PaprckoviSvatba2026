@@ -208,16 +208,23 @@ let currentFilter = 'all';
 
 // Budget items — from Svatba_001.html (user's original data)
 let budgetItems = [
-    { name: "Zlatá koliba — rezervace", cost: 15000 },
-    { name: "Catering (jídlo + občerstvení)", cost: 28000 },
-    { name: "Šaty + úpravy", cost: 12000 },
-    { name: "Oblek ženicha", cost: 6000 },
-    { name: "Prstýnky", cost: 8000 },
-    { name: "Dekorace (květiny, svíčky)", cost: 5000 },
-    { name: "Dort a drobné sladkosti", cost: 2500 },
-    { name: "Fotovýbava / tisk fotek", cost: 1500 },
-    { name: "DJ vybavení / reproduktory", cost: 2000 },
-    { name: "Pozvánky, drobný doplňky", cost: 1500 }
+    { name: "Zlatá koliba — menu + catering", cost: 30000 },
+    { name: "Prstýnky — nákup a úprava", cost: 20000 },
+    { name: "Svatební šaty (Mamka)", cost: 12000 },
+    { name: "Oblek a sako (Taťka)", cost: 8000 },
+    { name: "Nápoje a bar", cost: 6000 },
+    { name: "Ubytování pro hosty", cost: 5000 },
+    { name: "Dekorace a květiny na radnici", cost: 3000 },
+    { name: "Doprava (radnice → Zlatá koliba)", cost: 3000 },
+    { name: "Svatební dort", cost: 3000 },
+    { name: "Doplňky (boty, šperky)", cost: 3000 },
+    { name: "Svatební oznámení", cost: 1500 },
+    { name: "Líčení / nehty / vlasy (Mamka)", cost: 1500 },
+    { name: "Dekorace Zlaté koliby", cost: 1000 },
+    { name: "Fotokoutek / selfie zóna", cost: 1000 },
+    { name: "Dárky pro svědky + rodiče", cost: 1000 },
+    { name: "Střih a úprava (Taťka)", cost: 500 },
+    { name: "Drobnosti pro hosty (guestbook + favory)", cost: 500 }
 ];
 
 function makeKey(t) { return t.deadline + '|' + t.title; }

@@ -14,10 +14,10 @@ Live: https://doma77git.github.io/PaprckoviSvatba2026/
 - **Hooks:** `.claude/settings.json` (PreToolUse block .env/.git, PostToolUse rebuild Excel, Notification idle)
 
 ## Current State
-- 20 tasks (8 mandatory + 7 important + 5 optional)
-- 81 500 Kc budget (mandatory 69 000 + important 10 000 + optional 2 500) · tolerance 120%
+- 36 tasks (19 mandatory + 13 important + 4 optional)
+- 100 000 Kc budget (mandatory 94 500 + important 5 000 + optional 500)
 - 5 people: Mamka, Tatka, Zanetka, Kikinka, Deti
-- 3/20 done (IDs 1, 7, 20)
+- 5/36 done (termín, radnice, deti informovany, svedci, oddavajici)
 - Wedding: 29. srpna 2026, Nova radnice Ostrava + Koliba U Zlateho Jarouse
 
 ## Rules
