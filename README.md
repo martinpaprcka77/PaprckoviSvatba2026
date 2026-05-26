@@ -21,27 +21,27 @@ Git-backed architektura: data v MD souborech, appka je čte a renderuje. Bez npm
 ## 📊 Aktuální stav
 
 ```
-✅ 5/36 splněno  ·  💰 0/100 000 Kč utraceno
+✅ 6/37 splněno  ·  💰 0/100 000 Kč utraceno
 ```
 
 | Kategorie | Úkolů | Plán |
 |-----------|-------|------|
 | 🔴 Povinné (mandatory) | 19 | 94 500 Kč |
-| 🟡 Důležité (important) | 13 | 5 000 Kč |
+| 🟡 Důležité (important) | 14 | 5 000 Kč |
 | 🟢 Volitelné (optional) | 4 | 500 Kč |
-| **Celkem** | **36** | **100 000 Kč** |
+| **Celkem** | **37** | **100 000 Kč** |
 
-**Hotovo (5):** termín ✓ · radnice ✓ · děti ✓ · svědci ✓ · oddávající ✓
+**Hotovo (6):** termín ✓ · radnice ✓ · děti ✓ · svědci ✓ · oddávající ✓ · schůzka prstýnky ✓
 
 ## 👥 Lidé
 
 | Kdo | Role | Úkolů |
 |-----|------|--------|
 | **Mamka** | Nevěsta | 18 |
-| **Taťka** | Ženich | 9 |
-| **Žanetka** | Hlavní organizátorka, svědkyně ženicha | 6 |
+| **Taťka** | Ženich | 8 |
+| **Žanetka** | Hlavní organizátorka, svědkyně ženicha | 7 |
 | **Kikinka** | Svědkyně nevěsty | 3 |
-| **Děti** | 4 dcery: Gabriela, Kristýnka, Natálka, Kačka — výzdoba, dort, focení | 3 |
+| **Děti** | 4 dcery: Gabriela, Kristýnka, Natálka, Kačka — výzdoba, dort, focení, hudba, foto | 5 |
 
 ## 📅 Klíčové milníky
 
@@ -72,7 +72,7 @@ Git-backed architektura: data v MD souborech, appka je čte a renderuje. Bez npm
 ├── v0/index.html           ← v0 archive (Svatba_001 baseline, 20 tasks, Aug 29)
 ├── v2/index.html           ← v2 (fetches MD z GitHubu, PIN write)
 ├── data/
-│   ├── tasks.md            ← 36 úkolů — AUTORITATIVNÍ zdroj
+│   ├── tasks.md            ← 37 úkolů — AUTORITATIVNÍ zdroj
 │   ├── guests.md           ← seznam hostů
 │   ├── rozpocet-svatba-2026.xlsx        ← auto-gen Excel (SUMIF vzorce)
 │   └── manualrozpocet-svatba-2026.xlsx  ← manuální Excel

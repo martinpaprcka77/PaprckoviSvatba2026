@@ -1,7 +1,7 @@
 # PRD — Svatba Paprčkovi 2026
 
 > Product Requirements Document — 14. 5. 2026
-> Status: active — 24. 5. 2026 (36 úkolů, 5 osob, 100 000 Kč)
+> Status: active — 26. 5. 2026 (37 úkolů, 5 osob, 100 000 Kč)
 
 ---
 
@@ -75,13 +75,13 @@
 | Svědci (hotovo ✓) | 0 | — |
 | **Subtotal** | **94 500** | |
 
-### DŮLEŽITÉ (important) — 13 tasků, 5 000 Kč
+### DŮLEŽITÉ (important) — 14 tasků, 5 000 Kč
 
 | Položka | Odhad (Kč) | Kdo |
 |---|---|---|
 | Líčení / nehty / vlasy (Mamka) | 1 500 | Mamka |
 | Dekorace Zlaté koliby | 1 000 | Děti |
-| Fotokoutek / selfie zóna | 1 000 | Taťka |
+| Fotokoutek / selfie zóna | 1 000 | Děti |
 | Dárky pro svědky | 500 | Mamka |
 | Dárky pro rodiče a poděkování | 500 | Taťka |
 | Dárky na přivítanou pro hosty | 0 | Mamka |
@@ -89,9 +89,10 @@
 | Hry pro hosty | 0 | Žanetka |
 | Střih a úprava (Taťka) | 500 | Taťka |
 | První tanec | 0 | Mamka |
-| Playlist / hudba | 0 | Taťka |
+| Hudba a playlist | 0 | Děti |
 | Proslovy | 0 | Kikinka |
 | Schůzka — prstýnky (Mamka+Taťka+Žanetka) | 0 | Mamka, Taťka, Žanetka |
+| Rozlučka se svobodou | 0 | Žanetka |
 | **Subtotal** | **5 000** | |
 
 ### VOLITELNÉ (optional) — 4 tasky, 500 Kč
@@ -104,7 +105,7 @@
 | Svatební cesta — termín, ubytování, program | 0 | Taťka |
 | **Subtotal** | **500** | |
 
-**CELKEM: 36 tasků, 100 000 Kč ✓**
+**CELKEM: 37 tasků, 100 000 Kč ✓**
 
 ---
 
@@ -125,6 +126,7 @@
 | Termín | Úkol | Kdo | Kategorie |
 |---|---|---|---|
 | ~~30. 6.~~ | ~~Domluva oddávajícího (11:15 Nová radnice)~~ | ~~Kikinka~~ → **Mamka** | ✅ HOTOVO |
+| 30. 6. | Rozlučka se svobodou | Žanetka | Důležité |
 
 ### Červenec 2026
 
@@ -153,11 +155,11 @@
 | 20. 8. | Doprava (radnice → Zlatá koliba) | Taťka | Povinné |
 | 20. 8. | Svatební dort | Děti, Mamka | Povinné |
 | 20. 8. | Oddací list, podpisy, doklady | Kikinka | Povinné |
-| 20. 8. | Fotokoutek / selfie zóna | Taťka | Důležité |
+| 20. 8. | Fotokoutek / selfie zóna | Děti | Důležité |
 | 20. 8. | Uvítací cedule, místa k sezení | Mamka | Důležité |
 | 20. 8. | Dárky na přivítanou pro hosty | Mamka | Důležité |
 | 20. 8. | Hry pro hosty a zábava | Žanetka | Důležité |
-| 20. 8. | Playlist / hudba | Taťka | Důležité |
+| 20. 8. | Hudba a playlist | Děti | Důležité |
 | 20. 8. | Drobnosti pro hosty (guestbook + favory) | Mamka | Volitelné |
 | 25. 8. | Proslovy (svědci, rodiče) | Kikinka | Důležité |
 | 25. 8. | Líčení / nehty / vlasy (Mamka) | Mamka | Důležité |
@@ -178,7 +180,7 @@
 
 - **GitHub repo:** `doma77git/PaprckoviSvatba2026`
 - **Live URL:** https://doma77git.github.io/PaprckoviSvatba2026/
-- **Zdrojový soubor:** `index.html` (single file, inline CSS/JS, 36 úkolů)
+- **Zdrojový soubor:** `index.html` (single file, inline CSS/JS, 37 úkolů)
 - **Deploy:** Push do masteru → GitHub Action → `gh-pages` → live
 - **Storage key:** `svatba_state_v3` (localStorage)
 
@@ -221,7 +223,7 @@
 | 21. 5. | **Autoritativní Excel:** `data/rozpocet-svatba-2026.xlsx` — SUMIF/COUNTIF vzorce, podmíněné formátování, přehled na osobu | Jeden zdroj pravdy pro budget |
 | 21. 5. | **Manuální Excel:** `data/manualrozpocet-svatba-2026.xlsx` — uživatelův vlastní formát budgetu | Uživatel preferuje vlastní strukturu |
 | 21. 5. | **Hooks:** PreToolUse chrání .env/.git, PostToolUse přegeneruje Excel, Notification idle alert | Automatizace v `.claude/settings.json` |
-| 21. 5. | **35→36 úkolů:** 19 mandatory + 13 important + 4 optional = 100 000 Kč | Úkol #36 schůzka prstýnky (Mamka+Taťka+Žanetka); Dáda = Mamka (Dagmar Sobková) |
+| 21. 5. | **36→37 úkolů: 19 mandatory + 14 important + 4 optional = 100 000 Kč | Úkol #36 schůzka prstýnky (Mamka+Taťka+Žanetka); Dáda = Mamka (Dagmar Sobková) |
 | 24. 5. | **Oprava:** Dáda = Mamka = Dagmar Sobková — sloučeno do 5 osob, Mamka 18 úkolů | Uživatel upřesnil: Dáda je přezdívka Mamky |
 
 ---
@@ -305,10 +307,10 @@ _Zatím prázdné — doplní Mamka_
 | Kdo | Role | Úkolů v tasks.md |
 |-----|------|------------------|
 | **Mamka** | Nevěsta (Dagmar Sobková, "Dáda") | 18 |
-| **Taťka** | Ženich | 9 |
-| **Žanetka** | Hlavní organizátorka, svědkyně ženicha | 6 |
+| **Taťka** | Ženich | 8 |
+| **Žanetka** | Hlavní organizátorka, svědkyně ženicha | 7 |
 | **Kikinka** | Svědkyně nevěsty | 3 |
-| **Děti** | 4 dcery: **Gabriela, Kristýnka, Natálka, Kačka** — výzdoba, dort, focení | 3 |
+| **Děti** | 4 dcery: **Gabriela, Kristýnka, Natálka, Kačka** — výzdoba, dort, focení, hudba, foto | 5 |
 
 Děti jako skupina = 1 filter v appce. Individuální jména pro host list a kontakt.
 
@@ -323,7 +325,7 @@ Budget se spravuje v Excelu. Dva soubory:
 
 | Soubor | Účel | Editace |
 |--------|------|---------|
-| `data/rozpocet-svatba-2026.xlsx` | Auto-generovaný — všech 36 úkolů, SUMIF/COUNTIF vzorce, podmíněné formátování, přehled na osobu | Automaticky přegenerován hooks |
+| `data/rozpocet-svatba-2026.xlsx` | Auto-generovaný — všech 37 úkolů, SUMIF/COUNTIF vzorce, podmíněné formátování, přehled na osobu | Automaticky přegenerován hooks |
 | `data/manualrozpocet-svatba-2026.xlsx` | Manuální — jednodušší formát, povinné položky | Uživatel edituje přímo |
 
 ### Barevný systém Excelu

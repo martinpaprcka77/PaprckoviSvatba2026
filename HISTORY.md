@@ -1,4 +1,20 @@
+## 2026-05-26
+
+- **37 úkolů:** Přidán úkol "Rozlučka se svobodou" (important, 0 Kč, Žanetka)
+- **Sync všech docs:** README, AGENTS, PRD, CLAUDE.md — 36→37 úkolů, 13→14 important, 5→6 hotovo
+- **Opravy:** Součet >36→37 v tasks.md, important 13→14 v CLAUDE.md
+- **4 Continue checks:** tasks-md-data-integrity, people-rules, no-secrets-exposure, budget-hard-cap
+- **People sync:** Taťka 9→8, Žanetka 6→7, Děti 3→5 (hudba+fotokoutek→Děti)
+
 # HISTORY — Svatba Paprčkovi 2026
+
+## 2026-05-26
+
+- **Schůzka prstýnky (Mamka+Taťka+Žanetka) označena jako hotová** — proběhla 25. 5. 2026 ✓
+- **37 úkolů:** Přidán úkol "Rozlučka se svobodou" (important, 0 Kč, Žanetka)
+- **Sync všech docs:** README, AGENTS, PRD, CLAUDE.md — 36→37 úkolů, 13→14 important, 5→6 hotovo
+- **4 Continue checks:** tasks-md-data-integrity, people-rules, no-secrets-exposure, budget-hard-cap
+- **People sync:** Taťka 10→8, Žanetka 6→7, Děti 3→5 (hudba+fotokoutek→Děti)
 
 ## 2026-05-24 (večer/noc)
 

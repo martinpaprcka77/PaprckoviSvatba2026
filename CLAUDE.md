@@ -35,10 +35,12 @@ v2: v2/index.html       ← fetches MD from GitHub, PIN-unlocked write via API
 
 ## Current State
 
-- **Tasks:** 36 (19 mandatory + 13 important + 4 optional)
-- **Budget:** 100 000 Kc hard cap (mandatory 94 500 + important 5 000 + optional 500)
+## Current State
+
+- **Tasks:** 37 (19 mandatory + 14 important + 4 optional)
+- **Budget:** 100 000 Kc (mandatory 94 500 + important 5 000 + optional 500)
 - **People:** 5 — Mamka, Tatka, Zanetka, Kikinka, Deti
-- **Done:** 5/36 (IDs 1-5 — confirmed via tasks.md [x] status)
+- **Done:** 6/37 (termín, radnice, děti, svědci, oddávající, schůzka prstýnky)
 - **Storage keys v1:** `svatba_done_v4`, `svatba_budget_v4` (localStorage, check-state + editable budget only)
 - **Wedding:** 29. srpna 2026, 11:15 — Nova radnice Ostrava
 - **Venue:** Koliba U Zlateho Jarouse (U Milose), Karasova 1130/23, 709 00 Ostrava
@@ -48,18 +50,18 @@ v2: v2/index.html       ← fetches MD from GitHub, PIN-unlocked write via API
 | Kdo | Role | Tasks |
 |-----|------|-------|
 | **Mamka** | Nevesta | 18 |
-| **Tatka** | Zenich | 10 |
-| **Zanetka** | Hlavni organizatorka, svedkyne zenicha | 6 |
+| **Tatka** | Zenich | 8 |
+| **Zanetka** | Hlavni organizatorka, svedkyne zenicha | 7 |
 | **Kikinka** | Svedkyne nevesty | 3 |
-| **Deti** | 4 dcery: Gabriela, Kristynka, Natalka, Kacka — vyzdoba, dort, foceni | 3 |
+| **Deti** | 4 dcery: Gabriela, Kristynka, Natalka, Kacka — vyzdoba, dort, foceni, hudba, foto | 5 |
 
 ## Budget
 
-- **100 000 Kc — hard cap.** Cannot exceed.
-- Category targets: mandatory 94 500 · important 5 000 · optional 500
-- Budget položky v `data/budget.md` a inline v `tasks.md` (36 položek, editovatelné)
+- **100 000 Kc — hard cap.** Mandatory 94 500 + important 5 000 + optional 500.
+- Category targets: mandatory 19 tasks / 94 500 · important 14 tasks / 5 000 · optional 4 tasks / 500
+- Autoritativní zdroj: `data/tasks.md` (rozpočet včetně rozpisu)
+- Excel: `data/rozpocet-svatba-2026.xlsx` (auto-generated, SUMIF/COUNTIF, podmíněné formátování)
 - CELKEM > 100 000 Kc = červená v appce
-
 ## Key Rules
 
 1. **Never remove Deti** from tasks — co-assign (`Deti, Mamka`), never replace
@@ -83,7 +85,7 @@ v2: v2/index.html       ← fetches MD from GitHub, PIN-unlocked write via API
 
 | File | Purpose | Edit via |
 |------|---------|----------|
-| `data/rozpocet-svatba-2026.xlsx` | Auto-generated — all 36 tasks, SUMIF budget, per-person sheet | Rebuilt automatically |
+| `data/rozpocet-svatba-2026.xlsx` | Auto-generated — all 37 tasks, SUMIF budget, per-person sheet | Rebuilt automatically |
 | `data/manualrozpocet-svatba-2026.xlsx` | User manual budget — simpler format, mandatory items | User edits directly |
 
 ## Hooks (`.claude/settings.json`)
@@ -116,8 +118,8 @@ for l in lines:
     elif cat == 'important': i += price
     elif cat == 'optional': o += price
 total = m + i + o
-print(f'Tasks: {len(lines)} (target: 36) | Budget: {total:,} Kc (target: 100000)')
+print(f'Tasks: {len(lines)} (target: 37) | Budget: {total:,} Kc (target: 100000)')
 print(f'Mand: {m:,} | Imp: {i:,} | Opt: {o:,}')
-print('OK' if total == 100000 and len(lines) == 36 else 'GAP — fix before commit')
+print('OK' if total == 100000 and len(lines) == 37 else 'GAP — fix before commit')
 "
 ```
