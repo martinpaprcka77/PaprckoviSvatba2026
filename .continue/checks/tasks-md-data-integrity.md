@@ -39,7 +39,7 @@ The People table in tasks.md lists task counts per person. Verify:
 
 ## Task count note
 
-The note under the People table says `*Součet > 36 — 3 úkoly mají více přiřazených osob.*`. Verify that (sum of People table counts) = (total tasks) + (number of multi-assignee tasks).
+The note under the People table says `*Součet > 36 — 3 úkoly mají více přiřazených osob.*`. Verify that the sum of People table counts equals Σ(počet osob na úkol) napříč všemi řádky. (Pozor: úkoly se 3 přiřazenými osobami přispívají +2 ke zvýšení, ne +1.)
 
 ## Done count
 

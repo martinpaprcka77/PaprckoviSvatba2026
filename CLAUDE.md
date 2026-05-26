@@ -35,8 +35,6 @@ v2: v2/index.html       ← fetches MD from GitHub, PIN-unlocked write via API
 
 ## Current State
 
-## Current State
-
 - **Tasks:** 37 (19 mandatory + 14 important + 4 optional)
 - **Budget:** 100 000 Kc (mandatory 94 500 + important 5 000 + optional 500)
 - **People:** 5 — Mamka, Tatka, Zanetka, Kikinka, Deti

@@ -1,4 +1,4 @@
-> ⚠️ **Historický dokument** — květen 2025. Aktuální stav: 37 úkolů, 19 mandatory + 14 important + 4 optional, 5 osob. Autoritativní data v data/tasks.md.
+> ⚠️ **Historický dokument** — květen 2026. Aktuální stav: 37 úkolů, 19 mandatory + 14 important + 4 optional, 5 osob. Autoritativní data v data/tasks.md.
 # Technical Walkthrough — Wedding Planner & PRD Synchronization
 
 This walkthrough details the major technical updates and structural synchronization achieved for **Svatba Paprčkovi 2026** static planner application. All spec-to-code gaps have been eliminated, and the user interface has been redesigned to look and feel like a premium, native iOS mobile application tailored for iPhone users.
