@@ -1,0 +1,20 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "match": "^(edit_file|write_file|multi_edit|delete_file|move_file)$",
+        "command": "python -c \"import sys,json; d=json.load(sys.stdin); fp=d.get('toolArgs',{}).get('path','') or d.get('toolArgs',{}).get('file_path','') or ''; protected=['.env','package-lock.json']; sys.exit(2 if any(fp.endswith(x) for x in protected) or '.git/' in fp else 0)\"",
+        "description": "Block edits to .env, package-lock.json, and .git/ paths",
+        "timeout": 5000
+      }
+    ],
+    "PostToolUse": [
+      {
+        "match": "^(edit_file|write_file|multi_edit)$",
+        "command": "python -c \"import sys,json,os,subprocess; from pathlib import Path; d=json.load(sys.stdin); fp=d.get('toolArgs',{}).get('path','') or d.get('toolArgs',{}).get('file_path','') or ''; (sys.exit(0) if not fp.endswith('tasks.md') else None); root=Path(__file__).parent; os.chdir(root); subprocess.run([sys.executable,str(root/'scripts/rebuild_excel.py')],capture_output=True); print('PostToolUse: Excel rebuild done')\"",
+        "description": "Rebuild Excel spreadsheet when tasks.md is edited",
+        "timeout": 30000
+      }
+    ]
+  }
+}

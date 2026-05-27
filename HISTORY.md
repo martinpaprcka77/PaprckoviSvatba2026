@@ -1,5 +1,17 @@
 # HISTORY — Svatba Paprčkovi 2026
 
+## 2026-05-27
+
+- **Nový soubor:** `data/budget.md` — přepracován na 1 source of truth pro rozpočet
+- **37 položek:** Přidán sloupec Rezervováno, Zaplaceno, Zbývá; opraveno 36→37 (Rozlučka)
+- **Koliba rozpad:** #7 rozdělena na 7a Pohoštění (11 100 Kč) + 7b Poobědový budget (18 900 Kč)
+- **Nové docs:** `docs/ARCHITEKTURA-APLIKACI.md` (UML templaty v0/v1/v2)
+- **Nové docs:** `docs/MASTER-PROMPT.md` (interaktivní rozhodovací strom)
+- **Opravy:** CLAUDE.md 36→37, copilot-instructions.md 36/13→37/14, v2/index.html 36→37
+- **Opravy:** Excel PostToolUse hook — opraven sys.exit bug, hardcoded cesty → relativní
+- **.gitignore:** Přidány `$null`, `%SystemDrive%/`, `package*.json`, `*.lock`
+- **Smazáno:** `data/budget-items.md` (byl duplicitní)
+
 ## 2026-05-26
 
 - **Schůzka prstýnky (Mamka+Taťka+Žanetka) označena jako hotová** — proběhla 25. 5. 2026 ✓

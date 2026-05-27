@@ -11,7 +11,7 @@ Dual wedding planner — v1 (single-file) + v2 (git-backed). No build, no npm.
 ### Svatba Paprckovi 2026
 - **Wedding:** 29. srpna 2026, 11:15 — Nova radnice Ostrava + Koliba U Zlateho Jarouse (U Milose)
 - **Budget:** MAX 100 000 Kc hard cap (mandatory 94 500 + important 5 000 + optional 500)
-- **Tasks:** 36 (19 mandatory + 13 important + 4 optional) · 5 people
+- **Tasks:** 37 (19 mandatory + 14 important + 4 optional) · 5 people
 - **Source of truth:** `data/tasks.md` (tasks), `data/guests.md` (guests)
 - **Repo:** https://github.com/doma77git/PaprckoviSvatba2026
 - **Deploy:** Push to master -> GitHub Actions -> gh-pages (`/` + `/v2/`)

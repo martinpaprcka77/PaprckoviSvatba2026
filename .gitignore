@@ -5,3 +5,7 @@ chat_export_*.md
 dist/
 .vite/
 .vscode/
+$null
+%SystemDrive%/
+package*.json
+*.lock

@@ -10,7 +10,7 @@ Live: https://doma77git.github.io/PaprckoviSvatba2026/
 ## Architecture — Data-Driven, Git-Backed
 
 ```
-data/tasks.md          ← AUTHORITATIVE task list (36 tasks, 100 000 Kc)
+data/tasks.md          ← AUTHORITATIVE task list (37 tasks, 100 000 Kc)
 data/guests.md         ← guest list by side
 data/budget.md         ← standalone budget doc (checklist format, derived from tasks.md)
 data/rozpocet-svatba-2026.xlsx    ← auto-generated Excel (SUMIF formulas)
