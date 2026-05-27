@@ -9,6 +9,7 @@ Git-backed architektura: data v MD souborech, appka je čte a renderuje. Bez npm
 |----|-----|
 | **Plánovač v1** (produkce) | https://doma77git.github.io/PaprckoviSvatba2026/ |
 | **Plánovač v2** (testovací) | https://doma77git.github.io/PaprckoviSvatba2026/v2/ |
+| **v3music (v1+audio)** | https://doma77git.github.io/PaprckoviSvatba2026/v3music/ |
 | **v0 (archivní baseline)** | https://doma77git.github.io/PaprckoviSvatba2026/v0/ |
 | **Úkoly** | [data/tasks.md](data/tasks.md) |
 | **Hosté** | [data/guests.md](data/guests.md) |

@@ -149,6 +149,39 @@
         .btn-outline { background: transparent; border: 1.5px solid var(--border-dark); color: var(--text); }
         .btn-danger { background: var(--danger); color: #fff; }
 
+        /* Audio player */
+        .audio-panel {
+            position: fixed; bottom: 80px; right: 16px; z-index: 90;
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: 16px; padding: 10px 14px; box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            display: flex; flex-direction: column; gap: 6px; align-items: center;
+            font-size: 0.75rem; transition: opacity 0.3s;
+        }
+        .audio-panel.hidden { opacity: 0; pointer-events: none; }
+        .audio-row { display: flex; align-items: center; gap: 8px; }
+        .audio-btn {
+            width: 40px; height: 40px; border-radius: 50%; border: none;
+            cursor: pointer; font-size: 1.1rem; display: flex; align-items: center;
+            justify-content: center; transition: all 0.2s;
+            background: var(--primary); color: #fff;
+        }
+        .audio-btn.playing { background: var(--success); }
+        .audio-btn-sm {
+            padding: 4px 10px; border-radius: 12px; border: 1px solid var(--border);
+            background: var(--bg); color: var(--text-muted); font-size: 0.7rem;
+            cursor: pointer; font-family: inherit;
+        }
+        .audio-btn-sm.active-track { background: var(--primary); color: #fff; border-color: var(--primary); }
+        .audio-track-label { font-size: 0.7rem; color: var(--text-muted); max-width: 120px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .header-audio-btn {
+            display: inline-flex; align-items: center; gap: 4px;
+            padding: 4px 10px; border-radius: 12px; background: rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,255,255,0.25); color: #fff;
+            font-size: 0.72rem; cursor: pointer; font-family: inherit;
+            margin-top: 8px; transition: background 0.2s;
+        }
+        .header-audio-btn:hover { background: rgba(255,255,255,0.25); }
+
         /* Toast */
         .toast { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); background: var(--text); color: var(--bg); padding: 10px 24px; border-radius: 20px; font-size: 0.85rem; z-index: 100; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
         .toast.show { opacity: 1; }
@@ -164,6 +197,9 @@
     <div class="sub">29. srpna 2026 · Nová radnice Ostrava · Koliba U Zlatého Jarouše</div>
     <div class="countdown" id="countdown">--</div>
     <div class="countdown-label" id="countdownLabel">dní do svatby</div>
+    <button class="header-audio-btn" id="headerAudioBtn" onclick="toggleAudio()">
+        🎵 Přehrát
+    </button>
 </div>
 
 <div class="container">
@@ -240,9 +276,23 @@
         · <span id="syncStatus"></span>
     </div>
 
+    <!-- Floating audio button -->
+    <button class="audio-btn" id="floatingAudioBtn" onclick="toggleAudio()" style="position:fixed;bottom:20px;right:16px;z-index:100;box-shadow:0 4px 16px rgba(0,0,0,0.25);" title="Přehrát / Pozastavit">▶</button>
+
+    <!-- Audio track selector panel -->
+    <div class="audio-panel hidden" id="audioPanel">
+        <div class="audio-row">
+            <button class="audio-btn-sm active-track" data-track="0" onclick="switchTrack(0)">DJ Ötzi</button>
+            <button class="audio-btn-sm" data-track="1" onclick="switchTrack(1)">Hasselhoff</button>
+        </div>
+        <div class="audio-track-label" id="audioTrackLabel">DJ Ötzi — Sweet Caroline</div>
+    </div>
+
 </div>
 
 <div class="toast" id="toast"></div>
+
+<audio id="bgAudio" preload="auto" loop style="display:none;"></audio>
 
 <script>
 const WEDDING_DATE = new Date('2026-08-29T11:15:00');
@@ -254,6 +304,16 @@ const LS_HIDE_DONE = 'svatba_hide_done';
 const LS_BUDGET_COLLAPSED = 'svatba_budget_collapsed';
 let hideDone = true;
 let budgetCollapsed = true;
+
+const LS_AUDIO_PLAYING = 'svatba_audio_playing';
+const LS_AUDIO_TRACK = 'svatba_audio_track';
+const LS_AUDIO_TIME = 'svatba_audio_time';
+const AUDIO_TRACKS = [
+    { name: 'DJ Ötzi — Sweet Caroline (Party Remix)', src: 'media/Sweet_Caroline_Remix.mp3', refrain: 65 },
+    { name: 'David Hasselhoff — Sweet Caroline', src: 'media/Sweet_Caroline_Hoff.mp3', refrain: 68 }
+];
+let currentTrack = 0;
+let audioPlaying = false;
 
 let tasks = [];
 let guests = { mamka: [], tatka: [] };
@@ -393,6 +453,28 @@ function loadBudgetCollapsed() {
 }
 function saveBudgetCollapsed() {
     try { localStorage.setItem(LS_BUDGET_COLLAPSED, budgetCollapsed.toString()); } catch (e) {}
+}
+
+function loadAudioState() {
+    try {
+        const t = localStorage.getItem(LS_AUDIO_TRACK);
+        if (t !== null) currentTrack = parseInt(t) || 0;
+        const p = localStorage.getItem(LS_AUDIO_PLAYING);
+        if (p !== null) audioPlaying = (p === 'true');
+        const tm = localStorage.getItem(LS_AUDIO_TIME);
+        if (tm !== null) {
+            const audio = document.getElementById('bgAudio');
+            if (audio) audio.currentTime = parseFloat(tm) || 0;
+        }
+    } catch (e) {}
+}
+function saveAudioState() {
+    try {
+        const audio = document.getElementById('bgAudio');
+        localStorage.setItem(LS_AUDIO_TRACK, currentTrack.toString());
+        localStorage.setItem(LS_AUDIO_PLAYING, audioPlaying.toString());
+        if (audio && !audio.paused) localStorage.setItem(LS_AUDIO_TIME, audio.currentTime.toString());
+    } catch (e) {}
 }
 
 // ===== RENDER =====
@@ -591,6 +673,90 @@ function updateBudgetUI() {
     }
 }
 
+function initAudio() {
+    const audio = document.getElementById('bgAudio');
+    if (audio) { audio.src = AUDIO_TRACKS[currentTrack].src; audio.load(); }
+    loadAudioState();
+    updateAudioUI();
+}
+
+function toggleAudio() {
+    const audio = document.getElementById('bgAudio');
+    if (!audio.src || audio.src === window.location.href) {
+        audio.src = AUDIO_TRACKS[currentTrack].src;
+        audio.load();
+    }
+    if (audio.paused) {
+        if (audio.currentTime < 1) {
+            audio.currentTime = AUDIO_TRACKS[currentTrack].refrain;
+        }
+        audio.play().then(() => {
+            audioPlaying = true;
+            updateAudioUI();
+            saveAudioState();
+        }).catch(e => { console.error('Audio play failed:', e); });
+    } else {
+        audio.pause();
+        audioPlaying = false;
+        updateAudioUI();
+        saveAudioState();
+    }
+}
+
+function switchTrack(idx) {
+    currentTrack = idx;
+    const audio = document.getElementById('bgAudio');
+    const wasPlaying = !audio.paused;
+    audio.src = AUDIO_TRACKS[idx].src;
+    audio.load();
+    audio.currentTime = AUDIO_TRACKS[idx].refrain;
+    if (wasPlaying) {
+        audio.play().then(() => {
+            audioPlaying = true;
+            updateAudioUI();
+            saveAudioState();
+        }).catch(e => {});
+    } else {
+        audioPlaying = false;
+        updateAudioUI();
+        saveAudioState();
+    }
+}
+
+function updateAudioUI() {
+    const headerBtn = document.getElementById('headerAudioBtn');
+    const floatBtn = document.getElementById('floatingAudioBtn');
+    const panel = document.getElementById('audioPanel');
+    const label = document.getElementById('audioTrackLabel');
+    if (headerBtn) headerBtn.textContent = audioPlaying ? '🔊 Hraje' : '🎵 Přehrát';
+    if (floatBtn) { floatBtn.textContent = audioPlaying ? '⏸' : '▶'; floatBtn.classList.toggle('playing', audioPlaying); }
+    if (label) label.textContent = AUDIO_TRACKS[currentTrack].name;
+    if (panel) {
+        panel.querySelectorAll('.audio-btn-sm').forEach((btn, i) => {
+            btn.classList.toggle('active-track', i === currentTrack);
+        });
+    }
+}
+
+let audioStarted = false;
+function onFirstInteraction() {
+    if (audioStarted) return;
+    audioStarted = true;
+    const audio = document.getElementById('bgAudio');
+    if (!audio.src || audio.src === window.location.href) {
+        audio.src = AUDIO_TRACKS[currentTrack].src;
+        audio.load();
+    }
+    audio.currentTime = AUDIO_TRACKS[currentTrack].refrain;
+    audio.play().then(() => {
+        audioPlaying = true;
+        updateAudioUI();
+        saveAudioState();
+    }).catch(e => {});
+    document.removeEventListener('click', onFirstInteraction);
+    document.removeEventListener('touchstart', onFirstInteraction);
+}
+
 function resetAll() {
     tasks.forEach(t => { completed[t.key] = false; });
     saveDone();
@@ -629,9 +795,15 @@ async function init() {
     computeProgress();
     renderBudget();
     updateHideDoneUI();
+    initAudio();
+    document.addEventListener('click', onFirstInteraction);
+    document.addEventListener('touchstart', onFirstInteraction);
 
     await fetchGuests();
     renderGuests();
+
+    setInterval(saveAudioState, 5000);
+    window.addEventListener('beforeunload', saveAudioState);
 }
 
 init();

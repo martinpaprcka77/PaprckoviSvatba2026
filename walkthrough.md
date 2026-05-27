@@ -16,8 +16,9 @@ Aplikace je plně statická — žádný backend, žádný build, žádné npm. 
 | Verze | URL | Účel | Data |
 |-------|-----|------|------|
 | **v0** | `/v0/` | Archivní baseline | Inline (20 úkolů, 81 500 Kč) |
-| **v1** | `/` | Produkce | Fetchuje `data/tasks.md` z GitHub Raw, localStorage pro check-state + budget |
+| **v1** | `/` (přepínatelné DEPLOY_DEFAULT) | Produkce | Fetchuje `data/tasks.md` z GitHub Raw, localStorage pro check-state + budget |
 | **v2** | `/v2/` | Testovací | Fetchuje `data/tasks.md` + `data/guests.md` z GitHub Raw, write-back přes API |
+| **v3music** | `/v3music/` | v1 + audio | Kopie v1 + 2 skladby (DJ Ötzi, Hasselhoff), 3 ovladače, refrén skip |
 
 ### Data Flow
 
@@ -132,6 +133,7 @@ Editace tasks.md / guests.md → commit + push → GitHub Actions → gh-pages �
 - **Live:**
   - [v1 produkce](https://doma77git.github.io/PaprckoviSvatba2026/)
   - [v2 testovací](https://doma77git.github.io/PaprckoviSvatba2026/v2/)
+  - [v3music](https://doma77git.github.io/PaprckoviSvatba2026/v3music/)
   - [v0 archiv](https://doma77git.github.io/PaprckoviSvatba2026/v0/)
   - [Archivní verze](https://doma77git.github.io/PaprckoviSvatba2026/Older_up2date/)
 
@@ -196,7 +198,7 @@ Obě verze sdílejí premium iOS-first design:
 
 1. **Budget 100 000 Kč hard cap** — změna ceny → vyrovnat jinde
 2. **Nikdy neodebírat Děti** z úkolů — co-assign (`Děti, Mamka`), nikdy nenahrazovat
-3. **Jména bez háčků, bez příjmení** — Mikesovi (ne Mikešovi)
+3. **Jména v datech bez háčků, bez příjmení** — Mikesovi (ne Mikešovi); Děti je výjimka (správná čeština)
 4. **Append-only poznámky** v tasks.md; oddělovač `; `
 5. **Po editaci tasks.md:** aktualizovat header počty, people tabulku, budget tabulku
 6. **PRD je autoritativní spec** — `docs/PRD-svatba-paprckovi-2026.md`

@@ -7,20 +7,30 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.3.2] — 2026-05-27
+
+### Added
+- **Hide-done toggle:** v1 — completed tasks hidden by default, toggle button in checklist header ([index.html](index.html))
+- **Collapsed budget:** v1 — budget section default collapsed, expand on click, summary visible ([index.html](index.html))
+- **v3music:** New version — v1 copy + background audio player with 2 tracks (DJ Ötzi, Hasselhoff), 3 synced controls ([v3music/index.html](v3music/index.html))
+- **Deploy switch:** `DEPLOY_DEFAULT` file controls root `/` version, Actions auto-resets to `v1` ([DEPLOY_DEFAULT](DEPLOY_DEFAULT))
+
+### Changed
+- Deploy workflow: reads DEPLOY_DEFAULT, deploys selected version as `/`, resets after ([.github/workflows/deploy.yml](.github/workflows/deploy.yml))
+- All docs synced: CLAUDE.md, README, walkthrough updated with v3music
+
 ## [1.3.1] — 2026-05-27
 
 ### Added
 - **Guests section** between budget and timeline — fetches `data/guests.md` from GitHub Raw ([v2/index.html](v2/index.html))
 - New guests: Jan Drah +1, Jirka Pok, Hozik P. +1 on Taťka's side ([data/guests.md](data/guests.md))
+- `Docs/ARCHITEKTURA-APLIKACI.md` — UML architecture templates for v0/v1/v2 ([Docs/ARCHITEKTURA-APLIKACI.md](Docs/ARCHITEKTURA-APLIKACI.md))
+- `Docs/MASTER-PROMPT.md` — interactive decision tree for AI agents ([Docs/MASTER-PROMPT.md](Docs/MASTER-PROMPT.md))
 
 ### Changed
 - **Budget overhaul:** `data/budget.md` redesigned as 1 source of truth with Rezervováno/Zaplaceno/Zbývá columns ([data/budget.md](data/budget.md))
 - **Koliba catering split:** task #7 → 7a (Pohoštění 11 100 Kč) + 7b (Poobědový budget 18 900 Kč) ([data/tasks.md](data/tasks.md))
-- Bumped task count: 36 → 37 (Rozlučka se svobodou added)
-
-### Added
-- `docs/ARCHITEKTURA-APLIKACI.md` — UML architecture templates for v0/v1/v2 ([docs/ARCHITEKTURA-APLIKACI.md](docs/ARCHITEKTURA-APLIKACI.md))
-- `docs/MASTER-PROMPT.md` — interactive decision tree for AI agents ([docs/MASTER-PROMPT.md](docs/MASTER-PROMPT.md))
+- Cross-doc sync: all references bumped 36 → 37
 
 ### Fixed
 - Excel PostToolUse hook: `sys.exit` bug fixed, hardcoded paths → relative ([.claude/settings.json](.claude/settings.json))

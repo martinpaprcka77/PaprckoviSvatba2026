@@ -20,11 +20,12 @@ docs/PRD-svatba-paprckovi-2026.md  ← authoritative spec (PRD rules)
 v0: v0/index.html       ← v0 archive (20 tasks, Aug 29 date, Svatba_001 baseline)
 v1: index.html          ← fetch-based, reads tasks.md from GitHub Raw, localStorage for state only
 v2: v2/index.html       ← fetches MD from GitHub, PIN-unlocked write via API
+v3music: v3music/index.html ← v1 + audio player (2 tracks, 3 synced controls), deploy switch
 ```
 
 **v1:** Svatba_001-style — simple checklist + editable budget table. Fetches `data/tasks.md` from GitHub Raw. localStorage for check state + budget edits only.
 **v2:** Fetches `data/tasks.md` + `data/guests.md` from GitHub Raw. Write-back via GitHub API (AES-GCM encrypted PAT, SHA-256 PIN hash). Completed tasks auto-removed from DOM.
-**Dual deploy:** `/` (v1 production), `/v2/` (v2 testing).
+**Dual deploy:** `/` (v1 production, přepínatelné přes `DEPLOY_DEFAULT`), `/v2/` (v2 testing), `/v3music/` (v1+audio).
 
 ### Data Flow
 1. Edit `data/tasks.md` or `data/guests.md` -> commit + push
@@ -37,7 +38,7 @@ v2: v2/index.html       ← fetches MD from GitHub, PIN-unlocked write via API
 
 - **Tasks:** 37 (19 mandatory + 14 important + 4 optional)
 - **Budget:** 100 000 Kc (mandatory 94 500 + important 5 000 + optional 500)
-- **People:** 5 — Mamka, Tatka, Zanetka, Kikinka, Deti
+- **People:** 5 — Mamka, Tatka, Zanetka, Kikinka, Děti
 - **Done:** 6/37 (termín, radnice, děti, svědci, oddávající, schůzka prstýnky)
 - **Storage keys v1:** `svatba_done_v4`, `svatba_budget_v4` (localStorage, check-state + editable budget only)
 - **Wedding:** 29. srpna 2026, 11:15 — Nova radnice Ostrava
@@ -51,7 +52,7 @@ v2: v2/index.html       ← fetches MD from GitHub, PIN-unlocked write via API
 | **Tatka** | Zenich | 8 |
 | **Zanetka** | Hlavni organizatorka, svedkyne zenicha | 7 |
 | **Kikinka** | Svedkyne nevesty | 3 |
-| **Deti** | 4 dcery: Gabriela, Kristynka, Natalka, Kacka — vyzdoba, dort, foceni, hudba, foto | 5 |
+| **Děti** | 4 dcery: Gabriela, Kristynka, Natalka, Kacka — vyzdoba, dort, foceni, hudba, foto | 5 |
 
 ## Budget
 
@@ -62,7 +63,7 @@ v2: v2/index.html       ← fetches MD from GitHub, PIN-unlocked write via API
 - CELKEM > 100 000 Kc = červená v appce
 ## Key Rules
 
-1. **Never remove Deti** from tasks — co-assign (`Deti, Mamka`), never replace
+1. **Never remove Děti** from tasks — co-assign (`Děti, Mamka`), never replace
 2. **Names without hacek** in data: Mikesovi (not Mikesovi with hacek)
 3. **No surnames** — first names / nicknames only
 4. **Append-only** notes in tasks.md; use `; ` separator
@@ -74,7 +75,7 @@ v2: v2/index.html       ← fetches MD from GitHub, PIN-unlocked write via API
 ```
 | Termin | Ukol | Kdo | Kat. | Plan (Kc) | Skutecnost (Kc) | Stav | Timestamp | Poznamka |
 ```
-- `Kdo` comma-separated: `Deti, Mamka`
+- `Kdo` comma-separated: `Děti, Mamka` (with diacritic — správná čeština)
 - `Kat.`: `mandatory` | `important` | `optional`
 - `Stav`: `[x]` done (with timestamp) or `[ ]` open
 - `_` = empty/not yet filled
@@ -97,7 +98,7 @@ v2: v2/index.html       ← fetches MD from GitHub, PIN-unlocked write via API
 ## Deployment
 
 - Push to `master` -> `.github/workflows/deploy.yml` -> `gh-pages`
-- `/` = v1, `/v2/` = v2
+- `/` = v1 (default), `/v2/` = v2, `/v3music/` = v1+audio, přepínání přes `DEPLOY_DEFAULT`
 - Repo: `doma77git/PaprckoviSvatba2026`
 
 ## Verify Data Integrity
