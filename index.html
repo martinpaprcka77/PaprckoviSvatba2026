@@ -173,6 +173,10 @@
         </table>
     </div>
 
+    <!-- Hosté -->
+    <h2>👥 Seznam hostů</h2>
+    <div id="guestsContainer" style="margin-bottom:14px;">Načítám…</div>
+
     <!-- Schedule -->
     <div class="card">
         <h2>📅 Harmonogram — 29. srpna 2026</h2>
@@ -199,10 +203,12 @@
 <script>
 const WEDDING_DATE = new Date('2026-08-29T11:15:00');
 const DATA_URL = 'https://raw.githubusercontent.com/doma77git/PaprckoviSvatba2026/master/data/tasks.md';
+const GUESTS_URL = 'https://raw.githubusercontent.com/doma77git/PaprckoviSvatba2026/master/data/guests.md';
 const LS_DONE = 'svatba_done_v4';
 const LS_BUDGET = 'svatba_budget_v4';
 
 let tasks = [];
+let guests = { mamka: [], tatka: [] };
 let completed = {};    // { key: true }
 let currentFilter = 'all';
 
@@ -258,6 +264,29 @@ function parseTasksMD(md) {
     return result;
 }
 
+function parseGuestsMD(md) {
+    const result = { mamka: [], tatka: [] };
+    const lines = md.split('\n');
+    let side = null, inTable = false;
+    for (const line of lines) {
+        const t = line.trim();
+        if (t.startsWith('## Mamka')) { side = 'mamka'; inTable = false; continue; }
+        if (t.startsWith('## Taťka')) { side = 'tatka'; inTable = false; continue; }
+        if (t.startsWith('## ')) { side = null; inTable = false; continue; }
+        if (t.startsWith('| Jméno') && t.includes('Počet')) { inTable = true; continue; }
+        if (t.startsWith('|--') || t.startsWith('| -')) continue;
+        if (!inTable || !t.startsWith('|') || !side) continue;
+
+        const cells = t.split('|').map(c => c.trim()).filter(c => c !== '');
+        if (cells.length < 4) continue;
+        const [jmeno, pocetStr, jidlo, potvrzeno] = cells;
+        if (jmeno.startsWith('_')) continue; // skip placeholder rows
+        const pocet = pocetStr === '?' ? -1 : (parseInt(pocetStr) || 1);
+        result[side].push({ name: jmeno, count: pocet, food: jidlo !== '_' && jidlo !== '' ? jidlo : null, confirmed: potvrzeno !== '_' && potvrzeno !== '' ? potvrzeno : null });
+    }
+    return result;
+}
+
 // ===== FETCH =====
 async function fetchData() {
     try {
@@ -268,8 +297,19 @@ async function fetchData() {
                 'Naposledy: ' + new Date().toLocaleTimeString('cs');
             return true;
         }
-    } catch (e) { console.error('Fetch:', e); }
+    } catch (e) { console.error('Fetch tasks:', e); }
     document.getElementById('syncStatus').textContent = '⚠️ Offline — zobrazuji lokální data';
+    return false;
+}
+
+async function fetchGuests() {
+    try {
+        const res = await fetch(GUESTS_URL, { cache: 'no-cache' });
+        if (res.ok) {
+            guests = parseGuestsMD(await res.text());
+            return true;
+        }
+    } catch (e) { console.error('Fetch guests:', e); }
     return false;
 }
 
@@ -377,6 +417,39 @@ function renderFilters() {
     });
 }
 
+function renderGuests() {
+    const container = document.getElementById('guestsContainer');
+    const renderTable = (title, rows) => {
+        const total = rows.reduce((s, r) => s + Math.max(0, r.count), 0);
+        return `
+            <h3 style="font-size:0.95rem;margin:14px 0 6px;color:var(--primary);">${title} (${total} osob)</h3>
+            <table style="width:100%;border-collapse:collapse;font-size:0.82rem;">
+                <thead><tr style="color:var(--text-muted);">
+                    <td style="padding:4px;border-bottom:1px solid var(--border);"><strong>Jméno</strong></td>
+                    <td style="padding:4px;border-bottom:1px solid var(--border);text-align:center;"><strong>Počet</strong></td>
+                    <td style="padding:4px;border-bottom:1px solid var(--border);text-align:center;"><strong>Jídlo</strong></td>
+                </tr></thead>
+                <tbody>${rows.map(r => `
+                    <tr>
+                        <td style="padding:3px 4px;border-bottom:1px solid var(--border);">${r.name}</td>
+                        <td style="padding:3px 4px;border-bottom:1px solid var(--border);text-align:center;">${r.count === -1 ? '?' : r.count}</td>
+                        <td style="padding:3px 4px;border-bottom:1px solid var(--border);text-align:center;">${r.food || '—'}</td>
+                    </tr>`).join('')}</tbody>
+            </table>`;
+    };
+
+    let html = '';
+    if (guests.mamka.length) html += renderTable('🌸 Mamčina strana', guests.mamka);
+    else html += '<p style="color:var(--text-muted);font-size:0.82rem;">🌸 Mamčina strana — zatím prázdné</p>';
+    if (guests.tatka.length) html += renderTable('🌿 Taťkova strana', guests.tatka);
+    else html += '<p style="color:var(--text-muted);font-size:0.82rem;">🌿 Taťkova strana — zatím prázdné</p>';
+
+    const celkem = guests.mamka.reduce((s, r) => s + Math.max(0, r.count), 0)
+                 + guests.tatka.reduce((s, r) => s + Math.max(0, r.count), 0);
+    html += `<p style="margin-top:8px;font-weight:600;font-size:0.85rem;">👥 Celkem: ${celkem} hostů</p>`;
+    container.innerHTML = html;
+}
+
 function renderBudget() {
     const tbody = document.getElementById('budgetBody');
     tbody.innerHTML = '';
@@ -452,6 +525,9 @@ async function init() {
     renderMandatorySummary();
     computeProgress();
     renderBudget();
+
+    await fetchGuests();
+    renderGuests();
 }
 
 init();
