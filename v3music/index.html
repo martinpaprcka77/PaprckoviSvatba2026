@@ -321,26 +321,9 @@ let guests = { mamka: [], tatka: [] };
 let completed = {};    // { key: true }
 let currentFilter = 'all';
 
-// Budget items — from Svatba_001.html (user's original data)
-let budgetItems = [
-    { name: "Zlatá koliba — menu + catering", cost: 30000 },
-    { name: "Prstýnky — nákup a úprava", cost: 20000 },
-    { name: "Svatební šaty (Mamka)", cost: 12000 },
-    { name: "Oblek a sako (Taťka)", cost: 8000 },
-    { name: "Nápoje a bar", cost: 6000 },
-    { name: "Ubytování pro hosty", cost: 5000 },
-    { name: "Dekorace a květiny na radnici", cost: 3000 },
-    { name: "Doprava (radnice → Zlatá koliba)", cost: 3000 },
-    { name: "Svatební dort", cost: 3000 },
-    { name: "Doplňky (boty, šperky)", cost: 3000 },
-    { name: "Svatební oznámení", cost: 1500 },
-    { name: "Líčení / nehty / vlasy (Mamka)", cost: 1500 },
-    { name: "Dekorace Zlaté koliby", cost: 1000 },
-    { name: "Fotokoutek / selfie zóna", cost: 1000 },
-    { name: "Dárky pro svědky + rodiče", cost: 1000 },
-    { name: "Střih a úprava (Taťka)", cost: 500 },
-    { name: "Drobnosti pro hosty (guestbook + favory)", cost: 500 }
-];
+// Budget — built from tasks.md (MD authoritative), localStorage only stores edits
+let budgetItems = [];        // built from tasks after fetch: {key, name, plan, cost}
+let budgetEdits = {};        // { taskKey: editedCost } — only overrides from MD plan
 
 function makeKey(t) { return t.deadline + '|' + t.title; }
 
@@ -430,7 +413,12 @@ function loadState() {
         const b = localStorage.getItem(LS_BUDGET);
         if (b) {
             const saved = JSON.parse(b);
-            saved.forEach((s, i) => { if (budgetItems[i]) budgetItems[i].cost = s.cost; });
+            if (Array.isArray(saved)) {
+                // Migrate old array format → new key-based format
+                saved.forEach(s => { if (s.name) budgetEdits[s.name] = s.cost; });
+            } else {
+                budgetEdits = saved;
+            }
         }
     } catch (e) {}
     loadHideDone();
@@ -440,7 +428,16 @@ function saveDone() {
     try { localStorage.setItem(LS_DONE, JSON.stringify(completed)); } catch (e) {}
 }
 function saveBudget() {
-    try { localStorage.setItem(LS_BUDGET, JSON.stringify(budgetItems)); } catch (e) {}
+    try { localStorage.setItem(LS_BUDGET, JSON.stringify(budgetEdits)); } catch (e) {}
+}
+
+function buildBudget() {
+    budgetItems = tasks.map(t => ({
+        key: t.key,
+        name: t.title,
+        plan: t.price,
+        cost: budgetEdits[t.key] !== undefined ? budgetEdits[t.key] : t.price
+    }));
 }
 
 function loadHideDone() {
@@ -601,18 +598,31 @@ function renderGuests() {
 function renderBudget() {
     const tbody = document.getElementById('budgetTableBody');
     tbody.innerHTML = '';
-    budgetItems.forEach((item, i) => {
+    const catEmoji = { mandatory: '🔴', important: '🟡', optional: '🟢' };
+    budgetItems.forEach((item) => {
         const tr = document.createElement('tr');
-        tr.innerHTML = `<td>${item.name}</td>`;
+        const task = tasks.find(t => t.key === item.key);
+        const cat = task ? task.cat : '';
+        tr.innerHTML = `<td>${catEmoji[cat] || ''} ${item.name}</td>`;
         const td = document.createElement('td');
         td.style.textAlign = 'right';
+        td.style.whiteSpace = 'nowrap';
         const input = document.createElement('input');
         input.type = 'number'; input.value = item.cost; input.step = '500';
+        input.title = 'Plán z MD: ' + item.plan.toLocaleString('cs') + ' Kč';
         input.addEventListener('change', () => {
-            budgetItems[i].cost = parseInt(input.value) || 0;
+            const val = parseInt(input.value) || 0;
+            budgetItems.find(b => b.key === item.key).cost = val;
+            if (val !== item.plan) budgetEdits[item.key] = val;
+            else delete budgetEdits[item.key];
             updateBudgetTotal(); saveBudget();
         });
-        td.appendChild(input); tr.appendChild(td);
+        td.appendChild(input);
+        const span = document.createElement('span');
+        span.style.cssText = 'font-size:0.7rem;color:var(--text-muted);margin-left:4px;';
+        span.textContent = '/ ' + item.plan.toLocaleString('cs');
+        td.appendChild(span);
+        tr.appendChild(td);
         tbody.appendChild(tr);
     });
     updateBudgetTotal();
@@ -791,6 +801,7 @@ async function init() {
         if (t.doneInMD) completed[t.key] = true;
     }
     saveDone();
+    buildBudget();
 
     updateCountdown();
     setInterval(updateCountdown, 60000);
