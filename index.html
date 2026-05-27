@@ -552,6 +552,9 @@ function updateBudgetTotal() {
 
 // ===== ACTIONS =====
 function toggleTask(key) {
+    // MD-done tasks cannot be unchecked — MD is authoritative
+    const task = tasks.find(t => t.key === key);
+    if (task && task.doneInMD && completed[key]) return;
     completed[key] = !completed[key];
     saveDone();
     renderMandatorySummary();
@@ -592,12 +595,13 @@ function updateBudgetUI() {
 }
 
 function resetAll() {
-    tasks.forEach(t => { completed[t.key] = false; });
+    // Only reset tasks NOT done in MD — MD is authoritative
+    tasks.forEach(t => { if (!t.doneInMD) completed[t.key] = false; });
     saveDone();
     renderMandatorySummary();
     renderTasks();
     computeProgress();
-    showToast('🔄 Checkboxy resetovány');
+    showToast('🔄 Checkboxy resetovány (MD-hotové zachovány)');
 }
 
 function showToast(msg) {
@@ -615,9 +619,9 @@ function formatDate(d) {
 async function init() {
     loadState();
     await fetchData();
-    // Merge MD done state for tasks not yet in localStorage
+    // MD is always authoritative — overwrite localStorage for MD-done tasks
     for (const t of tasks) {
-        if (t.doneInMD && !completed[t.key]) completed[t.key] = true;
+        if (t.doneInMD) completed[t.key] = true;
     }
     saveDone();
 
