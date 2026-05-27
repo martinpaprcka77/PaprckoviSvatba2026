@@ -5,29 +5,35 @@
 
 ## Mamka strana
 
-| Jméno | Počet | Jídlo | Potvrzeno |
-|-------|-------|-------|-----------|
-| _Zatím prázdné_ | _ | _ | _ |
+| Jméno | Počet | Jídlo | Pozván osobně | Potvrzeno |
+|-------|-------|-------|---------------|-----------|
+| Markéta S | 2 | _ | Ano | _ |
+| Milada S | 1 | _ | Ano | _ |
 
 ## Taťka strana
 
-| Jméno | Počet | Jídlo | Potvrzeno |
-|-------|-------|-------|-----------|
-| Mikesovi | 4 | _ | _ |
-| Luki | ? | _ | _ |
-| Peťa Z | ? | _ | _ |
-| Peťa T | ? | _ | _ |
-| Andrej | ? | _ | _ |
-| Milada S | 1 | _ | _ |
-| Markéta S | ? | _ | _ |
-| Jan Drah | 2 | _ | _ |
-| Jirka Pok | 1 | _ | _ |
-| Hozik P. | 2 | _ | _ |
-| Děti | 4 | _ | _ |
+| Jméno | Počet | Jídlo | Pozván osobně | Potvrzeno |
+|-------|-------|-------|---------------|-----------|
+| Luki | 2 | _ | Ano | _ |
+| Peťa Z | 2 | _ | Ano | _ |
+| Peťa T | 2 | _ | Ano | _ |
+| Andrej | 2 | _ | Ano | _ |
+| Jan Drah | 2 | _ | Ano | _ |
+| Jirka Pok | 2 | _ | Ano | _ |
+
+## Společní
+
+| Jméno | Počet | Jídlo | Pozván osobně | Potvrzeno |
+|-------|-------|-------|---------------|-----------|
+| Mikesovi | 4 | _ | Ano | _ |
+| Hozik P. | 2 | _ | Ano | _ |
+| Děti | 4 | _ | Ano | _ |
 
 ## Poznámky
 
 - **Mikesovi** = sestra + manžel + 2 děti (bez příjmení)
 - **Děti** = Gabriela, Kristýnka, Natálka, Kačka — 4 dcery
-- ~14-20 hostů odhadem
+- Všichni pozváni osobně
+- +1 počítáno u všech kromě Milady S (sama)
+- ~23 hostů celkem
 - Bez příjmení — jen křestní jména / přezdívky

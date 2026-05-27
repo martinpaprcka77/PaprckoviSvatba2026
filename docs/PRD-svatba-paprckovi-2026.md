@@ -1,7 +1,7 @@
 # PRD — Svatba Paprčkovi 2026
 
 > Product Requirements Document — 14. 5. 2026
-> Status: active — 26. 5. 2026 (37 úkolů, 5 osob, 100 000 Kč)
+> Status: active — 27. 5. 2026 (36 úkolů, 5 osob, 89 500 Kč)
 
 ---
 
@@ -48,14 +48,14 @@
 
 ## 4. Rozpočet
 
-**MAX 100 000 Kč — hard cap.** Všechny ceny přesně sumují na 100 000 Kč. Rozpočet je fixní — každá změna ceny musí být vyrovnána jinde.
+**MAX 100 000 Kč — hard cap.** Aktuálně 89 500 Kč (84 500 + 4 500 + 500). Každá změna ceny musí být vyrovnána jinde.
 
-### POVINNÉ (mandatory) — 19 tasků, 94 500 Kč
+### POVINNÉ (mandatory) — 19 tasků, 84 500 Kč
 
 | Položka | Odhad (Kč) | Kdo |
 |---|---|---|
 | Zlatá koliba — menu + catering | 30 000 | Žanetka |
-| Prstýnky — nákup a úprava | 20 000 | Taťka |
+| Prstýnky — nákup a úprava | 10 000 | Taťka |
 | Svatební šaty (Mamka) | 12 000 | Mamka |
 | Oblek a sako (Taťka) | 8 000 | Taťka |
 | Nápoje a bar | 6 000 | Žanetka |
@@ -73,9 +73,9 @@
 | Radnice (hotovo ✓) | 0 | — |
 | Děti (hotovo ✓) | 0 | — |
 | Svědci (hotovo ✓) | 0 | — |
-| **Subtotal** | **94 500** | |
+| **Subtotal** | **84 500** | |
 
-### DŮLEŽITÉ (important) — 14 tasků, 5 000 Kč
+### DŮLEŽITÉ (important) — 13 tasků, 4 500 Kč
 
 | Položka | Odhad (Kč) | Kdo |
 |---|---|---|
@@ -83,7 +83,6 @@
 | Dekorace Zlaté koliby | 1 000 | Děti |
 | Fotokoutek / selfie zóna | 1 000 | Děti |
 | Dárky pro svědky | 500 | Mamka |
-| Dárky pro rodiče a poděkování | 500 | Taťka |
 | Dárky na přivítanou pro hosty | 0 | Mamka |
 | Uvítací cedule | 0 | Mamka |
 | Hry pro hosty | 0 | Žanetka |
@@ -105,7 +104,7 @@
 | Svatební cesta — termín, ubytování, program | 0 | Taťka |
 | **Subtotal** | **500** | |
 
-**CELKEM: 37 tasků, 100 000 Kč ✓**
+**CELKEM: 36 tasků, 89 500 Kč ✓**
 
 ---
 
@@ -149,8 +148,7 @@
 | 1. 8. | Ubytování pro hosty | Žanetka | Povinné |
 | 10. 8. | Dárky pro svědky | Mamka | Důležité |
 | 15. 8. | Dekorace a květiny na radnici | Kikinka | Povinné |
-| 15. 8. | Dekorace Zlaté koliby | Děti | Důležité |
-| 15. 8. | Dárky pro rodiče | Taťka | Důležité |
+| 22. 8. | Dekorace Zlaté koliby | Děti | Důležité |
 | 15. 8. | První tanec (nácvik) | Mamka | Důležité |
 | 20. 8. | Doprava (radnice → Zlatá koliba) | Taťka | Povinné |
 | 20. 8. | Svatební dort | Děti, Mamka | Povinné |
@@ -161,7 +159,7 @@
 | 20. 8. | Hry pro hosty a zábava | Žanetka | Důležité |
 | 20. 8. | Hudba a playlist | Děti | Důležité |
 | 20. 8. | Drobnosti pro hosty (guestbook + favory) | Mamka | Volitelné |
-| 25. 8. | Proslovy (svědci, rodiče) | Kikinka | Důležité |
+| 25. 8. | Proslovy (svědci) | Kikinka | Důležité |
 | 25. 8. | Líčení / nehty / vlasy (Mamka) | Mamka | Důležité |
 | 25. 8. | Střih a úprava (Taťka) | Taťka | Důležité |
 | 25. 8. | Confetti a prskavky | Žanetka | Volitelné |
@@ -223,7 +221,7 @@
 | 21. 5. | **Autoritativní Excel:** `data/rozpocet-svatba-2026.xlsx` — SUMIF/COUNTIF vzorce, podmíněné formátování, přehled na osobu | Jeden zdroj pravdy pro budget |
 | 21. 5. | **Manuální Excel:** `data/manualrozpocet-svatba-2026.xlsx` — uživatelův vlastní formát budgetu | Uživatel preferuje vlastní strukturu |
 | 21. 5. | **Hooks:** PreToolUse chrání .env/.git, PostToolUse přegeneruje Excel, Notification idle alert | Automatizace v `.claude/settings.json` |
-| 21. 5. | **36→37 úkolů: 19 mandatory + 14 important + 4 optional = 100 000 Kč | Úkol #36 schůzka prstýnky (Mamka+Taťka+Žanetka); Dáda = Mamka (Dagmar Sobková) |
+| 27. 5. | **37→36 úkolů: 19 mandatory + 13 important + 4 optional = 89 500 Kč | Odebrán "Dárky pro rodiče" (rodiče nežijí), prstýnky 20→10K, "Proslovy" bez rodičů |
 | 24. 5. | **Oprava:** Dáda = Mamka = Dagmar Sobková — sloučeno do 5 osob, Mamka 18 úkolů | Uživatel upřesnil: Dáda je přezdívka Mamky |
 
 ---

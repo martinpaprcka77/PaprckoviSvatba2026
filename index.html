@@ -257,7 +257,7 @@ let hideDone = true;
 let budgetCollapsed = true;
 
 let tasks = [];
-let guests = { mamka: [], tatka: [] };
+let guests = { mamka: [], tatka: [], spolecni: [] };
 let completed = {};    // { key: true }
 let currentFilter = 'all';
 
@@ -297,13 +297,14 @@ function parseTasksMD(md) {
 }
 
 function parseGuestsMD(md) {
-    const result = { mamka: [], tatka: [] };
+    const result = { mamka: [], tatka: [], spolecni: [] };
     const lines = md.split('\n');
     let side = null, inTable = false;
     for (const line of lines) {
         const t = line.trim();
         if (t.startsWith('## Mamka')) { side = 'mamka'; inTable = false; continue; }
         if (t.startsWith('## Taťka')) { side = 'tatka'; inTable = false; continue; }
+        if (t.startsWith('## Společní') || t.startsWith('## Spolecni')) { side = 'spolecni'; inTable = false; continue; }
         if (t.startsWith('## ')) { side = null; inTable = false; continue; }
         if (t.startsWith('| Jméno') && t.includes('Počet')) { inTable = true; continue; }
         if (t.startsWith('|--') || t.startsWith('| -')) continue;
@@ -311,8 +312,11 @@ function parseGuestsMD(md) {
 
         const cells = t.split('|').map(c => c.trim()).filter(c => c !== '');
         if (cells.length < 4) continue;
-        const [jmeno, pocetStr, jidlo, potvrzeno] = cells;
-        if (jmeno.startsWith('_')) continue; // skip placeholder rows
+        const jmeno = cells[0];
+        const pocetStr = cells[1];
+        const jidlo = cells.length >= 3 ? cells[2] : '_';
+        const potvrzeno = cells.length >= 5 ? cells[4] : (cells.length >= 4 ? cells[3] : '_');
+        if (jmeno.startsWith('_')) continue;
         const pocet = pocetStr === '?' ? -1 : (parseInt(pocetStr) || 1);
         result[side].push({ name: jmeno, count: pocet, food: jidlo !== '_' && jidlo !== '' ? jidlo : null, confirmed: potvrzeno !== '_' && potvrzeno !== '' ? potvrzeno : null });
     }
@@ -508,9 +512,11 @@ function renderGuests() {
     else html += '<p style="color:var(--text-muted);font-size:0.82rem;">🌸 Mamčina strana — zatím prázdné</p>';
     if (guests.tatka.length) html += renderTable('🌿 Taťkova strana', guests.tatka);
     else html += '<p style="color:var(--text-muted);font-size:0.82rem;">🌿 Taťkova strana — zatím prázdné</p>';
+    if (guests.spolecni && guests.spolecni.length) html += renderTable('🤝 Společní', guests.spolecni);
 
     const celkem = guests.mamka.reduce((s, r) => s + Math.max(0, r.count), 0)
-                 + guests.tatka.reduce((s, r) => s + Math.max(0, r.count), 0);
+                 + guests.tatka.reduce((s, r) => s + Math.max(0, r.count), 0)
+                 + (guests.spolecni || []).reduce((s, r) => s + Math.max(0, r.count), 0);
     html += `<p style="margin-top:8px;font-weight:600;font-size:0.85rem;">👥 Celkem: ${celkem} hostů</p>`;
     container.innerHTML = html;
 }
