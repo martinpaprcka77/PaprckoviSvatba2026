@@ -20,6 +20,9 @@
 | Andrej | ? | _ | _ |
 | Milada S | 1 | _ | _ |
 | Markéta S | ? | _ | _ |
+| Jan Drah | 2 | _ | _ |
+| Jirka Pok | 1 | _ | _ |
+| Hozik P. | 2 | _ | _ |
 | Děti | 4 | _ | _ |
 
 ## Poznámky
