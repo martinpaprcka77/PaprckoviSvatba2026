@@ -22,15 +22,15 @@ Git-backed architektura: data v MD souborech, appka je čte a renderuje. Bez npm
 ## 📊 Aktuální stav
 
 ```
-✅ 6/37 splněno  ·  💰 0/100 000 Kč utraceno
+✅ 6/36 splněno  ·  💰 0/89 500 Kč utraceno
 ```
 
 | Kategorie | Úkolů | Plán |
 |-----------|-------|------|
-| 🔴 Povinné (mandatory) | 19 | 94 500 Kč |
-| 🟡 Důležité (important) | 14 | 5 000 Kč |
+| 🔴 Povinné (mandatory) | 19 | 84 500 Kč |
+| 🟡 Důležité (important) | 13 | 4 500 Kč |
 | 🟢 Volitelné (optional) | 4 | 500 Kč |
-| **Celkem** | **37** | **100 000 Kč** |
+| **Celkem** | **36** | **89 500 Kč** |
 
 **Hotovo (6):** termín ✓ · radnice ✓ · děti ✓ · svědci ✓ · oddávající ✓ · schůzka prstýnky ✓
 
@@ -39,7 +39,7 @@ Git-backed architektura: data v MD souborech, appka je čte a renderuje. Bez npm
 | Kdo | Role | Úkolů |
 |-----|------|--------|
 | **Mamka** | Nevěsta | 18 |
-| **Taťka** | Ženich | 8 |
+| **Taťka** | Ženich | 7 |
 | **Žanetka** | Hlavní organizátorka, svědkyně ženicha | 7 |
 | **Kikinka** | Svědkyně nevěsty | 3 |
 | **Děti** | 4 dcery: Gabriela, Kristýnka, Natálka, Kačka — výzdoba, dort, focení, hudba, foto | 5 |
@@ -73,7 +73,7 @@ Git-backed architektura: data v MD souborech, appka je čte a renderuje. Bez npm
 ├── v0/index.html           ← v0 archive (Svatba_001 baseline, 20 tasks, Aug 29)
 ├── v2/index.html           ← v2 (fetches MD z GitHubu, PIN write)
 ├── data/
-│   ├── tasks.md            ← 37 úkolů — AUTORITATIVNÍ zdroj
+│   ├── tasks.md            ← 36 úkolů — AUTORITATIVNÍ zdroj
 │   ├── guests.md           ← seznam hostů
 │   ├── rozpocet-svatba-2026.xlsx        ← auto-gen Excel (SUMIF vzorce)
 │   └── manualrozpocet-svatba-2026.xlsx  ← manuální Excel
@@ -97,7 +97,7 @@ Git-backed architektura: data v MD souborech, appka je čte a renderuje. Bez npm
 
 ## 🔒 Pravidla
 
-1. **Budget 100 000 Kč hard cap** — jakákoliv změna ceny musí být vyrovnána jinde
+1. **Budget 100 000 Kč hard cap** (aktuálně 89 500 Kč) — změna ceny → vyrovnat jinde
 2. **Nikdy neodebírat Děti** z úkolů — co-assign (`Děti, Mamka`), nikdy nenahrazovat
 3. **Jména bez háčků, bez příjmení** — Mikesovi (ne Mikešovi), jen křestní / přezdívky
 4. **Append-only poznámky** v tasks.md; oddělovač `; `

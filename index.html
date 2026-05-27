@@ -372,12 +372,14 @@ function saveBudget() {
 }
 
 function buildBudget() {
-    budgetItems = tasks.map(t => ({
-        key: t.key,
-        name: t.title,
-        plan: t.price,
-        cost: budgetEdits[t.key] !== undefined ? budgetEdits[t.key] : t.price
-    }));
+    budgetItems = tasks
+        .filter(t => t.price > 0)  // skip 0 Kč tasks — no budget impact
+        .map(t => ({
+            key: t.key,
+            name: t.title,
+            plan: t.price,
+            cost: budgetEdits[t.key] !== undefined ? budgetEdits[t.key] : t.price
+        }));
 }
 
 function loadHideDone() {

@@ -9,10 +9,10 @@
 
 | Kategorie | Položek | Odhad (Kč) | Rezervováno (Kč) | Zaplaceno (Kč) | Zbývá (Kč) |
 |-----------|---------|-----------|------------------|----------------|-------------|
-| 🔴 Povinné (mandatory) | 19 | 94 500 | _ | _ | _ |
-| 🟡 Důležité (important) | 14 | 5 000 | _ | _ | _ |
+| 🔴 Povinné (mandatory) | 19 | 84 500 | _ | _ | _ |
+| 🟡 Důležité (important) | 13 | 4 500 | _ | _ | _ |
 | 🟢 Volitelné (optional) | 4 | 500 | _ | _ | _ |
-| **CELKEM** | **37** | **100 000** | _ | _ | _ |
+| **CELKEM** | **36** | **89 500** | _ | _ | _ |
 
 > Zbývá = Rezervováno − Zaplaceno. Vyplňuje se při platbách.
 
@@ -29,7 +29,7 @@
 | 7 | **Zlatá koliba** | M | 30 000 | _ | _ | _ | Viz rozpad ↓ |
 | 8 | Svatební šaty (Mamka) | M | 12 000 | _ | _ | _ | Plán 11 100, max 15 000 |
 | 9 | Oblek a sako (Taťka) | M | 8 000 | _ | _ | _ | _ |
-| 10 | Prstýnky | M | 20 000 | _ | _ | _ | Vyhlédnuty 25. 5. |
+| 10 | Prstýnky | M | 10 000 | _ | _ | _ | Vyhlédnuty 25. 5. |
 | 11 | Finální seznam hostů | M | 0 | _ | _ | _ | _ |
 | 12 | Nápoje a bar | M | 6 000 | _ | _ | _ | Součást domluvy s Milošem |
 | 13 | Doplňky (Mamka) | M | 3 000 | _ | _ | _ | _ |
@@ -43,20 +43,19 @@
 | 21 | Rozlučka se svobodou | I | 0 | _ | _ | _ | Žanetka zorganizuje |
 | 22 | Dárky pro svědky | I | 500 | _ | _ | _ | _ |
 | 23 | Dekorace Zlaté koliby | I | 1 000 | _ | _ | _ | Děti |
-| 24 | Dárky pro rodiče | I | 500 | _ | _ | _ | _ |
-| 25 | První tanec (nácvik) | I | 0 | _ | _ | _ | _ |
-| 26 | Fotokoutek / selfie zóna | I | 1 000 | _ | _ | _ | Děti |
-| 27 | Uvítací cedule | I | 0 | _ | _ | _ | _ |
-| 28 | Dárky na přivítanou | I | 0 | _ | _ | _ | _ |
-| 29 | Hry pro hosty | I | 0 | _ | _ | _ | _ |
-| 30 | Hudba a playlist | I | 0 | _ | _ | _ | Děti |
-| 31 | Proslovy | I | 0 | _ | _ | _ | _ |
-| 32 | Líčení / nehty / vlasy (Mamka) | I | 1 500 | _ | _ | _ | _ |
-| 33 | Střih a úprava (Taťka) | I | 500 | _ | _ | _ | _ |
-| 34 | Svatební cesta | O | 0 | _ | _ | _ | _ |
-| 35 | Drobnosti pro hosty (guestbook + favory) | O | 500 | _ | _ | _ | _ |
-| 36 | Confetti a prskavky | O | 0 | _ | _ | _ | _ |
-| 37 | Fotograf / dokumentace | O | 0 | _ | _ | _ | Děti |
+| 24 | První tanec (nácvik) | I | 0 | _ | _ | _ | _ |
+| 25 | Fotokoutek / selfie zóna | I | 1 000 | _ | _ | _ | Děti |
+| 26 | Uvítací cedule | I | 0 | _ | _ | _ | _ |
+| 27 | Dárky na přivítanou | I | 0 | _ | _ | _ | _ |
+| 28 | Hry pro hosty | I | 0 | _ | _ | _ | _ |
+| 29 | Hudba a playlist | I | 0 | _ | _ | _ | Děti |
+| 30 | Proslovy (svědci) | I | 0 | _ | _ | _ | _ |
+| 31 | Líčení / nehty / vlasy (Mamka) | I | 1 500 | _ | _ | _ | _ |
+| 32 | Střih a úprava (Taťka) | I | 500 | _ | _ | _ | _ |
+| 33 | Svatební cesta | O | 0 | _ | _ | _ | _ |
+| 34 | Drobnosti pro hosty (guestbook + favory) | O | 500 | _ | _ | _ | _ |
+| 35 | Confetti a prskavky | O | 0 | _ | _ | _ | _ |
+| 36 | Fotograf / dokumentace | O | 0 | _ | _ | _ | Děti |
 
 ## Rozpady
 
@@ -83,10 +82,10 @@ Celkem:                       30 000 Kč ✓
 ```python
 # Spustit po každé změně:
 # python -c "
-# Odhad: 19M + 14I + 4O = 37 položek = 100 000 Kč
-# mandatory: 19 items, 94 500 Kč
-# important: 14 items, 5 000 Kč
+# Odhad: 19M + 13I + 4O = 36 položek = 89 500 Kč
+# mandatory: 19 items, 84 500 Kč
+# important: 13 items, 4 500 Kč
 # optional:  4 items, 500 Kč
-# CELKEM:  37 items, 100 000 Kč ✓
+# CELKEM:  36 items, 89 500 Kč ✓
 # "
 ```

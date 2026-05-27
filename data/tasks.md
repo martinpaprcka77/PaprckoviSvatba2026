@@ -1,8 +1,8 @@
 # Svatba Paprčkovi 2026 — Úkoly
 
 > Autoritativní zdroj. Editace přes PC → git. Appka čte a renderuje.
-> 37 úkolů, 5 osob (Mamka, Taťka, Žanetka, Kikinka, Děti)
-> Budget: MAX 100 000 Kč (mandatory 94 500 + important 5 000 + optional 500)
+> 36 úkolů, 5 osob (Mamka, Taťka, Žanetka, Kikinka, Děti)
+> Budget: MAX 100 000 Kč (mandatory 84 500 + important 4 500 + optional 500)
 
 | Termín | Úkol | Kdo | Kat. | Plán (Kč) | Skutečnost (Kč) | Stav | Timestamp | Poznámka |
 |--------|------|-----|------|-----------|-----------------|------|-----------|----------|
@@ -15,7 +15,7 @@
 | 2026-06-01 | Zlatá koliba — menu + catering, finální počet osob | Žanetka | mandatory | 30000 | _ | [ ] | _ | 30 lidí; polévka 95 Kč/os; druhé 275 Kč/os; U Miloše, Karasova 1130/23 — návštěva tento/příští týden |
 | 2026-07-15 | Svatební šaty (Mamka) — výběr, nákup, úpravy | Mamka | mandatory | 12000 | _ | [ ] | _ | Plán ~11 100 Kč, max 15 000 Kč |
 | 2026-06-15 | Oblek a sako (Taťka) — výběr a nákup | Taťka | mandatory | 8000 | _ | [ ] | _ | Posunuto na dřív — vybrat a koupit včas |
-| 2026-06-15 | Prstýnky — nákup a úprava | Taťka | mandatory | 20000 | _ | [ ] | _ | Vyhlédnuty na schůzce 25. 5. — objednat a vyzvednout |
+| 2026-06-15 | Prstýnky — nákup a úprava | Taťka | mandatory | 10000 | _ | [ ] | _ | Vyhlédnuty na schůzce 25. 5. — objednat a vyzvednout |
 | 2026-07-15 | Finální seznam hostů — potvrzení pro catering | Mamka | mandatory | 0 | _ | [ ] | _ | Odhad 14–20 hostů |
 | 2026-08-01 | Nápoje a bar — nákup vín, šampaňského, nealko | Žanetka | mandatory | 6000 | _ | [ ] | _ | Součást domluvy s Milošem |
 | 2026-08-01 | Doplňky — boty, šperky (Mamka) | Mamka | mandatory | 3000 | _ | [ ] | _ | _ |
@@ -29,14 +29,13 @@
 | 2026-06-30 | Rozlučka se svobodou — organizace a pozvání hostů | Žanetka | important | 0 | _ | [ ] | _ | Žanetka zorganizuje pro hosty — termín, program, místo |
 | 2026-08-10 | Dárky pro svědky | Mamka | important | 500 | _ | [ ] | _ | _ |
 | 2026-08-22 | Dekorace Zlaté koliby — výzdoba sálu | Děti | important | 1000 | _ | [ ] | _ | Týden před svatbou — instalace výzdoby |
-| 2026-08-15 | Dárky pro rodiče a poděkování | Taťka | important | 500 | _ | [ ] | _ | _ |
 | 2026-08-15 | První tanec (nácvik) | Mamka | important | 0 | _ | [ ] | _ | _ |
 | 2026-08-20 | Fotokoutek / selfie zóna — příprava a setup | Děti | important | 1000 | _ | [ ] | _ | _ |
 | 2026-08-20 | Uvítací cedule, místa k sezení | Mamka | important | 0 | _ | [ ] | _ | _ |
 | 2026-08-20 | Dárky na přivítanou pro hosty | Mamka | important | 0 | _ | [ ] | _ | _ |
 | 2026-08-20 | Hry pro hosty a zábava | Žanetka | important | 0 | _ | [ ] | _ | _ |
 | 2026-08-20 | Hudba a playlist — Děti zajistí ozvučení a reprodukci | Děti | important | 0 | _ | [ ] | _ | DJ nebude — Děti pustí playlist z repráku |
-| 2026-08-25 | Proslovy (svědci, rodiče) — příprava | Kikinka | important | 0 | _ | [ ] | _ | _ |
+| 2026-08-25 | Proslovy (svědci) — příprava | Kikinka | important | 0 | _ | [ ] | _ | _ |
 | 2026-08-25 | Líčení / nehty / vlasy (Mamka) | Mamka | important | 1500 | _ | [ ] | _ | _ |
 | 2026-08-25 | Střih a úprava (Taťka) | Taťka | important | 500 | _ | [ ] | _ | _ |
 | 2026-07-15 | Svatební cesta — termín, ubytování, program | Taťka | optional | 0 | _ | [ ] | _ | _ |
@@ -49,18 +48,18 @@
 | Kdo | Role | Úkolů |
 |-----|------|--------|
 | **Mamka** | Nevěsta | 18 |
-| **Taťka** | Ženich | 8 |
+| **Taťka** | Ženich | 7 |
 | **Žanetka** | Hlavní organizátorka, svědkyně ženicha | 7 |
 | **Kikinka** | Svědkyně nevěsty | 3 |
 | **Děti** | 4 dcery: Gabriela, Kristýnka, Natálka, Kačka — výzdoba, dort, focení, hudba, foto | 5 |
 
-*Součet > 37 — 3 úkoly mají více přiřazených osob.*
+*Součet > 36 — 3 úkoly mají více přiřazených osob.*
 
 ## Rozpočet
 
 | Kategorie | Úkolů | Plán (Kč) |
 |-----------|-------|-----------|
-| 🔴 Povinné (mandatory) | 19 | 94 500 |
-| 🟡 Důležité (important) | 14 | 5 000 |
+| 🔴 Povinné (mandatory) | 19 | 84 500 |
+| 🟡 Důležité (important) | 13 | 4 500 |
 | 🟢 Volitelné (optional) | 4 | 500 |
-| **Celkem** | **37** | **100 000** |
+| **Celkem** | **36** | **89 500** |

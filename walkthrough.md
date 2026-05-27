@@ -1,6 +1,6 @@
 # Technical Walkthrough — Svatba Paprčkovi 2026
 
-> **Aktuální stav (květen 2026):** 37 úkolů, 19 mandatory + 14 important + 4 optional, 5 osob, budget 100 000 Kč, 6/37 hotovo.
+> **Aktuální stav (květen 2026):** 36 úkolů, 19 mandatory + 13 important + 4 optional, 5 osob, budget 89 500 Kč, 6/36 hotovo.
 > Živě: [https://doma77git.github.io/PaprckoviSvatba2026/](https://doma77git.github.io/PaprckoviSvatba2026/)
 
 Tento dokument popisuje architekturu, deployment a data flow svatebního plánovače **Svatba Paprčkovi 2026**.
@@ -73,7 +73,7 @@ Editace tasks.md / guests.md → commit + push → GitHub Actions → gh-pages �
 
 | Soubor | Účel | Editace |
 |--------|------|---------|
-| [`data/tasks.md`](data/tasks.md) | Autoritativní tabulka 37 úkolů | PC → git |
+| [`data/tasks.md`](data/tasks.md) | Autoritativní tabulka 36 úkolů | PC → git |
 | [`data/guests.md`](data/guests.md) | Seznam hostů podle stran | PC → git |
 | [`data/budget.md`](data/budget.md) | 1 source of truth pro rozpočet (s Rezervováno/Zaplaceno/Zbývá) | PC → git |
 | [`data/rozpocet-svatba-2026.xlsx`](data/rozpocet-svatba-2026.xlsx) | Auto-generovaný Excel (SUMIF/COUNTIF, podmíněné formátování) | Automaticky |
@@ -95,21 +95,21 @@ Editace tasks.md / guests.md → commit + push → GitHub Actions → gh-pages �
 
 ## 4. Aktuální Stav
 
-### Úkoly (37)
+### Úkoly (36)
 
 | Kategorie | Počet | Rozpočet | Hotovo |
 |-----------|-------|----------|--------|
-| 🔴 Povinné (mandatory) | 19 | 94 500 Kč | 5 |
-| 🟡 Důležité (important) | 14 | 5 000 Kč | 1 |
+| 🔴 Povinné (mandatory) | 19 | 84 500 Kč | 5 |
+| 🟡 Důležité (important) | 13 | 4 500 Kč | 1 |
 | 🟢 Volitelné (optional) | 4 | 500 Kč | 0 |
-| **Celkem** | **37** | **100 000 Kč** | **6/37** |
+| **Celkem** | **36** | **89 500 Kč** | **6/36** |
 
 ### Lidé (5)
 
 | Kdo | Role | Úkolů |
 |-----|------|-------|
 | **Mamka** | Nevěsta (Dagmar Sobková) | 18 |
-| **Taťka** | Ženich | 8 |
+| **Taťka** | Ženich | 7 |
 | **Žanetka** | Hlavní organizátorka, svědkyně ženicha | 7 |
 | **Kikinka** | Svědkyně nevěsty | 3 |
 | **Děti** | 4 dcery: Gabriela, Kristýnka, Natálka, Kačka | 5 |
@@ -171,9 +171,9 @@ for l in lines:
     elif cat == 'important': i += price
     elif cat == 'optional': o += price
 total = m + i + o
-print(f'Tasks: {len(lines)} (target: 37) | Budget: {total:,} Kc (target: 100000)')
+print(f'Tasks: {len(lines)} (target: 36) | Budget: {total:,} Kc (target: 89500)')
 print(f'Mand: {m:,} | Imp: {i:,} | Opt: {o:,}')
-print('OK' if total == 100000 and len(lines) == 37 else 'GAP')
+print('OK' if total == 89500 and len(lines) == 36 else 'GAP')
 "
 ```
 

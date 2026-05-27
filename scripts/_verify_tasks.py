@@ -12,8 +12,8 @@ for l in lines:
     elif cat == 'optional': o += price
     if '[x]' in parts[7]: d += 1
 total = m + i + o
-print(f'Tasks: {len(lines)}/37 | Budget: {total:,}/100000 | {"OK" if total==100000 and len(lines)==37 else "GAP"}')
+print(f'Tasks: {len(lines)}/36 | Budget: {total:,}/89500 | {"OK" if total==89500 and len(lines)==36 else "GAP"}')
 print(f'  Mandatory: {m:,} Kc')
 print(f'  Important: {i:,} Kc')
 print(f'  Optional:  {o:,} Kc')
-print(f'  Done:      {d}/37')
+print(f'  Done:      {d}/36')
