@@ -617,7 +617,7 @@ async function init() {
     await fetchData();
     // Merge MD done state for tasks not yet in localStorage
     for (const t of tasks) {
-        if (t.doneInMD && !(t.key in completed)) completed[t.key] = true;
+        if (t.doneInMD && !completed[t.key]) completed[t.key] = true;
     }
     saveDone();
 
