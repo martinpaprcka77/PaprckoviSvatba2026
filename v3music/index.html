@@ -888,7 +888,7 @@ function initAudio() {
         currentTrack = (currentTrack + 1) % AUDIO_TRACKS.length;
         audio.src = AUDIO_TRACKS[currentTrack].src;
         audio.load();
-        audio.currentTime = 0;
+        audio.currentTime = AUDIO_TRACKS[currentTrack].refrain;
         audio.play().then(() => {
             audioPlaying = true;
             updateAudioUI();
@@ -908,9 +908,8 @@ function toggleAudio() {
         audio.load();
     }
     if (audio.paused) {
-        // Start from beginning (not refrain)
         if (audio.currentTime < 0.5) {
-            audio.currentTime = 0;
+            audio.currentTime = AUDIO_TRACKS[currentTrack].refrain;
         }
         audio.play().then(() => {
             audioPlaying = true;
@@ -933,7 +932,7 @@ function switchTrack(idx) {
     const wasPlaying = !audio.paused;
     audio.src = AUDIO_TRACKS[idx].src;
     audio.load();
-    audio.currentTime = 0;
+    audio.currentTime = AUDIO_TRACKS[idx].refrain;
     if (wasPlaying) {
         audio.play().then(() => {
             audioPlaying = true;
@@ -971,7 +970,7 @@ function onFirstInteraction() {
         audio.src = AUDIO_TRACKS[currentTrack].src;
         audio.load();
     }
-    audio.currentTime = 0;
+    audio.currentTime = AUDIO_TRACKS[currentTrack].refrain;
     audio.play().then(() => {
         audioPlaying = true;
         updateAudioUI();
