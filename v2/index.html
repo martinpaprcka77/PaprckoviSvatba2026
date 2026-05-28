@@ -441,22 +441,27 @@ function parseTasksMD(md) {
 }
 
 function parseGuestsMD(md) {
-    const result = { mamka: [], tatka: [] };
+    const result = { mamka: [], tatka: [], spolecni: [] };
+    const knownSections = ['mamka', 'tatka', 'spolecni'];
     const lines = md.split('\n');
     let section = null;
 
     for (const line of lines) {
         const trimmed = line.trim();
-        if (trimmed.startsWith('## Mamka')) { section = 'mamka'; continue; }
-        if (trimmed.startsWith('## Taťka')) { section = 'tatka'; continue; }
-        if (trimmed.startsWith('## ') && !trimmed.includes('Mamka') && !trimmed.includes('Taťka')) { section = null; continue; }
-        if (trimmed.startsWith('| Jméno') || trimmed.startsWith('|--') || trimmed.startsWith('|--')) continue;
+        if (trimmed.startsWith('## ')) {
+            const h = trimmed.toLowerCase();
+            if (h.includes('mamka')) { section = 'mamka'; continue; }
+            if (h.includes('taťka') || h.includes('tatka')) { section = 'tatka'; continue; }
+            if (h.includes('společ') || h.includes('spolec')) { section = 'spolecni'; continue; }
+            section = null; continue;
+        }
+        if (trimmed.startsWith('| Jméno') || trimmed.startsWith('|--')) continue;
         if (!section || !trimmed.startsWith('|')) continue;
 
         const cells = trimmed.split('|').map(c => c.trim()).filter(c => c !== '');
         if (cells.length >= 2) {
             const name = cells[0];
-            if (name.startsWith('_')) continue; // placeholder
+            if (name.startsWith('_')) continue;
             result[section].push({
                 name,
                 count: cells[1] || '?',
@@ -789,11 +794,18 @@ function buildTasksMD() {
     const doneSet = getDoneTasks();
     const lines = [];
 
+    // Compute category sums for header
+    const mandatory = tasks.filter(t => t.cat === 'mandatory');
+    const important = tasks.filter(t => t.cat === 'important');
+    const optional = tasks.filter(t => t.cat === 'optional');
+    const sum = arr => arr.reduce((s, t) => s + t.price, 0);
+    const mSum = sum(mandatory), iSum = sum(important), oSum = sum(optional);
+
     lines.push('# Svatba Paprčkovi 2026 — Úkoly');
     lines.push('');
     lines.push('> Autoritativní zdroj. Editace přes PC → git. Appka čte a renderuje.');
-    lines.push('> Budget: MAX 100 000 Kč (mandatory 84 500 + important 4 500 + optional 500)');
-    lines.push('> 36 úkolů, 5 osob (Mamka, Taťka, Žanetka, Kikinka, Děti)');
+    lines.push('> Budget: MAX 100 000 Kč (mandatory ' + mSum.toLocaleString('cs').replace(/\s/g, ' ') + ' + important ' + iSum.toLocaleString('cs').replace(/\s/g, ' ') + ' + optional ' + oSum.toLocaleString('cs').replace(/\s/g, ' ') + ')');
+    lines.push('> ' + tasks.length + ' úkolů, 5 osob (Mamka, Taťka, Žanetka, Kikinka, Děti)');
     lines.push('');
     lines.push('| Termín | Úkol | Kdo | Kat. | Plán (Kč) | Skutečnost (Kč) | Stav | Timestamp | Poznámka |');
     lines.push('|--------|------|-----|------|-----------|-----------------|------|-----------|----------|');
@@ -826,12 +838,8 @@ function buildTasksMD() {
     lines.push('| **Kikinka** | Svědkyně nevěsty | ' + (personCounts['Kikinka'] || 0) + ' |');
     lines.push('| **Děti** | 4 dcery: Gabriela, Kristýnka, Natálka, Kačka — výzdoba, dort, focení | ' + (personCounts['Děti'] || 0) + ' |');
 
-    // Budget table
-    const mandatory = tasks.filter(t => t.cat === 'mandatory');
-    const important = tasks.filter(t => t.cat === 'important');
-    const optional = tasks.filter(t => t.cat === 'optional');
-    const sum = arr => arr.reduce((s, t) => s + t.price, 0);
-    const mSum = sum(mandatory), iSum = sum(important), oSum = sum(optional), total = mSum + iSum + oSum;
+    // Budget table (category arrays and sums already computed above)
+    const total = mSum + iSum + oSum;
 
     lines.push('');
     lines.push('## Rozpočet');
@@ -913,20 +921,16 @@ function renderGuests() {
 
     html += renderSide(guests.mamka, 'Mamka strana');
     html += renderSide(guests.tatka, 'Taťka strana');
-
-    // Show daughters separately
-    html += '<div style="margin-top:12px;font-size:0.8rem;color:var(--text-muted);">' +
-        '<strong>Děti (4 dcery):</strong> Gabriela, Kristýnka, Natálka, Kačka</div>';
+    html += renderSide(guests.spolecni || [], 'Společní');
 
     // Total estimate
     let total = 0;
     let unknown = 0;
-    [...guests.mamka, ...guests.tatka].forEach(g => {
+    [...guests.mamka, ...guests.tatka, ...(guests.spolecni || [])].forEach(g => {
         const n = parseInt(g.count);
         if (isNaN(n)) unknown++;
         else total += n;
     });
-    total += 4; // daughters
     html += '<div style="margin-top:8px;font-size:0.8rem;font-weight:500;">Odhad: ~' +
         total + (unknown > 0 ? '+' + unknown : '') + ' hostů</div>';
 
@@ -1123,41 +1127,39 @@ function switchView(viewName) {
 
 // ===== STARTUP =====
 async function init() {
-    loadLocalState();
+    try {
+        loadLocalState();
 
-    // Restore budget toggle
-    document.getElementById('budgetToggle').classList.toggle('on', localState.budgetVisible);
+        // Restore budget toggle
+        document.getElementById('budgetToggle').classList.toggle('on', localState.budgetVisible);
 
-    // Check PIN status
-    if (localState.pinHash) {
-        document.getElementById('pinStatus').textContent = '✅ PIN aktivní — rodina může syncovat';
-        document.getElementById('pinStatus').className = 'pin-status active';
-        document.getElementById('patSection').hidden = false;
-        document.getElementById('syncInfo').style.display = 'block';
-        if (localState.encryptedPAT) {
-            document.getElementById('patStatus').textContent = '✅ PAT uložen šifrovaně';
-            document.getElementById('patStatus').className = 'pin-status active';
+        // Try to fetch data from git
+        const ok = await fetchData();
+
+        // If offline and no data, show error
+        if (!ok && tasks.length === 0) {
+            const el = document.getElementById('taskList');
+            if (el) el.innerHTML =
+                '<div style="text-align:center;padding:30px;color:var(--text-muted);">' +
+                '⚠️ Nepodařilo se načíst data z GitHubu.<br>' +
+                '<button onclick="refreshData()" style="margin-top:10px;padding:8px 16px;border:1px solid var(--border);border-radius:8px;background:var(--bg-card);color:var(--text);cursor:pointer;font-family:inherit;">Zkusit znovu</button>' +
+                '</div>';
         }
-        checkSyncStatus();
-    }
 
-    // Try to fetch data from git
-    const ok = await fetchData();
-
-    // If offline and no data, show error
-    if (!ok && tasks.length === 0) {
-        document.getElementById('taskList').innerHTML =
+        renderAll();
+    } catch (e) {
+        console.error('Init error:', e);
+        const el = document.getElementById('taskList');
+        if (el) el.innerHTML =
             '<div style="text-align:center;padding:30px;color:var(--text-muted);">' +
-            '⚠️ Nepodařilo se načíst data z GitHubu.<br>' +
-            '<button onclick="refreshData()" style="margin-top:10px;padding:8px 16px;border:1px solid var(--border);border-radius:8px;background:var(--bg-card);color:var(--text);cursor:pointer;font-family:inherit;">Zkusit znovu</button>' +
+            '⚠️ Chyba: ' + (e.message || String(e)) + '<br>' +
+            '<button onclick="location.reload()" style="margin-top:10px;padding:8px 16px;border:1px solid var(--border);border-radius:8px;background:var(--bg-card);color:var(--text);cursor:pointer;font-family:inherit;">Obnovit</button>' +
             '</div>';
     }
-
-    renderAll();
 }
 
 // Start the app
-init();
+init().catch(e => console.error('Init failed:', e));
 
 // Auto-refresh every hour
 setInterval(refreshData, 3600000);

@@ -325,8 +325,6 @@ let currentFilter = 'all';
 let budgetItems = [];        // built from tasks after fetch: {key, name, plan, cost}
 let budgetEdits = {};        // { taskKey: editedCost } — only overrides from MD plan
 
-function makeKey(t) { return t.deadline + '|' + t.title; }
-
 // ===== PARSE MD =====
 function parseTasksMD(md) {
     const result = [];
@@ -805,13 +803,13 @@ async function _init() {
     try {
     loadState();
     await fetchData();
-    // MD is always authoritative — overwrite localStorage for MD-done tasks
+    // MD is always authoritative — reset localStorage, rebuild from MD
+    completed = {};
     for (const t of tasks) {
         if (t.doneInMD) completed[t.key] = true;
     }
     saveDone();
     buildBudget();
-    console.log(`Init: ${tasks.length} tasks, ${budgetItems.length} budget items, total ${budgetItems.reduce((s,i) => s+i.cost, 0)} Kc`);
 
     updateCountdown();
     setInterval(updateCountdown, 60000);
@@ -832,7 +830,8 @@ async function _init() {
     window.addEventListener('beforeunload', saveAudioState);
     } catch (e) {
         console.error('Init error:', e);
-        document.getElementById('syncStatus').textContent = '⚠️ Chyba: ' + e.message;
+        const el = document.getElementById('syncStatus');
+        if (el) el.textContent = '⚠️ Chyba: ' + (e.message || String(e));
     }
 }
 
