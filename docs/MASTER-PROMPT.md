@@ -257,8 +257,8 @@ for l in lines:
     elif cat == 'important': i += price; ic += 1
     elif cat == 'optional': o += price; oc += 1
 total = m + i + o
-print(f'Tasks: {len(lines)} (37) | Mand: {mc}/{m} | Imp: {ic}/{i} | Opt: {oc}/{o} | Total: {total}')
-print('OK' if total == 100000 and len(lines) == 37 else 'GAP — fix before commit')
+print(f'Tasks: {len(lines)} (36) | Mand: {mc}/{m} | Imp: {ic}/{i} | Opt: {oc}/{o} | Total: {total}')
+print('OK' if total <= 100000 and len(lines) == 36 else 'GAP — fix before commit')
 "
 ```
 
@@ -266,11 +266,11 @@ print('OK' if total == 100000 and len(lines) == 37 else 'GAP — fix before comm
 
 | Co | tasks.md | budget.md | README | CLAUDE.md | copilot |
 |----|----------|-----------|--------|-----------|---------|
-| Počet úkolů | ✅ 37 | ✅ 37 | ✅ 37 | ✅ 37 | ✅ 37 |
-| Mandatory | ✅ 19 / 94 500 | ✅ 19 / 94 500 | ✅ 19 / 94 500 | ✅ 19 / 94 500 | ✅ 19 / 94 500 |
-| Important | ✅ 14 / 5 000 | ✅ 14 / 5 000 | ✅ 14 / 5 000 | ✅ 14 / 5 000 | ✅ 14 / 5 000 |
+| Počet úkolů | ✅ 36 | ✅ 36 | ✅ 36 | ✅ 36 | ✅ 36 |
+| Mandatory | ✅ 19 / 84 500 | ✅ 19 / 84 500 | ✅ 19 / 84 500 | ✅ 19 / 84 500 | ✅ 19 / 84 500 |
+| Important | ✅ 13 / 4 500 | ✅ 13 / 4 500 | ✅ 13 / 4 500 | ✅ 13 / 4 500 | ✅ 13 / 4 500 |
 | Optional | ✅ 4 / 500 | ✅ 4 / 500 | ✅ 4 / 500 | ✅ 4 / 500 | ✅ 4 / 500 |
-| CELKEM | ✅ 37 / 100 000 | ✅ 37 / 100 000 | ✅ 37 / 100 000 | ✅ 37 / 100 000 | ✅ 37 / 100 000 |
+| CELKEM | ✅ 36 / ≤100 000 | ✅ 36 / ≤100 000 | ✅ 36 / ≤100 000 | ✅ 36 / ≤100 000 | ✅ 36 / ≤100 000 |
 
 ### F3 — Pravidla pro jména
 
@@ -303,7 +303,7 @@ print('OK' if total == 100000 and len(lines) == 37 else 'GAP — fix before comm
 
 ## 🔄 Checklist po každé změně
 
-- [ ] Všechna čísla sedí (37 úkolů, 100 000 Kč, 5 osob)
+- [ ] Všechna čísla sedí (36 úkolů, 89 500 Kč, 5 osob)
 - [ ] Budget ≤ 100 000 Kč
 - [ ] Děti nebyly odebrány
 - [ ] Jména bez háčků

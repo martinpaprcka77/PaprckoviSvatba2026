@@ -635,7 +635,8 @@ function formatDate(d) {
 }
 
 // ===== INIT =====
-async function init() {
+async function _init() {
+    try {
     loadState();
     await fetchData();
     // MD is always authoritative — overwrite localStorage for MD-done tasks
@@ -644,7 +645,7 @@ async function init() {
     }
     saveDone();
     buildBudget();
-
+    console.log(`Init: ${tasks.length} tasks, ${budgetItems.length} budget items, total ${budgetItems.reduce((s,i) => s+i.cost, 0)} Kc`);
     updateCountdown();
     setInterval(updateCountdown, 60000);
     renderFilters();
@@ -656,9 +657,12 @@ async function init() {
 
     await fetchGuests();
     renderGuests();
+    } catch (e) {
+        console.error('Init error:', e);
+        document.getElementById('syncStatus').textContent = '⚠️ Chyba: ' + e.message;
+    }
 }
-
-init();
+document.addEventListener('DOMContentLoaded', _init);
 </script>
 </body>
 </html>

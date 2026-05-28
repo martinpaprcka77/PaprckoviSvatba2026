@@ -10,7 +10,7 @@ When `data/tasks.md` is in the diff, verify these invariants:
 ## Task count consistency
 
 - Count all rows starting with `| 2026` in tasks.md. This count must match the header line `X úkolů` and the budget table's **Celkem** row.
-- The header says e.g. `37 úkolů` — verify the count matches.
+- The header says e.g. `36 úkolů` — verify the count matches.
 
 ## Category task counts
 
@@ -24,10 +24,10 @@ Count tasks by category (`Kat.` column, index 4 in pipe-split):
 
 Sum `Plán (Kč)` column (index 5) per category:
 
-- mandatory sum must match budget table (e.g. 94 500)
-- important sum must match budget table (e.g. 5 000)
+- mandatory sum must match budget table (e.g. 84 500)
+- important sum must match budget table (e.g. 4 500)
 - optional sum must match budget table (e.g. 500)
-- Total must be exactly 100 000 Kč
+- Total must be ≤ 100 000 Kč (hard cap)
 
 ## People table consistency
 
@@ -43,7 +43,7 @@ The note under the People table says `*Součet > 36 — 3 úkoly mají více př
 
 ## Done count
 
-Count tasks with `[x]` in `Stav` column (index 6). Must match `Done: X/37` in CLAUDE.md if that line was also changed.
+Count tasks with `[x]` in `Stav` column (index 6). Must match `Done: X/36` in CLAUDE.md if that line was also changed.
 
 ## Concrete verification
 
@@ -64,8 +64,8 @@ for l in lines:
     elif cat == 'important': i += price; ic += 1
     elif cat == 'optional': o += price; oc += 1
 total = m + i + o
-print(f'Tasks: {len(lines)} | Mand: {mc}/{m} | Imp: {ic}/{i} | Opt: {oc}/{o} | Total: {total}')
-print('OK' if total == 100000 and len(lines) == 37 else 'GAP')
+print(f'Tasks: {len(lines)} (target: 36) | Mand: {mc}/{m} | Imp: {ic}/{i} | Opt: {oc}/{o} | Total: {total} (cap: 100000)')
+print('OK' if total <= 100000 and len(lines) == 36 else 'GAP')
 "
 ```
 

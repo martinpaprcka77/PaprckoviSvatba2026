@@ -54,7 +54,7 @@ Při jakékoliv změně svatebních dat aktualizovat VŽDY:
 
 Po každé změně svatebních dat ověřit:
 
-1. [ ] Suma všech task prices = přesně 100 000 Kč? (mandatory 94 500 + important 5 000 + optional 500)
+1. [ ] Suma všech task prices ≤ 100 000 Kč? (aktuálně 89 500: mandatory 84 500 + important 4 500 + optional 500)
 2. [ ] Všechny deadliny před 29.8.2026 (kromě post-svatebních — změna příjmení 5.9.)?
 3. [ ] Všechny 5 hotové tasky (IDs 1-5) jsou marked done?
 4. [ ] Žádné reference na Terasa?
@@ -67,9 +67,9 @@ Po každé změně svatebních dat ověřit:
 ## Budget Breakdown
 
 ```
-POVINNÉ (mandatory):      94 500 Kč (19 tasků)
-DŮLEŽITÉ (important):      5 000 Kč (13 tasků)
+POVINNÉ (mandatory):      84 500 Kč (19 tasků)
+DŮLEŽITÉ (important):      4 500 Kč (13 tasků)
 VOLITELNÉ (optional):        500 Kč (4 tasky)
 ─────────────────────────────────────────
-CELKEM:                  100 000 Kč (36 tasků)
+CELKEM:                   89 500 Kč (36 tasků)  ·  hard cap 100 000 Kč
 ```

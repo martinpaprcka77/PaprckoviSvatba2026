@@ -92,7 +92,7 @@
 | Proslovy | 0 | Kikinka |
 | Schůzka — prstýnky (Mamka+Taťka+Žanetka) | 0 | Mamka, Taťka, Žanetka |
 | Rozlučka se svobodou | 0 | Žanetka |
-| **Subtotal** | **5 000** | |
+| **Subtotal** | **4 500** | |
 
 ### VOLITELNÉ (optional) — 4 tasky, 500 Kč
 
@@ -178,7 +178,7 @@
 
 - **GitHub repo:** `doma77git/PaprckoviSvatba2026`
 - **Live URL:** https://doma77git.github.io/PaprckoviSvatba2026/
-- **Zdrojový soubor:** `index.html` (single file, inline CSS/JS, 37 úkolů)
+- **Zdrojový soubor:** `index.html` (single file, inline CSS/JS, 36 úkolů)
 - **Deploy:** Push do masteru → GitHub Action → `gh-pages` → live
 - **Storage key:** `svatba_state_v3` (localStorage)
 
@@ -305,7 +305,7 @@ _Zatím prázdné — doplní Mamka_
 | Kdo | Role | Úkolů v tasks.md |
 |-----|------|------------------|
 | **Mamka** | Nevěsta (Dagmar Sobková, "Dáda") | 18 |
-| **Taťka** | Ženich | 8 |
+| **Taťka** | Ženich | 7 |
 | **Žanetka** | Hlavní organizátorka, svědkyně ženicha | 7 |
 | **Kikinka** | Svědkyně nevěsty | 3 |
 | **Děti** | 4 dcery: **Gabriela, Kristýnka, Natálka, Kačka** — výzdoba, dort, focení, hudba, foto | 5 |
@@ -323,7 +323,7 @@ Budget se spravuje v Excelu. Dva soubory:
 
 | Soubor | Účel | Editace |
 |--------|------|---------|
-| `data/rozpocet-svatba-2026.xlsx` | Auto-generovaný — všech 37 úkolů, SUMIF/COUNTIF vzorce, podmíněné formátování, přehled na osobu | Automaticky přegenerován hooks |
+| `data/rozpocet-svatba-2026.xlsx` | Auto-generovaný — všech 36 úkolů, SUMIF/COUNTIF vzorce, podmíněné formátování, přehled na osobu | Automaticky přegenerován hooks |
 | `data/manualrozpocet-svatba-2026.xlsx` | Manuální — jednodušší formát, povinné položky | Uživatel edituje přímo |
 
 ### Barevný systém Excelu
