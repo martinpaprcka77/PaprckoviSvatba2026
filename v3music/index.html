@@ -317,11 +317,10 @@
     <!-- Audio track selector panel -->
     <div class="audio-panel hidden" id="audioPanel">
         <div class="audio-row">
-            <button class="audio-btn-sm active-track" data-track="0" onclick="switchTrack(0)">Original</button>
-            <button class="audio-btn-sm" data-track="1" onclick="switchTrack(1)">DJ Ötzi</button>
-            <button class="audio-btn-sm" data-track="2" onclick="switchTrack(2)">Hasselhoff</button>
+            <button class="audio-btn-sm active-track" data-track="0" onclick="switchTrack(0)">DJ Ötzi</button>
+            <button class="audio-btn-sm" data-track="1" onclick="switchTrack(1)">Hasselhoff</button>
         </div>
-        <div class="audio-track-label" id="audioTrackLabel">Neil Diamond — Sweet Caroline (Original)</div>
+        <div class="audio-track-label" id="audioTrackLabel">DJ Ötzi — Sweet Caroline (Party Remix)</div>
     </div>
 
 </div>
@@ -345,7 +344,6 @@ const LS_AUDIO_PLAYING = 'svatba_audio_playing';
 const LS_AUDIO_TRACK = 'svatba_audio_track';
 const LS_AUDIO_TIME = 'svatba_audio_time';
 const AUDIO_TRACKS = [
-    { name: 'Neil Diamond — Sweet Caroline (Original)', src: '../media/Sweet_Caroline.mp3', refrain: 105 },
     { name: 'DJ Ötzi — Sweet Caroline (Party Remix)', src: '../media/Sweet_Caroline_Remix.mp3', refrain: 65 },
     { name: 'David Hasselhoff — Sweet Caroline', src: '../media/Sweet_Caroline_Hoff.mp3', refrain: 68 }
 ];
