@@ -55,6 +55,14 @@ node -e "..."                       # see Verify section below
 Push to `master` → GitHub Actions → `gh-pages`
 Deploys: `/` (v1), `/v2/` (v2), `/v3music/` (v3music), `/media/` (MP3 files)
 
+## Gotchas
+- **Windows + Git Bash:** use `grep`/`ls`/`find`, NOT PowerShell cmdlets (`Select-String`, `Get-ChildItem` — fail in bash)
+- **Commit messages with `()`:** use heredoc `git commit -m "$(cat <<'EOF' ... EOF)"` — bash parses parentheses
+- **`../media/` paths:** media/ is at repo root; from v3music/ or testplay.html use `../media/file.mp3`
+- **Audio autoplay:** browsers block `audio.play()` without user gesture — Playwright headless will fail on play
+- **GitHub Pages deploy:** push to master → Actions → gh-pages (~1 min). Check: `gh run list --limit 1`
+- **Playwright:** `npm i --save-dev playwright` (no global install needed). Clean up `node_modules/` after
+
 ## Verify
 ```bash
 python -c "
