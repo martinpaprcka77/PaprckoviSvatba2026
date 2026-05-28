@@ -3,16 +3,15 @@
 This file provides guidance to AI coding assistants working in this repository.
 
 ## Overview
-Dual wedding planner — v1 (single-file) + v2 (git-backed). No build, no npm.
+Dual wedding planner — v1 (single-file) + v2 (read-only MD). No build, no npm.
 Live: https://doma77git.github.io/PaprckoviSvatba2026/
 
 ## Architecture
 - **v0:** `v0/index.html` — archive baseline (Svatba_001, 20 tasks, Aug 29 date)
 - **v1:** `index.html` — single-file, inline CSS/JS, localStorage (`svatba_state_v3`)
-- **v2:** `v2/index.html` — fetches `data/tasks.md` + `data/guests.md` from GitHub Raw, writes via GitHub API (AES-GCM PAT, PIN)
+- **v2:** `v2/index.html` — fetches `data/tasks.md` + `data/guests.md` from GitHub Raw, read-only
 - **Data:** `data/tasks.md` (36 tasks, authoritative), `data/guests.md` (guest list)
 - **Excel:** `data/rozpocet-svatba-2026.xlsx` (auto-gen SUMIF), `data/manualrozpocet-svatba-2026.xlsx` (user manual)
-- **Hooks:** `.claude/settings.json` (PreToolUse block .env/.git, PostToolUse rebuild Excel, Notification idle)
 
 ## Current State
 - 36 tasks (19 mandatory + 13 important + 4 optional)
@@ -27,6 +26,8 @@ Live: https://doma77git.github.io/PaprckoviSvatba2026/
 3. Names without hacek, no surnames: Mikesovi (not Mikesovi)
 4. After editing tasks.md: update header count, people table, budget table
 5. PRD is authoritative spec: `docs/PRD-svatba-paprckovi-2026.md`
+6. App is read-only — MD files are sources of truth, app never writes
+7. Force refresh on open — always fetch latest MD, clear old localStorage states
 
 ## Deploy
 Push to `master` -> GitHub Actions -> `gh-pages` (`/` + `/v2/`)

@@ -1,7 +1,7 @@
 # PRD — Svatba Paprčkovi 2026
 
 > Product Requirements Document — 14. 5. 2026
-> Status: active — 27. 5. 2026 (36 úkolů, 5 osob, 89 500 Kč)
+> Status: active — 28. 5. 2026 (36 úkolů, 5 osob, 89 500 Kč, 23 hostů)
 
 ---
 
@@ -221,7 +221,9 @@
 | 21. 5. | **Autoritativní Excel:** `data/rozpocet-svatba-2026.xlsx` — SUMIF/COUNTIF vzorce, podmíněné formátování, přehled na osobu | Jeden zdroj pravdy pro budget |
 | 21. 5. | **Manuální Excel:** `data/manualrozpocet-svatba-2026.xlsx` — uživatelův vlastní formát budgetu | Uživatel preferuje vlastní strukturu |
 | 21. 5. | **Hooks:** PreToolUse chrání .env/.git, PostToolUse přegeneruje Excel, Notification idle alert | Automatizace v `.claude/settings.json` |
-| 27. 5. | **37→36 úkolů: 19 mandatory + 13 important + 4 optional = 89 500 Kč | Odebrán "Dárky pro rodiče" (rodiče nežijí), prstýnky 20→10K, "Proslovy" bez rodičů |
+| 27. 5. | **37→36 úkolů:** 19 mandatory + 13 important + 4 optional = 89 500 Kč | Odebrán "Dárky pro rodiče" (rodiče nežijí), prstýnky 20→10K, "Proslovy" bez rodičů |
+| 28. 5. | **Hosté restrukturalizace:** Mamka / Taťka / Společní (3 strany). +1 u všech kromě Milady S. Noví: Jan Drah, Jirka Pok, Hozik P. Celkem ~23. | guests.md restrukturalizován, PRD sync |
+| 28. 5. | **Cleanup:** Smazány staré configy (.claude/settings.json, .reasonix/settings.json, CLAUDE.md), init() refactored s error handlingem | Uklid repa, DOMContentLoaded, budget 100K cap zachován |
 | 24. 5. | **Oprava:** Dáda = Mamka = Dagmar Sobková — sloučeno do 5 osob, Mamka 18 úkolů | Uživatel upřesnil: Dáda je přezdívka Mamky |
 
 ---
@@ -236,32 +238,27 @@
 
 ---
 
-## 10. V2 Architecture (Git-Backed) — 21. 5. 2026
+## 10. Architecture (Read-Only App) — 28. 5. 2026
 
-**Git jako databáze.** Data v Markdown souborech v repu. Appka je čte a renderuje. Zápis přes GitHub API s rodinným PINem.
+**MD soubory = source of truth.** Appka je **read-only** — nikdy nikam nezapisuje. Všechny editace přes PC → git → deploy.
+
+### Zdroje pravdy (sources of truth)
+- `data/tasks.md` — autoritativní tabulka úkolů
+- `data/guests.md` — seznam hostů
+- Budget — odvozen z `tasks.md` (SUMIF/COUNTIF), nikdy ne hardcode
 
 ### Data files
-- `data/tasks.md` — autoritativní tabulka úkolů (Markdown)
-- `data/guests.md` — seznam hostů podle stran
-- `data/PRD-reference.json` — zmražený PRD snapshot (nikdy neměněn)
-- data/rozpocet-svatba-2026.xlsx — auto-generovaný Excel (SUMIF vzorce, podmíněné formátování)
-- data/manualrozpocet-svatba-2026.xlsx — manuální Excel (uživatel edituje)
+- `data/tasks.md` — 36 úkolů, Markdown tabulka
+- `data/guests.md` — hosté dle stran (Mamka / Taťka / Společní)
+- `data/rozpocet-svatba-2026.xlsx` — auto-generovaný Excel
+- `data/manualrozpocet-svatba-2026.xlsx` — manuální Excel
 
 ### App capabilities
-- **Read (vždy):** Úkoly, harmonogram, hosté, statistiky
-- **Write (s PIN):** Označit hotovo (nevratné + timestamp), zadat skutečnou cenu, poznámka, hlasová poznámka, 1-klik reminder
-- **Needitovatelné v appce:** Název, deadline, plánovaná cena, kategorie (jen přes PC → git)
-
-### PIN model
-- PIN dobrovolný, nikdy nepopupuje sám
-- Bez PINu: appka lokálně (změny při refreshi zmizí)
-- S PINem: GitHub API commit, trvalý sync
-- PIN hash SHA-256 v localStorage, GitHub PAT šifrovaný AES-GCM
-
-### Timestamp validace
-- `[x]` + timestamp = validní dokončení člověkem
-- `[x]` bez timestampu = externí změna z PC
-- Dokončené úkoly nelze vrátit
+- **Read-only:** Fetch MD z GitHub Raw, renderovat úkoly, harmonogram, hosté
+- **Force refresh při otevření** — vždy načíst aktuální MD data, nikdy z cache
+- **localStorage se maže** — při startu smazat starý state (`svatba_state_v3` apod.), aby nikdy nepřebil MD
+- **Žádný write:** Appka nikdy nepíše do gitu, nepoužívá GitHub API pro zápis
+- **MD je vždy autoritativní** — localStorage se nikdy nesmí přepsat přes MD data
 
 ### Dual deploy
 - `/` produkce (v1), `/v2/` testovací (v2)
@@ -269,34 +266,42 @@
 
 ---
 
-## 11. Seznam hostů — 21. 5. 2026
+## 11. Seznam hostů — 28. 5. 2026
+
+### Mamka strana
+
+| Jméno | Počet | Jídlo | Pozván osobně | Potvrzeno |
+|-------|-------|-------|---------------|-----------|
+| Markéta S | 2 | _ | Ano | _ |
+| Milada S | 1 | _ | Ano | _ |
 
 ### Taťka strana
 
-| Jméno | Počet | Poznámka |
-|-------|-------|----------|
-| Mikesovi | 4 | Sestra + manžel + 2 děti |
-| Luki | ? | _ |
-| Peťa Z | ? | _ |
-| Peťa T | ? | _ |
-| Andrej | ? | _ |
-| Milada S | 1 | _ |
-| Markéta S | ? | _ |
+| Jméno | Počet | Jídlo | Pozván osobně | Potvrzeno |
+|-------|-------|-------|---------------|-----------|
+| Luki | 2 | _ | Ano | _ |
+| Peťa Z | 2 | _ | Ano | _ |
+| Peťa T | 2 | _ | Ano | _ |
+| Andrej | 2 | _ | Ano | _ |
+| Jan Drah | 2 | _ | Ano | _ |
+| Jirka Pok | 2 | _ | Ano | _ |
 
-### Mamka strana
-_Zatím prázdné — doplní Mamka_
+### Společní
 
-### Děti (jako hosté)
-| Jméno | Počet |
-|-------|-------|
-| Gabriela | 1 |
-| Kristýnka | 1 |
-| Natálka | 1 |
-| Kačka | 1 |
+| Jméno | Počet | Jídlo | Pozván osobně | Potvrzeno |
+|-------|-------|-------|---------------|-----------|
+| Mikesovi | 4 | _ | Ano | _ |
+| Hozik P. | 2 | _ | Ano | _ |
+| Děti | 4 | _ | Ano | _ |
 
-**Celkem:** ~14-20 hostů (odhad)
+**Celkem:** ~23 hostů
 
-**Pravidlo:** Bez příjmení — jen křestní jména / přezdívky.
+**Pravidla:**
+- Bez příjmení — jen křestní jména / přezdívky
+- +1 počítáno u všech kromě Milady S (sama)
+- Všichni pozváni osobně
+- **Mikesovi** = sestra + manžel + 2 děti
+- **Děti** = Gabriela, Kristýnka, Natálka, Kačka — 4 dcery
 
 ---
 
@@ -315,15 +320,13 @@ Děti jako skupina = 1 filter v appce. Individuální jména pro host list a kon
 
 ---
 
-## 13. Excel & Hooks Architecture — 21. 5. 2026
-
-### Excel jako autoritativní zdroj
+## 13. Excel Architecture — 28. 5. 2026
 
 Budget se spravuje v Excelu. Dva soubory:
 
 | Soubor | Účel | Editace |
 |--------|------|---------|
-| `data/rozpocet-svatba-2026.xlsx` | Auto-generovaný — všech 36 úkolů, SUMIF/COUNTIF vzorce, podmíněné formátování, přehled na osobu | Automaticky přegenerován hooks |
+| `data/rozpocet-svatba-2026.xlsx` | Auto-generovaný — všech 36 úkolů, SUMIF/COUNTIF vzorce, podmíněné formátování, přehled na osobu | `scripts/rebuild_excel.py` |
 | `data/manualrozpocet-svatba-2026.xlsx` | Manuální — jednodušší formát, povinné položky | Uživatel edituje přímo |
 
 ### Barevný systém Excelu
@@ -333,13 +336,7 @@ Budget se spravuje v Excelu. Dva soubory:
 - **Šedý přeškrtnutý** = hotový úkol
 - **Podmíněné formátování:** CELKEM zčervená při >100 000 Kč
 
-### Hooks (`.claude/settings.json`)
-- **PreToolUse** — blokuje editace `.env`, `package-lock.json`, `.git/`
-- **PostToolUse** — po editaci `tasks.md` automaticky přegeneruje `rozpocet-svatba-2026.xlsx`
-- **Notification** — desktop notifikace když Claude čeká na input
-
 ### Sync s webem
-1. Uživatel edituje Excel → export do `data/tasks.md` formátu
-2. `data/tasks.md` commit + push → GitHub
-3. v2 appka automaticky fetchuje nejnovější data z GitHub Raw
-4. v1 appka (`index.html`) má inline data — nutno aktualizovat zvlášť
+1. Editace `data/tasks.md` / `data/guests.md` → commit + push
+2. Appka fetchuje z GitHub Raw (force refresh, maže starý localStorage)
+3. Push do `master` → GitHub Actions → `gh-pages` → live

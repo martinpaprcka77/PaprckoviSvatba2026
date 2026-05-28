@@ -1,7 +1,6 @@
 # Wedding Data Consistency Rules
 
-> **Created: 16.5.2026** — historický dokument. Sync body (§KDE VŠE) odkazují na starý projekt C:\dev\PS7 + C:\Brain.
-> Immutable Facts + Assignment Rules stále platné. Aktuální workflow viz CLAUDE.md.
+> **Created: 16.5.2026** — Immutable Facts + Assignment Rules. Aktuální workflow viz AGENTS.md a PRD.
 
 > Purpose: Kodifikovat jak udržovat svatební data konzistentní napříč Brainem a appkou
 
@@ -18,14 +17,14 @@
 | **Svědkyně za nevěstu** | Kikinka |
 | **Svědkyně za ženicha** | Žanetka |
 | **Organizátor** | Žanetka |
-| **Hotové úkoly** | IDs 1-4: termín (potvrzen), radnice (11.5.), děti (proběhlo), svědci (15.5.) — + #5 oddávající v pondělí, #8 Miloš potvrzen |
+| **Hotové úkoly** | 6/36: termín, radnice, děti, svědci, oddávající, schůzka prstýnky |
 
 ## Assignment Rules
 
 - **Žanetka** → catering, venue logistics, bar, decoration, games, confetti
 - **Kikinka** → ceremony logistics, flowers, legal docs, speeches, photos
 - **Mamka** → clothing, guest list, invitations, gifts, guestbook
-- **Taťka** → transport, rings, music, suit, umbrellas, honeymoon
+- **Taťka** → transport, rings, music, suit, honeymoon
 
 ## Sync Points — KDE VŠE JE TŘEBA AKTUALIZOVAT
 
@@ -56,7 +55,7 @@ Po každé změně svatebních dat ověřit:
 
 1. [ ] Suma všech task prices ≤ 100 000 Kč? (aktuálně 89 500: mandatory 84 500 + important 4 500 + optional 500)
 2. [ ] Všechny deadliny před 29.8.2026 (kromě post-svatebních — změna příjmení 5.9.)?
-3. [ ] Všechny 5 hotové tasky (IDs 1-5) jsou marked done?
+3. [ ] Všech 6 hotových tasků je marked done?
 4. [ ] Žádné reference na Terasa?
 5. [ ] Všechny názvy mají správnou diakritiku?
 6. [ ] Appka deploynutá a funkční na GitHub Pages?

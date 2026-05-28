@@ -2,7 +2,7 @@
 
 ## Overview
 
-Dual wedding planner — v1 (single-file) + v2 (git-backed). No build, no npm.
+Dual wedding planner — v1 (single-file) + v2 (read-only MD). No build, no npm.
 **Live v1:** https://doma77git.github.io/PaprckoviSvatba2026/
 **Live v2:** https://doma77git.github.io/PaprckoviSvatba2026/v2/
 
@@ -19,9 +19,9 @@ Dual wedding planner — v1 (single-file) + v2 (git-backed). No build, no npm.
 ### Architecture
 - v0: `v0/index.html` — archive baseline (Svatba_001, 20 tasks, Aug 29 date)
 - v1: `index.html` — single-file, inline CSS/JS, localStorage (`svatba_state_v3`)
-- v2: `v2/index.html` — fetches `data/*.md` from GitHub Raw, writes via GitHub API (AES-GCM PAT, PIN)
-- Data: `data/tasks.md` (36 tasks), `data/guests.md` (guests by side)
-- Excel: `data/rozpocet-svatba-2026.xlsx` (auto-gen SUMIF), `data/manualrozpocet-svatba-2026.xlsx` (user manual)
+- v2: `v2/index.html` — fetches `data/*.md` from GitHub Raw, read-only
+- Data: `data/tasks.md` (36 tasks, source of truth), `data/guests.md` (guests by side, source of truth)
+- Budget: derived from tasks.md — `data/budget.md`, `data/rozpocet-svatba-2026.xlsx`, `data/manualrozpocet-svatba-2026.xlsx`
 
 ### People (5)
 Mamka (nevesta), Tatka (zenich), Zanetka (organizatorka + svedkyne), Kikinka (svedkyne), Deti (4 dcery — vyzdoba/dort/foceni)
@@ -31,4 +31,5 @@ Mamka (nevesta), Tatka (zenich), Zanetka (organizatorka + svedkyne), Kikinka (sv
 - Never remove Deti from tasks — co-assign, never replace
 - Names without hacek, no surnames: Mikesovi (not Mikesovi)
 - Append-only notes in tasks.md
-- PostToolUse hook auto-rebuilds Excel when tasks.md changed
+- App is read-only — MD files are sources of truth, app never writes anywhere
+- Force refresh on open — clear old localStorage states, always fetch latest MD

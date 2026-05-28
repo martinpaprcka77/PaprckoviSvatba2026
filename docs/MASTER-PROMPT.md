@@ -214,8 +214,7 @@ Postup:
 | Dokument | Komu slouží | Účel |
 |----------|-------------|------|
 | `README.md` | Lidé + AI | Hlavní README repa |
-| `CLAUDE.md` | Claude Code | Pracovní konfigurace |
-| `AGENTS.md` | Ostatní AI (Cursor, Windsurf) | Stejný obsah jako CLAUDE |
+| `AGENTS.md` | Všechny AI (Claude Code, Cursor, Windsurf) | Pracovní konfigurace |
 | `.github/copilot-instructions.md` | GitHub Copilot | AI v editoru |
 | `data/budget.md` | Lidé | Rozpočet |
 | `data/tasks.md` | Lidé + appky | Úkoly |
@@ -230,9 +229,9 @@ Postup:
 
 Po každé změně `data/tasks.md` nebo `data/budget.md`:
 - [ ] `README.md` — čísla v headeru
-- [ ] `CLAUDE.md` — čísla v overview
 - [ ] `AGENTS.md` — čísla v current state
 - [ ] `.github/copilot-instructions.md` — čísla v tasks
+- [ ] `docs/PRD-svatba-paprckovi-2026.md` — pokud se mění struktura
 - [ ] `HISTORY.md` — přidat záznam změny
 
 ---
@@ -264,7 +263,7 @@ print('OK' if total <= 100000 and len(lines) == 36 else 'GAP — fix before comm
 
 ### F2 — Cross-doc sync
 
-| Co | tasks.md | budget.md | README | CLAUDE.md | copilot |
+| Co | tasks.md | budget.md | README | AGENTS.md | copilot |
 |----|----------|-----------|--------|-----------|---------|
 | Počet úkolů | ✅ 36 | ✅ 36 | ✅ 36 | ✅ 36 | ✅ 36 |
 | Mandatory | ✅ 19 / 84 500 | ✅ 19 / 84 500 | ✅ 19 / 84 500 | ✅ 19 / 84 500 | ✅ 19 / 84 500 |
@@ -308,6 +307,6 @@ print('OK' if total <= 100000 and len(lines) == 36 else 'GAP — fix before comm
 - [ ] Děti nebyly odebrány
 - [ ] Jména bez háčků
 - [ ] HISTORY.md aktualizován
-- [ ] Všechny docs syncnuty (README, CLAUDE, AGENTS, copilot)
+- [ ] Všechny docs syncnuty (README, AGENTS, copilot, PRD)
 - [ ] Excel regenerován (hook nebo ručně)
 - [ ] Commit + push → Actions → live

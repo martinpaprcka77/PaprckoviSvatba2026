@@ -43,7 +43,7 @@ The note under the People table says `*Součet > 36 — 3 úkoly mají více př
 
 ## Done count
 
-Count tasks with `[x]` in `Stav` column (index 6). Must match `Done: X/36` in CLAUDE.md if that line was also changed.
+Count tasks with `[x]` in `Stav` column (index 6). Must match `Done: X/36` in AGENTS.md if that line was also changed.
 
 ## Concrete verification
 

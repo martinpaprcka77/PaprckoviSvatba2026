@@ -67,4 +67,4 @@ else:
 - Total budget > 100 000 Kč: FAIL
 - Category sum doesn't match target: FAIL
 - Category task count doesn't match target: FAIL
-- Budget < 100 000 Kč: WARN (under budget is not an error, but the cap should be fully utilized per the spec)
+- Budget < 100 000 Kč: OK (under budget = rezerva, not an error)

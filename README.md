@@ -1,7 +1,7 @@
 # 💒 Svatba Paprčkovi 2026
 
 Svatební plánovač — **29. srpna 2026, 11:15**
-Git-backed architektura: data v MD souborech, appka je čte a renderuje. Bez npm, bez backendu.
+Read-only architektura: MD soubory = source of truth, appka jen čte. Editace přes PC → git. Bez npm, bez backendu.
 
 ## ⚡ Rychlé odkazy
 
@@ -50,7 +50,7 @@ Git-backed architektura: data v MD souborech, appka je čte a renderuje. Bez npm
 |-----|-----|
 | ~~29. 5. 2025~~ | ✅ Termín, radnice, děti, svědci |
 | ~~15. 5. 2026~~ | ✅ Oddávající domluven |
-| **25. 5. 2026** | 💍 Schůzka prstýnky (Mamka+Taťka+Žanetka) |
+| ~~25. 5. 2026~~ | ✅ Schůzka prstýnky (Mamka+Taťka+Žanetka) |
 | 10. 7. 2026 | Svatební oznámení |
 | 15. 7. 2026 | Koliba catering, šaty, oblek, prstýnky, hosté |
 | 1. 8. 2026 | Nápoje, doplňky, ubytování |
@@ -71,7 +71,7 @@ Git-backed architektura: data v MD souborech, appka je čte a renderuje. Bez npm
 ./
 ├── index.html              ← v1 (single-file, localStorage, inline data)
 ├── v0/index.html           ← v0 archive (Svatba_001 baseline, 20 tasks, Aug 29)
-├── v2/index.html           ← v2 (fetches MD z GitHubu, PIN write)
+├── v2/index.html           ← v2 (fetches MD z GitHubu, read-only)
 ├── data/
 │   ├── tasks.md            ← 36 úkolů — AUTORITATIVNÍ zdroj
 │   ├── guests.md           ← seznam hostů
@@ -86,14 +86,13 @@ Git-backed architektura: data v MD souborech, appka je čte a renderuje. Bez npm
 
 ### Data flow
 1. Editace `data/tasks.md` / `data/guests.md` → commit + push
-2. v2 appka automaticky fetchuje z GitHub Raw
-3. PostToolUse hook přegeneruje `rozpocet-svatba-2026.xlsx`
-4. Push do `master` → GitHub Actions → `gh-pages` → live
+2. Appka fetchuje z GitHub Raw (force refresh při otevření, maže starý localStorage)
+3. Push do `master` → GitHub Actions → `gh-pages` → live
 
 ### Dual deploy
 - **`/v0/`** — archivní baseline (Svatba_001, 20 úkolů, 29.8.)
 - **`/`** — v1 produkce (stabilní, offline-first, localStorage)
-- **`/v2/`** — v2 testovací (git-backed, PIN sync, live data)
+- **`/v2/`** — v2 testovací (read-only MD, live data)
 
 ## 🔒 Pravidla
 
@@ -103,12 +102,12 @@ Git-backed architektura: data v MD souborech, appka je čte a renderuje. Bez npm
 4. **Append-only poznámky** v tasks.md; oddělovač `; `
 5. **Po editaci tasks.md:** aktualizovat header, people tabulku, budget tabulku
 6. **PRD je autoritativní spec** — `docs/PRD-svatba-paprckovi-2026.md`
+7. **Appka je read-only** — MD = source of truth, appka nikdy nikam nezapisuje
+8. **Force refresh** — při otevření vždy fetch aktuálních MD, localStorage se maže
 
 ## 🔧 Automatizace
 
-| Hook | Co dělá |
-|------|---------|
-| **PreToolUse** | Blokuje editace `.env`, `package-lock.json`, `.git/` |
-| **PostToolUse** | Přegeneruje Excel po změně tasks.md |
-| **Notification** | Desktop notifikace při čekání na input |
+| Co | Jak |
+|----|-----|
+| **Budget Excel** | `scripts/rebuild_excel.py` — přegeneruje z tasks.md |
 | **GitHub Actions** | Auto-deploy na push do masteru |
