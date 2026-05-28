@@ -182,6 +182,20 @@
         }
         .header-audio-btn:hover { background: rgba(255,255,255,0.25); }
 
+        /* Karaoke lyrics banner */
+        .lyrics-banner {
+            background: linear-gradient(135deg, var(--primary) 0%, hsl(353,35%,25%) 100%);
+            color: #fff; padding: 8px 14px; margin: 0 12px 8px;
+            border-radius: 12px; font-size: 0.75rem; text-align: center;
+            max-height: 52px; overflow: hidden; position: relative;
+            transition: max-height 0.3s; cursor: pointer;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .lyrics-banner.expanded { max-height: 400px; overflow-y: auto; }
+        .lyrics-line { padding: 3px 0; opacity: 0.45; transition: all 0.4s; line-height: 1.4; }
+        .lyrics-line.active { opacity: 1; font-weight: 700; font-size: 1.1em; color: #FFD700; text-shadow: 0 0 12px rgba(255,215,0,0.5); }
+        .lyrics-line.chorus { font-style: italic; }
+
         /* Toast */
         .toast { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); background: var(--text); color: var(--bg); padding: 10px 24px; border-radius: 20px; font-size: 0.85rem; z-index: 100; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
         .toast.show { opacity: 1; }
@@ -200,6 +214,10 @@
     <button class="header-audio-btn" id="headerAudioBtn" onclick="toggleAudio()">
         🎵 Přehrát
     </button>
+</div>
+
+<div class="lyrics-banner" id="lyricsBanner" onclick="this.classList.toggle('expanded')" title="Klikni pro celý text">
+    <div id="lyricsDisplay" style="min-height:36px;display:flex;align-items:center;justify-content:center;"></div>
 </div>
 
 <div class="container">
@@ -317,6 +335,91 @@ const AUDIO_TRACKS = [
 ];
 let currentTrack = 0;
 let audioPlaying = false;
+let lyricsInterval = null;
+
+// Karaoke lyrics — approximate timestamps (seconds) for the original version.
+// Works as a rough guide for remix/Hoff versions too since the song structure is similar.
+const LYRICS = [
+    { time: 16,  text: 'Where it began, I can\'t begin to knowing', section: 'verse' },
+    { time: 22,  text: 'But then I know it\'s growing strong', section: 'verse' },
+    { time: 28,  text: 'Was in the spring, and spring became the summer', section: 'verse' },
+    { time: 34,  text: 'Who\'d have believed you\'d come along?', section: 'verse' },
+    { time: 40,  text: 'Hands, touching hands, reaching out', section: 'pre' },
+    { time: 46,  text: 'Touching me, touching you', section: 'pre' },
+    { time: 52,  text: 'Sweet Caroline! 🎵 Ba! Ba! Ba!', section: 'chorus' },
+    { time: 58,  text: 'Good times never seemed so good', section: 'chorus' },
+    { time: 64,  text: 'So good! So good! So good!', section: 'chorus' },
+    { time: 70,  text: 'I\'ve been inclined to believe they never would', section: 'chorus' },
+    { time: 78,  text: 'But now I...', section: 'verse' },
+    { time: 82,  text: 'Look at the night and it don\'t seem so lonely', section: 'verse' },
+    { time: 88,  text: 'We fill it up with only two', section: 'verse' },
+    { time: 94,  text: 'And when I hurt, hurting runs off my shoulders', section: 'verse' },
+    { time: 100, text: 'How can I hurt when holding you?', section: 'verse' },
+    { time: 106, text: 'Warm, touching warm, reaching out', section: 'pre' },
+    { time: 112, text: 'Touching me, touching you', section: 'pre' },
+    { time: 118, text: 'Sweet Caroline! 🎵 Ba! Ba! Ba!', section: 'chorus' },
+    { time: 124, text: 'Good times never seemed so good', section: 'chorus' },
+    { time: 130, text: 'So good! So good! So good!', section: 'chorus' },
+    { time: 136, text: 'I\'ve been inclined to believe they never would', section: 'chorus' },
+    { time: 144, text: 'Oh no no...', section: 'bridge' },
+    { time: 155, text: '🎷 Instrumental break...', section: 'bridge' },
+    { time: 170, text: 'Sweet Caroline! 🎵 Ba! Ba! Ba!', section: 'chorus' },
+    { time: 176, text: 'Good times never seemed so good', section: 'chorus' },
+    { time: 182, text: 'So good! So good! So good!', section: 'chorus' },
+    { time: 188, text: 'I\'ve been inclined to believe they never would', section: 'chorus' },
+    { time: 196, text: 'Sweet Caroline...', section: 'chorus' },
+    { time: 202, text: 'Good times never seemed so good', section: 'chorus' },
+    { time: 210, text: 'So good! So good! So good! 🎶', section: 'chorus' },
+];
+
+function buildLyricsHTML() {
+    return LYRICS.map(l => {
+        const cls = l.section === 'chorus' ? 'lyrics-line chorus' : 'lyrics-line';
+        return `<div class="${cls}" data-time="${l.time}">${l.text}</div>`;
+    }).join('');
+}
+
+function syncLyrics() {
+    const audio = document.getElementById('bgAudio');
+    const display = document.getElementById('lyricsDisplay');
+    if (!audio || !display || audio.paused) return;
+
+    const t = audio.currentTime;
+    let activeIdx = -1;
+    for (let i = LYRICS.length - 1; i >= 0; i--) {
+        if (t >= LYRICS[i].time) { activeIdx = i; break; }
+    }
+
+    // Show current + next 2 lines in collapsed mode
+    const start = Math.max(0, activeIdx);
+    const slice = LYRICS.slice(start, start + 3);
+    display.innerHTML = slice.map((l, i) => {
+        const cls = (i === 0 ? 'active' : '') + (l.section === 'chorus' ? ' chorus' : '');
+        return `<span class="lyrics-line ${cls}" style="display:inline;margin:0 4px;">${l.text} ${i < slice.length-1 ? '· ' : ''}</span>`;
+    }).join('');
+
+    // Update expanded view too
+    const banner = document.getElementById('lyricsBanner');
+    if (banner.classList.contains('expanded')) {
+        const all = banner.querySelectorAll('.lyrics-line');
+        all.forEach((el, i) => { el.classList.toggle('active', i === activeIdx); });
+    }
+}
+
+function startLyricsSync() {
+    if (lyricsInterval) return;
+    document.getElementById('lyricsBanner').querySelector('#lyricsDisplay').insertAdjacentHTML(
+        'afterend', '<div id="lyricsFull">' + buildLyricsHTML() + '</div>'
+    );
+    // Show first line initially
+    document.getElementById('lyricsDisplay').innerHTML =
+        '<span class="lyrics-line active">🎤 ' + LYRICS[0].text + '</span>';
+    lyricsInterval = setInterval(syncLyrics, 500);
+}
+
+function stopLyricsSync() {
+    if (lyricsInterval) { clearInterval(lyricsInterval); lyricsInterval = null; }
+}
 
 let tasks = [];
 let guests = { mamka: [], tatka: [], spolecni: [] };
@@ -700,6 +803,7 @@ function initAudio() {
     if (audio) { audio.src = AUDIO_TRACKS[currentTrack].src; audio.load(); }
     loadAudioState();
     updateAudioUI();
+    startLyricsSync();
 }
 
 function toggleAudio() {
@@ -722,6 +826,9 @@ function toggleAudio() {
         audioPlaying = false;
         updateAudioUI();
         saveAudioState();
+        // Show first line when paused
+        document.getElementById('lyricsDisplay').innerHTML =
+            '<span class="lyrics-line active">⏸ Pozastaveno — ' + LYRICS[0].text + '</span>';
     }
 }
 
