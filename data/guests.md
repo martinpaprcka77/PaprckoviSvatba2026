@@ -35,5 +35,5 @@
 - **Děti** = Gabriela, Kristýnka, Natálka, Kačka — 4 dcery
 - Všichni pozváni osobně
 - +1 počítáno u všech kromě Milady S (sama)
-- ~23 hostů celkem
+- ~25 hostů celkem
 - Bez příjmení — jen křestní jména / přezdívky

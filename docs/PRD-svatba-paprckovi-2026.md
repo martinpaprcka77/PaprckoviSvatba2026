@@ -294,7 +294,7 @@
 | Hozik P. | 2 | _ | Ano | _ |
 | Děti | 4 | _ | Ano | _ |
 
-**Celkem:** ~23 hostů
+**Celkem:** ~25 hostů
 
 **Pravidla:**
 - Bez příjmení — jen křestní jména / přezdívky
