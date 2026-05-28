@@ -328,7 +328,7 @@
 
 <div class="toast" id="toast"></div>
 
-<audio id="bgAudio" preload="auto" loop style="display:none;"></audio>
+<audio id="bgAudio" preload="auto" style="display:none;"></audio>
 
 <script>
 const WEDDING_DATE = new Date('2026-08-29T11:15:00');
@@ -879,7 +879,23 @@ function updateBudgetUI() {
 
 function initAudio() {
     const audio = document.getElementById('bgAudio');
-    if (audio) { audio.src = AUDIO_TRACKS[currentTrack].src; audio.load(); }
+    if (!audio) return;
+    audio.src = AUDIO_TRACKS[currentTrack].src;
+    audio.load();
+
+    // Auto-switch to next track on end — play all 3 versions in sequence
+    audio.addEventListener('ended', () => {
+        currentTrack = (currentTrack + 1) % AUDIO_TRACKS.length;
+        audio.src = AUDIO_TRACKS[currentTrack].src;
+        audio.load();
+        audio.currentTime = 0;
+        audio.play().then(() => {
+            audioPlaying = true;
+            updateAudioUI();
+            saveAudioState();
+        }).catch(e => {});
+    });
+
     loadAudioState();
     updateAudioUI();
     startLyricsSync();
@@ -892,8 +908,9 @@ function toggleAudio() {
         audio.load();
     }
     if (audio.paused) {
-        if (audio.currentTime < 1) {
-            audio.currentTime = AUDIO_TRACKS[currentTrack].refrain;
+        // Start from beginning (not refrain)
+        if (audio.currentTime < 0.5) {
+            audio.currentTime = 0;
         }
         audio.play().then(() => {
             audioPlaying = true;
@@ -905,9 +922,8 @@ function toggleAudio() {
         audioPlaying = false;
         updateAudioUI();
         saveAudioState();
-        // Show first line when paused
         document.getElementById('lyricsDisplay').innerHTML =
-            '<span class="lyrics-line active">⏸ Pozastaveno — ' + LYRICS[0].text + '</span>';
+            '<div class="lyrics-line active">⏸ Pozastaveno — ' + LYRICS[0].text + '</div>';
     }
 }
 
@@ -917,7 +933,7 @@ function switchTrack(idx) {
     const wasPlaying = !audio.paused;
     audio.src = AUDIO_TRACKS[idx].src;
     audio.load();
-    audio.currentTime = AUDIO_TRACKS[idx].refrain;
+    audio.currentTime = 0;
     if (wasPlaying) {
         audio.play().then(() => {
             audioPlaying = true;
@@ -955,7 +971,7 @@ function onFirstInteraction() {
         audio.src = AUDIO_TRACKS[currentTrack].src;
         audio.load();
     }
-    audio.currentTime = AUDIO_TRACKS[currentTrack].refrain;
+    audio.currentTime = 0;
     audio.play().then(() => {
         audioPlaying = true;
         updateAudioUI();
