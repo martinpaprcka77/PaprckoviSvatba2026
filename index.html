@@ -249,6 +249,7 @@
 const WEDDING_DATE = new Date('2026-08-29T11:15:00');
 const DATA_URL = 'https://raw.githubusercontent.com/doma77git/PaprckoviSvatba2026/master/data/tasks.md';
 const GUESTS_URL = 'https://raw.githubusercontent.com/doma77git/PaprckoviSvatba2026/master/data/guests.md';
+const BUDGET_URL = 'https://raw.githubusercontent.com/doma77git/PaprckoviSvatba2026/master/data/budget.md';
 const LS_DONE = 'svatba_done_v4';
 const LS_BUDGET = 'svatba_budget_v4';
 const LS_HIDE_DONE = 'svatba_hide_done';
@@ -321,6 +322,35 @@ function parseGuestsMD(md) {
     return result;
 }
 
+function parseBudgetMD(md) {
+    const result = [];
+    const lines = md.split('\n');
+    let inTable = false;
+    for (const line of lines) {
+        const t = line.trim();
+        if (t.startsWith('| # | Položka') && t.includes('Kat.')) { inTable = true; continue; }
+        if (t.startsWith('|--')) continue;
+        if (!inTable || !t.startsWith('|')) continue;
+        if (t.startsWith('## ')) { inTable = false; continue; }
+
+        const cells = t.split('|').map(c => c.trim()).filter(c => c !== '');
+        if (cells.length < 5) continue;
+        if (cells[0].startsWith('CELKEM') || cells[0].startsWith('Kategorie')) continue;
+
+        const [num, polozka, kat, odhad, poznamka] = cells;
+        const price = parseInt(odhad.replace(/[^0-9]/g, '')) || 0;
+        const key = num + '|' + polozka;
+
+        result.push({
+            key: key,
+            name: polozka,
+            plan: price,
+            cost: price
+        });
+    }
+    return result;
+}
+
 // ===== FETCH =====
 async function fetchData() {
     try {
@@ -344,6 +374,21 @@ async function fetchGuests() {
             return true;
         }
     } catch (e) { console.error('Fetch guests:', e); }
+    return false;
+}
+
+async function fetchBudget() {
+    try {
+        const res = await fetch(BUDGET_URL, { cache: 'no-cache' });
+        if (res.ok) {
+            const parsed = parseBudgetMD(await res.text());
+            budgetItems = parsed.map(item => ({
+                ...item,
+                cost: budgetEdits[item.key] !== undefined ? budgetEdits[item.key] : item.plan
+            }));
+            return true;
+        }
+    } catch (e) { console.error('Fetch budget:', e); }
     return false;
 }
 
@@ -643,7 +688,7 @@ async function _init() {
         if (t.doneInMD) completed[t.key] = true;
     }
     saveDone();
-    buildBudget();
+    await fetchBudget();
 
     updateCountdown();
     setInterval(updateCountdown, 60000);
