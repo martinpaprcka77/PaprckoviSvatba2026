@@ -328,7 +328,11 @@ function parseBudgetMD(md) {
     let inTable = false;
     for (const line of lines) {
         const t = line.trim();
-        if (t.startsWith('| # | Položka') && t.includes('Kat.')) { inTable = true; continue; }
+        // Start parsing main budget table (with "Kat." header)
+        if (t.startsWith('| # | Položka') && t.includes('Kat.') && t.includes('Odhad')) { inTable = true; continue; }
+        // Stop at "Rozpady" section (sub-items breakdown)
+        if (t.startsWith('## Rozpady')) { inTable = false; continue; }
+
         if (t.startsWith('|--')) continue;
         if (!inTable || !t.startsWith('|')) continue;
         if (t.startsWith('## ')) { inTable = false; continue; }
