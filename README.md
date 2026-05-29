@@ -8,7 +8,6 @@ Read-only architektura: MD soubory = source of truth, appka jen čte. Editace p�
 | Co | Kde |
 |----|-----|
 | **Plánovač v1** (produkce) | https://doma77git.github.io/PaprckoviSvatba2026/ |
-| **Plánovač v2** (testovací) | https://doma77git.github.io/PaprckoviSvatba2026/v2/ |
 | **v3music (v1+audio)** | https://doma77git.github.io/PaprckoviSvatba2026/v3music/ |
 | **v0 (archivní baseline)** | https://doma77git.github.io/PaprckoviSvatba2026/v0/ |
 | **Úkoly** | [data/tasks.md](data/tasks.md) |
@@ -17,7 +16,7 @@ Read-only architektura: MD soubory = source of truth, appka jen čte. Editace p�
 | **Manuální Excel** | [data/manualrozpocet-svatba-2026.xlsx](data/manualrozpocet-svatba-2026.xlsx) |
 | **PRD (specifikace)** | [docs/PRD-svatba-paprckovi-2026.md](docs/PRD-svatba-paprckovi-2026.md) |
 | **Repozitář** | https://github.com/doma77git/PaprckoviSvatba2026 |
-| **Archivní verze** | https://doma77git.github.io/PaprckoviSvatba2026/Older_up2date/ |
+| **Archiv** | [`archive/`](archive/) |
 
 ## 📊 Aktuální stav
 
@@ -69,18 +68,17 @@ Read-only architektura: MD soubory = source of truth, appka jen čte. Editace p�
 
 ```
 ./
-├── index.html              ← v1 (single-file, localStorage, inline data)
-├── v0/index.html           ← v0 archive (Svatba_001 baseline, 20 tasks, Aug 29)
-├── v2/index.html           ← v2 (fetches MD z GitHubu, read-only)
+├── index.html              ← v1 (single-file, localStorage, inline data) — PRODUCTION
+├── v0/index.html           ← v0 archive (Svatba_001 baseline, 20 tasks)
+├── v3music/index.html      ← v3music (v1 + karaoke audio/lyrics) — EXPERIMENTAL
 ├── data/
 │   ├── tasks.md            ← 36 úkolů — AUTORITATIVNÍ zdroj
+│   ├── budget.md           ← rozpočet kategorie
 │   ├── guests.md           ← seznam hostů
-│   ├── rozpocet-svatba-2026.xlsx        ← auto-gen Excel (SUMIF vzorce)
-│   └── manualrozpocet-svatba-2026.xlsx  ← manuální Excel
+│   └── rozpocet-svatba-2026.xlsx  ← auto-gen Excel
 ├── docs/                   ← PRD, design spec, knowledge base
 ├── public/                 ← favicon, manifest, 404
-├── Older/                  ← archivní verze (001–v42)
-├── Older_up2date/          ← opravené archivní verze
+├── archive/                ← starší verze (Svatba_001 až v42.html)
 └── .github/workflows/      ← auto-deploy na push do masteru
 ```
 
@@ -89,10 +87,11 @@ Read-only architektura: MD soubory = source of truth, appka jen čte. Editace p�
 2. Appka fetchuje z GitHub Raw (force refresh při otevření, maže starý localStorage)
 3. Push do `master` → GitHub Actions → `gh-pages` → live
 
-### Dual deploy
-- **`/v0/`** — archivní baseline (Svatba_001, 20 úkolů, 29.8.)
-- **`/`** — v1 produkce (stabilní, offline-first, localStorage)
-- **`/v2/`** — v2 testovací (read-only MD, live data)
+### Web verze
+- **`/`** — v1 PRODUCTION (offline-first, localStorage)
+- **`/v0/`** — v0 ARCHIVE (baseline snapshot, 20 tasks)
+- **`/v3music/`** — v3music EXPERIMENTAL (v1 + karaoke audio)
+- **`/archive/`** — starší HTML verze (neaktualizované)
 
 ## 🔒 Pravidla
 
