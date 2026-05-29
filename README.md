@@ -67,19 +67,21 @@ Read-only architektura: MD soubory = source of truth, appka jen čte. Editace p�
 ## 🏗️ Architektura
 
 ```
-./
-├── index.html              ← v1 (single-file, localStorage, inline data) — PRODUCTION
-├── v0/index.html           ← v0 archive (Svatba_001 baseline, 20 tasks)
-├── v3music/index.html      ← v3music (v1 + karaoke audio/lyrics) — EXPERIMENTAL
+master (PRODUCTION) ──────────────────────────────────────
+├── index.html              ← v1 (single-file, localStorage) — PRODUCTION
 ├── data/
 │   ├── tasks.md            ← 36 úkolů — AUTORITATIVNÍ zdroj
-│   ├── budget.md           ← rozpočet kategorie
+│   ├── budget.md           ← rozpočet
 │   ├── guests.md           ← seznam hostů
-│   └── rozpocet-svatba-2026.xlsx  ← auto-gen Excel
 ├── docs/                   ← PRD, design spec, knowledge base
 ├── public/                 ← favicon, manifest, 404
-├── archive/                ← starší verze (Svatba_001 až v42.html)
 └── .github/workflows/      ← auto-deploy na push do masteru
+
+experiment/audio ──────────────────────────────────────────
+└── index.html              ← v1 + karaoke audio + lyrics (WIP)
+
+experiment/timeline ───────────────────────────────────────
+└── index.html              ← v1 + harmonogram + timeline view (WIP)
 ```
 
 ### Data flow
@@ -88,10 +90,12 @@ Read-only architektura: MD soubory = source of truth, appka jen čte. Editace p�
 3. Push do `master` → GitHub Actions → `gh-pages` → live
 
 ### Web verze
-- **`/`** — v1 PRODUCTION (offline-first, localStorage)
-- **`/v0/`** — v0 ARCHIVE (baseline snapshot, 20 tasks)
-- **`/v3music/`** — v3music EXPERIMENTAL (v1 + karaoke audio)
-- **`/archive/`** — starší HTML verze (neaktualizované)
+- **`/`** — v1 PRODUCTION (offline-first, localStorage, 667 řádků)
+- **`experiment/audio`** — Audio + karaoke (feature branch, WIP)
+- **`experiment/timeline`** — Harmonogram svatebního dne (feature branch, WIP)
+
+### Historické verze
+- **Git tags** — `v0-2026-05-24`, `v1-2026-05-15` (archiv jako git history, ne folders)
 
 ## 🔒 Pravidla
 
