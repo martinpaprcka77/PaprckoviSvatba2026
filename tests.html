@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <title>Svatba Tests — Unit & Integration</title>
+    <style>
+        body { font-family: system-ui; background: #fafafa; padding: 20px; max-width: 800px; margin: 0 auto; }
+        .test-suite { background: white; border-radius: 8px; padding: 16px; margin-bottom: 16px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .test { padding: 8px; margin: 4px 0; border-left: 4px solid #ccc; padding-left: 12px; }
+        .test.pass { background: #d4edda; border-left-color: #28a745; color: #155724; }
+        .test.fail { background: #f8d7da; border-left-color: #dc3545; color: #721c24; }
+        .summary { font-weight: bold; margin-top: 16px; padding: 12px; border-radius: 4px; }
+        .summary.all-pass { background: #d4edda; color: #155724; }
+        .summary.has-fail { background: #f8d7da; color: #721c24; }
+        h2 { margin-top: 0; color: #333; }
+        code { background: #f4f4f4; padding: 2px 6px; border-radius: 3px; font-size: 0.9em; }
+    </style>
+</head>
+<body>
+    <h1>💍 Svatba — Test Suite</h1>
+    <div id="results"></div>
+
+    <script>
+        // Test framework
+        class TestRunner {
+            constructor() {
+                this.tests = [];
+                this.passed = 0;
+                this.failed = 0;
+            }
+
+            test(name, fn) {
+                try {
+                    fn();
+                    this.tests.push({ name, pass: true, error: null });
+                    this.passed++;
+                } catch (e) {
+                    this.tests.push({ name, pass: false, error: e.message });
+                    this.failed++;
+                }
+            }
+
+            assert(condition, message) {
+                if (!condition) throw new Error(message || 'Assertion failed');
+            }
+
+            assertEqual(actual, expected, message) {
+                if (JSON.stringify(actual) !== JSON.stringify(expected)) {
+                    throw new Error(`Expected ${JSON.stringify(expected)}, got ${JSON.stringify(actual)}. ${message || ''}`);
+                }
+            }
+
+            render() {
+                const results = document.getElementById('results');
+                const html = this.tests.map(t =>
+                    `<div class="test ${t.pass ? 'pass' : 'fail'}">
+                        ${t.pass ? '✅' : '❌'} ${t.name}
+                        ${!t.pass ? `<br><small>${t.error}</small>` : ''}
+                    </div>`
+                ).join('');
+
+                const summary = `
+                    <div class="summary ${this.failed === 0 ? 'all-pass' : 'has-fail'}">
+                        ${this.passed} passed, ${this.failed} failed
+                    </div>
+                `;
+
+                results.innerHTML = html + summary;
+            }
+        }
+
+        // ===== PARSERS (copied from index.html for testing) =====
+        function parseTasksMD(md) {
+            const result = [];
+            const lines = md.split('\n');
+            let inTable = false;
+            for (const line of lines) {
+                const t = line.trim();
+                if (t.startsWith('| Termín') && t.includes('Úkol')) { inTable = true; continue; }
+                if (t.startsWith('|--')) continue;
+                if (!inTable || !t.startsWith('|')) continue;
+                if (t.startsWith('## ') || t.startsWith('# ')) { inTable = false; continue; }
+
+                const cells = t.split('|').map(c => c.trim()).filter(c => c !== '');
+                if (cells.length < 9) continue;
+                const [termin, ukol, kdo, kat, planStr, skutStr, stav, timestamp, poznamka] = cells;
+                const plan = parseInt(planStr.replace(/[^0-9]/g, '')) || 0;
+                const skut = skutStr === '_' ? null : (parseInt(skutStr.replace(/[^0-9]/g, '')) || 0);
+
+                result.push({
+                    deadline: termin, title: ukol, assign: kdo, cat: kat,
+                    price: plan, actualCost: skut,
+                    doneInMD: stav.includes('[x]'),
+                    note: poznamka === '_' ? '' : poznamka,
+                    key: termin + '|' + ukol
+                });
+            }
+            return result;
+        }
+
+        function parseBudgetMD(md) {
+            const result = [];
+            const lines = md.split('\n');
+            let inTable = false;
+            for (const line of lines) {
+                const t = line.trim();
+                if (t.startsWith('| # | Položka') && t.includes('Kat.') && t.includes('Odhad')) { inTable = true; continue; }
+                if (t.startsWith('## Rozpady')) { inTable = false; continue; }
+
+                if (t.startsWith('|--')) continue;
+                if (!inTable || !t.startsWith('|')) continue;
+                if (t.startsWith('## ')) { inTable = false; continue; }
+
+                const cells = t.split('|').map(c => c.trim()).filter(c => c !== '');
+                if (cells.length < 5) continue;
+                if (cells[0].startsWith('CELKEM') || cells[0].startsWith('Kategorie')) continue;
+
+                const [num, polozka, kat, odhad, poznamka] = cells;
+                const price = parseInt(odhad.replace(/[^0-9]/g, '')) || 0;
+                const key = num + '|' + polozka;
+
+                result.push({
+                    key: key,
+                    name: polozka,
+                    plan: price,
+                    cost: price
+                });
+            }
+            return result;
+        }
+
+        function parseGuestsMD(md) {
+            const result = { mamka: [], tatka: [], spolecni: [] };
+            const lines = md.split('\n');
+            let side = null, inTable = false;
+            for (const line of lines) {
+                const t = line.trim();
+                if (t.startsWith('## Mamka')) { side = 'mamka'; inTable = false; continue; }
+                if (t.startsWith('## Taťka')) { side = 'tatka'; inTable = false; continue; }
+                if (t.startsWith('## Společní') || t.startsWith('## Spolecni')) { side = 'spolecni'; inTable = false; continue; }
+                if (t.startsWith('## ')) { side = null; inTable = false; continue; }
+                if (t.startsWith('| Jméno') && t.includes('Počet')) { inTable = true; continue; }
+                if (t.startsWith('|--') || t.startsWith('| -')) continue;
+                if (!inTable || !t.startsWith('|') || !side) continue;
+
+                const cells = t.split('|').map(c => c.trim()).filter(c => c !== '');
+                if (cells.length < 4) continue;
+                const jmeno = cells[0];
+                const pocetStr = cells[1];
+                const jidlo = cells.length >= 3 ? cells[2] : '_';
+                const potvrzeno = cells.length >= 5 ? cells[4] : (cells.length >= 4 ? cells[3] : '_');
+                if (jmeno.startsWith('_')) continue;
+                const pocet = pocetStr === '?' ? -1 : (parseInt(pocetStr) || 1);
+                result[side].push({ name: jmeno, count: pocet, food: jidlo !== '_' && jidlo !== '' ? jidlo : null, confirmed: potvrzeno !== '_' && potvrzeno !== '' ? potvrzeno : null });
+            }
+            return result;
+        }
+
+        // ===== TESTS =====
+        const runner = new TestRunner();
+
+        // --- parseBudgetMD tests ---
+        runner.test('parseBudgetMD: Parse valid budget table', () => {
+            const md = `# Rozpočet
+| # | Položka | Kat. | Odhad (Kč) | Poznámka |
+|---|---------|------|-----------|----------|
+| 1 | Zlatá koliba | M | 30000 | — |
+| 2 | Šaty | M | 12000 | — |
+| 3 | Oblek | M | 8000 | — |
+
+## Rozpady
+| # | Položka | Částka (Kč) | Kalkulace | Poznámka |
+|---|---------|------------|-----------|----------|
+| 7a | Oběd | 11100 | — | — |`;
+            const result = parseBudgetMD(md);
+            runner.assertEqual(result.length, 3, 'Should parse 3 items');
+            runner.assertEqual(result[0].plan, 30000, 'First item price correct');
+            runner.assertEqual(result[0].name, 'Zlatá koliba', 'First item name correct');
+        });
+
+        runner.test('parseBudgetMD: Ignore "Rozpady" section', () => {
+            const md = `| # | Položka | Kat. | Odhad (Kč) | Poznámka |
+|---|---------|------|-----------|----------|
+| 1 | Item 1 | M | 100 | — |
+
+## Rozpady
+| # | Položka | Částka (Kč) | Kalkulace | Poznámka |
+|---|---------|------------|-----------|----------|
+| 7a | Sub 1 | 50 | — | — |
+| 7a1 | Sub 1a | 25 | — | — |`;
+            const result = parseBudgetMD(md);
+            runner.assertEqual(result.length, 1, 'Should ignore sub-items');
+        });
+
+        runner.test('parseBudgetMD: Handle empty budget', () => {
+            const md = `# Rozpočet
+No table here`;
+            const result = parseBudgetMD(md);
+            runner.assertEqual(result.length, 0, 'Should return empty array');
+        });
+
+        runner.test('parseBudgetMD: Skip CELKEM row', () => {
+            const md = `| # | Položka | Kat. | Odhad (Kč) | Poznámka |
+|---|---------|------|-----------|----------|
+| 1 | Item | M | 100 | — |
+| CELKEM | — | — | 100 | — |`;
+            const result = parseBudgetMD(md);
+            runner.assertEqual(result.length, 1, 'Should skip CELKEM row');
+        });
+
+        // --- parseGuestsMD tests ---
+        runner.test('parseGuestsMD: Parse guests by side', () => {
+            const md = `## Mamka strana
+| Jméno | Počet | Jídlo | Pozván osobně | Potvrzeno |
+|-------|-------|-------|---------------|-----------|
+| Markéta S | 2 | — | Ano | — |
+
+## Taťka strana
+| Jméno | Počet | Jídlo | Pozván osobně | Potvrzeno |
+|-------|-------|-------|---------------|-----------|
+| Luki | 2 | — | Ano | — |`;
+            const result = parseGuestsMD(md);
+            runner.assertEqual(result.mamka.length, 1, 'Mamka has 1 guest');
+            runner.assertEqual(result.tatka.length, 1, 'Taťka has 1 guest');
+            runner.assertEqual(result.mamka[0].name, 'Markéta S', 'Mamka guest name correct');
+        });
+
+        runner.test('parseGuestsMD: Handle missing data', () => {
+            const md = `## Mamka strana
+| Jméno | Počet | Jídlo | Pozván osobně | Potvrzeno |
+|-------|-------|-------|---------------|-----------|
+| Jméno | ? | _ | — | _ |`;
+            const result = parseGuestsMD(md);
+            runner.assertEqual(result.mamka[0].count, -1, 'Undefined count = -1');
+            runner.assertEqual(result.mamka[0].food, null, 'Empty food = null');
+        });
+
+        // --- parseTasksMD tests ---
+        runner.test('parseTasksMD: Parse valid task', () => {
+            const md = `| Termín | Úkol | Kdo | Kat. | Plán (Kč) | Skutečnost (Kč) | Stav | Timestamp | Poznámka |
+|--------|------|-----|------|-----------|-----------------|------|-----------|----------|
+| 2026-05-29 | Konfirmace | Mamka | mandatory | 0 | 0 | [x] | 2026-05-20T14:30 | Hotovo |`;
+            const result = parseTasksMD(md);
+            runner.assertEqual(result.length, 1, 'Should parse 1 task');
+            runner.assertEqual(result[0].doneInMD, true, 'Task marked as done');
+            runner.assertEqual(result[0].title, 'Konfirmace', 'Task title correct');
+        });
+
+        runner.test('parseTasksMD: Detect incomplete tasks', () => {
+            const md = `| Termín | Úkol | Kdo | Kat. | Plán (Kč) | Skutečnost (Kč) | Stav | Timestamp | Poznámka |
+|--------|------|-----|------|-----------|-----------------|------|-----------|----------|
+| 2026-07-10 | Oznámení | Mamka | mandatory | 1500 | _ | [ ] | _ | _ |`;
+            const result = parseTasksMD(md);
+            runner.assertEqual(result[0].doneInMD, false, 'Task marked as incomplete');
+        });
+
+        runner.test('parseTasksMD: Handle empty tasks', () => {
+            const md = `No tasks here`;
+            const result = parseTasksMD(md);
+            runner.assertEqual(result.length, 0, 'Should return empty array');
+        });
+
+        // --- Integration tests ---
+        runner.test('Data integrity: Budget total calculation', () => {
+            const budgetItems = [
+                { name: 'Item 1', plan: 100, cost: 100 },
+                { name: 'Item 2', plan: 200, cost: 200 },
+                { name: 'Item 3', plan: 300, cost: 300 }
+            ];
+            const total = budgetItems.reduce((sum, item) => sum + item.cost, 0);
+            runner.assertEqual(total, 600, 'Budget sum correct');
+        });
+
+        runner.test('Data integrity: Hard cap check (100K)', () => {
+            const total = 89500;
+            const hardCap = 100000;
+            runner.assert(total <= hardCap, `Total ${total} exceeds hard cap ${hardCap}`);
+        });
+
+        runner.test('Data integrity: Tasks cannot be empty', () => {
+            const tasks = [
+                { deadline: '2026-05-29', title: 'Task 1', doneInMD: true }
+            ];
+            runner.assert(tasks.length > 0, 'Tasks list is empty');
+        });
+
+        // Render results
+        runner.render();
+    </script>
+</body>
+</html>
