@@ -7,5 +7,6 @@ dist/
 .vscode/
 $null
 %SystemDrive%/
+.reasonix/
 package*.json
 *.lock

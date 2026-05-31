@@ -218,9 +218,7 @@
 | 21. 5. | **Mikesovi** (ne Mikesovi) = sestra + manžel + 2 děti. Bez příjmení. | LLM halucinace opravena |
 | 21. 5. | **Rozpad cateringu:** 30 lidí, polévka 95 Kč/os, druhé 275 Kč/os, oběd = 11 100 Kč, pití+chlast = zbytek do 30k | Návštěva u Miloše 21.5. — reálná čísla |
 | 21. 5. | **Svatební šaty:** plán 11 100 Kč, budget cca 12 000 Kč, max 15 000 Kč | Upřesnění ceny šatů |
-| 21. 5. | **Autoritativní Excel:** `data/rozpocet-svatba-2026.xlsx` — SUMIF/COUNTIF vzorce, podmíněné formátování, přehled na osobu | Jeden zdroj pravdy pro budget |
-| 21. 5. | **Manuální Excel:** `data/manualrozpocet-svatba-2026.xlsx` — uživatelův vlastní formát budgetu | Uživatel preferuje vlastní strukturu |
-| 21. 5. | **Hooks:** PreToolUse chrání .env/.git, PostToolUse přegeneruje Excel, Notification idle alert | Automatizace v `.claude/settings.json` |
+| 21. 5. | **Hooks:** PreToolUse chrání .env/.git, Notification idle alert | Automatizace v `.claude/settings.json` |
 | 27. 5. | **37→36 úkolů:** 19 mandatory + 13 important + 4 optional = 89 500 Kč | Odebrán "Dárky pro rodiče" (rodiče nežijí), prstýnky 20→10K, "Proslovy" bez rodičů |
 | 28. 5. | **Hosté restrukturalizace:** Mamka / Taťka / Společní (3 strany). +1 u všech kromě Milady S. Noví: Jan Drah, Jirka Pok, Hozik P. Celkem ~23. | guests.md restrukturalizován, PRD sync |
 | 28. 5. | **Cleanup:** Smazány staré configy (.claude/settings.json, .reasonix/settings.json, CLAUDE.md), init() refactored s error handlingem | Uklid repa, DOMContentLoaded, budget 100K cap zachován |
@@ -250,8 +248,7 @@
 ### Data files
 - `data/tasks.md` — 36 úkolů, Markdown tabulka
 - `data/guests.md` — hosté dle stran (Mamka / Taťka / Společní)
-- `data/rozpocet-svatba-2026.xlsx` — auto-generovaný Excel
-- `data/manualrozpocet-svatba-2026.xlsx` — manuální Excel
+- `data/budget.md` — budget breakdown odvozený z tasks.md
 
 ### App capabilities
 - **Read-only:** Fetch MD z GitHub Raw, renderovat úkoly, harmonogram, hosté
@@ -320,23 +317,4 @@ Děti jako skupina = 1 filter v appce. Individuální jména pro host list a kon
 
 ---
 
-## 13. Excel Architecture — 28. 5. 2026
 
-Budget se spravuje v Excelu. Dva soubory:
-
-| Soubor | Účel | Editace |
-|--------|------|---------|
-| `data/rozpocet-svatba-2026.xlsx` | Auto-generovaný — všech 36 úkolů, SUMIF/COUNTIF vzorce, podmíněné formátování, přehled na osobu | `scripts/rebuild_excel.py` |
-| `data/manualrozpocet-svatba-2026.xlsx` | Manuální — jednodušší formát, povinné položky | Uživatel edituje přímo |
-
-### Barevný systém Excelu
-- **Modrý text** = editovatelný vstup (ceny, počty) — změníš → automaticky přepočítáno
-- **Černý text** = vzorec / kalkulace — neměnit ručně
-- **Červená/Žlutá/Zelená** = mandatory/important/optional kategorie
-- **Šedý přeškrtnutý** = hotový úkol
-- **Podmíněné formátování:** CELKEM zčervená při >100 000 Kč
-
-### Sync s webem
-1. Editace `data/tasks.md` / `data/guests.md` → commit + push
-2. Appka fetchuje z GitHub Raw (force refresh, maže starý localStorage)
-3. Push do `master` → GitHub Actions → `gh-pages` → live

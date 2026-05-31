@@ -3,25 +3,21 @@
 This file provides guidance to AI coding assistants working in this repository.
 
 ## Overview
-Wedding planner app — v1 + v2 + v3music (read-only MD). No build, no npm.
+Wedding planner app — v1 + v2 (read-only MD). No build, no npm.
 Live: https://doma77git.github.io/PaprckoviSvatba2026/
 
 ## Architecture
-- **v0:** `v0/index.html` — archive baseline (Svatba_001, 20 tasks, Aug 29 date)
 - **v1:** `index.html` — single-file, inline CSS/JS, localStorage (`svatba_state_v3`)
 - **v2:** `v2/index.html` — fetches `data/tasks.md` + `data/guests.md` from GitHub Raw, read-only
-- **v3music:** `v3music/index.html` — v1 + audio player (2 tracks), karaoke word-by-word lyrics
-- **testplay:** `testplay.html` — isolated karaoke banner test page
+- **v3music:** (removed from master — available in git history)
 - **Data:** `data/tasks.md` (36 tasks, authoritative), `data/guests.md` (3 guest sides)
-- **Budget:** `data/budget.md` (derived from tasks.md), `data/rozpocet-svatba-2026.xlsx` (auto-gen)
-- **Media:** `media/` — 2× Sweet Caroline (DJ Ötzi Remix + Hasselhoff) in MP3/M4A/MP4
-- **Excel:** `scripts/rebuild_excel.py` — regenerates `rozpocet-svatba-2026.xlsx` from tasks.md
+- **Budget:** `data/budget.md` (derived from tasks.md)
+- **Media:** `media/` — 2× Sweet Caroline MP3 (DJ Ötzi Remix + Hasselhoff)
 
 ## Local Dev
 ```bash
 python -m http.server 8080          # http://localhost:8080/
-python scripts/rebuild_excel.py     # regenerate Excel after tasks.md changes
-node -e "..."                       # see Verify section below
+python scripts/_verify_tasks.py     # verify tasks.md integrity
 ```
 
 ## Current State
@@ -32,14 +28,6 @@ node -e "..."                       # see Verify section below
 - **Guests:** ~25 across 3 sides (Mamka, Taťka, Společní)
 - **Wedding:** 29. srpna 2026, 11:15 — Nová radnice Ostrava + Koliba U Zlatého Jarouše
 - **Repo:** doma77git/PaprckoviSvatba2026
-
-## Audio (v3music)
-- 2 tracks: **DJ Ötzi — Party Remix** + **David Hasselhoff**
-- Both start from refrain, auto-switch to next track on end (cycle)
-- Karaoke: word-by-word gold highlighting, click banner to expand full lyrics
-- Lyrics per track: `LYRICS_OTZI` / `LYRICS_HOFF` arrays with per-line timestamps
-- MP3 paths: `../media/` from v3music (media/ is at repo root, one level up on Pages)
-- Controls: floating ▶ button (bottom-right), header button, 2 track selector buttons
 
 ## Rules
 1. Budget 100 000 Kc hard cap — verify before every commit
@@ -53,13 +41,12 @@ node -e "..."                       # see Verify section below
 
 ## Deploy
 Push to `master` → GitHub Actions → `gh-pages`
-Deploys: `/` (v1), `/v2/` (v2), `/v3music/` (v3music), `/media/` (MP3 files)
+Deploys: `/` (v1), `/v2/` (v2)
 
 ## Gotchas
 - **Windows + Git Bash:** use `grep`/`ls`/`find`, NOT PowerShell cmdlets (`Select-String`, `Get-ChildItem` — fail in bash)
 - **Commit messages with `()`:** use heredoc `git commit -m "$(cat <<'EOF' ... EOF)"` — bash parses parentheses
-- **`../media/` paths:** media/ is at repo root; from v3music/ or testplay.html use `../media/file.mp3`
-- **Audio autoplay:** browsers block `audio.play()` without user gesture — Playwright headless will fail on play
+- **`../media/` paths:** media/ is at repo root; use `media/file.mp3` from root or `../media/file.mp3` from subdirs
 - **GitHub Pages deploy:** push to master → Actions → gh-pages (~1 min). Check: `gh run list --limit 1`
 - **Playwright:** `npm i --save-dev playwright` (no global install needed). Clean up `node_modules/` after
 
@@ -90,7 +77,5 @@ print('OK' if total <= 100000 and len(lines) == 36 else 'GAP — fix before comm
 | `docs/PRD-svatba-paprckovi-2026.md` | Authoritative spec — full wedding details |
 | `index.html` | v1 production app |
 | `v2/index.html` | v2 read-only MD app |
-| `v3music/index.html` | v1 + audio + karaoke |
-| `testplay.html` | Standalone karaoke banner test |
-| `scripts/rebuild_excel.py` | Excel regenerator |
+| `scripts/_verify_tasks.py` | Tasks.md integrity checker |
 | `.github/workflows/deploy.yml` | GitHub Pages deploy |
