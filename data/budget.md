@@ -65,15 +65,15 @@ Složené položky s vnitřním rozpočtem.
 
 | # | Položka | Částka (Kč) | Kalkulace | Poznámka |
 |---|---------|------------|-----------|----------|
-| 7a | **Pohoštění (společný oběd)** | **11 100** | SUMA(7a1+7a2) | Záloha před obědem |
-| 7a1 | · Polévka | 2 850 | 95 Kč × 30 os | U Miloše |
-| 7a2 | · Druhé jídlo | 8 250 | 275 Kč × 30 os | U Miloše |
-| 7b | **Poobědový budget** | **18 900** | 30 000 − 11 100 | Nápoje, bar, servis |
+| 7a | **Pohoštění (společný oběd)** | **9 250** | SUMA(7a1+7a2) | Záloha před obědem |
+| 7a1 | · Polévka | 2 375 | 95 Kč × 25 os | U Miloše |
+| 7a2 | · Druhé jídlo | 6 875 | 275 Kč × 25 os | U Miloše |
+| 7b | **Poobědový budget** | **20 750** | 30 000 − 9 250 | Nápoje, bar, servis |
 | | **Celkem** | **30 000** | | ✅ |
 
 ```
-Oběd:      (95 + 275) × 30 os = 11 100 Kč
-Po obědě:  30 000 − 11 100    = 18 900 Kč
+Oběd:      (95 + 275) × 25 os = 9 250 Kč
+Po obědě:  30 000 − 9 250     = 20 750 Kč
 Celkem:                       30 000 Kč ✓
 ```
 

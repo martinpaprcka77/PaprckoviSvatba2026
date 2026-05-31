@@ -12,11 +12,11 @@
 | 2026-05-29 | Svědci domluveni — Kikinka + Žanetka potvrzeny | Mamka | mandatory | 0 | 0 | [x] | 2026-05-20T14:30 | Hotovo ✓ — Kikinka za Mamku, Žanetka za Taťku |
 | 2026-06-30 | Domluva oddávajícího — 11:15 Nová radnice Ostrava | Mamka | mandatory | 0 | 0 | [x] | 2026-05-20T14:30 | Hotovo ✓ — Kikinka → Mamka |
 | 2026-07-10 | Svatební oznámení — rozeslání hostům + RSVP | Mamka | mandatory | 1500 | _ | [ ] | _ | _ |
-| 2026-06-01 | Zlatá koliba — menu + catering, finální počet osob | Žanetka | mandatory | 30000 | _ | [ ] | _ | 30 lidí; polévka 95 Kč/os; druhé 275 Kč/os; U Miloše, Karasova 1130/23 — návštěva tento/příští týden |
+| 2026-06-01 | Zlatá koliba — menu + catering, finální počet osob | Žanetka | mandatory | 30000 | _ | [ ] | _ | 25 hostů (aktuálně); polévka 95 Kč/os; druhé 275 Kč/os; U Miloše, Karasova 1130/23 — návštěva tento/příští týden |
 | 2026-07-15 | Svatební šaty (Mamka) — výběr, nákup, úpravy | Mamka | mandatory | 12000 | _ | [ ] | _ | Plán ~11 100 Kč, max 15 000 Kč |
 | 2026-06-15 | Oblek a sako (Taťka) — výběr a nákup | Taťka | mandatory | 8000 | _ | [ ] | _ | Posunuto na dřív — vybrat a koupit včas |
 | 2026-06-15 | Prstýnky — nákup a úprava | Taťka | mandatory | 10000 | _ | [ ] | _ | Vyhlédnuty na schůzce 25. 5. — objednat a vyzvednout |
-| 2026-07-15 | Finální seznam hostů — potvrzení pro catering | Mamka | mandatory | 0 | _ | [ ] | _ | Odhad 14–20 hostů |
+| 2026-07-15 | Finální seznam hostů — potvrzení pro catering | Mamka | mandatory | 0 | _ | [ ] | _ | Odhad 25 hostů |
 | 2026-08-01 | Nápoje a bar — nákup vín, šampaňského, nealko | Žanetka | mandatory | 6000 | _ | [ ] | _ | Součást domluvy s Milošem |
 | 2026-08-01 | Doplňky — boty, šperky (Mamka) | Mamka | mandatory | 3000 | _ | [ ] | _ | _ |
 | 2026-08-01 | Ubytování pro hosty — domluva a rezervace | Žanetka | mandatory | 5000 | _ | [ ] | _ | _ |
