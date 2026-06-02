@@ -20,8 +20,10 @@ jobs:
         run: |
           mkdir deploy_out
           cp index.html deploy_out/
+          cp planner.html deploy_out/
+          cp index_june.html deploy_out/
+          cp -r data deploy_out/
           cp -r public/* deploy_out/ 2>/dev/null || true
-          cp -r v2 deploy_out/ 2>/dev/null || true
           cp -r media deploy_out/ 2>/dev/null || true
       - uses: actions/configure-pages@v4
       - uses: actions/upload-pages-artifact@v3
