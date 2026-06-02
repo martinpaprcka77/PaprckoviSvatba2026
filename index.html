@@ -1,679 +1,591 @@
 <!DOCTYPE html>
 <html lang="cs">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="theme-color" content="#722f37" media="(prefers-color-scheme: light)">
-    <meta name="theme-color" content="#1a1516" media="(prefers-color-scheme: dark)">
-    <title>💍 Svatba Paprčkovi 2026</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary: hsl(353, 42%, 32%); --primary-light: hsl(353, 42%, 46%);
-            --primary-pastel: hsl(353, 50%, 96%); --accent: hsl(43, 62%, 53%);
-            --success: hsl(145, 63%, 42%); --success-pastel: hsl(145, 50%, 95%);
-            --danger: hsl(6, 78%, 57%); --danger-pastel: hsl(6, 80%, 96%);
-            --warning: hsl(38, 92%, 50%); --warning-pastel: hsl(38, 90%, 95%);
-            --bg: #FAF6F0; --bg-card: #FFFFFF; --text: #2B2625;
-            --text-muted: #7E7270; --border: #EFEAE2; --border-dark: #D1C5B6;
-            --safe-top: env(safe-area-inset-top, 0px);
-            --safe-bottom: env(safe-area-inset-bottom, 0px);
-        }
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --primary-pastel: hsl(353, 30%, 15%); --success-pastel: hsl(145, 30%, 12%);
-                --danger-pastel: hsl(6, 30%, 15%); --warning-pastel: hsl(38, 30%, 12%);
-                --bg: #1A1516; --bg-card: #251F20; --text: #F5ECE9;
-                --text-muted: #A89B99; --border: #352B2C; --border-dark: #4A3E40;
-            }
-        }
-        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-        html { font-size: 16px; -webkit-text-size-adjust: 100%; }
-        body {
-            font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--bg); color: var(--text); margin: 0; padding: 0 0 40px;
-            line-height: 1.5; transition: background 0.3s, color 0.3s;
-        }
-        h1, h2 { font-family: 'Playfair Display', Georgia, serif; font-weight: 700; margin: 0; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#f5e6dc">
+<title>💍 Svatba Paprčkovi 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Lato:wght@300;400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --rose: #c9756a;
+  --rose-light: #f5e6dc;
+  --rose-mid: #e8c5b0;
+  --gold: #c9a96e;
+  --gold-dark: #a8893a;
+  --text: #4a2e28;
+  --text-muted: #9e7060;
+  --bg: #fdf8f4;
+  --white: #ffffff;
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+}
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; margin: 0; padding: 0; }
+html { font-size: 16px; -webkit-text-size-adjust: 100%; }
+body {
+  font-family: 'Lato', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  padding-bottom: calc(32px + var(--safe-bottom));
+  min-height: 100vh;
+}
 
-        /* Header */
-        .header {
-            background: linear-gradient(135deg, var(--primary), var(--primary-light));
-            color: #fff; padding: 32px 20px; text-align: center;
-            padding-top: calc(32px + var(--safe-top)); position: relative; overflow: hidden;
-            border-bottom: 2px solid var(--accent);
-        }
-        .header::before {
-            content: '💍'; position: absolute; top: -15px; right: -15px;
-            font-size: 140px; opacity: 0.07; transform: rotate(-15deg); pointer-events: none;
-        }
-        .header h1 { font-size: 1.7rem; font-weight: 800; letter-spacing: -0.5px; position: relative; }
-        .header .sub { font-size: 0.85rem; opacity: 0.9; margin-top: 4px; position: relative; }
-        .header .countdown { font-size: 2.4rem; font-weight: 800; margin-top: 12px; font-family: 'Playfair Display', Georgia, serif; position: relative; }
-        .header .countdown-label { font-size: 0.7rem; opacity: 0.8; text-transform: uppercase; letter-spacing: 1px; }
+/* ── HERO ── */
+.hero {
+  background: linear-gradient(160deg, #fdf0e8 0%, #f9e4d4 60%, #f2d5c0 100%);
+  text-align: center;
+  padding: calc(40px + var(--safe-top)) 24px 36px;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid var(--rose-mid);
+}
+.hero-floral {
+  position: absolute; font-size: 110px; opacity: 0.12; pointer-events: none;
+  filter: sepia(60%);
+}
+.hero-floral.tl { top: -20px; left: -20px; transform: rotate(-25deg); }
+.hero-floral.br { bottom: -20px; right: -20px; transform: rotate(15deg); }
+.hero-pre {
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
+  font-size: 10px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+.hero-names {
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(44px, 12vw, 62px);
+  color: var(--gold);
+  line-height: 1.1;
+  text-shadow: 0 2px 12px rgba(201,169,110,0.25);
+}
+.hero-amp {
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(28px, 7vw, 38px);
+  color: var(--rose);
+  display: block;
+  margin: 2px 0;
+}
+.hero-divider {
+  width: 100px; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  margin: 14px auto;
+}
+.hero-date {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  color: var(--text);
+  letter-spacing: 1px;
+}
+.hero-place {
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-top: 5px;
+  line-height: 1.6;
+}
+.hero-countdown {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+.cd-box {
+  background: rgba(255,255,255,0.7);
+  border: 1px solid var(--rose-mid);
+  border-radius: 10px;
+  padding: 8px 12px;
+  min-width: 52px;
+  backdrop-filter: blur(4px);
+}
+.cd-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 26px;
+  color: var(--gold);
+  display: block;
+  line-height: 1;
+  font-weight: 600;
+}
+.cd-unit {
+  font-size: 8px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
 
-        /* Container */
-        .container { max-width: 700px; margin: 0 auto; padding: 16px; }
+/* ── CONTAINER ── */
+.container { max-width: 540px; margin: 0 auto; padding: 0 14px; }
 
-        /* Cards */
-        .card { background: var(--bg-card); border-radius: 20px; padding: 20px; margin-bottom: 14px; border: 1px solid var(--border); }
-        .card h2 { font-size: 1.15rem; margin-bottom: 12px; }
+/* ── SECTION ── */
+.section {
+  margin-top: 20px;
+  background: var(--white);
+  border-radius: 16px;
+  border: 1px solid var(--rose-mid);
+  overflow: hidden;
+}
+.section-head {
+  padding: 16px 18px 0;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+.section-title {
+  font-family: 'Great Vibes', cursive;
+  font-size: 28px;
+  color: var(--gold);
+}
+.section-sub {
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.section-body { padding: 10px 18px 16px; }
 
-        /* Progress */
-        .progress-section { margin-bottom: 16px; }
-        .progress-label { display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 4px; }
-        .progress-bar { height: 10px; background: var(--border); border-radius: 5px; overflow: hidden; margin-bottom: 10px; }
-        .progress-fill { height: 100%; border-radius: 5px; transition: width 0.4s; }
-        .progress-fill.overall { background: linear-gradient(90deg, var(--success), hsl(145, 50%, 50%)); }
-        .progress-fill.mandatory { background: linear-gradient(90deg, var(--danger), hsl(6, 60%, 55%)); }
+/* ── PROGRESS ── */
+.progress-wrap { margin-bottom: 14px; }
+.progress-row { display: flex; justify-content: space-between; font-size: 11px; color: var(--text-muted); margin-bottom: 4px; }
+.progress-bar { height: 6px; background: var(--rose-light); border-radius: 3px; overflow: hidden; margin-bottom: 8px; }
+.progress-fill { height: 100%; border-radius: 3px; background: linear-gradient(90deg, var(--rose), var(--gold)); transition: width 0.5s; }
 
-        /* Mandatory summary */
-        .mandatory-grid { display: grid; gap: 6px; }
-        .mandatory-item { display: flex; justify-content: space-between; align-items: center; padding: 8px 12px; background: var(--danger-pastel); border-radius: 10px; font-size: 0.85rem; }
-        .mandatory-item .dl { font-weight: 700; color: var(--danger); font-size: 0.75rem; }
+/* ── FILTERS ── */
+.filters { display: flex; gap: 6px; flex-wrap: wrap; padding: 10px 18px 0; }
+.filter-btn {
+  padding: 5px 12px;
+  border-radius: 20px;
+  border: 1px solid var(--rose-mid);
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 11px;
+  font-family: 'Lato', sans-serif;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  transition: all 0.2s;
+}
+.filter-btn.active {
+  background: linear-gradient(135deg, var(--rose), var(--gold));
+  color: white;
+  border-color: transparent;
+}
 
-        /* Filters */
-        .filters { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px; }
-        .filters button {
-            padding: 6px 14px; border-radius: 20px; border: 1px solid var(--border);
-            background: var(--bg); color: var(--text-muted); font-size: 0.78rem;
-            font-weight: 500; cursor: pointer; font-family: inherit; transition: all 0.2s;
-        }
-        .filters button.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+/* ── TASK ITEM ── */
+.task-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--rose-light);
+}
+.task-item:last-child { border-bottom: none; }
+.task-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  margin-top: 5px;
+  flex-shrink: 0;
+}
+.dot-mandatory { background: var(--rose); }
+.dot-important { background: var(--gold); }
+.dot-optional  { background: var(--rose-mid); }
+.task-content { flex: 1; min-width: 0; }
+.task-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.3;
+}
+.task-meta {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 3px;
+}
+.task-meta span {
+  font-size: 10px;
+  color: var(--text-muted);
+  letter-spacing: 0.3px;
+}
+.task-deadline { color: var(--rose) !important; font-weight: 400; }
+.task-note {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 3px;
+  font-style: italic;
+  line-height: 1.4;
+}
 
-        /* Hide-done toggle */
-        .hide-done-toggle {
-            display: inline-flex; align-items: center; gap: 4px;
-            padding: 5px 12px; border-radius: 20px; border: 1.5px solid var(--border-dark);
-            background: var(--bg-card); color: var(--text-muted); font-size: 0.74rem;
-            font-weight: 600; cursor: pointer; font-family: inherit; transition: all 0.2s;
-            white-space: nowrap;
-        }
-        .hide-done-toggle.active { background: var(--success); color: #fff; border-color: var(--success); }
-        .hide-done-toggle .dot {
-            width: 8px; height: 8px; border-radius: 50%; display: inline-block;
-            background: var(--text-muted); transition: background 0.2s;
-        }
-        .hide-done-toggle.active .dot { background: #fff; }
+/* ── UPCOMING ── */
+.upcoming-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--rose-light);
+  font-size: 13px;
+}
+.upcoming-item:last-child { border-bottom: none; }
+.upcoming-name { font-family: 'Cormorant Garamond', serif; font-size: 14px; color: var(--text); }
+.upcoming-date {
+  font-size: 10px;
+  color: var(--rose);
+  background: var(--rose-light);
+  padding: 2px 8px;
+  border-radius: 10px;
+  white-space: nowrap;
+  margin-left: 8px;
+  flex-shrink: 0;
+}
 
-        /* Budget collapse */
-        .budget-header {
-            display: flex; justify-content: space-between; align-items: center;
-            cursor: pointer; user-select: none;
-        }
-        .budget-collapse-btn {
-            font-size: 0.75rem; color: var(--text-muted); font-weight: 500;
-            transition: transform 0.3s;
-        }
-        .budget-collapse-btn.open { transform: rotate(180deg); }
-        .budget-body { overflow: hidden; transition: max-height 0.35s ease; }
-        .budget-body.collapsed { max-height: 0 !important; }
-        .budget-summary { display: none; font-size: 0.85rem; padding: 8px 0; }
-        .budget-summary.visible { display: block; }
+/* ── TIMELINE ── */
+.timeline-item { display: flex; gap: 12px; padding: 7px 0; align-items: flex-start; }
+.tl-time {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--gold);
+  min-width: 42px;
+  padding-top: 1px;
+}
+.tl-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--rose-mid);
+  margin-top: 5px;
+  flex-shrink: 0;
+}
+.tl-text { font-size: 14px; color: var(--text); line-height: 1.4; }
 
-        /* Task items */
-        .task-item { display: flex; align-items: flex-start; gap: 10px; padding: 10px 0; border-bottom: 1px solid var(--border); }
-        .task-item:last-child { border-bottom: none; }
-        .task-item.done { opacity: 0.45; }
-        .task-item.done .task-name { text-decoration: line-through; }
-        .task-check { width: 22px; height: 22px; border-radius: 50%; border: 2px solid var(--border-dark); flex-shrink: 0; cursor: pointer; display: flex; align-items: center; justify-content: center; margin-top: 1px; transition: all 0.2s; }
-        .task-check.checked { background: var(--success); border-color: var(--success); color: #fff; }
-        .task-check.checked::after { content: '✓'; font-size: 0.7rem; font-weight: 700; }
-        .task-content { flex: 1; min-width: 0; }
-        .task-name { font-weight: 600; font-size: 0.9rem; }
-        .task-meta { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 2px; }
-        .task-meta span { font-size: 0.72rem; color: var(--text-muted); }
-        .badge { display: inline-block; padding: 1px 7px; border-radius: 8px; font-size: 0.68rem; font-weight: 600; letter-spacing: 0.3px; }
-        .badge-man { background: var(--danger-pastel); color: var(--danger); }
-        .badge-imp { background: var(--warning-pastel); color: var(--warning); }
-        .badge-opt { background: hsl(43, 80%, 95%); color: var(--accent); }
+/* ── GUESTS ── */
+.guest-group-title {
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin: 12px 0 6px;
+}
+.guest-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--rose-light);
+  font-size: 13px;
+}
+.guest-item:last-child { border-bottom: none; }
+.guest-name { font-family: 'Cormorant Garamond', serif; font-size: 14px; }
+.guest-count {
+  font-size: 11px;
+  color: var(--text-muted);
+  background: var(--rose-light);
+  padding: 2px 8px;
+  border-radius: 10px;
+}
+.guest-total {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--gold);
+  margin-top: 10px;
+  text-align: right;
+}
 
-        /* Budget */
-        .budget-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
-        .budget-table td { padding: 7px 4px; border-bottom: 1px solid var(--border); }
-        .budget-table td:last-child { text-align: right; }
-        .budget-table input { width: 100px; padding: 4px 8px; border: 1px solid var(--border); border-radius: 8px; font-size: 0.85rem; font-family: inherit; text-align: right; background: var(--bg); color: var(--text); }
-        .budget-total { font-weight: 700; font-size: 1rem; }
-        .budget-tolerance { font-size: 0.75rem; color: var(--text-muted); }
+/* ── PLANNER LINK ── */
+.planner-link {
+  display: block;
+  text-align: center;
+  margin: 20px 0 0;
+  padding: 13px;
+  background: linear-gradient(135deg, rgba(201,169,110,0.12), rgba(201,117,106,0.08));
+  border: 1px solid var(--rose-mid);
+  border-radius: 16px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 14px;
+  color: var(--text-muted);
+  text-decoration: none;
+  letter-spacing: 1px;
+}
+.planner-link span { color: var(--gold); }
 
-        /* Schedule */
-        .schedule-item { display: flex; gap: 8px; padding: 5px 0; font-size: 0.85rem; }
-        .schedule-time { font-weight: 700; min-width: 55px; color: var(--primary); }
+/* ── FOOTER ── */
+.footer {
+  text-align: center;
+  padding: 24px 16px 8px;
+  font-size: 10px;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+}
+.footer-names {
+  font-family: 'Great Vibes', cursive;
+  font-size: 28px;
+  color: var(--gold);
+  display: block;
+  margin-bottom: 4px;
+}
 
-        /* Buttons */
-        .btn { display: inline-block; padding: 10px 20px; border-radius: 12px; font-weight: 600; font-size: 0.85rem; cursor: pointer; border: none; font-family: inherit; }
-        .btn-outline { background: transparent; border: 1.5px solid var(--border-dark); color: var(--text); }
-        .btn-danger { background: var(--danger); color: #fff; }
-
-        /* Toast */
-        .toast { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); background: var(--text); color: var(--bg); padding: 10px 24px; border-radius: 20px; font-size: 0.85rem; z-index: 100; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
-        .toast.show { opacity: 1; }
-
-        /* Footer */
-        .footer { text-align: center; font-size: 0.7rem; color: var(--text-muted); padding: 8px; }
-    </style>
+/* ── LOADING ── */
+.loading { text-align: center; padding: 20px; color: var(--text-muted); font-size: 12px; letter-spacing: 2px; }
+</style>
 </head>
 <body>
 
-<div class="header">
-    <h1>💍 Svatba Paprčkovi 2026</h1>
-    <div class="sub">29. srpna 2026 · Nová radnice Ostrava · Koliba U Zlatého Jarouše</div>
-    <div class="countdown" id="countdown">--</div>
-    <div class="countdown-label" id="countdownLabel">dní do svatby</div>
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-floral tl">🌸</div>
+  <div class="hero-floral br">🌸</div>
+  <div class="hero-pre">Vás srdečně zvou na svatbu</div>
+  <div class="hero-names">
+    Dagmar Sobková
+    <span class="hero-amp">&amp;</span>
+    Martin Paprčka
+  </div>
+  <div class="hero-divider"></div>
+  <div class="hero-date">29. srpna 2026</div>
+  <div class="hero-place">Nová radnice Ostrava<br>Koliba U Zlatého Jarouše</div>
+  <div class="hero-countdown" id="countdown">
+    <div class="cd-box"><span class="cd-num" id="cd-d">--</span><span class="cd-unit">dní</span></div>
+    <div class="cd-box"><span class="cd-num" id="cd-h">--</span><span class="cd-unit">hodin</span></div>
+    <div class="cd-box"><span class="cd-num" id="cd-m">--</span><span class="cd-unit">minut</span></div>
+  </div>
 </div>
 
 <div class="container">
 
-    <!-- Progress -->
-    <div class="card">
-        <div class="progress-section">
-            <div class="progress-label"><span>✅ Splněno (všechny úkoly)</span><span id="overallPercent">0%</span></div>
-            <div class="progress-bar"><div class="progress-fill overall" id="overallFill" style="width:0%"></div></div>
-            <div class="progress-label"><span>🔴 Mandatory splněno</span><span id="mandatoryPercent">0%</span></div>
-            <div class="progress-bar"><div class="progress-fill mandatory" id="mandatoryFill" style="width:0%"></div></div>
-        </div>
-        <h2>⏰ Nejbližší termíny</h2>
-        <div class="mandatory-grid" id="mandatorySummary"></div>
+  <!-- UPCOMING -->
+  <div class="section" id="upcomingSection" style="display:none">
+    <div class="section-head">
+      <span class="section-title">Nejbližší</span>
+      <span class="section-sub">termíny</span>
     </div>
+    <div class="section-body" id="upcomingBody"></div>
+  </div>
 
-    <!-- Checklist -->
-    <div class="card">
-        <h2>📋 Checklist</h2>
-        <div style="display:flex;align-items:center;gap:6px;">
-            <div class="filters" id="filters" style="margin-bottom:0;flex:1;"></div>
-            <button class="hide-done-toggle active" id="hideDoneToggle" onclick="toggleHideDone()" title="Schovat hotové">
-                👁 <span class="dot"></span>
-            </button>
-        </div>
-        <div id="tasksContainer"></div>
-        <div style="margin-top:12px; text-align:center;">
-            <button class="btn btn-outline" onclick="resetAll()">🔄 Reset checkboxů</button>
-        </div>
+  <!-- CHECKLIST -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-title">Přípravy</span>
+      <span class="section-sub" id="taskCount">načítám…</span>
     </div>
-
-    <!-- Budget -->
-    <div class="card">
-        <div class="budget-header" onclick="toggleBudget()">
-            <h2>💰 Rozpočet</h2>
-            <span class="budget-collapse-btn" id="budgetCollapseBtn">▼</span>
-        </div>
-        <div class="budget-summary visible" id="budgetSummary">
-            <span style="font-weight:700;">CELKEM: <span id="budgetSummaryTotal">0 Kč</span></span>
-            <span style="color:var(--text-muted);margin-left:8px;font-size:0.8rem;">(klikni pro detail)</span>
-        </div>
-        <div class="budget-body collapsed" id="budgetBody" style="max-height:2000px;">
-            <table class="budget-table">
-                <thead><tr><td><strong>Položka</strong></td><td style="text-align:right"><strong>Odhad (Kč)</strong></td></tr></thead>
-                <tbody id="budgetTableBody"></tbody>
-                <tfoot>
-                    <tr><td class="budget-total">CELKEM</td><td class="budget-total" id="totalBudgetVal">0 Kč</td></tr>
-                    <tr><td class="budget-tolerance" colspan="2">Max tolerance 120%: <span id="maxToleranceVal">0 Kč</span></td></tr>
-                </tfoot>
-            </table>
-        </div>
+    <div class="filters" id="filters">
+      <button class="filter-btn active" data-f="all">Vše</button>
+      <button class="filter-btn" data-f="mandatory">🔴 Povinné</button>
+      <button class="filter-btn" data-f="important">🟡 Důležité</button>
+      <button class="filter-btn" data-f="optional">🟢 Volitelné</button>
     </div>
-
-    <!-- Hosté -->
-    <h2>👥 Seznam hostů</h2>
-    <div id="guestsContainer" style="margin-bottom:14px;">Načítám…</div>
-
-    <!-- Schedule -->
-    <div class="card">
-        <h2>📅 Harmonogram — 29. srpna 2026</h2>
-        <div class="schedule-item"><span class="schedule-time">10:45</span> Sraz na Nové radnici Ostrava</div>
-        <div class="schedule-item"><span class="schedule-time">11:15</span> Obřad</div>
-        <div class="schedule-item"><span class="schedule-time">12:00</span> Gratulace, společné focení před radnicí</div>
-        <div class="schedule-item"><span class="schedule-time">12:30</span> Přesun do Zlaté koliby (U Miloše)</div>
-        <div class="schedule-item"><span class="schedule-time">13:00</span> Uvítání hostů, welcome drink</div>
-        <div class="schedule-item"><span class="schedule-time">14:00</span> Hostina — menu od Miloše</div>
-        <div class="schedule-item"><span class="schedule-time">16:00</span> První tanec, hry, volná zábava</div>
-        <div class="schedule-item"><span class="schedule-time">19:00</span> Krájení dortu 🍰, přípitek</div>
-        <div class="schedule-item"><span class="schedule-time">20:00</span> Volný konec, úklid</div>
+    <div class="section-body">
+      <div class="progress-wrap">
+        <div class="progress-row"><span>Celkový postup</span><span id="pct">0%</span></div>
+        <div class="progress-bar"><div class="progress-fill" id="pctFill" style="width:0%"></div></div>
+      </div>
+      <div id="tasksBody"><div class="loading">načítám…</div></div>
     </div>
+  </div>
 
-    <div class="footer">
-        v1.3.2 · build <a href="https://github.com/doma77git/PaprckoviSvatba2026/commit/5d0e0cc" style="color:var(--primary)">5d0e0cc</a> · 2026-05-27 22:34
-        <br>Data: <a href="https://github.com/doma77git/PaprckoviSvatba2026/blob/master/data/tasks.md" style="color:var(--primary)">tasks.md</a>
-        · <span id="syncStatus"></span>
+  <!-- HARMONOGRAM -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-title">Harmonogram</span>
+      <span class="section-sub">29. srpna 2026</span>
     </div>
+    <div class="section-body">
+      <div class="timeline-item"><span class="tl-time">10:45</span><div class="tl-dot"></div><span class="tl-text">Sraz na Nové radnici Ostrava</span></div>
+      <div class="timeline-item"><span class="tl-time">11:15</span><div class="tl-dot" style="background:var(--gold)"></div><span class="tl-text">Obřad 💍</span></div>
+      <div class="timeline-item"><span class="tl-time">12:00</span><div class="tl-dot"></div><span class="tl-text">Gratulace, společné focení</span></div>
+      <div class="timeline-item"><span class="tl-time">12:30</span><div class="tl-dot"></div><span class="tl-text">Přesun do Zlaté koliby (U Miloše)</span></div>
+      <div class="timeline-item"><span class="tl-time">13:00</span><div class="tl-dot"></div><span class="tl-text">Uvítání hostů, welcome drink</span></div>
+      <div class="timeline-item"><span class="tl-time">14:00</span><div class="tl-dot"></div><span class="tl-text">Hostina — menu od Miloše</span></div>
+      <div class="timeline-item"><span class="tl-time">16:00</span><div class="tl-dot"></div><span class="tl-text">První tanec 💃, hry, volná zábava</span></div>
+      <div class="timeline-item"><span class="tl-time">19:00</span><div class="tl-dot" style="background:var(--rose)"></div><span class="tl-text">Krájení dortu 🍰, přípitek</span></div>
+      <div class="timeline-item"><span class="tl-time">20:00</span><div class="tl-dot"></div><span class="tl-text">Volný konec, úklid</span></div>
+    </div>
+  </div>
+
+  <!-- HOSTÉ -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-title">Hosté</span>
+      <span class="section-sub" id="guestCount">načítám…</span>
+    </div>
+    <div class="section-body" id="guestsBody"><div class="loading">načítám…</div></div>
+  </div>
+
+  <!-- PLANNER LINK -->
+  <a class="planner-link" href="planner.html">
+    🗓 <span>Plánovač</span> — pro organizátory
+  </a>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <span class="footer-names">Dagmar &amp; Martin</span>
+    29 · 08 · 2026 · Ostrava
+  </div>
 
 </div>
 
-<div class="toast" id="toast"></div>
-
 <script>
-const WEDDING_DATE = new Date('2026-08-29T11:15:00');
-const DATA_URL = 'https://raw.githubusercontent.com/doma77git/PaprckoviSvatba2026/master/data/tasks.md';
-const GUESTS_URL = 'https://raw.githubusercontent.com/doma77git/PaprckoviSvatba2026/master/data/guests.md';
-const LS_DONE = 'svatba_done_v4';
-const LS_BUDGET = 'svatba_budget_v4';
-const LS_HIDE_DONE = 'svatba_hide_done';
-const LS_BUDGET_COLLAPSED = 'svatba_budget_collapsed';
-let hideDone = true;
-let budgetCollapsed = true;
+const WEDDING = new Date('2026-08-29T11:15:00');
+const RAW = 'https://raw.githubusercontent.com/doma77git/PaprckoviSvatba2026/master/data/';
+const REFRESH_INTERVAL = 12 * 60 * 60 * 1000; // 12h
 
-let tasks = [];
-let guests = { mamka: [], tatka: [], spolecni: [] };
-let completed = {};    // { key: true }
+let tasks = [], guests = { mamka: [], tatka: [], spolecni: [] };
 let currentFilter = 'all';
 
-// Budget — built from tasks.md (MD authoritative), localStorage only stores edits
-let budgetItems = [];        // built from tasks after fetch: {key, name, plan, cost}
-let budgetEdits = {};        // { taskKey: editedCost } — only overrides from MD plan
-
-// ===== PARSE MD =====
-function parseTasksMD(md) {
-    const result = [];
-    const lines = md.split('\n');
-    let inTable = false;
-    for (const line of lines) {
-        const t = line.trim();
-        if (t.startsWith('| Termín') && t.includes('Úkol')) { inTable = true; continue; }
-        if (t.startsWith('|--')) continue;
-        if (!inTable || !t.startsWith('|')) continue;
-        if (t.startsWith('## ') || t.startsWith('# ')) { inTable = false; continue; }
-
-        const cells = t.split('|').map(c => c.trim()).filter(c => c !== '');
-        if (cells.length < 9) continue;
-        const [termin, ukol, kdo, kat, planStr, skutStr, stav, timestamp, poznamka] = cells;
-        const plan = parseInt(planStr.replace(/[^0-9]/g, '')) || 0;
-        const skut = skutStr === '_' ? null : (parseInt(skutStr.replace(/[^0-9]/g, '')) || 0);
-
-        result.push({
-            deadline: termin, title: ukol, assign: kdo, cat: kat,
-            price: plan, actualCost: skut,
-            doneInMD: stav.includes('[x]'),
-            note: poznamka === '_' ? '' : poznamka,
-            key: termin + '|' + ukol
-        });
+// ── CSV PARSER ──
+function parseCSV(text) {
+  const lines = text.trim().split('\n');
+  const headers = lines[0].split(',').map(h => h.trim());
+  return lines.slice(1).map(line => {
+    // handle commas inside quoted fields
+    const cols = [];
+    let cur = '', inQ = false;
+    for (const ch of line) {
+      if (ch === '"') { inQ = !inQ; }
+      else if (ch === ',' && !inQ) { cols.push(cur.trim()); cur = ''; }
+      else cur += ch;
     }
-    return result;
+    cols.push(cur.trim());
+    const obj = {};
+    headers.forEach((h, i) => obj[h] = cols[i] !== undefined ? cols[i] : '');
+    return obj;
+  });
 }
 
-function parseGuestsMD(md) {
-    const result = { mamka: [], tatka: [], spolecni: [] };
-    const lines = md.split('\n');
-    let side = null, inTable = false;
-    for (const line of lines) {
-        const t = line.trim();
-        if (t.startsWith('## Mamka')) { side = 'mamka'; inTable = false; continue; }
-        if (t.startsWith('## Taťka')) { side = 'tatka'; inTable = false; continue; }
-        if (t.startsWith('## Společní') || t.startsWith('## Spolecni')) { side = 'spolecni'; inTable = false; continue; }
-        if (t.startsWith('## ')) { side = null; inTable = false; continue; }
-        if (t.startsWith('| Jméno') && t.includes('Počet')) { inTable = true; continue; }
-        if (t.startsWith('|--') || t.startsWith('| -')) continue;
-        if (!inTable || !t.startsWith('|') || !side) continue;
-
-        const cells = t.split('|').map(c => c.trim()).filter(c => c !== '');
-        if (cells.length < 4) continue;
-        const jmeno = cells[0];
-        const pocetStr = cells[1];
-        const jidlo = cells.length >= 3 ? cells[2] : '_';
-        const potvrzeno = cells.length >= 5 ? cells[4] : (cells.length >= 4 ? cells[3] : '_');
-        if (jmeno.startsWith('_')) continue;
-        const pocet = pocetStr === '?' ? -1 : (parseInt(pocetStr) || 1);
-        result[side].push({ name: jmeno, count: pocet, food: jidlo !== '_' && jidlo !== '' ? jidlo : null, confirmed: potvrzeno !== '_' && potvrzeno !== '' ? potvrzeno : null });
-    }
-    return result;
+// ── FETCH ──
+async function fetchCSV(name) {
+  const r = await fetch(RAW + name + '?_=' + Date.now(), { cache: 'no-store' });
+  if (!r.ok) throw new Error(name + ' ' + r.status);
+  return parseCSV(await r.text());
 }
 
-// ===== FETCH =====
-async function fetchData() {
-    try {
-        const res = await fetch(DATA_URL, { cache: 'no-cache' });
-        if (res.ok) {
-            tasks = parseTasksMD(await res.text());
-            document.getElementById('syncStatus').textContent =
-                'Naposledy: ' + new Date().toLocaleTimeString('cs');
-            return true;
-        }
-    } catch (e) { console.error('Fetch tasks:', e); }
-    document.getElementById('syncStatus').textContent = '⚠️ Offline — zobrazuji lokální data';
-    return false;
+// ── COUNTDOWN ──
+function tick() {
+  const diff = WEDDING - new Date();
+  if (diff <= 0) {
+    document.getElementById('cd-d').textContent = '🎉';
+    document.getElementById('cd-h').textContent = '';
+    document.getElementById('cd-m').textContent = '';
+    return;
+  }
+  const d = Math.floor(diff / 86400000);
+  const h = Math.floor((diff % 86400000) / 3600000);
+  const m = Math.floor((diff % 3600000) / 60000);
+  document.getElementById('cd-d').textContent = d;
+  document.getElementById('cd-h').textContent = String(h).padStart(2,'0');
+  document.getElementById('cd-m').textContent = String(m).padStart(2,'0');
 }
 
-async function fetchGuests() {
-    try {
-        const res = await fetch(GUESTS_URL, { cache: 'no-cache' });
-        if (res.ok) {
-            guests = parseGuestsMD(await res.text());
-            return true;
-        }
-    } catch (e) { console.error('Fetch guests:', e); }
-    return false;
+// ── FORMAT DATE ──
+function fmtDate(s) {
+  const d = new Date(s);
+  return d.getDate() + '. ' + (d.getMonth()+1) + '.';
 }
 
-// ===== LOCAL STORAGE =====
-function loadState() {
-    try {
-        const d = localStorage.getItem(LS_DONE);
-        if (d) completed = JSON.parse(d);
-        const b = localStorage.getItem(LS_BUDGET);
-        if (b) {
-            const saved = JSON.parse(b);
-            if (Array.isArray(saved)) {
-                // Old format [{name, cost}] — defer migration until budgetItems are built
-                window._pendingBudgetMigration = saved;
-            } else {
-                budgetEdits = saved;
-            }
-        }
-    } catch (e) {}
-    loadHideDone();
-    loadBudgetCollapsed();
-}
-function saveDone() {
-    try { localStorage.setItem(LS_DONE, JSON.stringify(completed)); } catch (e) {}
-}
-function saveBudget() {
-    try { localStorage.setItem(LS_BUDGET, JSON.stringify(budgetEdits)); } catch (e) {}
-}
-
-function buildBudget() {
-    budgetItems = tasks
-        .filter(t => t.price > 0)  // skip 0 Kč tasks — no budget impact
-        .map(t => ({
-            key: t.key,
-            name: t.title,
-            plan: t.price,
-            cost: budgetEdits[t.key] !== undefined ? budgetEdits[t.key] : t.price
-        }));
-}
-
-function loadHideDone() {
-    try { const v = localStorage.getItem(LS_HIDE_DONE); if (v !== null) hideDone = (v === 'true'); } catch (e) {}
-}
-function saveHideDone() {
-    try { localStorage.setItem(LS_HIDE_DONE, hideDone.toString()); } catch (e) {}
-}
-function loadBudgetCollapsed() {
-    try { const v = localStorage.getItem(LS_BUDGET_COLLAPSED); if (v !== null) budgetCollapsed = (v === 'true'); } catch (e) {}
-}
-function saveBudgetCollapsed() {
-    try { localStorage.setItem(LS_BUDGET_COLLAPSED, budgetCollapsed.toString()); } catch (e) {}
-}
-
-// ===== RENDER =====
-function updateCountdown() {
-    const diff = Math.ceil((WEDDING_DATE - new Date()) / (1000 * 60 * 60 * 24));
-    document.getElementById('countdown').textContent = diff > 0 ? diff : '🎉';
-    document.getElementById('countdownLabel').textContent = diff > 0 ? 'dní do svatby' : 'Svatba!';
-}
-
-function computeProgress() {
-    const total = tasks.length;
-    const mandatoryTasks = tasks.filter(t => t.cat === 'mandatory');
-    let doneTotal = 0, doneMan = 0;
-    tasks.forEach(t => {
-        if (completed[t.key]) { doneTotal++; if (t.cat === 'mandatory') doneMan++; }
-    });
-    const op = total ? Math.round(doneTotal / total * 100) : 0;
-    const mp = mandatoryTasks.length ? Math.round(doneMan / mandatoryTasks.length * 100) : 0;
-    document.getElementById('overallPercent').textContent = op + '%';
-    document.getElementById('overallFill').style.width = op + '%';
-    document.getElementById('mandatoryPercent').textContent = mp + '%';
-    document.getElementById('mandatoryFill').style.width = mp + '%';
-}
-
-function renderMandatorySummary() {
-    const mandatory = tasks.filter(t => t.cat === 'mandatory' && !completed[t.key])
-        .sort((a, b) => new Date(a.deadline) - new Date(b.deadline)).slice(0, 6);
-    document.getElementById('mandatorySummary').innerHTML = mandatory.length
-        ? mandatory.map(t => `
-            <div class="mandatory-item">
-                <span>${t.title}</span>
-                <span class="dl">⏰ ${formatDate(t.deadline)}</span>
-            </div>`).join('')
-        : '<div style="text-align:center;color:var(--text-muted);padding:8px;">Všechny povinné úkoly hotovy ✅</div>';
-}
-
+// ── RENDER TASKS ──
 function renderTasks() {
-    let filtered = [...tasks];
-    if (currentFilter === 'mandatory') filtered = filtered.filter(t => t.cat === 'mandatory');
-    else if (currentFilter === 'important') filtered = filtered.filter(t => t.cat === 'important');
-    else if (currentFilter === 'optional') filtered = filtered.filter(t => t.cat === 'optional');
+  const open = tasks.filter(t => t.status === 'open');
+  const filtered = currentFilter === 'all' ? open : open.filter(t => t.category === currentFilter);
+  filtered.sort((a,b) => new Date(a.deadline) - new Date(b.deadline));
 
-    if (hideDone) filtered = filtered.filter(t => !completed[t.key]);
+  const done = tasks.filter(t => t.status === 'done').length;
+  const pct = tasks.length ? Math.round(done / tasks.length * 100) : 0;
+  document.getElementById('pct').textContent = pct + '%';
+  document.getElementById('pctFill').style.width = pct + '%';
+  document.getElementById('taskCount').textContent = (tasks.length - done) + ' zbývá';
 
-    filtered.sort((a, b) => new Date(a.deadline) - new Date(b.deadline));
+  document.getElementById('tasksBody').innerHTML = filtered.length
+    ? filtered.map(t => `
+      <div class="task-item">
+        <div class="task-dot dot-${t.category}"></div>
+        <div class="task-content">
+          <div class="task-name">${t.title}</div>
+          <div class="task-meta">
+            <span class="task-deadline">⏰ ${fmtDate(t.deadline)}</span>
+            <span>👤 ${t.assign}</span>
+          </div>
+          ${t.note ? `<div class="task-note">${t.note.replace(/;/g, ' ·')}</div>` : ''}
+        </div>
+      </div>`).join('')
+    : '<div style="text-align:center;color:var(--text-muted);padding:16px;font-size:13px;">Vše hotovo ✅</div>';
 
-    const catLabel = { mandatory: 'POVINNÉ', important: 'DŮLEŽITÉ', optional: 'VOLITELNÉ' };
-    const catBadge = { mandatory: 'badge-man', important: 'badge-imp', optional: 'badge-opt' };
-
-    document.getElementById('tasksContainer').innerHTML = filtered.length
-        ? filtered.map(t => {
-            const isDone = completed[t.key] || false;
-            return `
-            <div class="task-item ${isDone ? 'done' : ''}">
-                <div class="task-check ${isDone ? 'checked' : ''}" onclick="toggleTask('${t.key}')"></div>
-                <div class="task-content">
-                    <div class="task-name">${t.title}</div>
-                    <div class="task-meta">
-                        <span>📅 ${formatDate(t.deadline)}</span>
-                        <span>👤 ${t.assign}</span>
-                        <span class="badge ${catBadge[t.cat]}">${catLabel[t.cat]}</span>
-                        ${t.price ? `<span>💰 ${t.price.toLocaleString('cs')} Kč</span>` : ''}
-                    </div>
-                </div>
-            </div>`;
-        }).join('')
-        : '<div style="text-align:center;color:var(--text-muted);padding:16px;">' + (hideDone ? 'Žádné úkoly k zobrazení (hotové schovány)' : 'Žádné úkoly') + '</div>';
+  // upcoming — next 5 open mandatory tasks
+  const upcoming = tasks.filter(t => t.status === 'open' && t.category === 'mandatory')
+    .sort((a,b) => new Date(a.deadline) - new Date(b.deadline)).slice(0,5);
+  if (upcoming.length) {
+    document.getElementById('upcomingSection').style.display = '';
+    document.getElementById('upcomingBody').innerHTML = upcoming.map(t => `
+      <div class="upcoming-item">
+        <span class="upcoming-name">${t.title}</span>
+        <span class="upcoming-date">${fmtDate(t.deadline)}</span>
+      </div>`).join('');
+  }
 }
 
-function renderFilters() {
-    const cats = [
-        { key: 'all', label: 'Vše' },
-        { key: 'mandatory', label: '🔴 Povinné' },
-        { key: 'important', label: '🟡 Důležité' },
-        { key: 'optional', label: '🟢 Volitelné' }
-    ];
-    document.getElementById('filters').innerHTML = cats.map(c => `
-        <button class="${currentFilter === c.key ? 'active' : ''}" data-filter="${c.key}">${c.label}</button>
-    `).join('');
-
-    document.querySelectorAll('#filters button').forEach(btn => {
-        btn.addEventListener('click', () => {
-            currentFilter = btn.dataset.filter;
-            renderFilters();
-            renderTasks();
-        });
-    });
-}
-
+// ── RENDER GUESTS ──
 function renderGuests() {
-    const container = document.getElementById('guestsContainer');
-    const renderTable = (title, rows) => {
-        const total = rows.reduce((s, r) => s + Math.max(0, r.count), 0);
-        return `
-            <h3 style="font-size:0.95rem;margin:14px 0 6px;color:var(--primary);">${title} (${total} osob)</h3>
-            <table style="width:100%;border-collapse:collapse;font-size:0.82rem;">
-                <thead><tr style="color:var(--text-muted);">
-                    <td style="padding:4px;border-bottom:1px solid var(--border);"><strong>Jméno</strong></td>
-                    <td style="padding:4px;border-bottom:1px solid var(--border);text-align:center;"><strong>Počet</strong></td>
-                    <td style="padding:4px;border-bottom:1px solid var(--border);text-align:center;"><strong>Jídlo</strong></td>
-                </tr></thead>
-                <tbody>${rows.map(r => `
-                    <tr>
-                        <td style="padding:3px 4px;border-bottom:1px solid var(--border);">${r.name}</td>
-                        <td style="padding:3px 4px;border-bottom:1px solid var(--border);text-align:center;">${r.count === -1 ? '?' : r.count}</td>
-                        <td style="padding:3px 4px;border-bottom:1px solid var(--border);text-align:center;">${r.food || '—'}</td>
-                    </tr>`).join('')}</tbody>
-            </table>`;
-    };
-
-    let html = '';
-    if (guests.mamka.length) html += renderTable('🌸 Mamčina strana', guests.mamka);
-    else html += '<p style="color:var(--text-muted);font-size:0.82rem;">🌸 Mamčina strana — zatím prázdné</p>';
-    if (guests.tatka.length) html += renderTable('🌿 Taťkova strana', guests.tatka);
-    else html += '<p style="color:var(--text-muted);font-size:0.82rem;">🌿 Taťkova strana — zatím prázdné</p>';
-    if (guests.spolecni && guests.spolecni.length) html += renderTable('🤝 Společní', guests.spolecni);
-
-    const celkem = guests.mamka.reduce((s, r) => s + Math.max(0, r.count), 0)
-                 + guests.tatka.reduce((s, r) => s + Math.max(0, r.count), 0)
-                 + (guests.spolecni || []).reduce((s, r) => s + Math.max(0, r.count), 0);
-    html += `<p style="margin-top:8px;font-weight:600;font-size:0.85rem;">👥 Celkem: ${celkem} hostů</p>`;
-    container.innerHTML = html;
-}
-
-function renderBudget() {
-    const tbody = document.getElementById('budgetTableBody');
-    tbody.innerHTML = '';
-    const catEmoji = { mandatory: '🔴', important: '🟡', optional: '🟢' };
-    budgetItems.forEach((item) => {
-        const tr = document.createElement('tr');
-        const task = tasks.find(t => t.key === item.key);
-        const cat = task ? task.cat : '';
-        tr.innerHTML = `<td>${catEmoji[cat] || ''} ${item.name}</td>`;
-        const td = document.createElement('td');
-        td.style.textAlign = 'right';
-        td.style.whiteSpace = 'nowrap';
-        const input = document.createElement('input');
-        input.type = 'number'; input.value = item.cost; input.step = '500';
-        input.title = 'Plán z MD: ' + item.plan.toLocaleString('cs') + ' Kč';
-        input.addEventListener('change', () => {
-            const val = parseInt(input.value) || 0;
-            budgetItems.find(b => b.key === item.key).cost = val;
-            if (val !== item.plan) budgetEdits[item.key] = val;
-            else delete budgetEdits[item.key];
-            updateBudgetTotal(); saveBudget();
-        });
-        td.appendChild(input);
-        const span = document.createElement('span');
-        span.style.cssText = 'font-size:0.7rem;color:var(--text-muted);margin-left:4px;';
-        span.textContent = '/ ' + item.plan.toLocaleString('cs');
-        td.appendChild(span);
-        tr.appendChild(td);
-        tbody.appendChild(tr);
+  const sides = [
+    { key: 'mamka', label: 'Mamčina strana' },
+    { key: 'tatka', label: 'Taťkova strana' },
+    { key: 'spolecni', label: 'Společní' },
+  ];
+  let total = 0, html = '';
+  sides.forEach(s => {
+    const rows = guests[s.key];
+    if (!rows || !rows.length) return;
+    html += `<div class="guest-group-title">${s.label}</div>`;
+    rows.forEach(g => {
+      total += parseInt(g.count) || 0;
+      html += `<div class="guest-item">
+        <span class="guest-name">${g.name}</span>
+        <span class="guest-count">${g.count} os.</span>
+      </div>`;
     });
-    updateBudgetTotal();
-    updateBudgetUI();
+  });
+  html += `<div class="guest-total">Celkem: ${total} hostů</div>`;
+  document.getElementById('guestsBody').innerHTML = html;
+  document.getElementById('guestCount').textContent = total + ' hostů';
 }
 
-function updateBudgetTotal() {
-    const total = budgetItems.reduce((s, i) => s + i.cost, 0);
-    const max = Math.round(total * 1.2);
-    document.getElementById('totalBudgetVal').textContent = total.toLocaleString('cs') + ' Kč';
-    document.getElementById('maxToleranceVal').textContent = max.toLocaleString('cs') + ' Kč';
-    const el = document.getElementById('totalBudgetVal');
-    el.style.color = total > 100000 ? 'var(--danger)' : 'var(--success)';
-    const summaryEl = document.getElementById('budgetSummaryTotal');
-    if (summaryEl) {
-        summaryEl.textContent = total.toLocaleString('cs') + ' Kč';
-        summaryEl.style.color = total > 100000 ? 'var(--danger)' : 'var(--success)';
-    }
-}
+// ── FILTERS ──
+document.getElementById('filters').addEventListener('click', e => {
+  const btn = e.target.closest('.filter-btn');
+  if (!btn) return;
+  currentFilter = btn.dataset.f;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.toggle('active', b === btn));
+  renderTasks();
+});
 
-// ===== ACTIONS =====
-function toggleTask(key) {
-    // MD-done tasks cannot be unchecked — MD is authoritative
-    const task = tasks.find(t => t.key === key);
-    if (task && task.doneInMD && completed[key]) return;
-    completed[key] = !completed[key];
-    saveDone();
-    renderMandatorySummary();
+// ── INIT ──
+async function init() {
+  tick();
+  setInterval(tick, 30000);
+  try {
+    const [taskData, guestData] = await Promise.all([
+      fetchCSV('tasks.csv'),
+      fetchCSV('guests.csv')
+    ]);
+    tasks = taskData;
+    guestData.forEach(g => {
+      const s = g.side;
+      if (guests[s]) guests[s].push(g);
+    });
     renderTasks();
-    computeProgress();
-}
-function toggleHideDone() {
-    hideDone = !hideDone;
-    saveHideDone();
-    updateHideDoneUI();
-    renderTasks();
-    renderMandatorySummary();
-    showToast(hideDone ? '👁 Hotové schovány' : '👁 Zobrazuji i hotové');
-}
-function updateHideDoneUI() {
-    const btn = document.getElementById('hideDoneToggle');
-    if (btn) { if (hideDone) btn.classList.add('active'); else btn.classList.remove('active'); }
-}
-function toggleBudget() {
-    budgetCollapsed = !budgetCollapsed;
-    saveBudgetCollapsed();
-    updateBudgetUI();
-}
-function updateBudgetUI() {
-    const body = document.getElementById('budgetBody');
-    const btn = document.getElementById('budgetCollapseBtn');
-    const summary = document.getElementById('budgetSummary');
-    if (!body || !btn || !summary) return;
-    if (budgetCollapsed) {
-        body.classList.add('collapsed');
-        btn.classList.remove('open');
-        summary.classList.add('visible');
-    } else {
-        body.classList.remove('collapsed');
-        btn.classList.add('open');
-        summary.classList.remove('visible');
-    }
-}
-
-function resetAll() {
-    // Only reset tasks NOT done in MD — MD is authoritative
-    tasks.forEach(t => { if (!t.doneInMD) completed[t.key] = false; });
-    saveDone();
-    renderMandatorySummary();
-    renderTasks();
-    computeProgress();
-    showToast('🔄 Checkboxy resetovány (MD-hotové zachovány)');
-}
-
-function showToast(msg) {
-    const el = document.getElementById('toast');
-    el.textContent = msg; el.classList.add('show');
-    setTimeout(() => el.classList.remove('show'), 2500);
-}
-
-function formatDate(d) {
-    const date = new Date(d);
-    return date.getDate() + '. ' + (date.getMonth() + 1) + '.';
-}
-
-// ===== INIT =====
-async function _init() {
-    try {
-    loadState();
-    await fetchData();
-    // Merge MD-done tasks into user's localStorage state — don't overwrite manual toggles
-    for (const t of tasks) {
-        if (t.doneInMD) completed[t.key] = true;
-    }
-    saveDone();
-    buildBudget();
-    // Apply any pending budget migration (old format [{name,cost}] → new key-based)
-    if (window._pendingBudgetMigration) {
-        window._pendingBudgetMigration.forEach(s => {
-            const match = budgetItems.find(b => b.name === s.name);
-            if (match) {
-                budgetEdits[match.key] = s.cost;
-                match.cost = s.cost;
-            }
-        });
-        delete window._pendingBudgetMigration;
-        saveBudget();
-    }
-
-    updateCountdown();
-    setInterval(updateCountdown, 60000);
-    renderFilters();
-    renderTasks();
-    renderMandatorySummary();
-    computeProgress();
-    renderBudget();
-    updateHideDoneUI();
-
-    await fetchGuests();
     renderGuests();
-    } catch (e) {
-        console.error('Init error:', e);
-        const el = document.getElementById('syncStatus');
-        if (el) el.textContent = '⚠️ Chyba: ' + (e.message || String(e));
-    }
+  } catch(e) {
+    document.getElementById('tasksBody').innerHTML = '<div class="loading">⚠️ Nepodařilo se načíst data</div>';
+    console.error(e);
+  }
+  // auto-refresh every 12h
+  setInterval(init, REFRESH_INTERVAL);
 }
-document.addEventListener('DOMContentLoaded', _init);
+
+document.addEventListener('DOMContentLoaded', init);
 </script>
 </body>
 </html>
