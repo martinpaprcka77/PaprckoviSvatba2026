@@ -22,6 +22,7 @@ jobs:
           cp index.html deploy_out/
           cp planner.html deploy_out/
           cp index_june.html deploy_out/
+          cp karaoke.html deploy_out/
           cp -r data deploy_out/
           cp -r public/* deploy_out/ 2>/dev/null || true
           cp -r media deploy_out/ 2>/dev/null || true

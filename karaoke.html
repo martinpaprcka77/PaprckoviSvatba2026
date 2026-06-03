@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>🎵 Sweet Caroline — Karaoke</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+html, body {
+  height: 100%;
+  background: #0a0a1a;
+  color: #fff;
+  font-family: 'Georgia', serif;
+  overflow: hidden;
+}
+
+/* PLAYER */
+.player {
+  position: fixed; bottom: 0; left: 0; right: 0;
+  background: rgba(10,10,26,0.95);
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding: 12px 20px 20px;
+  z-index: 100;
+  backdrop-filter: blur(10px);
+}
+.progress-bar {
+  width: 100%; height: 4px;
+  background: rgba(255,255,255,0.15);
+  border-radius: 2px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  position: relative;
+}
+.progress-fill {
+  height: 100%; border-radius: 2px;
+  background: linear-gradient(90deg, #c9756a, #c9a96e);
+  width: 0%; transition: width 0.1s linear;
+  pointer-events: none;
+}
+.controls {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+}
+.btn-play {
+  width: 48px; height: 48px; border-radius: 50%;
+  background: linear-gradient(135deg, #c9756a, #c9a96e);
+  border: none; color: white; font-size: 18px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 4px 16px rgba(201,117,106,0.4);
+}
+.time { font-size: 12px; color: rgba(255,255,255,0.5); min-width: 80px; }
+.track-info { flex: 1; text-align: center; }
+.track-title { font-size: 13px; color: rgba(255,255,255,0.8); }
+.track-artist { font-size: 11px; color: rgba(255,255,255,0.4); margin-top: 2px; }
+
+/* LYRICS */
+.lyrics-container {
+  position: fixed; top: 0; left: 0; right: 0; bottom: 100px;
+  overflow-y: auto;
+  padding: 40px 20px 20px;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+.lyrics-container::-webkit-scrollbar { display: none; }
+
+.lyric-line {
+  text-align: center;
+  padding: 6px 10px;
+  margin: 2px 0;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+.lyric-line .words { display: inline; }
+.lyric-word {
+  display: inline;
+  color: rgba(255,255,255,0.25);
+  font-size: clamp(18px, 5vw, 26px);
+  line-height: 1.5;
+  transition: color 0.15s, text-shadow 0.15s;
+  white-space: pre;
+}
+.lyric-word.active {
+  color: #c9a96e;
+  text-shadow: 0 0 20px rgba(201,169,110,0.8), 0 0 40px rgba(201,169,110,0.4);
+}
+.lyric-word.sung {
+  color: rgba(255,255,255,0.55);
+}
+.lyric-line.current-line {
+  background: rgba(201,169,110,0.08);
+}
+.lyric-line.section-label .lyric-word {
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(201,117,106,0.5) !important;
+  text-shadow: none !important;
+}
+.lyric-line.section-label.sung .lyric-word,
+.lyric-line.section-label.active .lyric-word {
+  color: rgba(201,117,106,0.5) !important;
+}
+
+/* spacers */
+.spacer { height: 30vh; }
+.spacer-sm { height: 16px; }
+
+/* waiting indicator */
+.waiting {
+  text-align: center; padding: 20px;
+  font-size: 12px; letter-spacing: 3px;
+  color: rgba(255,255,255,0.2);
+  text-transform: uppercase;
+  animation: pulse 1.5s infinite;
+}
+@keyframes pulse { 0%,100%{opacity:0.3} 50%{opacity:0.8} }
+</style>
+</head>
+<body>
+
+<div class="lyrics-container" id="lyricsContainer">
+  <div class="spacer"></div>
+  <div id="lyricsInner"></div>
+  <div class="spacer"></div>
+</div>
+
+<div class="player">
+  <div class="progress-bar" id="progressBar">
+    <div class="progress-fill" id="progressFill"></div>
+  </div>
+  <div class="controls">
+    <div class="time" id="timeDisplay">0:00 / 3:26</div>
+    <div class="track-info">
+      <div class="track-title">Sweet Caroline</div>
+      <div class="track-artist">Neil Diamond · Remix</div>
+    </div>
+    <button class="btn-play" id="btnPlay" onclick="togglePlay()">▶</button>
+  </div>
+</div>
+
+<audio id="audio" src="media/Sweet_Caroline_Remix.mp3" preload="auto"></audio>
+
+<script>
+// ── LYRICS DATA ──
+// Format: { t: startTime(s), w: "word", end: endTime(s) }
+// Lines are grouped, section labels marked
+const LINES = [
+  // ── INTRO ──
+  { section: true, words: [{ t: 0.9, w: "— INTRO —", end: 8 }] },
+
+  // ── VERSE 1 ──
+  { section: true, words: [{ t: 8, w: "VERSE 1", end: 9 }] },
+
+  { words: [
+    { t: 9.0,  w: "Where", end: 9.4 },
+    { t: 9.4,  w: " it", end: 9.7 },
+    { t: 9.7,  w: " be", end: 10.0 },
+    { t: 10.0, w: "gan,", end: 10.8 },
+    { t: 11.2, w: " I", end: 11.5 },
+    { t: 11.5, w: " can't", end: 11.9 },
+    { t: 11.9, w: " be", end: 12.2 },
+    { t: 12.2, w: "gin", end: 12.6 },
+    { t: 12.6, w: " to", end: 12.9 },
+    { t: 12.9, w: " know", end: 13.5 },
+    { t: 13.5, w: "in'", end: 14.2 },
+  ]},
+  { words: [
+    { t: 14.8, w: "But", end: 15.1 },
+    { t: 15.1, w: " then", end: 15.5 },
+    { t: 15.5, w: " I", end: 15.7 },
+    { t: 15.7, w: " know", end: 16.2 },
+    { t: 16.2, w: " it's", end: 16.6 },
+    { t: 16.6, w: " grow", end: 17.0 },
+    { t: 17.0, w: "in'", end: 17.5 },
+    { t: 17.5, w: " strong", end: 18.2 },
+  ]},
+
+  { words: [
+    { t: 19.5, w: "Was", end: 19.8 },
+    { t: 19.8, w: " in", end: 20.1 },
+    { t: 20.1, w: " the", end: 20.3 },
+    { t: 20.3, w: " spring,", end: 21.0 },
+    { t: 21.5, w: " and", end: 21.8 },
+    { t: 21.8, w: " spring", end: 22.2 },
+    { t: 22.2, w: " be", end: 22.5 },
+    { t: 22.5, w: "came", end: 22.9 },
+    { t: 22.9, w: " the", end: 23.2 },
+    { t: 23.2, w: " sum", end: 23.5 },
+    { t: 23.5, w: "mer", end: 24.0 },
+  ]},
+  { words: [
+    { t: 24.5, w: "Who'd", end: 24.9 },
+    { t: 24.9, w: " have", end: 25.2 },
+    { t: 25.2, w: " be", end: 25.4 },
+    { t: 25.4, w: "lieved", end: 25.9 },
+    { t: 25.9, w: " you'd", end: 26.3 },
+    { t: 26.3, w: " come", end: 26.7 },
+    { t: 26.7, w: " a", end: 26.9 },
+    { t: 26.9, w: "long", end: 27.5 },
+  ]},
+
+  // ── PRE-CHORUS ──
+  { section: true, words: [{ t: 28.5, w: "PRE-CHORUS", end: 29.5 }] },
+
+  { words: [
+    { t: 29.5, w: "Hands,", end: 30.4 },
+    { t: 31.0, w: " touch", end: 31.5 },
+    { t: 31.5, w: "in'", end: 31.9 },
+    { t: 31.9, w: " hands,", end: 32.7 },
+  ]},
+  { words: [
+    { t: 33.5, w: "Reach", end: 33.9 },
+    { t: 33.9, w: "in'", end: 34.2 },
+    { t: 34.2, w: " out,", end: 34.8 },
+    { t: 35.2, w: " touch", end: 35.7 },
+    { t: 35.7, w: "in'", end: 36.0 },
+    { t: 36.0, w: " me,", end: 36.5 },
+    { t: 36.5, w: " touch", end: 37.0 },
+    { t: 37.0, w: "in'", end: 37.3 },
+    { t: 37.3, w: " you", end: 38.2 },
+  ]},
+
+  // ── CHORUS ──
+  { section: true, words: [{ t: 39.0, w: "CHORUS", end: 40.0 }] },
+
+  { words: [
+    { t: 40.0, w: "Sweet", end: 40.6 },
+    { t: 40.6, w: " Car", end: 41.0 },
+    { t: 41.0, w: "o", end: 41.2 },
+    { t: 41.2, w: "line,", end: 42.0 },
+  ]},
+  { words: [
+    { t: 43.0, w: "Bah", end: 43.4 },
+    { t: 43.4, w: " bah", end: 43.8 },
+    { t: 43.8, w: " bah,", end: 44.4 },
+  ]},
+  { words: [
+    { t: 45.0, w: "Good", end: 45.4 },
+    { t: 45.4, w: " times", end: 46.0 },
+    { t: 46.0, w: " nev", end: 46.3 },
+    { t: 46.3, w: "er", end: 46.6 },
+    { t: 46.6, w: " seemed", end: 47.1 },
+    { t: 47.1, w: " so", end: 47.5 },
+    { t: 47.5, w: " good,", end: 48.3 },
+  ]},
+  { words: [
+    { t: 49.0, w: "I've", end: 49.4 },
+    { t: 49.4, w: " been", end: 49.8 },
+    { t: 49.8, w: " in", end: 50.0 },
+    { t: 50.0, w: "clined", end: 50.6 },
+    { t: 50.6, w: " to", end: 50.9 },
+    { t: 50.9, w: " be", end: 51.2 },
+    { t: 51.2, w: "lieve", end: 51.7 },
+    { t: 51.7, w: " they", end: 52.0 },
+    { t: 52.0, w: " nev", end: 52.3 },
+    { t: 52.3, w: "er", end: 52.6 },
+    { t: 52.6, w: " would", end: 53.1 },
+  ]},
+  { words: [
+    { t: 53.5, w: "But", end: 53.8 },
+    { t: 53.8, w: " now", end: 54.2 },
+    { t: 54.2, w: " I", end: 54.5 },
+  ]},
+  { words: [
+    { t: 55.0, w: "Look", end: 55.4 },
+    { t: 55.4, w: " at", end: 55.7 },
+    { t: 55.7, w: " the", end: 55.9 },
+    { t: 55.9, w: " night", end: 56.4 },
+    { t: 56.4, w: " and", end: 56.7 },
+    { t: 56.7, w: " it", end: 56.9 },
+    { t: 56.9, w: " don't", end: 57.3 },
+    { t: 57.3, w: " seem", end: 57.7 },
+    { t: 57.7, w: " so", end: 58.0 },
+    { t: 58.0, w: " lone", end: 58.4 },
+    { t: 58.4, w: "ly,", end: 59.0 },
+  ]},
+  { words: [
+    { t: 59.5, w: "We", end: 59.8 },
+    { t: 59.8, w: " fill", end: 60.2 },
+    { t: 60.2, w: " it", end: 60.5 },
+    { t: 60.5, w: " up", end: 60.9 },
+    { t: 60.9, w: " with", end: 61.2 },
+    { t: 61.2, w: " love", end: 62.0 },
+  ]},
+
+  // ── VERSE 2 ──
+  { section: true, words: [{ t: 63.5, w: "VERSE 2", end: 64.5 }] },
+
+  { words: [
+    { t: 64.5, w: "Warm,", end: 65.4 },
+    { t: 66.0, w: " touch", end: 66.4 },
+    { t: 66.4, w: "in'", end: 66.7 },
+    { t: 66.7, w: " warm,", end: 67.5 },
+  ]},
+  { words: [
+    { t: 68.0, w: "Reach", end: 68.4 },
+    { t: 68.4, w: "in'", end: 68.7 },
+    { t: 68.7, w: " out,", end: 69.2 },
+    { t: 69.7, w: " touch", end: 70.2 },
+    { t: 70.2, w: "in'", end: 70.5 },
+    { t: 70.5, w: " me,", end: 71.0 },
+    { t: 71.0, w: " touch", end: 71.5 },
+    { t: 71.5, w: "in'", end: 71.8 },
+    { t: 71.8, w: " you", end: 72.5 },
+  ]},
+
+  { words: [
+    { t: 73.5, w: "Sweet", end: 74.1 },
+    { t: 74.1, w: " Car", end: 74.5 },
+    { t: 74.5, w: "o", end: 74.7 },
+    { t: 74.7, w: "line,", end: 75.5 },
+  ]},
+  { words: [
+    { t: 76.5, w: "Bah", end: 76.9 },
+    { t: 76.9, w: " bah", end: 77.3 },
+    { t: 77.3, w: " bah,", end: 77.9 },
+  ]},
+  { words: [
+    { t: 78.5, w: "Good", end: 78.9 },
+    { t: 78.9, w: " times", end: 79.5 },
+    { t: 79.5, w: " nev", end: 79.8 },
+    { t: 79.8, w: "er", end: 80.1 },
+    { t: 80.1, w: " seemed", end: 80.6 },
+    { t: 80.6, w: " so", end: 81.0 },
+    { t: 81.0, w: " good,", end: 81.8 },
+  ]},
+  { words: [
+    { t: 82.5, w: "I've", end: 82.9 },
+    { t: 82.9, w: " been", end: 83.3 },
+    { t: 83.3, w: " in", end: 83.5 },
+    { t: 83.5, w: "clined", end: 84.1 },
+    { t: 84.1, w: " to", end: 84.4 },
+    { t: 84.4, w: " be", end: 84.7 },
+    { t: 84.7, w: "lieve", end: 85.2 },
+    { t: 85.2, w: " they", end: 85.5 },
+    { t: 85.5, w: " nev", end: 85.8 },
+    { t: 85.8, w: "er", end: 86.1 },
+    { t: 86.1, w: " would", end: 86.8 },
+  ]},
+  { words: [
+    { t: 87.0, w: "But", end: 87.3 },
+    { t: 87.3, w: " now", end: 87.7 },
+    { t: 87.7, w: " I", end: 88.0 },
+  ]},
+  { words: [
+    { t: 88.5, w: "Look", end: 88.9 },
+    { t: 88.9, w: " at", end: 89.2 },
+    { t: 89.2, w: " the", end: 89.4 },
+    { t: 89.4, w: " night", end: 89.9 },
+    { t: 89.9, w: " and", end: 90.2 },
+    { t: 90.2, w: " it", end: 90.4 },
+    { t: 90.4, w: " don't", end: 90.8 },
+    { t: 90.8, w: " seem", end: 91.2 },
+    { t: 91.2, w: " so", end: 91.5 },
+    { t: 91.5, w: " lone", end: 91.9 },
+    { t: 91.9, w: "ly,", end: 92.5 },
+  ]},
+  { words: [
+    { t: 93.0, w: "We", end: 93.3 },
+    { t: 93.3, w: " fill", end: 93.7 },
+    { t: 93.7, w: " it", end: 94.0 },
+    { t: 94.0, w: " up", end: 94.4 },
+    { t: 94.4, w: " with", end: 94.7 },
+    { t: 94.7, w: " love", end: 95.5 },
+  ]},
+
+  // ── BRIDGE ──
+  { section: true, words: [{ t: 97.0, w: "BRIDGE", end: 98.0 }] },
+
+  { words: [
+    { t: 98.0, w: "Sweet", end: 98.6 },
+    { t: 98.6, w: " Car", end: 99.0 },
+    { t: 99.0, w: "o", end: 99.2 },
+    { t: 99.2, w: "line,", end: 100.0 },
+  ]},
+  { words: [
+    { t: 101.0, w: "Good", end: 101.4 },
+    { t: 101.4, w: " times", end: 102.0 },
+    { t: 102.0, w: " nev", end: 102.3 },
+    { t: 102.3, w: "er", end: 102.6 },
+    { t: 102.6, w: " seemed", end: 103.1 },
+    { t: 103.1, w: " so", end: 103.5 },
+    { t: 103.5, w: " good,", end: 104.3 },
+  ]},
+  { words: [
+    { t: 105.0, w: "So", end: 105.4 },
+    { t: 105.4, w: " good!", end: 106.2 },
+    { t: 107.0, w: " So", end: 107.4 },
+    { t: 107.4, w: " good!", end: 108.2 },
+    { t: 109.0, w: " So", end: 109.4 },
+    { t: 109.4, w: " good!", end: 110.0 },
+  ]},
+
+  // ── CROWD RESPONSE ──
+  { section: true, words: [{ t: 110.5, w: "CROWD", end: 111.5 }] },
+
+  { words: [
+    { t: 111.5, w: "I've", end: 111.9 },
+    { t: 111.9, w: " got", end: 112.3 },
+    { t: 112.3, w: " you!", end: 113.0 },
+  ]},
+
+  // ── VERSE 3 ──
+  { section: true, words: [{ t: 114.0, w: "VERSE 3", end: 115.0 }] },
+
+  { words: [
+    { t: 115.0, w: "Where", end: 115.4 },
+    { t: 115.4, w: " it", end: 115.7 },
+    { t: 115.7, w: " be", end: 116.0 },
+    { t: 116.0, w: "gan,", end: 116.8 },
+    { t: 117.2, w: " I", end: 117.5 },
+    { t: 117.5, w: " can't", end: 117.9 },
+    { t: 117.9, w: " be", end: 118.2 },
+    { t: 118.2, w: "gin", end: 118.6 },
+    { t: 118.6, w: " to", end: 118.9 },
+    { t: 118.9, w: " know", end: 119.4 },
+    { t: 119.4, w: "in'", end: 120.0 },
+  ]},
+  { words: [
+    { t: 120.8, w: "But", end: 121.1 },
+    { t: 121.1, w: " then", end: 121.5 },
+    { t: 121.5, w: " I", end: 121.7 },
+    { t: 121.7, w: " know", end: 122.2 },
+    { t: 122.2, w: " it's", end: 122.6 },
+    { t: 122.6, w: " grow", end: 123.0 },
+    { t: 123.0, w: "in'", end: 123.5 },
+    { t: 123.5, w: " strong", end: 124.2 },
+  ]},
+
+  { words: [
+    { t: 125.5, w: "Was", end: 125.8 },
+    { t: 125.8, w: " in", end: 126.1 },
+    { t: 126.1, w: " the", end: 126.3 },
+    { t: 126.3, w: " spring,", end: 127.0 },
+    { t: 127.5, w: " and", end: 127.8 },
+    { t: 127.8, w: " spring", end: 128.2 },
+    { t: 128.2, w: " be", end: 128.5 },
+    { t: 128.5, w: "came", end: 128.9 },
+    { t: 128.9, w: " the", end: 129.2 },
+    { t: 129.2, w: " sum", end: 129.5 },
+    { t: 129.5, w: "mer", end: 130.0 },
+  ]},
+  { words: [
+    { t: 130.5, w: "Who'd", end: 130.9 },
+    { t: 130.9, w: " have", end: 131.2 },
+    { t: 131.2, w: " be", end: 131.4 },
+    { t: 131.4, w: "lieved", end: 131.9 },
+    { t: 131.9, w: " you'd", end: 132.3 },
+    { t: 132.3, w: " come", end: 132.7 },
+    { t: 132.7, w: " a", end: 132.9 },
+    { t: 132.9, w: "long", end: 133.5 },
+  ]},
+
+  // ── PRE-CHORUS 2 ──
+  { section: true, words: [{ t: 134.5, w: "PRE-CHORUS", end: 135.5 }] },
+
+  { words: [
+    { t: 135.5, w: "Hands,", end: 136.4 },
+    { t: 137.0, w: " touch", end: 137.5 },
+    { t: 137.5, w: "in'", end: 137.9 },
+    { t: 137.9, w: " hands,", end: 138.7 },
+  ]},
+  { words: [
+    { t: 139.5, w: "Reach", end: 139.9 },
+    { t: 139.9, w: "in'", end: 140.2 },
+    { t: 140.2, w: " out,", end: 140.8 },
+    { t: 141.2, w: " touch", end: 141.7 },
+    { t: 141.7, w: "in'", end: 142.0 },
+    { t: 142.0, w: " me,", end: 142.5 },
+    { t: 142.5, w: " touch", end: 143.0 },
+    { t: 143.0, w: "in'", end: 143.3 },
+    { t: 143.3, w: " you", end: 144.2 },
+  ]},
+
+  // ── FINAL CHORUS ──
+  { section: true, words: [{ t: 145.0, w: "FINAL CHORUS", end: 146.0 }] },
+
+  { words: [
+    { t: 146.0, w: "Sweet", end: 146.6 },
+    { t: 146.6, w: " Car", end: 147.0 },
+    { t: 147.0, w: "o", end: 147.2 },
+    { t: 147.2, w: "line,", end: 148.0 },
+  ]},
+  { words: [
+    { t: 149.0, w: "Bah", end: 149.4 },
+    { t: 149.4, w: " bah", end: 149.8 },
+    { t: 149.8, w: " bah,", end: 150.4 },
+  ]},
+  { words: [
+    { t: 151.0, w: "Good", end: 151.4 },
+    { t: 151.4, w: " times", end: 152.0 },
+    { t: 152.0, w: " nev", end: 152.3 },
+    { t: 152.3, w: "er", end: 152.6 },
+    { t: 152.6, w: " seemed", end: 153.1 },
+    { t: 153.1, w: " so", end: 153.5 },
+    { t: 153.5, w: " good,", end: 154.3 },
+  ]},
+  { words: [
+    { t: 155.0, w: "I've", end: 155.4 },
+    { t: 155.4, w: " been", end: 155.8 },
+    { t: 155.8, w: " in", end: 156.0 },
+    { t: 156.0, w: "clined", end: 156.6 },
+    { t: 156.6, w: " to", end: 156.9 },
+    { t: 156.9, w: " be", end: 157.2 },
+    { t: 157.2, w: "lieve", end: 157.7 },
+    { t: 157.7, w: " they", end: 158.0 },
+    { t: 158.0, w: " nev", end: 158.3 },
+    { t: 158.3, w: "er", end: 158.6 },
+    { t: 158.6, w: " would", end: 159.3 },
+  ]},
+  { words: [
+    { t: 159.5, w: "But", end: 159.8 },
+    { t: 159.8, w: " now", end: 160.2 },
+    { t: 160.2, w: " I", end: 160.5 },
+  ]},
+  { words: [
+    { t: 161.0, w: "Look", end: 161.4 },
+    { t: 161.4, w: " at", end: 161.7 },
+    { t: 161.7, w: " the", end: 161.9 },
+    { t: 161.9, w: " night", end: 162.4 },
+    { t: 162.4, w: " and", end: 162.7 },
+    { t: 162.7, w: " it", end: 162.9 },
+    { t: 162.9, w: " don't", end: 163.3 },
+    { t: 163.3, w: " seem", end: 163.7 },
+    { t: 163.7, w: " so", end: 164.0 },
+    { t: 164.0, w: " lone", end: 164.4 },
+    { t: 164.4, w: "ly,", end: 165.0 },
+  ]},
+  { words: [
+    { t: 165.5, w: "We", end: 165.8 },
+    { t: 165.8, w: " fill", end: 166.2 },
+    { t: 166.2, w: " it", end: 166.5 },
+    { t: 166.5, w: " up", end: 166.9 },
+    { t: 166.9, w: " with", end: 167.2 },
+    { t: 167.2, w: " love", end: 168.0 },
+  ]},
+
+  // ── OUTRO ──
+  { section: true, words: [{ t: 169.0, w: "OUTRO", end: 170.0 }] },
+
+  { words: [
+    { t: 170.0, w: "Sweet", end: 170.6 },
+    { t: 170.6, w: " Car", end: 171.0 },
+    { t: 171.0, w: "o", end: 171.2 },
+    { t: 171.2, w: "line,", end: 172.0 },
+  ]},
+  { words: [
+    { t: 173.0, w: "Good", end: 173.4 },
+    { t: 173.4, w: " times", end: 174.0 },
+    { t: 174.0, w: " nev", end: 174.3 },
+    { t: 174.3, w: "er", end: 174.6 },
+    { t: 174.6, w: " seemed", end: 175.1 },
+    { t: 175.1, w: " so", end: 175.5 },
+    { t: 175.5, w: " good,", end: 176.3 },
+  ]},
+  { words: [
+    { t: 177.0, w: "So", end: 177.4 },
+    { t: 177.4, w: " good!", end: 178.2 },
+    { t: 179.0, w: " So", end: 179.4 },
+    { t: 179.4, w: " good!", end: 180.2 },
+    { t: 181.0, w: " So", end: 181.4 },
+    { t: 181.4, w: " good!", end: 182.0 },
+  ]},
+  { words: [
+    { t: 183.0, w: "I've", end: 183.4 },
+    { t: 183.4, w: " got", end: 183.8 },
+    { t: 183.8, w: " you!", end: 184.5 },
+  ]},
+  { words: [
+    { t: 185.5, w: "Sweet", end: 186.1 },
+    { t: 186.1, w: " Car", end: 186.5 },
+    { t: 186.5, w: "o", end: 186.7 },
+    { t: 186.7, w: "line…", end: 188.0 },
+  ]},
+  { words: [
+    { t: 189.0, w: "🎵", end: 204.4 },
+  ]},
+];
+
+// ── BUILD DOM ──
+const container = document.getElementById('lyricsInner');
+const allWords = [];
+
+LINES.forEach((line, li) => {
+  const div = document.createElement('div');
+  div.className = 'lyric-line' + (line.section ? ' section-label' : '');
+  div.dataset.line = li;
+
+  line.words.forEach((w, wi) => {
+    const span = document.createElement('span');
+    span.className = 'lyric-word';
+    span.textContent = w.w;
+    span.dataset.t = w.t;
+    span.dataset.end = w.end;
+    span.dataset.line = li;
+    div.appendChild(span);
+    allWords.push({ el: span, lineEl: div, t: w.t, end: w.end, li });
+  });
+
+  container.appendChild(div);
+});
+
+// ── AUDIO ──
+const audio = document.getElementById('audio');
+let raf;
+let lastActiveWord = null;
+let lastActiveLine = null;
+
+function pad(n) { return String(Math.floor(n)).padStart(2,'0'); }
+function fmtTime(s) { return Math.floor(s/60) + ':' + pad(s%60); }
+
+function onTimeUpdate() {
+  const t = audio.currentTime;
+
+  // progress
+  document.getElementById('progressFill').style.width = (t / audio.duration * 100) + '%';
+  document.getElementById('timeDisplay').textContent = fmtTime(t) + ' / ' + fmtTime(audio.duration || 206.65);
+
+  // find active word
+  let activeWord = null;
+  for (let i = allWords.length - 1; i >= 0; i--) {
+    if (t >= allWords[i].t) { activeWord = allWords[i]; break; }
+  }
+
+  if (activeWord !== lastActiveWord) {
+    // clear previous
+    allWords.forEach(w => {
+      if (w.t < t) {
+        w.el.classList.remove('active');
+        w.el.classList.add('sung');
+      } else {
+        w.el.classList.remove('active', 'sung');
+      }
+    });
+    if (activeWord && t < activeWord.end + 0.5) {
+      activeWord.el.classList.add('active');
+      activeWord.el.classList.remove('sung');
+    }
+
+    // scroll current line into view
+    if (activeWord && activeWord.lineEl !== lastActiveLine) {
+      lastActiveLine?.classList.remove('current-line');
+      activeWord.lineEl.classList.add('current-line');
+      lastActiveLine = activeWord.lineEl;
+      activeWord.lineEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+    lastActiveWord = activeWord;
+  }
+
+  raf = requestAnimationFrame(onTimeUpdate);
+}
+
+function togglePlay() {
+  if (audio.paused) {
+    audio.play();
+    document.getElementById('btnPlay').textContent = '⏸';
+    raf = requestAnimationFrame(onTimeUpdate);
+  } else {
+    audio.pause();
+    document.getElementById('btnPlay').textContent = '▶';
+    cancelAnimationFrame(raf);
+  }
+}
+
+// progress bar seek
+document.getElementById('progressBar').addEventListener('click', e => {
+  const rect = e.currentTarget.getBoundingClientRect();
+  const pct = (e.clientX - rect.left) / rect.width;
+  audio.currentTime = pct * (audio.duration || 206.65);
+  lastActiveWord = null;
+  lastActiveLine = null;
+});
+
+// click on lyric line to seek
+container.addEventListener('click', e => {
+  const line = e.target.closest('.lyric-line');
+  if (!line) return;
+  const firstWord = line.querySelector('.lyric-word');
+  if (firstWord) {
+    audio.currentTime = parseFloat(firstWord.dataset.t);
+    lastActiveWord = null; lastActiveLine = null;
+    if (audio.paused) togglePlay();
+  }
+});
+
+audio.addEventListener('ended', () => {
+  document.getElementById('btnPlay').textContent = '▶';
+  cancelAnimationFrame(raf);
+});
+</script>
+</body>
+</html>
