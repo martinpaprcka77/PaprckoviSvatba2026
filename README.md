@@ -7,14 +7,14 @@ Read-only architektura: CSV soubory = source of truth, appka jen čte. Editace p
 
 | Co | Kde |
 |----|-----|
-| **Veřejná stránka** (produkce) | https://doma77git.github.io/PaprckoviSvatba2026/ |
-| **Plánovač** (PIN chráněno) | https://doma77git.github.io/PaprckoviSvatba2026/planner.html |
-| **Archiv červen 2026** | https://doma77git.github.io/PaprckoviSvatba2026/index_june.html |
+| **Veřejná stránka** (produkce) | https://martinpaprcka77.github.io/PaprckoviSvatba2026/ |
+| **Plánovač** (PIN chráněno) | https://martinpaprcka77.github.io/PaprckoviSvatba2026/planner.html |
+| **Archiv červen 2026** | https://martinpaprcka77.github.io/PaprckoviSvatba2026/index_june.html |
 | **Úkoly** | [data/tasks.csv](data/tasks.csv) |
 | **Hosté** | [data/guests.csv](data/guests.csv) |
 | **Rozpočet** | [data/budget.csv](data/budget.csv) |
 | **Historie rozhodnutí** | [data/changelog.csv](data/changelog.csv) |
-| **Repozitář** | https://github.com/doma77git/PaprckoviSvatba2026 |
+| **Repozitář** | https://github.com/martinpaprcka77/PaprckoviSvatba2026 |
 
 ## 📊 Aktuální stav
 

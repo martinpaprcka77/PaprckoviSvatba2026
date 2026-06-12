@@ -355,7 +355,7 @@ body { font-family: 'Lato', sans-serif; background: var(--bg); color: var(--text
 <script>
 const PIN = '1941';
 const PIN_KEY = 'planner_auth_v1';
-const RAW = 'https://raw.githubusercontent.com/doma77git/PaprckoviSvatba2026/master/data/';
+const RAW = 'data/';
 const REFRESH_INTERVAL = 12 * 60 * 60 * 1000;
 
 let tasks = [], budget = [], guests = { mamka: [], tatka: [], spolecni: [] }, changelog = [];
@@ -593,7 +593,7 @@ async function initApp() {
     document.getElementById('syncStatus').textContent = '⚠️ Chyba načítání: ' + e.message;
     console.error(e);
   }
-  setInterval(initApp, REFRESH_INTERVAL);
+  setTimeout(initApp, REFRESH_INTERVAL);
 }
 
 // ── START ──

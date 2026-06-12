@@ -2,7 +2,7 @@
 <html lang="cs">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#f5e6dc">
@@ -431,7 +431,7 @@ body {
 
 <script>
 const WEDDING = new Date('2026-08-29T11:15:00');
-const RAW = 'https://raw.githubusercontent.com/doma77git/PaprckoviSvatba2026/master/data/';
+const RAW = 'data/';
 const REFRESH_INTERVAL = 12 * 60 * 60 * 1000; // 12h
 
 let tasks = [], guests = { mamka: [], tatka: [], spolecni: [] };
@@ -563,8 +563,6 @@ document.getElementById('filters').addEventListener('click', e => {
 
 // ── INIT ──
 async function init() {
-  tick();
-  setInterval(tick, 30000);
   try {
     const [taskData, guestData] = await Promise.all([
       fetchCSV('tasks.csv'),
@@ -582,10 +580,14 @@ async function init() {
     console.error(e);
   }
   // auto-refresh every 12h
-  setInterval(init, REFRESH_INTERVAL);
+  setTimeout(init, REFRESH_INTERVAL);
 }
 
-document.addEventListener('DOMContentLoaded', init);
+document.addEventListener('DOMContentLoaded', () => {
+  tick();
+  setInterval(tick, 30000);
+  init();
+});
 </script>
 </body>
 </html>
