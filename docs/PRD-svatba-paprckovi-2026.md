@@ -1,7 +1,7 @@
 # PRD — Svatba Paprčkovi 2026
 
 > Product Requirements Document — 14. 5. 2026
-> Status: active — 28. 5. 2026 (36 úkolů, 5 osob, 89 500 Kč, 23 hostů)
+> Status: active — 28. 5. 2026 (34 úkolů, 5 osob, 89 500 Kč, 25 hostů)
 
 ---
 
@@ -50,7 +50,7 @@
 
 **MAX 100 000 Kč — hard cap.** Aktuálně 89 500 Kč (84 500 + 4 500 + 500). Každá změna ceny musí být vyrovnána jinde.
 
-### POVINNÉ (mandatory) — 19 tasků, 84 500 Kč
+### POVINNÉ (mandatory) — 17 tasků, 84 500 Kč
 
 | Položka | Odhad (Kč) | Kdo |
 |---|---|---|
@@ -104,7 +104,7 @@
 | Svatební cesta — termín, ubytování, program | 0 | Taťka |
 | **Subtotal** | **500** | |
 
-**CELKEM: 36 tasků, 89 500 Kč ✓**
+**CELKEM: 34 tasků, 89 500 Kč ✓**
 
 ---
 
@@ -178,7 +178,7 @@
 
 - **GitHub repo:** `doma77git/PaprckoviSvatba2026`
 - **Live URL:** https://doma77git.github.io/PaprckoviSvatba2026/
-- **Zdrojový soubor:** `index.html` (single file, inline CSS/JS, 36 úkolů)
+- **Zdrojový soubor:** `index.html` (single file, inline CSS/JS, 34 úkolů — čte z `data/*.csv`)
 - **Deploy:** Push do masteru → GitHub Action → `gh-pages` → live
 - **Storage key:** `svatba_state_v3` (localStorage)
 
@@ -241,14 +241,14 @@
 **MD soubory = source of truth.** Appka je **read-only** — nikdy nikam nezapisuje. Všechny editace přes PC → git → deploy.
 
 ### Zdroje pravdy (sources of truth)
-- `data/tasks.md` — autoritativní tabulka úkolů
-- `data/guests.md` — seznam hostů
-- Budget — odvozen z `tasks.md` (SUMIF/COUNTIF), nikdy ne hardcode
+- `data/tasks.csv` — autoritativní tabulka úkolů
+- `data/guests.csv` — seznam hostů
+- `data/budget.csv` — autoritativní pro peníze (tasks.csv neobsahuje částky)
 
 ### Data files
-- `data/tasks.md` — 36 úkolů, Markdown tabulka
-- `data/guests.md` — hosté dle stran (Mamka / Taťka / Společní)
-- `data/budget.md` — budget breakdown odvozený z tasks.md
+- `data/tasks.csv` — 34 úkolů, CSV tabulka
+- `data/guests.csv` — hosté dle stran (Mamka / Taťka / Společní)
+- `data/budget.csv` — budget breakdown
 
 ### App capabilities
 - **Read-only:** Fetch MD z GitHub Raw, renderovat úkoly, harmonogram, hosté
@@ -304,11 +304,11 @@
 
 ## 12. Lidé — upřesněno 24. 5. 2026 (5 osob)
 
-| Kdo | Role | Úkolů v tasks.md |
+| Kdo | Role | Úkolů v tasks.csv |
 |-----|------|------------------|
 | **Mamka** | Nevěsta (Dagmar Sobková, "Dáda") | 18 |
-| **Taťka** | Ženich | 7 |
-| **Žanetka** | Hlavní organizátorka, svědkyně ženicha | 7 |
+| **Taťka** | Ženich | 4 |
+| **Žanetka** | Hlavní organizátorka, svědkyně ženicha | 4 |
 | **Kikinka** | Svědkyně nevěsty | 3 |
 | **Děti** | 4 dcery: **Gabriela, Kristýnka, Natálka, Kačka** — výzdoba, dort, focení, hudba, foto | 5 |
 

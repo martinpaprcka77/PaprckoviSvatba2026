@@ -19,15 +19,15 @@ Read-only architektura: CSV soubory = source of truth, appka jen čte. Editace p
 ## 📊 Aktuální stav
 
 ```
-✅ 6/36 splněno  ·  💰 89 500 / 100 000 Kč naplánováno
+✅ 6/34 splněno  ·  💰 89 500 / 100 000 Kč naplánováno
 ```
 
 | Kategorie | Úkolů | Plán |
 |-----------|-------|------|
-| 🔴 Povinné (mandatory) | 19 | 84 500 Kč |
+| 🔴 Povinné (mandatory) | 17 | 84 500 Kč |
 | 🟡 Důležité (important) | 13 | 4 500 Kč |
 | 🟢 Volitelné (optional) | 4 | 500 Kč |
-| **Celkem** | **36** | **89 500 Kč** |
+| **Celkem** | **34** | **89 500 Kč** |
 
 **Hotovo (6):** termín ✓ · radnice ✓ · děti ✓ · svědci ✓ · oddávající ✓ · schůzka prstýnky ✓
 
@@ -36,8 +36,8 @@ Read-only architektura: CSV soubory = source of truth, appka jen čte. Editace p
 | Kdo | Role | Úkolů |
 |-----|------|--------|
 | **Mamka** | Nevěsta | 18 |
-| **Taťka** | Ženich | 7 |
-| **Žanetka** | Hlavní organizátorka, svědkyně ženicha | 7 |
+| **Taťka** | Ženich | 4 |
+| **Žanetka** | Hlavní organizátorka, svědkyně ženicha | 4 |
 | **Kikinka** | Svědkyně nevěsty | 3 |
 | **Děti** | 4 dcery: Gabriela, Kristýnka, Natálka, Kačka — výzdoba, dort, focení, hudba, foto | 5 |
 
@@ -70,7 +70,7 @@ master (PRODUCTION) ────────────────────
 ├── planner.html            ← Plánovač pro Žanetku (PIN chráněno, hint: rok narození JP)
 ├── index_june.html         ← Archiv — stav ke červnu 2026
 ├── data/
-│   ├── tasks.csv           ← 36 úkolů — AUTORITATIVNÍ zdroj
+│   ├── tasks.csv           ← 34 úkolů — AUTORITATIVNÍ zdroj
 │   ├── budget.csv          ← Rozpočet — AUTORITATIVNÍ zdroj
 │   ├── guests.csv          ← Seznam hostů
 │   └── changelog.csv       ← Historie rozhodnutí
