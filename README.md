@@ -18,22 +18,24 @@ Read-only architektura: CSV soubory = source of truth, appka jen čte. Editace p
 
 ## 📊 Aktuální stav
 
-> Čísla níže jsou snímek k 4. 7. 2026 — po každé větší editaci `data/*.csv` je přepočítej z CSV, ne z paměti.
+> Čísla níže jsou snímek k 5. 7. 2026 — po každé větší editaci `data/*.csv` je přepočítej z CSV, ne z paměti.
 
 ```
-✅ 8/29 splněno  ·  💰 88 500 / 100 000 Kč naplánováno
+✅ 8/28 splněno  ·  💰 80 500 / 100 000 Kč naplánováno
 ```
 
 | Kategorie | Úkolů | Plán |
 |-----------|-------|------|
-| 🔴 Povinné (mandatory) | 17 | 84 500 Kč |
+| 🔴 Povinné (mandatory) | 16 | 76 500 Kč |
 | 🟡 Důležité (important) | 10 | 4 000 Kč |
 | 🟢 Volitelné (optional) | 2 | 0 Kč |
-| **Celkem** | **29** | **88 500 Kč** |
+| **Celkem** | **28** | **80 500 Kč** |
 
 **Hotovo (8):** termín ✓ · radnice ✓ · děti ✓ · svědci ✓ · oddávající ✓ · schůzka prstýnky ✓ · prstýnky vyzvednuty ✓ · svatební šaty ✓
 
-**Zrušeno (nedělá se):** dárky pro svědky · dárky na přivítanou pro hosty · guestbook + favory · proslovy svědků · confetti a prskavky
+**Rozpracováno:** svatební oznámení — tisk hotovo, zbývá rozeslat + RSVP
+
+**Zrušeno (nedělá se):** dárky pro svědky · dárky na přivítanou pro hosty · guestbook + favory · proslovy svědků · confetti a prskavky · ubytování pro hosty · dekorace a květiny na radnici
 
 ## 👥 Lidé
 
@@ -42,7 +44,7 @@ Read-only architektura: CSV soubory = source of truth, appka jen čte. Editace p
 | **Mamka** | Nevěsta | 15 |
 | **Taťka** | Ženich | 4 |
 | **Žanetka** | Hlavní organizátorka, svědkyně ženicha | 3 |
-| **Kikinka** | Svědkyně nevěsty | 2 |
+| **Kikinka** | Svědkyně nevěsty | 1 |
 | **Děti** | 4 dcery: Gabriela, Kristýnka, Natálka, Kačka — výzdoba, dort, focení, hudba, foto | 5 |
 
 ## 📅 Klíčové milníky
@@ -163,3 +165,4 @@ git push
 | **1.3.2** | 2026-05-27 | Hide-done toggle; collapsed budget; v3music |
 | **2.0.0** | 2026-06-02 | CSV migrace; romantický design; planner.html; auto-refresh; žádný localStorage state |
 | **2.1.0** | 2026-07-04 | Reálný progres (prstýnky, šaty hotovo; rozlučka posunuta na 24.7.); zrušeno 5 úkolů (dárky pro svědky, dárky na přivítanou, guestbook+favory, proslovy svědků, confetti) — 29 úkolů, 88 500 Kč |
+| **2.2.0** | 2026-07-05 | Zrušeno ubytování pro hosty + dekorace na radnici (T017); oznámení — tisk hotovo — 28 úkolů, 80 500 Kč |
