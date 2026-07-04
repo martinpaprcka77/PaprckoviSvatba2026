@@ -19,6 +19,8 @@
   --text: #4a2e28; --text-muted: #9e7060;
   --bg: #fdf8f4; --white: #ffffff;
   --green: #6a9e72; --green-light: #e8f5ea;
+  --warn: #a8781a; --warn-light: #f5ecd2;
+  --danger: #b0392f; --danger-light: #f7dbd8;
   --safe-top: env(safe-area-inset-top, 0px);
   --safe-bottom: env(safe-area-inset-bottom, 0px);
 }
@@ -221,6 +223,31 @@ body { font-family: 'Lato', sans-serif; background: var(--bg); color: var(--text
 .tl-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--rose-mid); margin-top: 5px; flex-shrink: 0; }
 .tl-text { font-size: 14px; color: var(--text); }
 
+/* ── OVERVIEW ── */
+.ov-metric { margin-bottom: 14px; }
+.ov-metric:last-child { margin-bottom: 0; }
+.ov-metric-row { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 4px; }
+.ov-metric-label { font-size: 11px; color: var(--text-muted); letter-spacing: 0.5px; text-transform: uppercase; }
+.ov-metric-value { font-family: 'Cormorant Garamond', serif; font-size: 15px; font-weight: 600; color: var(--text); }
+.ov-cat-row { display: flex; align-items: center; gap: 10px; margin-bottom: 9px; }
+.ov-cat-row:last-child { margin-bottom: 0; }
+.ov-cat-name { font-size: 11px; color: var(--text-muted); min-width: 62px; flex-shrink: 0; }
+.mini-bar { flex: 1; height: 6px; border-radius: 3px; background: var(--rose-light); overflow: hidden; }
+.mini-bar > span { display: block; height: 100%; border-radius: 3px; transition: width 0.5s; }
+.ov-cat-count { font-size: 11px; color: var(--text-muted); min-width: 34px; text-align: right; flex-shrink: 0; }
+.chip-row { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 10px; }
+.chip { font-size: 10px; padding: 3px 10px; border-radius: 20px; font-weight: 600; white-space: nowrap; }
+.chip-critical { background: var(--danger-light); color: var(--danger); }
+.chip-warn { background: var(--warn-light); color: var(--warn); }
+.chip-good { background: var(--green-light); color: var(--green); }
+.ov-divider { border: none; border-top: 1px solid var(--rose-light); margin: 14px 0; }
+.ov-people-row { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+.ov-people-row:last-child { margin-bottom: 0; }
+.ov-people-name { font-family: 'Cormorant Garamond', serif; font-size: 13px; color: var(--text); min-width: 58px; flex-shrink: 0; }
+.ov-people-count { font-size: 11px; color: var(--text-muted); min-width: 16px; text-align: right; flex-shrink: 0; }
+.ov-mini-log .cl-item { padding: 7px 0; }
+.ov-more-link { display: block; text-align: center; font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gold-dark); margin-top: 10px; cursor: pointer; }
+
 .loading { text-align: center; padding: 20px; color: var(--text-muted); font-size: 12px; letter-spacing: 2px; }
 .sync-status { text-align: center; font-size: 10px; color: var(--text-muted); padding: 8px; letter-spacing: 1px; }
 </style>
@@ -269,7 +296,8 @@ body { font-family: 'Lato', sans-serif; background: var(--bg); color: var(--text
   </div>
 
   <div class="tabs">
-    <div class="tab active" data-tab="tasks">Úkoly</div>
+    <div class="tab active" data-tab="overview">Přehled</div>
+    <div class="tab" data-tab="tasks">Úkoly</div>
     <div class="tab" data-tab="budget">Rozpočet</div>
     <div class="tab" data-tab="guests">Hosté</div>
     <div class="tab" data-tab="schedule">Den</div>
@@ -278,8 +306,48 @@ body { font-family: 'Lato', sans-serif; background: var(--bg); color: var(--text
 
   <div class="container">
 
+    <!-- OVERVIEW -->
+    <div class="tab-pane active" id="tab-overview">
+      <div class="section">
+        <div class="section-head"><span class="section-title">Přehled</span><span class="section-sub">rychlý stav</span></div>
+        <div class="section-body">
+
+          <div class="ov-metric">
+            <div class="ov-metric-row"><span class="ov-metric-label">Úkoly</span><span class="ov-metric-value" id="ovTaskPct">0 %</span></div>
+            <div class="mini-bar"><span id="ovTaskFill" style="width:0%; background:linear-gradient(90deg, var(--rose), var(--gold));"></span></div>
+          </div>
+          <div class="ov-metric">
+            <div class="ov-metric-row"><span class="ov-metric-label">Rozpočet</span><span class="ov-metric-value" id="ovBudgetValue">–</span></div>
+            <div class="mini-bar"><span id="ovBudgetFill" style="width:0%; background:linear-gradient(90deg, var(--rose), var(--gold));"></span></div>
+          </div>
+
+          <hr class="ov-divider">
+
+          <div id="ovCategories"></div>
+          <div class="chip-row" id="ovRisk"></div>
+
+          <hr class="ov-divider">
+
+          <div class="ov-metric-row" style="margin-bottom:8px;"><span class="ov-metric-label">Kdo má co na starosti</span></div>
+          <div id="ovPeople"></div>
+
+          <hr class="ov-divider">
+
+          <div class="ov-metric-row" style="margin-bottom:8px;"><span class="ov-metric-label">Hosté podle strany</span><span class="ov-metric-value" id="ovGuestTotal">–</span></div>
+          <div id="ovGuestSides"></div>
+
+          <hr class="ov-divider">
+
+          <div class="ov-metric-row" style="margin-bottom:2px;"><span class="ov-metric-label">Poslední rozhodnutí</span></div>
+          <div class="ov-mini-log" id="ovLog"></div>
+          <div class="ov-more-link" data-goto-tab="log">Celá historie →</div>
+
+        </div>
+      </div>
+    </div>
+
     <!-- TASKS -->
-    <div class="tab-pane active" id="tab-tasks">
+    <div class="tab-pane" id="tab-tasks">
       <div class="section" id="upcomingSection" style="display:none">
         <div class="section-head"><span class="section-title">Nejbližší</span><span class="section-sub">termíny</span></div>
         <div class="section-body" id="upcomingBody"></div>
@@ -568,6 +636,95 @@ function renderLog() {
     </div>`).join('');
 }
 
+// ── RENDER OVERVIEW ──
+function renderOverview() {
+  const done = tasks.filter(t => t.status === 'done');
+  const open = tasks.filter(t => t.status === 'open');
+  const pct = tasks.length ? Math.round(done.length / tasks.length * 100) : 0;
+  document.getElementById('ovTaskPct').textContent = pct + '% · ' + done.length + '/' + tasks.length;
+  document.getElementById('ovTaskFill').style.width = pct + '%';
+
+  const total = budget.reduce((s, b) => s + parseInt(b.amount_plan || 0), 0);
+  const bpct = Math.min(100, Math.round(total / 100000 * 100));
+  document.getElementById('ovBudgetValue').textContent = fmtMoney(total) + ' / 100 000 Kč';
+  document.getElementById('ovBudgetFill').style.width = bpct + '%';
+  document.getElementById('ovBudgetFill').style.background = total > 100000
+    ? 'var(--rose)' : 'linear-gradient(90deg, var(--rose), var(--gold))';
+
+  const cats = [
+    { key: 'mandatory', label: 'Povinné', dot: 'var(--rose)' },
+    { key: 'important', label: 'Důležité', dot: 'var(--gold)' },
+    { key: 'optional', label: 'Volitelné', dot: 'var(--rose-mid)' },
+  ];
+  document.getElementById('ovCategories').innerHTML = cats.map(c => {
+    const inCat = tasks.filter(t => t.category === c.key);
+    const doneCat = inCat.filter(t => t.status === 'done');
+    const p = inCat.length ? Math.round(doneCat.length / inCat.length * 100) : 0;
+    return `<div class="ov-cat-row">
+      <span class="ov-cat-name">${c.label}</span>
+      <div class="mini-bar"><span style="width:${p}%; background:${c.dot};"></span></div>
+      <span class="ov-cat-count">${doneCat.length}/${inCat.length}</span>
+    </div>`;
+  }).join('');
+
+  const today = new Date(); today.setHours(0,0,0,0);
+  const in14 = new Date(today.getTime() + 14 * 86400000);
+  const overdue = open.filter(t => new Date(t.deadline) < today);
+  const dueSoon = open.filter(t => { const d = new Date(t.deadline); return d >= today && d <= in14; });
+  let riskHtml = '';
+  if (overdue.length) riskHtml += `<span class="chip chip-critical">⚠ ${overdue.length} po termínu</span>`;
+  if (dueSoon.length) riskHtml += `<span class="chip chip-warn">${dueSoon.length} do 14 dnů</span>`;
+  if (!overdue.length && !dueSoon.length) riskHtml = `<span class="chip chip-good">✓ nic nehoří</span>`;
+  document.getElementById('ovRisk').innerHTML = riskHtml;
+
+  const counts = {};
+  tasks.forEach(t => (t.assign || '').split(',').forEach(name => {
+    name = name.trim();
+    if (name) counts[name] = (counts[name] || 0) + 1;
+  }));
+  const maxCount = Math.max(1, ...Object.values(counts));
+  const peopleOrder = Object.entries(counts).sort((a, b) => b[1] - a[1]);
+  document.getElementById('ovPeople').innerHTML = peopleOrder.map(([name, n]) => `
+    <div class="ov-people-row">
+      <span class="ov-people-name">${name}</span>
+      <div class="mini-bar"><span style="width:${Math.round(n/maxCount*100)}%; background:var(--gold);"></span></div>
+      <span class="ov-people-count">${n}</span>
+    </div>`).join('');
+
+  const sideLabels = { mamka: 'Mamčina strana', tatka: 'Taťkova strana', spolecni: 'Společní' };
+  let guestTotal = 0;
+  const sideTotals = Object.entries(guests).map(([key, rows]) => {
+    const n = rows.reduce((s, g) => s + (parseInt(g.count) || 0), 0);
+    guestTotal += n;
+    return { key, n };
+  });
+  const maxSide = Math.max(1, ...sideTotals.map(s => s.n));
+  document.getElementById('ovGuestTotal').textContent = guestTotal + ' lidí';
+  document.getElementById('ovGuestSides').innerHTML = sideTotals.filter(s => s.n).map(s => `
+    <div class="ov-people-row">
+      <span class="ov-people-name">${sideLabels[s.key] || s.key}</span>
+      <div class="mini-bar"><span style="width:${Math.round(s.n/maxSide*100)}%; background:var(--rose);"></span></div>
+      <span class="ov-people-count">${s.n}</span>
+    </div>`).join('');
+
+  const recent = [...changelog].reverse().slice(0, 3);
+  document.getElementById('ovLog').innerHTML = recent.map(c => `
+    <div class="cl-item">
+      <div class="cl-date">${c.date ? c.date.slice(5) : ''}</div>
+      <div class="cl-content">
+        <div class="cl-what">${c.what}</div>
+        <div class="cl-who">${c.who}</div>
+      </div>
+    </div>`).join('');
+}
+
+document.querySelectorAll('[data-goto-tab]').forEach(el => {
+  el.addEventListener('click', () => {
+    const tab = document.querySelector(`.tab[data-tab="${el.dataset.gotoTab}"]`);
+    if (tab) tab.click();
+  });
+});
+
 // ── INIT ──
 async function initApp() {
   try {
@@ -586,6 +743,7 @@ async function initApp() {
     renderBudget();
     renderGuests();
     renderLog();
+    renderOverview();
 
     document.getElementById('syncStatus').textContent =
       'Načteno: ' + new Date().toLocaleTimeString('cs');
