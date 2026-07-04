@@ -18,27 +18,31 @@ Read-only architektura: CSV soubory = source of truth, appka jen čte. Editace p
 
 ## 📊 Aktuální stav
 
+> Čísla níže jsou snímek k 4. 7. 2026 — po každé větší editaci `data/*.csv` je přepočítej z CSV, ne z paměti.
+
 ```
-✅ 6/36 splněno  ·  💰 89 500 / 100 000 Kč naplánováno
+✅ 8/29 splněno  ·  💰 88 500 / 100 000 Kč naplánováno
 ```
 
 | Kategorie | Úkolů | Plán |
 |-----------|-------|------|
-| 🔴 Povinné (mandatory) | 19 | 84 500 Kč |
-| 🟡 Důležité (important) | 13 | 4 500 Kč |
-| 🟢 Volitelné (optional) | 4 | 500 Kč |
-| **Celkem** | **36** | **89 500 Kč** |
+| 🔴 Povinné (mandatory) | 17 | 84 500 Kč |
+| 🟡 Důležité (important) | 10 | 4 000 Kč |
+| 🟢 Volitelné (optional) | 2 | 0 Kč |
+| **Celkem** | **29** | **88 500 Kč** |
 
-**Hotovo (6):** termín ✓ · radnice ✓ · děti ✓ · svědci ✓ · oddávající ✓ · schůzka prstýnky ✓
+**Hotovo (8):** termín ✓ · radnice ✓ · děti ✓ · svědci ✓ · oddávající ✓ · schůzka prstýnky ✓ · prstýnky vyzvednuty ✓ · svatební šaty ✓
+
+**Zrušeno (nedělá se):** dárky pro svědky · dárky na přivítanou pro hosty · guestbook + favory · proslovy svědků · confetti a prskavky
 
 ## 👥 Lidé
 
 | Kdo | Role | Úkolů |
 |-----|------|--------|
-| **Mamka** | Nevěsta | 18 |
-| **Taťka** | Ženich | 7 |
-| **Žanetka** | Hlavní organizátorka, svědkyně ženicha | 7 |
-| **Kikinka** | Svědkyně nevěsty | 3 |
+| **Mamka** | Nevěsta | 15 |
+| **Taťka** | Ženich | 4 |
+| **Žanetka** | Hlavní organizátorka, svědkyně ženicha | 3 |
+| **Kikinka** | Svědkyně nevěsty | 2 |
 | **Děti** | 4 dcery: Gabriela, Kristýnka, Natálka, Kačka — výzdoba, dort, focení, hudba, foto | 5 |
 
 ## 📅 Klíčové milníky
@@ -48,10 +52,13 @@ Read-only architektura: CSV soubory = source of truth, appka jen čte. Editace p
 | ~~29. 5. 2025~~ | ✅ Termín, radnice, děti, svědci |
 | ~~15. 5. 2026~~ | ✅ Oddávající domluven |
 | ~~25. 5. 2026~~ | ✅ Schůzka prstýnky (Mamka+Taťka+Žanetka) |
+| ~~3. 7. 2026~~ | ✅ Prstýnky vyzvednuty |
+| ~~4. 7. 2026~~ | ✅ Svatební šaty hotovo |
 | 10. 7. 2026 | Svatební oznámení |
-| 15. 7. 2026 | Koliba catering, šaty, oblek, prstýnky, hosté |
-| 1. 8. 2026 | Nápoje, doplňky, ubytování |
-| 10.–20. 8. 2026 | Výzdoba, dárky, program |
+| 15. 7. 2026 | Koliba catering, oblek, hosté |
+| 24. 7. 2026 | Rozlučka se svobodou |
+| 1. 8. 2026 | Doplňky, ubytování |
+| 10.–20. 8. 2026 | Výzdoba, program |
 | 25. 8. 2026 | Poslední úpravy |
 | **29. 8. 2026** | **💒 SVATBA 🎉** |
 
@@ -70,7 +77,7 @@ master (PRODUCTION) ────────────────────
 ├── planner.html            ← Plánovač pro Žanetku (PIN chráněno, hint: rok narození JP)
 ├── index_june.html         ← Archiv — stav ke červnu 2026
 ├── data/
-│   ├── tasks.csv           ← 36 úkolů — AUTORITATIVNÍ zdroj
+│   ├── tasks.csv           ← úkoly — AUTORITATIVNÍ zdroj
 │   ├── budget.csv          ← Rozpočet — AUTORITATIVNÍ zdroj
 │   ├── guests.csv          ← Seznam hostů
 │   └── changelog.csv       ← Historie rozhodnutí
@@ -97,7 +104,7 @@ master (PRODUCTION) ────────────────────
 1. **Budget 100 000 Kč hard cap** — změna ceny v `budget.csv` → vyrovnat jinde
 2. **Nikdy neodebírat Děti** z úkolů — co-assign (`Děti, Mamka`), nikdy nenahrazovat
 3. **Jména bez háčků, bez příjmení** — Mikesovi (ne Mikešovi), jen křestní / přezdívky
-4. **Append-only poznámky** v tasks.csv; oddělovač `;`
+4. **Append-only poznámky** v tasks.csv; oddělovač `; `
 5. **budget.csv je autoritativní** pro peníze — tasks.csv neobsahuje částky
 6. **Appka je read-only** — CSV = source of truth, appka nikdy nikam nezapisuje
 7. **Force refresh** — při každém otevření fetch čerstvých CSV, localStorage se přepisuje
@@ -155,3 +162,4 @@ git push
 | **1.3.1** | 2026-05-27 | Guests live; budget přepracován |
 | **1.3.2** | 2026-05-27 | Hide-done toggle; collapsed budget; v3music |
 | **2.0.0** | 2026-06-02 | CSV migrace; romantický design; planner.html; auto-refresh; žádný localStorage state |
+| **2.1.0** | 2026-07-04 | Reálný progres (prstýnky, šaty hotovo; rozlučka posunuta na 24.7.); zrušeno 5 úkolů (dárky pro svědky, dárky na přivítanou, guestbook+favory, proslovy svědků, confetti) — 29 úkolů, 88 500 Kč |

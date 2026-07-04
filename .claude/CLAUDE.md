@@ -46,8 +46,7 @@ No install, no build, no test command — verify changes by opening the page in 
 
 ## Known stale docs — do not trust blindly
 
-Several docs in this repo describe an earlier version of the project and are out of sync with the current CSV-based `data/` files and page set:
-- `README.md` states 36 tasks / 19+13+4 category split; the current `data/tasks.csv` actually has 34 rows (17 mandatory / 13 important / 4 optional). Budget total (89 500 Kč) still matches. Recompute counts from the CSV rather than trusting hardcoded numbers in prose docs.
+- `README.md`'s task/budget counts and "Hotovo" list are a snapshot (last synced 2026-07-04: 29 tasks — 17 mandatory / 10 important / 2 optional, 88 500 Kč, 8 done). They drift every time `data/tasks.csv` or `data/budget.csv` changes. **Always recompute from the CSV** (row counts, `category`/`status` breakdowns, `amount_plan` sum) rather than trusting hardcoded numbers in prose docs — update README's numbers when you touch task/budget data in the same session.
 - `.github/copilot-instructions.md` references a `v2/` directory, `data/*.md` files, and repo owner `doma77git` — none of which exist in this repo anymore (data is CSV, owner is `martinpaprcka77`, no `v2/`).
 - `.continue/checks/*.md` (budget/task/people-rules checks) are written against `data/tasks.md` (markdown table format) and won't match against the current `data/tasks.csv`; the underlying *rules* they encode (budget cap, Děti co-assign, no-hacek names) are still correct and mirrored above.
 
