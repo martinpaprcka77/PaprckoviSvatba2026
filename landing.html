@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#f7efe7">
+<title>Dagmar &amp; Martin — 29. srpna 2026, Ostrava</title>
+<meta name="description" content="Svatba Dagmar &amp; Martina — 29. srpna 2026, Ostrava. Odpočet, program dne a místa oslavy.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Marcellus&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+
+body {
+  font-family: 'Jost', sans-serif;
+  background: #f7efe7;
+  color: #3a2f2a;
+  overflow-x: hidden;
+}
+
+@keyframes riseIn {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes petalfall {
+  0%   { transform: translateY(-60px) translateX(0) rotate(0deg); opacity: 0; }
+  8%   { opacity: .85; }
+  92%  { opacity: .85; }
+  100% { transform: translateY(105vh) translateX(60px) rotate(340deg); opacity: 0; }
+}
+
+.rev {
+  opacity: 0;
+  animation: riseIn 1.05s cubic-bezier(.2,.7,.2,1) forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rev { animation: none; opacity: 1; }
+  .petal { animation: none; display: none; }
+}
+
+/* ============ NAV ============ */
+.nav {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 22px clamp(18px, 6vw, 80px);
+}
+.nav-mark {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 600;
+  font-size: 22px;
+  letter-spacing: .02em;
+  color: #3a2f2a;
+}
+.nav-mark span { color: #cf8f80; }
+.nav-links {
+  display: flex;
+  gap: clamp(15px, 4.5vw, 38px);
+  font-family: 'Marcellus', serif;
+  font-size: clamp(10.5px, 3vw, 12.5px);
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  color: #6b5c52;
+}
+.navlink {
+  position: relative;
+  text-decoration: none;
+  color: inherit;
+}
+.navlink::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: -4px;
+  width: 0; height: 1px;
+  background: #b08968;
+  transition: width .35s ease;
+}
+.navlink:hover::after { width: 100%; }
+
+/* ============ HERO ============ */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 120px 6vw 90px;
+  overflow: hidden;
+  background: radial-gradient(130% 90% at 50% 8%, #fbf5ee 0%, #f4e8dc 68%, #efe0d1 100%);
+}
+.petal {
+  position: absolute;
+  border-radius: 0 100% 0 100%;
+}
+.hero-eyebrow {
+  font-family: 'Marcellus', serif;
+  font-size: 14px;
+  letter-spacing: .36em;
+  text-transform: uppercase;
+  color: #b08968;
+  margin-bottom: 34px;
+}
+.hero-name {
+  margin: 0;
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 600;
+  font-size: clamp(64px, 11vw, 150px);
+  line-height: .92;
+  color: #3a2f2a;
+}
+.hero-amp {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(34px, 5vw, 64px);
+  color: #cf8f80;
+  margin: 6px 0;
+}
+.hero-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  margin: 44px 0 26px;
+}
+.hero-divider-line { height: 1px; width: 64px; background: #d8c3b3; }
+.hero-divider-dot { width: 8px; height: 8px; background: #c2a05a; transform: rotate(45deg); }
+.hero-date {
+  font-family: 'Marcellus', serif;
+  font-size: clamp(18px, 2vw, 24px);
+  letter-spacing: .2em;
+  color: #5c4f47;
+}
+.hero-venues {
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 1.8;
+  color: #8a7a6e;
+  margin-top: 16px;
+}
+.hero-scroll {
+  text-decoration: none;
+  margin-top: 52px;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: #b08968;
+  font-family: 'Marcellus', serif;
+  font-size: 11px;
+  letter-spacing: .24em;
+  text-transform: uppercase;
+}
+.hero-scroll-line {
+  width: 1px;
+  height: 34px;
+  background: linear-gradient(#c2a05a, transparent);
+}
+
+/* ============ SHARED SECTION HEAD ============ */
+.eyebrow {
+  font-family: 'Marcellus', serif;
+  font-size: 13px;
+  letter-spacing: .3em;
+  text-transform: uppercase;
+  color: #b08968;
+  margin-bottom: 14px;
+}
+.section-italic {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: clamp(26px, 3.4vw, 40px);
+  color: #3a2f2a;
+  margin-bottom: 50px;
+}
+.section-head { text-align: center; margin-bottom: 64px; }
+.section-title {
+  margin: 0;
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 600;
+  font-size: clamp(40px, 5.5vw, 68px);
+  color: #3a2f2a;
+}
+
+/* ============ COUNTDOWN ============ */
+.countdown {
+  padding: clamp(76px, 13vw, 110px) 6vw;
+  text-align: center;
+  background: #f1e5d9;
+}
+.countdown-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(148px, 1fr));
+  gap: 16px;
+  max-width: 920px;
+  margin: 0 auto;
+}
+.countdown-card {
+  background: #fff;
+  border: 1px solid #ecdccf;
+  border-radius: 20px;
+  padding: clamp(26px, 5vw, 40px) 8px;
+  box-shadow: 0 24px 50px -34px rgba(120, 80, 60, .5);
+}
+.countdown-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 600;
+  font-size: clamp(56px, 7vw, 86px);
+  color: #3a2f2a;
+  line-height: .9;
+  font-variant-numeric: tabular-nums;
+}
+.countdown-num-accent { color: #cf8f80; }
+.countdown-label {
+  font-family: 'Marcellus', serif;
+  font-size: 12px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: #a99b8e;
+  margin-top: 14px;
+}
+
+/* ============ PROGRAM ============ */
+.program {
+  padding: clamp(76px, 13vw, 120px) 6vw;
+  background: #f7efe7;
+}
+.program-list {
+  max-width: 720px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+.program-row {
+  display: grid;
+  grid-template-columns: clamp(64px, 18vw, 104px) 1fr;
+  gap: clamp(16px, 4vw, 28px);
+  align-items: baseline;
+  padding: 20px 0;
+  border-bottom: 1px solid #e4d5c6;
+}
+.program-row-last { border-bottom: none; }
+.program-time {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 600;
+  font-size: 28px;
+  color: #c2a05a;
+}
+.program-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 600;
+  font-size: 23px;
+  color: #3a2f2a;
+}
+.program-sub {
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  color: #8a7a6e;
+  margin-top: 2px;
+}
+
+/* ============ MÍSTO ============ */
+.venues {
+  padding: clamp(76px, 13vw, 120px) 6vw;
+  background: #f1e5d9;
+}
+.venues-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 26px;
+  max-width: 940px;
+  margin: 0 auto;
+}
+.venue-card {
+  background: #fff;
+  border: 1px solid #ecdccf;
+  border-radius: 22px;
+  overflow: hidden;
+  box-shadow: 0 24px 50px -36px rgba(120, 80, 60, .5);
+}
+.venue-map {
+  width: 100%;
+  height: 220px;
+  border: 0;
+  display: block;
+  filter: saturate(.86);
+}
+.venue-body { padding: 28px 30px 30px; }
+.venue-kicker {
+  font-family: 'Marcellus', serif;
+  font-size: 11px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: #c2a05a;
+}
+.venue-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 600;
+  font-size: 29px;
+  color: #3a2f2a;
+  margin: 8px 0 6px;
+}
+.venue-address {
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  font-size: 14.5px;
+  line-height: 1.7;
+  color: #8a7a6e;
+}
+.venue-coords {
+  font-family: 'Jost', monospace;
+  font-size: 12px;
+  color: #b39c88;
+  margin-top: 8px;
+  letter-spacing: .03em;
+}
+.venue-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: 20px;
+  padding: 13px 24px;
+  background: #3a2f2a;
+  color: #f7efe7;
+  text-decoration: none;
+  border-radius: 100px;
+  font-family: 'Marcellus', serif;
+  font-size: 12px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+.venue-btn-dot {
+  width: 6px;
+  height: 6px;
+  background: #e6b9ae;
+  transform: rotate(45deg);
+}
+
+/* ============ FOOTER ============ */
+.footer {
+  padding: 90px 6vw 70px;
+  text-align: center;
+  background: #3a2f2a;
+  color: #efe0d1;
+}
+.footer-names {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 600;
+  font-size: clamp(40px, 6vw, 72px);
+  line-height: 1;
+}
+.footer-names span {
+  color: #e6b9ae;
+  font-style: italic;
+  font-weight: 400;
+}
+.footer-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin: 26px 0 20px;
+}
+.footer-divider-line { height: 1px; width: 48px; background: #6b5a4e; }
+.footer-divider-dot { width: 7px; height: 7px; background: #c2a05a; transform: rotate(45deg); }
+.footer-date {
+  font-family: 'Marcellus', serif;
+  font-size: 14px;
+  letter-spacing: .22em;
+  color: #c9b6a5;
+}
+.footer-note {
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  font-size: 12.5px;
+  color: #9a8778;
+  margin-top: 32px;
+}
+</style>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav-mark">D <span>&amp;</span> M</div>
+    <div class="nav-links">
+      <a href="#odpocet" class="navlink">Odpočet</a>
+      <a href="#program" class="navlink">Program</a>
+      <a href="#misto" class="navlink">Místo</a>
+    </div>
+  </nav>
+
+  <!-- ============ HERO ============ -->
+  <header class="hero">
+    <span class="petal" style="top:-60px;left:6%;width:16px;height:16px;background:#e6b9ae;animation:petalfall 13s linear 0s infinite;"></span>
+    <span class="petal" style="top:-60px;left:18%;width:11px;height:11px;background:#d9a68f;animation:petalfall 16s linear 2s infinite;"></span>
+    <span class="petal" style="top:-60px;left:31%;width:18px;height:18px;background:#eec7bd;animation:petalfall 14.5s linear 5s infinite;"></span>
+    <span class="petal" style="top:-60px;left:44%;width:12px;height:12px;background:#e6b9ae;animation:petalfall 12s linear 1s infinite;"></span>
+    <span class="petal" style="top:-60px;left:57%;width:15px;height:15px;background:#d9a68f;animation:petalfall 15s linear 3.5s infinite;"></span>
+    <span class="petal" style="top:-60px;left:69%;width:10px;height:10px;background:#eec7bd;animation:petalfall 17s linear 6.5s infinite;"></span>
+    <span class="petal" style="top:-60px;left:80%;width:17px;height:17px;background:#e6b9ae;animation:petalfall 13.5s linear 4s infinite;"></span>
+    <span class="petal" style="top:-60px;left:92%;width:12px;height:12px;background:#d9a68f;animation:petalfall 15.5s linear 8s infinite;"></span>
+
+    <div class="rev hero-eyebrow" style="animation-delay:.05s;">S láskou Vás zveme na svatbu</div>
+    <h1 class="rev hero-name" style="animation-delay:.2s;">Dagmar</h1>
+    <div class="rev hero-amp" style="animation-delay:.36s;">&amp;</div>
+    <h1 class="rev hero-name" style="animation-delay:.52s;">Martin</h1>
+
+    <div class="rev hero-divider" style="animation-delay:.74s;">
+      <span class="hero-divider-line"></span>
+      <span class="hero-divider-dot"></span>
+      <span class="hero-divider-line"></span>
+    </div>
+    <div class="rev hero-date" style="animation-delay:.86s;">29. SRPNA 2026 · OSTRAVA</div>
+    <div class="rev hero-venues" style="animation-delay:.98s;">Nová radnice Ostrava&nbsp;&nbsp;·&nbsp;&nbsp;Koliba U Zlatého Jarouše</div>
+
+    <a href="#odpocet" class="rev hero-scroll" style="animation-delay:1.15s;">
+      Odpočet
+      <span class="hero-scroll-line"></span>
+    </a>
+  </header>
+
+  <!-- ============ COUNTDOWN ============ -->
+  <section id="odpocet" class="countdown">
+    <div class="eyebrow">Do velkého dne zbývá</div>
+    <div class="section-italic">už se nemůžeme dočkat</div>
+    <div class="countdown-grid">
+      <div class="countdown-card">
+        <div class="countdown-num" id="cd-days">00</div>
+        <div class="countdown-label">dní</div>
+      </div>
+      <div class="countdown-card">
+        <div class="countdown-num" id="cd-hours">00</div>
+        <div class="countdown-label">hodin</div>
+      </div>
+      <div class="countdown-card">
+        <div class="countdown-num" id="cd-minutes">00</div>
+        <div class="countdown-label">minut</div>
+      </div>
+      <div class="countdown-card">
+        <div class="countdown-num countdown-num-accent" id="cd-seconds">00</div>
+        <div class="countdown-label">sekund</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROGRAM ============ -->
+  <section id="program" class="program">
+    <div class="section-head">
+      <div class="eyebrow">Sobota · 29. srpna 2026</div>
+      <h2 class="section-title">Harmonogram dne</h2>
+    </div>
+    <div class="program-list">
+      <div class="program-row">
+        <div class="program-time">10:45</div>
+        <div>
+          <div class="program-title">Sraz na Nové radnici Ostrava</div>
+          <div class="program-sub">Sejdeme se před obřadní síní</div>
+        </div>
+      </div>
+      <div class="program-row">
+        <div class="program-time">11:15</div>
+        <div>
+          <div class="program-title">Svatební obřad</div>
+          <div class="program-sub">Nová radnice Ostrava</div>
+        </div>
+      </div>
+      <div class="program-row">
+        <div class="program-time">12:00</div>
+        <div>
+          <div class="program-title">Gratulace &amp; společné focení</div>
+        </div>
+      </div>
+      <div class="program-row">
+        <div class="program-time">13:00</div>
+        <div>
+          <div class="program-title">Uvítání hostů &amp; welcome drink</div>
+          <div class="program-sub">Koliba U Zlatého Jarouše</div>
+        </div>
+      </div>
+      <div class="program-row">
+        <div class="program-time">14:00</div>
+        <div>
+          <div class="program-title">Svatební hostina</div>
+          <div class="program-sub">Menu od Miloše</div>
+        </div>
+      </div>
+      <div class="program-row">
+        <div class="program-time">16:00</div>
+        <div>
+          <div class="program-title">První tanec, hry &amp; volná zábava</div>
+        </div>
+      </div>
+      <div class="program-row">
+        <div class="program-time">19:00</div>
+        <div>
+          <div class="program-title">Krájení dortu &amp; přípitek</div>
+        </div>
+      </div>
+      <div class="program-row program-row-last">
+        <div class="program-time">20:00</div>
+        <div>
+          <div class="program-title">Volná zábava do konce</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MÍSTO ============ -->
+  <section id="misto" class="venues">
+    <div class="section-head">
+      <div class="eyebrow">Kde nás najdete</div>
+      <h2 class="section-title">Místa oslavy</h2>
+    </div>
+    <div class="venues-grid">
+      <div class="venue-card">
+        <iframe title="Mapa — Nová radnice Ostrava" loading="lazy" class="venue-map" src="https://www.openstreetmap.org/export/embed.html?bbox=18.28653%2C49.83726%2C18.29853%2C49.84226&amp;layer=mapnik&amp;marker=49.83976%2C18.29253"></iframe>
+        <div class="venue-body">
+          <div class="venue-kicker">Obřad · 11:15</div>
+          <div class="venue-name">Nová radnice Ostrava</div>
+          <div class="venue-address">Prokešovo náměstí 1803/8<br>702 00 Moravská Ostrava</div>
+          <div class="venue-coords">49.8398° N, 18.2925° E</div>
+          <a href="https://www.google.com/maps/dir/?api=1&amp;destination=49.83976,18.29253" target="_blank" rel="noopener" class="venue-btn">
+            <span class="venue-btn-dot"></span> Navigovat
+          </a>
+        </div>
+      </div>
+      <div class="venue-card">
+        <iframe title="Mapa — Koliba U Zlatého Jarouše" loading="lazy" class="venue-map" src="https://www.openstreetmap.org/export/embed.html?bbox=18.25180%2C49.82470%2C18.26380%2C49.82970&amp;layer=mapnik&amp;marker=49.82720%2C18.25780"></iframe>
+        <div class="venue-body">
+          <div class="venue-kicker">Hostina · 13:00</div>
+          <div class="venue-name">Koliba U Zlatého Jarouše</div>
+          <div class="venue-address">Karasova 1130/23<br>709 00 Ostrava — Mariánské Hory</div>
+          <div class="venue-coords">49.8272° N, 18.2578° E</div>
+          <a href="https://www.google.com/maps/dir/?api=1&amp;destination=Koliba%20u%20zlat%C3%A9ho%20Jarou%C5%A1e%2C%20Karasova%2023%2C%20Ostrava" target="_blank" rel="noopener" class="venue-btn">
+            <span class="venue-btn-dot"></span> Navigovat
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="footer-names">Dagmar <span>&amp;</span> Martin</div>
+    <div class="footer-divider">
+      <span class="footer-divider-line"></span>
+      <span class="footer-divider-dot"></span>
+      <span class="footer-divider-line"></span>
+    </div>
+    <div class="footer-date">29 · 08 · 2026 · OSTRAVA</div>
+    <div class="footer-note">Těšíme se na Vás ♡</div>
+  </footer>
+
+<script>
+(function () {
+  var target = new Date('2026-08-29T10:45:00').getTime();
+  var els = {
+    days: document.getElementById('cd-days'),
+    hours: document.getElementById('cd-hours'),
+    minutes: document.getElementById('cd-minutes'),
+    seconds: document.getElementById('cd-seconds')
+  };
+
+  function pad2(n) {
+    return String(n).padStart(2, '0');
+  }
+
+  function tick() {
+    var diff = Math.max(0, target - Date.now());
+
+    var day = Math.floor(diff / 86400000); diff -= day * 86400000;
+    var hr = Math.floor(diff / 3600000); diff -= hr * 3600000;
+    var min = Math.floor(diff / 60000); diff -= min * 60000;
+    var sec = Math.floor(diff / 1000);
+
+    els.days.textContent = String(day);
+    els.hours.textContent = pad2(hr);
+    els.minutes.textContent = pad2(min);
+    els.seconds.textContent = pad2(sec);
+  }
+
+  tick();
+  setInterval(tick, 1000);
+})();
+</script>
+</body>
+</html>

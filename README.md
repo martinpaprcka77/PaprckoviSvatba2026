@@ -8,6 +8,7 @@ Read-only: CSV soubory v `data/` = zdroj pravdy, appka jen čte, editace přes g
 | Co | Kde |
 |----|-----|
 | **Veřejná stránka** | https://martinpaprcka77.github.io/PaprckoviSvatba2026/ |
+| **Landing page** (nový design) | https://martinpaprcka77.github.io/PaprckoviSvatba2026/landing.html |
 | **Plánovač** (PIN chráněno) | https://martinpaprcka77.github.io/PaprckoviSvatba2026/planner.html |
 | **Archiv červen 2026** | https://martinpaprcka77.github.io/PaprckoviSvatba2026/index_june.html |
 | **Úkoly / Rozpočet / Hosté / Log** | [tasks.csv](data/tasks.csv) · [budget.csv](data/budget.csv) · [guests.csv](data/guests.csv) · [changelog.csv](data/changelog.csv) |
