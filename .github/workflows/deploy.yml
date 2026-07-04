@@ -17,7 +17,7 @@ jobs:
       id-token: write
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: ${{ steps.deploy1.outcome == 'success' && steps.deploy1.outputs.page_url || steps.deploy2.outcome == 'success' && steps.deploy2.outputs.page_url || steps.deploy3.outputs.page_url }}
     steps:
       - uses: actions/checkout@v6
       - name: Prepare deploy files
@@ -34,5 +34,30 @@ jobs:
       - uses: actions/upload-pages-artifact@v5
         with:
           path: ./deploy_out
-      - uses: actions/deploy-pages@v5
-        id: deployment
+
+      # actions/deploy-pages occasionally fails with a transient
+      # "Deployment failed, try again later" even though the artifact is
+      # fine — retry up to 3x before letting the job actually fail.
+      - name: Deploy to GitHub Pages (attempt 1)
+        id: deploy1
+        continue-on-error: true
+        uses: actions/deploy-pages@v5
+
+      - name: Wait before retry 1
+        if: steps.deploy1.outcome == 'failure'
+        run: sleep 30
+
+      - name: Deploy to GitHub Pages (attempt 2)
+        id: deploy2
+        if: steps.deploy1.outcome == 'failure'
+        continue-on-error: true
+        uses: actions/deploy-pages@v5
+
+      - name: Wait before retry 2
+        if: steps.deploy1.outcome == 'failure' && steps.deploy2.outcome == 'failure'
+        run: sleep 30
+
+      - name: Deploy to GitHub Pages (attempt 3)
+        id: deploy3
+        if: steps.deploy1.outcome == 'failure' && steps.deploy2.outcome == 'failure'
+        uses: actions/deploy-pages@v5
