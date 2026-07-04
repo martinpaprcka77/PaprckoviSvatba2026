@@ -1,7 +1,8 @@
 # PRD — Svatba Paprčkovi 2026
 
 > Product Requirements Document — 14. 5. 2026
-> Status: active — 28. 5. 2026 (36 úkolů, 5 osob, 89 500 Kč, 23 hostů)
+> Status: active — 5. 7. 2026 (28 úkolů, 5 osob, 80 500 Kč, 25 hostů)
+> Historie rozhodnutí do 28. 5. 2026 v sekci 8 níže; průběžné změny viz [`data/changelog.csv`](../data/changelog.csv) — to je od migrace na CSV (2. 6. 2026) autoritativní zdroj, tenhle dokument je shrnutí/snapshot.
 
 ---
 
@@ -48,67 +49,57 @@
 
 ## 4. Rozpočet
 
-**MAX 100 000 Kč — hard cap.** Aktuálně 89 500 Kč (84 500 + 4 500 + 500). Každá změna ceny musí být vyrovnána jinde.
+**MAX 100 000 Kč — hard cap.** Aktuálně 80 500 Kč (76 500 + 4 000 + 0). Rezerva 19 500 Kč. Každá změna ceny musí být vyrovnána jinde.
 
-### POVINNÉ (mandatory) — 19 tasků, 84 500 Kč
+### POVINNÉ (mandatory) — 16 tasků, 76 500 Kč
 
 | Položka | Odhad (Kč) | Kdo |
 |---|---|---|
-| Zlatá koliba — menu + catering | 30 000 | Žanetka |
-| Prstýnky — nákup a úprava | 10 000 | Taťka |
-| Svatební šaty (Mamka) | 12 000 | Mamka |
-| Oblek a sako (Taťka) | 8 000 | Taťka |
+| Zlatá koliba — catering celkem | 30 000 | Žanetka |
+| Svatební šaty (Mamka) ✅ hotovo | 12 000 | Mamka |
+| Prstýnky — nákup a úprava ✅ hotovo | 10 000 | Taťka |
+| Oblek a sako (Taťka) ⚠️ po termínu | 8 000 | Taťka |
 | Nápoje a bar | 6 000 | Žanetka |
-| Ubytování pro hosty | 5 000 | Žanetka |
-| Dekorace a květiny na radnici | 3 000 | Kikinka |
 | Doprava (radnice → Zlatá koliba) | 3 000 | Taťka |
-| Svatební dort | 3 000 | Děti, Mamka |
+| Svatební dort | 3 000 | Děti |
 | Doplňky (boty, šperky) | 3 000 | Mamka |
-| Svatební oznámení | 1 500 | Mamka |
-| Domluva oddávajícího (hotovo ✓) | 0 | Mamka |
-| Oddávající, podpisy, doklady | 0 | Kikinka |
-| Seznam hostů | 0 | Mamka |
+| Svatební oznámení — tisk hotovo, zbývá rozeslat + RSVP | 1 500 | Mamka |
+| Zlatá koliba — finální počet hostů; Finální seznam hostů | 0 | Žanetka, Mamka |
+| Oddací list, podpisy, doklady | 0 | Kikinka |
 | Změna příjmení (po svatbě) | 0 | Mamka |
-| Termín (hotovo ✓) | 0 | — |
-| Radnice (hotovo ✓) | 0 | — |
-| Děti (hotovo ✓) | 0 | — |
-| Svědci (hotovo ✓) | 0 | — |
-| **Subtotal** | **84 500** | |
+| Termín, radnice, děti, svědci, oddávající (hotovo ✓) | 0 | — |
+| **Subtotal** | **76 500** | |
 
-### DŮLEŽITÉ (important) — 13 tasků, 4 500 Kč
+### DŮLEŽITÉ (important) — 10 tasků, 4 000 Kč
 
 | Položka | Odhad (Kč) | Kdo |
 |---|---|---|
 | Líčení / nehty / vlasy (Mamka) | 1 500 | Mamka |
 | Dekorace Zlaté koliby | 1 000 | Děti |
 | Fotokoutek / selfie zóna | 1 000 | Děti |
-| Dárky pro svědky | 500 | Mamka |
-| Dárky na přivítanou pro hosty | 0 | Mamka |
-| Uvítací cedule | 0 | Mamka |
-| Hry pro hosty | 0 | Žanetka |
 | Střih a úprava (Taťka) | 500 | Taťka |
-| První tanec | 0 | Mamka |
-| Hudba a playlist | 0 | Děti |
-| Proslovy | 0 | Kikinka |
-| Schůzka — prstýnky (Mamka+Taťka+Žanetka) | 0 | Mamka, Taťka, Žanetka |
-| Rozlučka se svobodou | 0 | Žanetka |
-| **Subtotal** | **4 500** | |
+| Uvítací cedule, první tanec, hry pro hosty, hudba a playlist | 0 | Mamka, Žanetka, Děti |
+| Schůzka — prstýnky (Mamka+Taťka+Žanetka) ✅ hotovo | 0 | Mamka, Taťka, Žanetka |
+| Rozlučka se svobodou — termín potvrzen 24. 7. | 0 | Žanetka |
+| **Subtotal** | **4 000** | |
 
-### VOLITELNÉ (optional) — 4 tasky, 500 Kč
+### VOLITELNÉ (optional) — 2 tasky, 0 Kč
 
 | Položka | Odhad (Kč) | Kdo |
 |---|---|---|
-| Drobnosti pro hosty (guestbook + favory) | 500 | Mamka |
-| Confetti a prskavky | 0 | Žanetka |
 | Fotograf / dokumentace | 0 | Děti |
 | Svatební cesta — termín, ubytování, program | 0 | Taťka |
-| **Subtotal** | **500** | |
+| **Subtotal** | **0** | |
 
-**CELKEM: 36 tasků, 89 500 Kč ✓**
+**CELKEM: 28 tasků, 80 500 Kč ✓** (rezerva 19 500 Kč)
+
+**Zrušeno (nedělá se), ušetřeno 8 500 Kč oproti 28. 5. verzi:** ubytování pro hosty (5 000), dekorace a květiny na radnici (3 000), dárky pro svědky (500), guestbook + favory (500) — plus bez rozpočtu: dárky na přivítanou pro hosty, proslovy svědků, confetti a prskavky. Detail viz `data/changelog.csv`.
 
 ---
 
 ## 5. Úkoly — časová osa
+
+> Zdroj pravdy je `data/tasks.csv` (28 řádků, ID T001–T034 s mezerami po zrušených úkolech). Tabulka níže je čitelný přehled, ne autoritativní zdroj.
 
 ### Květen 2026 — ✅ HOTOVO
 
@@ -118,51 +109,38 @@
 | 29. 5. | Návštěva radnice (Nová radnice Ostrava) | Mamka | ✅ |
 | 29. 5. | Informování dětí | Mamka | ✅ |
 | 29. 5. | Svědci domluveni (Kikinka + Žanetka) | Mamka | ✅ |
-| 25. 5. | Schůzka — prstýnky (Mamka+Taťka+Žanetka) | Mamka, Taťka, Žanetka | [ ] |
+| 20. 5. | Domluva oddávajícího (11:15 Nová radnice) | Mamka | ✅ |
+| 25. 5. | Schůzka — prstýnky (Mamka+Taťka+Žanetka) | Mamka, Taťka, Žanetka | ✅ |
 
-### Červen 2026
+### Červen–červenec 2026
 
-| Termín | Úkol | Kdo | Kategorie |
-|---|---|---|---|
-| ~~30. 6.~~ | ~~Domluva oddávajícího (11:15 Nová radnice)~~ | ~~Kikinka~~ → **Mamka** | ✅ HOTOVO |
-| 30. 6. | Rozlučka se svobodou | Žanetka | Důležité |
-
-### Červenec 2026
-
-| Termín | Úkol | Kdo | Kategorie |
-|---|---|---|---|
-| 10. 7. | Svatební oznámení | Mamka | Povinné |
-| 15. 7. | Zlatá koliba — menu + catering | Žanetka | Povinné |
-| 15. 7. | Svatební šaty (Mamka) | Mamka | Povinné |
-| 15. 7. | Oblek a sako (Taťka) | Taťka | Povinné |
-| 15. 7. | Prstýnky — nákup a úprava | Taťka | Povinné |
-| 15. 7. | Finální seznam hostů | Mamka | Povinné |
-| 15. 7. | Svatební cesta — termín, ubytování a program | Taťka | Volitelné |
+| Termín | Úkol | Kdo | Kategorie | Stav |
+|---|---|---|---|---|
+| 15. 6. | Oblek a sako — výběr a nákup | Taťka | Povinné | ⚠️ open, po termínu |
+| ~~15. 6.~~ | ~~Prstýnky — nákup a úprava~~ | Taťka | Povinné | ✅ vyzvednuto 3. 7. |
+| 10. 7. | Svatební oznámení — rozeslání hostům + RSVP | Mamka | Povinné | tisk hotovo, zbývá rozeslat |
+| 15. 7. | Zlatá koliba — finální počet hostů pro catering | Žanetka | Povinné | open |
+| 15. 7. | Finální seznam hostů — potvrzení pro catering | Mamka | Povinné | open |
+| ~~15. 7.~~ | ~~Svatební šaty — výběr; nákup; úpravy~~ | Mamka | Povinné | ✅ hotovo |
+| 15. 7. | Svatební cesta a dovolená | Taťka | Volitelné | open |
+| 24. 7. | Rozlučka se svobodou | Žanetka | Důležité | open, termín posunut z 30. 6. |
 
 ### Srpen 2026
 
 | Termín | Úkol | Kdo | Kategorie |
 |---|---|---|---|
-| 1. 8. | Nápoje a bar | Žanetka | Povinné |
 | 1. 8. | Doplňky — boty, šperky | Mamka | Povinné |
-| 1. 8. | Ubytování pro hosty | Žanetka | Povinné |
-| 10. 8. | Dárky pro svědky | Mamka | Důležité |
-| 15. 8. | Dekorace a květiny na radnici | Kikinka | Povinné |
-| 22. 8. | Dekorace Zlaté koliby | Děti | Důležité |
 | 15. 8. | První tanec (nácvik) | Mamka | Důležité |
 | 20. 8. | Doprava (radnice → Zlatá koliba) | Taťka | Povinné |
-| 20. 8. | Svatební dort | Děti, Mamka | Povinné |
+| 20. 8. | Svatební dort | Děti | Povinné |
 | 20. 8. | Oddací list, podpisy, doklady | Kikinka | Povinné |
+| 20. 8. | Dekorace Zlaté koliby | Děti | Důležité |
 | 20. 8. | Fotokoutek / selfie zóna | Děti | Důležité |
 | 20. 8. | Uvítací cedule, místa k sezení | Mamka | Důležité |
-| 20. 8. | Dárky na přivítanou pro hosty | Mamka | Důležité |
 | 20. 8. | Hry pro hosty a zábava | Žanetka | Důležité |
-| 20. 8. | Hudba a playlist | Děti | Důležité |
-| 20. 8. | Drobnosti pro hosty (guestbook + favory) | Mamka | Volitelné |
-| 25. 8. | Proslovy (svědci) | Kikinka | Důležité |
+| 20. 8. | Hudba a playlist (DJ nebude, Děti pustí playlist) | Děti | Důležité |
 | 25. 8. | Líčení / nehty / vlasy (Mamka) | Mamka | Důležité |
 | 25. 8. | Střih a úprava (Taťka) | Taťka | Důležité |
-| 25. 8. | Confetti a prskavky | Žanetka | Volitelné |
 | 25. 8. | Fotograf / dokumentace | Děti | Volitelné |
 | **29. 8.** | **💒 SVATBA 🎉** | Všichni | |
 
@@ -172,15 +150,21 @@
 |---|---|---|---|
 | 5. 9. | Změna příjmení (Mamka) | Mamka | Povinné |
 
+### Zrušeno (nedělá se)
+
+Dárky pro svědky · Dárky na přivítanou pro hosty · Drobnosti pro hosty (guestbook + favory) · Proslovy svědků · Confetti a prskavky · Ubytování pro hosty · Dekorace a květiny na radnici — rozhodnuto v červenci 2026, viz `data/changelog.csv`.
+
 ---
 
 ## 6. Deployment
 
-- **GitHub repo:** `doma77git/PaprckoviSvatba2026`
-- **Live URL:** https://doma77git.github.io/PaprckoviSvatba2026/
-- **Zdrojový soubor:** `index.html` (single file, inline CSS/JS, 36 úkolů)
-- **Deploy:** Push do masteru → GitHub Action → `gh-pages` → live
-- **Storage key:** `svatba_state_v3` (localStorage)
+- **GitHub repo (primární):** `martinpaprcka77/PaprckoviSvatba2026`
+- **Live URL (primární):** https://martinpaprcka77.github.io/PaprckoviSvatba2026/
+- **Plánovač (PIN chráněno):** https://martinpaprcka77.github.io/PaprckoviSvatba2026/planner.html
+- **Mirror (ruční sync, ne automatický):** `doma77git/PaprckoviSvatba2026` — starší účet, aktualizuje se manuálně kopií souborů + push, GitHub App pro automatický přístup vyžaduje Claude Team/Enterprise plán
+- **Zdrojové soubory:** `index.html` (veřejná), `planner.html` (PIN, organizátoři), `index_june.html` (zamrzlý archiv), `karaoke.html` (Sweet Caroline) — žádný single-file monolit, žádný build krok
+- **Deploy:** Push do `master` → `.github/workflows/deploy.yml` → GitHub Actions → GitHub Pages → live (~1 min)
+- **Storage:** localStorage se používá jen pro PIN gate (`planner_auth_v1`) na plánovači; task/budget/guest stav se vždy fetchuje čerstvě z CSV, nikdy z cache
 
 ---
 
@@ -223,6 +207,13 @@
 | 28. 5. | **Hosté restrukturalizace:** Mamka / Taťka / Společní (3 strany). +1 u všech kromě Milady S. Noví: Jan Drah, Jirka Pok, Hozik P. Celkem ~23. | guests.md restrukturalizován, PRD sync |
 | 28. 5. | **Cleanup:** Smazány staré configy (.claude/settings.json, .reasonix/settings.json, CLAUDE.md), init() refactored s error handlingem | Uklid repa, DOMContentLoaded, budget 100K cap zachován |
 | 24. 5. | **Oprava:** Dáda = Mamka = Dagmar Sobková — sloučeno do 5 osob, Mamka 18 úkolů | Uživatel upřesnil: Dáda je přezdívka Mamky |
+| 2. 6. | **CSV migrace:** `data/*.md` → `data/*.csv`, romantický redesign, `planner.html` (PIN chráněno) pro Žanetku, žádný localStorage state pro data | Konec dual `/`+`/v2/` deploye, jeden produkční repo |
+| 3. 7. | Prstýnky vyzvednuty (Mamka) | T009 hotovo |
+| 4. 7. | Svatební šaty hotovo; Rozlučka se svobodou přeložena z 30. 6. na 24. 7. | T013 hotovo, T010 termín potvrzen |
+| 4. 7. | **Zrušeno 5 úkolů:** dárky pro svědky, dárky na přivítanou pro hosty, guestbook+favory, proslovy svědků, confetti a prskavky | Rozhodnuto nedělat — ušetřeno 2 000 Kč |
+| 5. 7. | **Zrušeno:** ubytování pro hosty (5 000 Kč), dekorace a květiny na radnici (3 000 Kč, T017) | Rozhodnuto nedělat — ušetřeno dalších 8 000 Kč, rezerva teď 19 500 Kč |
+| 5. 7. | Svatební oznámení — tisk hotovo, zbývá rozeslat + RSVP | T011 rozpracováno |
+| 5. 7. | **Repo `doma77git/PaprckoviSvatba2026` sesynchronizován jako mirror** — manuální `robocopy /MIR` + push, GitHub App přístup blokovaný Team/Enterprise plánem | Uživatel chtěl update i na starším účtu |
 
 ---
 
@@ -236,34 +227,30 @@
 
 ---
 
-## 10. Architecture (Read-Only App) — 28. 5. 2026
+## 10. Architecture (Read-Only App) — aktualizováno 2. 6. 2026 (CSV migrace)
 
-**MD soubory = source of truth.** Appka je **read-only** — nikdy nikam nezapisuje. Všechny editace přes PC → git → deploy.
+**CSV soubory = source of truth.** Appka je **read-only** — nikdy nikam nezapisuje. Všechny editace přes PC/agenta → git → deploy. (Historicky appka v květnu 2026 používala `data/*.md` a dual `/`+`/v2/` deploy — to bylo nahrazeno CSV migrací 2. 6. 2026, viz sekce 8.)
 
 ### Zdroje pravdy (sources of truth)
-- `data/tasks.md` — autoritativní tabulka úkolů
-- `data/guests.md` — seznam hostů
-- Budget — odvozen z `tasks.md` (SUMIF/COUNTIF), nikdy ne hardcode
-
-### Data files
-- `data/tasks.md` — 36 úkolů, Markdown tabulka
-- `data/guests.md` — hosté dle stran (Mamka / Taťka / Společní)
-- `data/budget.md` — budget breakdown odvozený z tasks.md
+- `data/tasks.csv` — autoritativní tabulka úkolů (`id,deadline,title,assign,category,status,note`)
+- `data/budget.csv` — autoritativní rozpočet (`id,item,category,amount_plan,amount_actual,note`) — **ne** odvozený z tasks.csv, žije samostatně
+- `data/guests.csv` — seznam hostů (`id,name,side,count,confirmed,note`)
+- `data/changelog.csv` — historie rozhodnutí (`date,who,what,detail`)
 
 ### App capabilities
-- **Read-only:** Fetch MD z GitHub Raw, renderovat úkoly, harmonogram, hosté
-- **Force refresh při otevření** — vždy načíst aktuální MD data, nikdy z cache
-- **localStorage se maže** — při startu smazat starý state (`svatba_state_v3` apod.), aby nikdy nepřebil MD
-- **Žádný write:** Appka nikdy nepíše do gitu, nepoužívá GitHub API pro zápis
-- **MD je vždy autoritativní** — localStorage se nikdy nesmí přepsat přes MD data
+- **Read-only:** `fetch('data/' + name + '?_=' + Date.now(), {cache:'no-store'})` na každé otevření stránky, hand-rolled CSV parser (podporuje quoted fields s čárkami)
+- **Force refresh při otevření** — vždy fetch čerstvých CSV, nikdy z cache; auto-refresh i při ponechané otevřené stránce (12h interval)
+- **localStorage jen pro:** PIN gate na `planner.html` (`planner_auth_v1`) a countdown/UI timer — nikdy pro task/budget/guest stav
+- **Žádný write:** Appka nikdy nepíše do gitu ani nepoužívá GitHub API pro zápis
+- **Bez buildu:** Plain HTML/CSS/JS, žádný npm, žádný framework
 
-### Dual deploy
-- `/` produkce (v1), `/v2/` testovací (v2)
-- README odkazy na obě
+### Nasazení
+- Jeden produkční repo/branch (`master`), žádný dual `/`+`/v2/` deploy
+- `.github/workflows/deploy.yml` kopíruje `index.html`, `planner.html`, `index_june.html`, `karaoke.html`, `data/`, `public/*`, `media/` do `deploy_out/` a publikuje na GitHub Pages
 
 ---
 
-## 11. Seznam hostů — 28. 5. 2026
+## 11. Seznam hostů — 28. 5. 2026 (beze změny k 5. 7. 2026, zdroj `data/guests.csv`)
 
 ### Mamka strana
 
@@ -302,15 +289,17 @@
 
 ---
 
-## 12. Lidé — upřesněno 24. 5. 2026 (5 osob)
+## 12. Lidé — upřesněno 5. 7. 2026 (5 osob)
 
-| Kdo | Role | Úkolů v tasks.md |
+| Kdo | Role | Úkolů v tasks.csv |
 |-----|------|------------------|
-| **Mamka** | Nevěsta (Dagmar Sobková, "Dáda") | 18 |
-| **Taťka** | Ženich | 7 |
-| **Žanetka** | Hlavní organizátorka, svědkyně ženicha | 7 |
-| **Kikinka** | Svědkyně nevěsty | 3 |
+| **Mamka** | Nevěsta (Dagmar Sobková, "Dáda") | 15 |
+| **Taťka** | Ženich | 4 |
+| **Žanetka** | Hlavní organizátorka, svědkyně ženicha | 3 |
+| **Kikinka** | Svědkyně nevěsty | 1 |
 | **Děti** | 4 dcery: **Gabriela, Kristýnka, Natálka, Kačka** — výzdoba, dort, focení, hudba, foto | 5 |
+
+Počty se počítají z `data/tasks.csv` (sloupec `assign`, rozdělený po čárce) — po každé změně přiřazení přepočítat, ne dohledávat ve staré tabulce.
 
 Děti jako skupina = 1 filter v appce. Individuální jména pro host list a kontakt.
 
