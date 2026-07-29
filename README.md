@@ -16,20 +16,20 @@ Read-only: CSV soubory v `data/` = zdroj pravdy, appka jen čte, editace přes g
 
 ## 📊 Aktuální stav
 
-> Snímek k 5. 7. 2026 — po každé větší editaci `data/*.csv` přepočítej z CSV, ne z paměti.
+> Snímek k 29. 7. 2026 — po každé větší editaci `data/*.csv` přepočítej z CSV, ne z paměti.
 
 ```
-✅ 8/28 splněno  ·  💰 80 500 / 100 000 Kč naplánováno
+✅ 10/27 splněno  ·  💰 80 500 / 100 000 Kč naplánováno (10 000 Kč utraceno)
 ```
 
 | Kategorie | Úkolů | Plán |
 |-----------|-------|------|
-| 🔴 Povinné | 16 | 76 500 Kč |
+| 🔴 Povinné | 15 | 76 500 Kč |
 | 🟡 Důležité | 10 | 4 000 Kč |
 | 🟢 Volitelné | 2 | 0 Kč |
-| **Celkem** | **28** | **80 500 Kč** |
+| **Celkem** | **27** | **80 500 Kč** |
 
-**Hotovo:** termín · radnice · děti · svědci · oddávající · schůzka prstýnky · prstýnky vyzvednuty · svatební šaty
+**Hotovo:** termín · radnice · děti · svědci · oddávající · schůzka prstýnky · prstýnky vyzvednuty · svatební šaty · oblek a sako · rozlučka se svobodou
 **Rozpracováno:** svatební oznámení — tisk hotovo, zbývá rozeslat + RSVP
 **Zrušeno:** dárky pro svědky · dárky na přivítanou · guestbook+favory · proslovy svědků · confetti · ubytování pro hosty · dekorace na radnici
 
@@ -52,9 +52,10 @@ Read-only: CSV soubory v `data/` = zdroj pravdy, appka jen čte, editace přes g
 | ~~25. 5. 2026~~ | ✅ Schůzka prstýnky |
 | ~~3. 7. 2026~~ | ✅ Prstýnky vyzvednuty |
 | ~~4. 7. 2026~~ | ✅ Svatební šaty hotovo |
+| ~~29. 7. 2026~~ | ✅ Oblek a sako hotovo (10 000 Kč) |
+| ~~24. 7. 2026~~ | ✅ Rozlučka se svobodou |
 | 10. 7. 2026 | Svatební oznámení |
-| 15. 7. 2026 | Koliba catering, oblek, hosté |
-| 24. 7. 2026 | Rozlučka se svobodou |
+| 15. 7. 2026 | Koliba catering, hosté |
 | 1. 8. 2026 | Doplňky, ubytování |
 | 10.–20. 8. 2026 | Výzdoba, program |
 | 25. 8. 2026 | Poslední úpravy |
@@ -85,3 +86,4 @@ Data se editují přímo v `data/*.csv` + git commit/push (nikdy přes appku) �
 | **2.0.0** | 2026-06-02 | CSV migrace, romantický design, planner.html |
 | **2.1.0** | 2026-07-04 | Reálný progres; zrušeno 5 úkolů |
 | **2.2.0** | 2026-07-05 | Zrušeno ubytování + dekorace radnice; oznámení tisk hotovo |
+| **2.3.0** | 2026-07-29 | Oblek hotovo (10 000 Kč); rozlučka proběhla 24. 7. |

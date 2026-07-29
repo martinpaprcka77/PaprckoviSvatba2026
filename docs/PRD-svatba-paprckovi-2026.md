@@ -1,7 +1,7 @@
 # PRD — Svatba Paprčkovi 2026
 
 > Product Requirements Document — 14. 5. 2026
-> Status: active — 5. 7. 2026 (28 úkolů, 5 osob, 80 500 Kč, 25 hostů)
+> Status: active — 29. 7. 2026 (27 úkolů, 5 osob, 80 500 Kč, 25 hostů)
 > Historie rozhodnutí do 28. 5. 2026 v sekci 8 níže; průběžné změny viz [`data/changelog.csv`](../data/changelog.csv) — to je od migrace na CSV (2. 6. 2026) autoritativní zdroj, tenhle dokument je shrnutí/snapshot.
 
 ---
@@ -58,7 +58,7 @@
 | Zlatá koliba — catering celkem | 30 000 | Žanetka |
 | Svatební šaty (Mamka) ✅ hotovo | 12 000 | Mamka |
 | Prstýnky — nákup a úprava ✅ hotovo | 10 000 | Taťka |
-| Oblek a sako (Taťka) ⚠️ po termínu | 8 000 | Taťka |
+| Oblek a sako (Taťka) ✅ hotovo (10 000 Kč) | 8 000 | Taťka |
 | Nápoje a bar | 6 000 | Žanetka |
 | Doprava (radnice → Zlatá koliba) | 3 000 | Taťka |
 | Svatební dort | 3 000 | Děti |
@@ -80,7 +80,7 @@
 | Střih a úprava (Taťka) | 500 | Taťka |
 | Uvítací cedule, první tanec, hry pro hosty, hudba a playlist | 0 | Mamka, Žanetka, Děti |
 | Schůzka — prstýnky (Mamka+Taťka+Žanetka) ✅ hotovo | 0 | Mamka, Taťka, Žanetka |
-| Rozlučka se svobodou — termín potvrzen 24. 7. | 0 | Žanetka |
+| Rozlučka se svobodou ✅ proběhla 24. 7. | 0 | Žanetka |
 | **Subtotal** | **4 000** | |
 
 ### VOLITELNÉ (optional) — 2 tasky, 0 Kč
@@ -91,7 +91,7 @@
 | Svatební cesta — termín, ubytování, program | 0 | Taťka |
 | **Subtotal** | **0** | |
 
-**CELKEM: 28 tasků, 80 500 Kč ✓** (rezerva 19 500 Kč)
+**CELKEM: 27 tasků, 80 500 Kč ✓** (rezerva 19 500 Kč)
 
 **Zrušeno (nedělá se), ušetřeno 8 500 Kč oproti 28. 5. verzi:** ubytování pro hosty (5 000), dekorace a květiny na radnici (3 000), dárky pro svědky (500), guestbook + favory (500) — plus bez rozpočtu: dárky na přivítanou pro hosty, proslovy svědků, confetti a prskavky. Detail viz `data/changelog.csv`.
 
@@ -116,14 +116,14 @@
 
 | Termín | Úkol | Kdo | Kategorie | Stav |
 |---|---|---|---|---|
-| 15. 6. | Oblek a sako — výběr a nákup | Taťka | Povinné | ⚠️ open, po termínu |
+| 15. 6. | Oblek a sako — výběr a nákup | Taťka | Povinné | ✅ hotovo, 10 000 Kč |
 | ~~15. 6.~~ | ~~Prstýnky — nákup a úprava~~ | Taťka | Povinné | ✅ vyzvednuto 3. 7. |
 | 10. 7. | Svatební oznámení — rozeslání hostům + RSVP | Mamka | Povinné | tisk hotovo, zbývá rozeslat |
 | 15. 7. | Zlatá koliba — finální počet hostů pro catering | Žanetka | Povinné | open |
 | 15. 7. | Finální seznam hostů — potvrzení pro catering | Mamka | Povinné | open |
 | ~~15. 7.~~ | ~~Svatební šaty — výběr; nákup; úpravy~~ | Mamka | Povinné | ✅ hotovo |
 | 15. 7. | Svatební cesta a dovolená | Taťka | Volitelné | open |
-| 24. 7. | Rozlučka se svobodou | Žanetka | Důležité | open, termín posunut z 30. 6. |
+| 24. 7. | Rozlučka se svobodou | Žanetka | Důležité | ✅ proběhla 24. 7. |
 
 ### Srpen 2026
 
@@ -214,6 +214,8 @@ Dárky pro svědky · Dárky na přivítanou pro hosty · Drobnosti pro hosty (g
 | 5. 7. | **Zrušeno:** ubytování pro hosty (5 000 Kč), dekorace a květiny na radnici (3 000 Kč, T017) | Rozhodnuto nedělat — ušetřeno dalších 8 000 Kč, rezerva teď 19 500 Kč |
 | 5. 7. | Svatební oznámení — tisk hotovo, zbývá rozeslat + RSVP | T011 rozpracováno |
 | 5. 7. | **Repo `doma77git/PaprckoviSvatba2026` sesynchronizován jako mirror** — manuální `robocopy /MIR` + push, GitHub App přístup blokovaný Team/Enterprise plánem | Uživatel chtěl update i na starším účtu |
+| 29. 7. | Oblek a sako hotovo — 10 000 Kč (2 000 Kč nad plán) | T008 done |
+| 29. 7. | Rozlučka se svobodou proběhla 24. 7. 2026 | T010 done |
 
 ---
 
