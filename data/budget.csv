@@ -2,13 +2,17 @@ id,item,category,amount_plan,amount_actual,note
 B001,Svatební oznámení — tisk a rozeslání,mandatory,1500,1400,
 B002,Zlatá koliba — catering celkem,mandatory,30000,28500,,"Oběd: (95+275)×25=9250 Kč; zbytek nápoje a bar"
 B003,Svatební šaty,mandatory,12000,11200,,"Plán 11 100 Kč; max 15 000 Kč"
-B004,Oblek a sako,mandatory,8000,10000,,
+B004,Oblek a sako,mandatory,8000,7200,,
 B005,Prstýnky,mandatory,10000,9000,,Vyhlédnuty 25.5.
 B006,Nápoje a bar,mandatory,6000,5400,,Součást domluvy s Milošem
 B007,Doplňky — boty a šperky,mandatory,3000,2700,,
+B008,Ubytování pro hosty,mandatory,5000,4500,,
+B009,Dekorace a květiny na radnici,mandatory,3000,2700,,
 B010,Doprava radnice → Zlatá koliba,mandatory,3000,2700,,
 B011,Svatební dort,mandatory,3000,2800,,
+B012,Dárky pro svědky,important,500,450,,
 B013,Dekorace Zlaté koliby,important,1000,950,,
 B014,Fotokoutek / selfie zóna,important,1000,900,,
 B015,Líčení; nehty; vlasy,important,1500,1400,,
 B016,Střih a úprava,important,500,450,,
+B017,Drobnosti pro hosty — guestbook + favory,optional,500,400,,

@@ -12,18 +12,23 @@ T007,2026-07-15,Zlatá koliba — finální počet osob pro catering,Žanetka,ma
 T012,2026-07-15,Finální seznam hostů — potvrzení pro catering,Mamka,mandatory,open,Odhad 25 hostů
 T013,2026-07-15,Svatební šaty — výběr; nákup; úpravy,Mamka,mandatory,open,
 T014,2026-07-15,Svatební cesta a dovolená — termín; ubytování; program,Mamka,optional,open,Pojedeme společně — svatební cesta + dovolená
-T010,2026-07-24,Rozlučka se svobodou — organizace,Žanetka,important,done,Žanetka zorganizovala — termín; program; místo
+T010,2026-06-30,Rozlučka se svobodou — organizace,Žanetka,important,done,Žanetka zorganizovala — termín; program; místo; ubytování pro hosty z Brna u Žanetky
 T015,2026-08-01,Doplňky — boty; šperky,Mamka,mandatory,open,
+T016,2026-08-10,Dárky pro svědky,Mamka,important,open,
+T017,2026-08-15,Dekorace a květiny na radnici,Kikinka,mandatory,open,
 T018,2026-08-15,První tanec — nácvik,Mamka,important,open,
-T019,2026-08-20,Doprava radnice → Zlatá koliba,Taťka,mandatory,open,
 T020,2026-08-20,Svatební dort — objednat a vyzvednout,Děti,mandatory,open,
 T021,2026-08-20,Oddací list; podpisy; doklady,Kikinka,mandatory,open,
-T022,2026-08-20,Dekorace Zlaté koliby — výzdoba sálu,Děti,important,open,Týden před svatbou
-T023,2026-08-20,Fotokoutek / selfie zóna — příprava,Děti,important,open,
-T024,2026-08-20,Uvítací cedule; místa k sezení,Mamka,important,open,
-T026,2026-08-20,Hry pro hosty a zábava,Žanetka,important,open,
+T022,2026-08-20,Doprava radnice → Zlatá koliba,Taťka,mandatory,open,
+T023,2026-08-20,Dekorace Zlaté koliby — výzdoba sálu,Děti,important,open,Týden před svatbou
+T024,2026-08-20,Fotokoutek / selfie zóna — příprava,Děti,important,open,
+T025,2026-08-20,Dárky na přivítanou pro hosty,Mamka,important,open,
+T026,2026-08-20,Hry pro hosty and zábava,Žanetka,important,open,
 T027,2026-08-20,Hudba a playlist,Děti,important,open,DJ nebude — Děti pustí playlist z repráku
+T028,2026-08-20,Drobnosti pro hosty — guestbook + favory,Mamka,optional,open,
+T029,2026-08-25,Proslovy svědků — příprava,Kikinka,important,open,
 T030,2026-08-25,Líčení; nehty; vlasy,Mamka,important,open,
 T031,2026-08-25,Střih a úprava,Taťka,important,open,
+T032,2026-08-25,Confetti a prskavky,Žanetka,optional,open,
 T033,2026-08-25,Fotograf — mobil; kamera; koordinace,Děti,optional,open,
 T034,2026-09-05,Změna příjmení — matrika po svatbě,Mamka,mandatory,open,
