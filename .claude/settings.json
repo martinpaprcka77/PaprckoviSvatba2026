@@ -1,0 +1,14 @@
+{
+  "model": "sonnet",
+  "permissions": {
+    "allow": [
+      "Bash(git *)",
+      "Bash(python *)",
+      "Edit(data/*.csv)",
+      "Read(data/*.csv)"
+    ]
+  },
+  "env": {
+    "BUDGET_LIMIT": "100000"
+  }
+}
