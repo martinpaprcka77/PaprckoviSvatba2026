@@ -5,14 +5,14 @@ T003,2026-05-29,Informování dětí — oznámení všem 4 dcerám,Mamka,mandat
 T004,2026-05-29,Svědci domluveni — Kikinka + Žanetka,Mamka,mandatory,done,Kikinka za Mamku; Žanetka za Taťku
 T005,2026-05-20,Domluva oddávajícího — 11:15 Nová radnice,Mamka,mandatory,done,Hotovo
 T006,2026-05-25,Schůzka prstýnky — Mamka+Taťka+Žanetka,Mamka,important,done,Proběhla 25. 5. 2026 — domluva výběru
-T007,2026-07-15,Zlatá koliba — finální počet osob pro catering,Žanetka,mandatory,open,Menu a ceny domluveny; zbývá potvrdit finální počet hostů
-T008,2026-06-15,Oblek a sako — výběr a nákup,Taťka,mandatory,done,Vybrat a koupit včas; Hotovo — oblek koupen; 10 000 Kč
-T009,2026-06-15,Prstýnky — nákup a úprava,Taťka,mandatory,done,Vyhlédnuty na schůzce 25. 5. — objednat a vyzvednout; Vyzvednuto — Mamka, 3. 7. 2026
-T010,2026-07-24,Rozlučka se svobodou — organizace,Žanetka,important,done,Žanetka zorganizuje — termín; program; místo; Termín potvrzen — 24. 7. 2026; Proběhla 24. 7. 2026
-T011,2026-07-10,Svatební oznámení — rozeslání hostům + RSVP,Mamka,mandatory,open,Tisk hotovo — zbývá rozeslat
+T008,2026-06-15,Oblek a sako — výběr a nákup,Taťka,mandatory,done,Vybráno a koupeno včas
+T009,2026-06-15,Prstýnky — nákup a úprava,Taťka,mandatory,done,Vyhlédnuty na schůzce 25. 5. — objednáno a vyzvednuto
+T011,2026-07-10,Svatební oznámení — rozeslání hostům + RSVP,Mamka,mandatory,done,Rozesláno hostům — RSVP sledováno
+T007,2026-07-15,Zlatá koliba — finální počet osob pro catering,Žanetka,mandatory,done,Menu a ceny domluveny; finální počet hostů potvrzen — 25 osob
 T012,2026-07-15,Finální seznam hostů — potvrzení pro catering,Mamka,mandatory,open,Odhad 25 hostů
-T013,2026-07-15,Svatební šaty — výběr; nákup; úpravy,Mamka,mandatory,done,Hotovo
+T013,2026-07-15,Svatební šaty — výběr; nákup; úpravy,Mamka,mandatory,open,
 T014,2026-07-15,Svatební cesta a dovolená — termín; ubytování; program,Mamka,optional,open,Pojedeme společně — svatební cesta + dovolená
+T010,2026-06-30,Rozlučka se svobodou — organizace,Žanetka,important,done,Žanetka zorganizovala — termín; program; místo; ubytování pro hosty z Brna u Žanetky
 T015,2026-08-01,Doplňky — boty; šperky,Mamka,mandatory,open,
 T018,2026-08-15,První tanec — nácvik,Mamka,important,open,
 T019,2026-08-20,Doprava radnice → Zlatá koliba,Taťka,mandatory,open,
@@ -26,4 +26,10 @@ T027,2026-08-20,Hudba a playlist,Děti,important,open,DJ nebude — Děti pustí
 T030,2026-08-25,Líčení; nehty; vlasy,Mamka,important,open,
 T031,2026-08-25,Střih a úprava,Taťka,important,open,
 T033,2026-08-25,Fotograf — mobil; kamera; koordinace,Děti,optional,open,
+T016,2026-08-10,Dárky pro svědky,Mamka,important,open,
+T017,2026-08-15,Dekorace a květiny na radnici,Kikinka,mandatory,open,
+T025,2026-08-20,Dárky na přivítanou pro hosty,Mamka,important,open,
+T028,2026-08-20,Drobnosti pro hosty — guestbook + favory,Mamka,optional,open,
+T029,2026-08-25,Proslovy svědků — příprava,Kikinka,important,open,
+T032,2026-08-25,Confetti a prskavky,Žanetka,optional,open,
 T034,2026-09-05,Změna příjmení — matrika po svatbě,Mamka,mandatory,open,
