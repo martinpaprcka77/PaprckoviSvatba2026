@@ -1,89 +1,132 @@
 # 💒 Svatba Paprčkovi 2026
 
-Svatební plánovač — **29. srpna 2026, 11:15**, Nová radnice Ostrava → Koliba U Zlatého Jarouše.
-Read-only: CSV soubory v `data/` = zdroj pravdy, appka jen čte, editace přes git. Bez npm, bez backendu. Technické detaily (architektura, CSV schéma, pravidla) viz [`.claude/CLAUDE.md`](.claude/CLAUDE.md).
+Svatební plánovač pro **29. srpna 2026, 11:15**, Nová radnice Ostrava → Koliba U Zlatého Jarouše.
 
-## ⚡ Rychlé odkazy
+> **Production:** https://martinpaprcka77.github.io/PaprckoviSvatba2026/
 
-| Co | Kde |
-|----|-----|
-| **Veřejná stránka** | https://martinpaprcka77.github.io/PaprckoviSvatba2026/ |
-| **Landing page** (nový design) | https://martinpaprcka77.github.io/PaprckoviSvatba2026/landing.html |
-| **Plánovač** (PIN chráněno) | https://martinpaprcka77.github.io/PaprckoviSvatba2026/planner.html |
-| **Archiv červen 2026** | https://martinpaprcka77.github.io/PaprckoviSvatba2026/index_june.html |
-| **Úkoly / Rozpočet / Hosté / Log** | [tasks.csv](data/tasks.csv) · [budget.csv](data/budget.csv) · [guests.csv](data/guests.csv) · [changelog.csv](data/changelog.csv) |
-| **Repozitář** | https://github.com/martinpaprcka77/PaprckoviSvatba2026 |
+## ⚡ Stránky
 
-## 📊 Aktuální stav
+| Stránka | Odkaz |
+|---|---|
+| **Veřejná** | `/` |
+| **Landing / nový design** | `/landing.html` |
+| **Plánovač** | `/planner.html` |
+| **Karaoke** | `/karaoke.html` |
+| **Archiv červen 2026** | `/index_june.html` |
 
-> Snímek k 29. 7. 2026 — po každé větší editaci `data/*.csv` přepočítej z CSV, ne z paměti.
+## 🏗️ Architektura
 
+```text
+master
+├── index.html              veřejná stránka
+├── landing.html            landing page
+├── planner.html            interní plánovač
+├── karaoke.html            karaoke
+├── index_june.html         archiv
+├── data/
+│   ├── tasks.csv           autoritativní úkoly
+│   ├── budget.csv          autoritativní rozpočet
+│   ├── guests.csv          hosté
+│   └── changelog.csv       historie rozhodnutí
+├── media/                  média
+├── public/                 favicon, manifest, 404
+├── docs/                   technická dokumentace
+└── .github/workflows/      GitHub Pages deploy
 ```
-✅ 10/27 splněno  ·  💰 80 500 / 100 000 Kč naplánováno (10 000 Kč utraceno)
-```
 
-| Kategorie | Úkolů | Plán |
-|-----------|-------|------|
-| 🔴 Povinné | 15 | 76 500 Kč |
-| 🟡 Důležité | 10 | 4 000 Kč |
-| 🟢 Volitelné | 2 | 0 Kč |
-| **Celkem** | **27** | **80 500 Kč** |
+### Data flow
 
-**Hotovo:** termín · radnice · děti · svědci · oddávající · schůzka prstýnky · prstýnky vyzvednuty · svatební šaty · oblek a sako · rozlučka se svobodou
-**Rozpracováno:** svatební oznámení — tisk hotovo, zbývá rozeslat + RSVP
-**Zrušeno:** dárky pro svědky · dárky na přivítanou · guestbook+favory · proslovy svědků · confetti · ubytování pro hosty · dekorace na radnici
+1. `data/*.csv` je **source of truth**.
+2. Web data pouze čte; aplikace CSV nepřepisuje.
+3. Změna dat = editace CSV → commit → push na `master`.
+4. GitHub Actions sestaví Pages artifact a nasadí jej na GitHub Pages.
+5. Runtime data se načítají z repozitáře při otevření aplikace.
 
-## 👥 Lidé
+## 🔧 Lokální vývoj
 
-| Kdo | Role | Úkolů |
-|-----|------|--------|
-| **Mamka** | Nevěsta | 15 |
-| **Taťka** | Ženich | 4 |
-| **Žanetka** | Hlavní organizátorka, svědkyně ženicha | 3 |
-| **Kikinka** | Svědkyně nevěsty | 1 |
-| **Děti** | 4 dcery: Gabriela, Kristýnka, Natálka, Kačka | 5 |
-
-## 📅 Klíčové milníky
-
-| Kdy | Co |
-|-----|-----|
-| ~~29. 5. 2025~~ | ✅ Termín, radnice, děti, svědci |
-| ~~15. 5. 2026~~ | ✅ Oddávající domluven |
-| ~~25. 5. 2026~~ | ✅ Schůzka prstýnky |
-| ~~3. 7. 2026~~ | ✅ Prstýnky vyzvednuty |
-| ~~4. 7. 2026~~ | ✅ Svatební šaty hotovo |
-| ~~29. 7. 2026~~ | ✅ Oblek a sako hotovo (10 000 Kč) |
-| ~~24. 7. 2026~~ | ✅ Rozlučka se svobodou |
-| 10. 7. 2026 | Svatební oznámení |
-| 15. 7. 2026 | Koliba catering, hosté |
-| 1. 8. 2026 | Doplňky, ubytování |
-| 10.–20. 8. 2026 | Výzdoba, program |
-| 25. 8. 2026 | Poslední úpravy |
-| **29. 8. 2026** | **💒 SVATBA 🎉** |
-
-## 🏛️ Místo
-
-- **Obřad:** 11:15, Nová radnice Ostrava
-- **Hostina:** Koliba U Zlatého Jarouše (U Miloše), Karasova 1130/23, 709 00 Ostrava
-- [📍 Navigovat](https://maps.google.com/?q=Karasova+1130/23,+709+00+Ostrava)
-
-## 🔧 Vývoj a editace dat
+Bez npm a bez backendu:
 
 ```bash
-python -m http.server 8080   # http://localhost:8080/
+python -m http.server 8080
 ```
 
-Data se editují přímo v `data/*.csv` + git commit/push (nikdy přes appku) → push na `master` → GitHub Actions → live za ~1 min.
+Potom otevři `http://localhost:8080/`.
 
-## 📜 Historie verzí
+## 📋 Editace dat
+
+| Soubor | Účel |
+|---|---|
+| `data/tasks.csv` | stav a poznámky k úkolům |
+| `data/budget.csv` | plánované a skutečné částky |
+| `data/guests.csv` | hosté a potvrzení |
+| `data/changelog.csv` | důležitá rozhodnutí |
+
+**Pravidlo:** nejdříve změnit CSV, potom commit/push. README ani HTML nejsou zdrojem pravdy pro aktuální čísla.
+
+## 💰 Rozpočet
+
+Hard cap je **100 000 Kč**. Aktuální data v `budget.csv` dávají:
+
+- plán: **89 500 Kč**
+- skutečnost: **82 650 Kč**
+- rezerva proti limitu podle plánu: **10 500 Kč**
+
+Rozpočet se vždy počítá z CSV, nikoli z ručně napsaných čísel v README.
+
+## 💒 Termín a místa
+
+- **Obřad:** 29. 8. 2026 v 11:15, Nová radnice Ostrava
+- **Hostina:** Koliba U Zlatého Jarouše (U Miloše), Karasova 1130/23, 709 00 Ostrava
+
+## 🚀 GitHub Pages
+
+Deploy je definován v `.github/workflows/deploy.yml`.
+
+Workflow:
+
+```text
+push master
+   ↓
+checkout
+   ↓
+prepare deploy_out
+   ↓
+upload Pages artifact
+   ↓
+deploy-pages
+   ↓
+GitHub Pages
+```
+
+Workflow je spustitelný také ručně přes **Actions → Deploy to GitHub Pages → Run workflow**.
+
+Deploy obsahuje pouze runtime web, data, média a public assets; vývojové adresáře jako `docs/`, `.github/`, `.claude/` a `.continue/` se do Pages neposílají.
+
+## 🩺 Repo repair checklist
+
+- [x] GitHub Pages workflow používá moderní Pages artifact/deploy actions.
+- [x] Deploy má explicitní `contents: read`, `pages: write`, `id-token: write` permissions.
+- [x] Workflow lze spustit push-em i ručně (`workflow_dispatch`).
+- [x] `landing.html`, `planner.html` a `karaoke.html` jsou součástí deploye.
+- [x] `public/`, `data/` a `media/` se kopírují do výsledného webu.
+- [x] Repo dokumentace se do veřejného Pages artifactu nekopíruje.
+- [x] README odkazy jsou relativní, takže repo lze přesunout bez přepisování interních cest.
+- [x] Čísla rozpočtu byla přepočtena z aktuálního `budget.csv`.
+
+## 🔒 Pravidla projektu
+
+1. `data/*.csv` = source of truth.
+2. Appka je read-only.
+3. Budget hard cap = 100 000 Kč.
+4. Aktuální stav v dokumentaci nepřepisovat ručně bez kontroly CSV.
+5. Každou důležitou změnu dat commitnout s popisnou zprávou.
+
+## 📜 Historie
 
 | Verze | Datum | Popis |
-|-------|-------|-------|
-| **1.0.0** | 2026-05-16 | Počáteční verze — single-file HTML, localStorage |
-| **1.1.0** | 2026-05-21 | Git-backed data, MD soubory, dual deploy |
-| **1.2.0** | 2026-05-24 | v0 baseline, deploy fix |
-| **1.3.x** | 2026-05-26/27 | Hosté a rozpočet přepracovány |
-| **2.0.0** | 2026-06-02 | CSV migrace, romantický design, planner.html |
-| **2.1.0** | 2026-07-04 | Reálný progres; zrušeno 5 úkolů |
-| **2.2.0** | 2026-07-05 | Zrušeno ubytování + dekorace radnice; oznámení tisk hotovo |
-| **2.3.0** | 2026-07-29 | Oblek hotovo (10 000 Kč); rozlučka proběhla 24. 7. |
+|---|---|---|
+| **1.0.0** | 2026-05-16 | Počáteční single-file verze |
+| **1.1.0** | 2026-05-21 | Git-backed data, dual deploy |
+| **2.0.0** | 2026-06-02 | CSV migrace, romantický design, planner |
+| **2.1.x** | 2026-07 | Reálný progres a úpravy svatebního plánu |
+| **2.2.0** | 2026-08-08 | Repo/Pages repair, kompletní Pages deploy a README cleanup |
