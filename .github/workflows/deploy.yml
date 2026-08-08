@@ -3,61 +3,58 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [master]
+  workflow_dispatch:
 
 concurrency:
   group: pages
   cancel-in-progress: true
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      pages: write
-      id-token: write
     environment:
       name: github-pages
-      url: ${{ steps.deploy1.outcome == 'success' && steps.deploy1.outputs.page_url || steps.deploy2.outcome == 'success' && steps.deploy2.outputs.page_url || steps.deploy3.outputs.page_url }}
+      url: ${{ steps.deployment.outputs.page_url }}
+
     steps:
-      - uses: actions/checkout@v6
-      - name: Prepare deploy files
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v6
+
+      - name: Build Pages artifact
         run: |
-          mkdir deploy_out
+          set -e
+          rm -rf deploy_out
+          mkdir -p deploy_out
+
+          # Public HTML entry points.
           cp index.html deploy_out/
+          cp landing.html deploy_out/
           cp planner.html deploy_out/
           cp index_june.html deploy_out/
           cp karaoke.html deploy_out/
-          cp -r data deploy_out/
-          cp -r public/* deploy_out/ 2>/dev/null || true
-          cp -r media deploy_out/ 2>/dev/null || true
-      - uses: actions/configure-pages@v6
-      - uses: actions/upload-pages-artifact@v5
+
+          # Runtime data and public assets.
+          cp -R data deploy_out/data
+          cp -R media deploy_out/media
+          cp -R public/. deploy_out/
+
+          # Keep repository documentation and development-only files out of Pages.
+          rm -f deploy_out/README.md
+          rm -rf deploy_out/docs deploy_out/.github deploy_out/.claude deploy_out/.continue
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v5
         with:
-          path: ./deploy_out
+          path: deploy_out
 
-      # actions/deploy-pages occasionally fails with a transient
-      # "Deployment failed, try again later" even though the artifact is
-      # fine — retry up to 3x before letting the job actually fail.
-      - name: Deploy to GitHub Pages (attempt 1)
-        id: deploy1
-        continue-on-error: true
-        uses: actions/deploy-pages@v5
-
-      - name: Wait before retry 1
-        if: steps.deploy1.outcome == 'failure'
-        run: sleep 30
-
-      - name: Deploy to GitHub Pages (attempt 2)
-        id: deploy2
-        if: steps.deploy1.outcome == 'failure'
-        continue-on-error: true
-        uses: actions/deploy-pages@v5
-
-      - name: Wait before retry 2
-        if: steps.deploy1.outcome == 'failure' && steps.deploy2.outcome == 'failure'
-        run: sleep 30
-
-      - name: Deploy to GitHub Pages (attempt 3)
-        id: deploy3
-        if: steps.deploy1.outcome == 'failure' && steps.deploy2.outcome == 'failure'
+      - name: Deploy to GitHub Pages
+        id: deployment
         uses: actions/deploy-pages@v5
