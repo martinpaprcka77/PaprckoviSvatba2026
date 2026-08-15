@@ -1,7 +1,7 @@
 # PRD — Svatba Paprčkovi 2026
 
 > Product Requirements Document — 14. 5. 2026
-> Status: active — 29. 7. 2026 (27 úkolů, 5 osob, 80 500 Kč, 25 hostů)
+> Status: active — 29. 7. 2026 (33 úkolů, 5 osob, 89 500 Kč, 17 hostů)
 > Historie rozhodnutí do 28. 5. 2026 v sekci 8 níže; průběžné změny viz [`data/changelog.csv`](../data/changelog.csv) — to je od migrace na CSV (2. 6. 2026) autoritativní zdroj, tenhle dokument je shrnutí/snapshot.
 
 ---
@@ -308,4 +308,14 @@ Děti jako skupina = 1 filter v appce. Individuální jména pro host list a kon
 
 ---
 
+## 📊 Stav (auto-sync z data/*.csv)
 
+<!-- PRD_STATS_START -->
+✅ **11/33 splněno** · 💰 **89 500 / 100 000 Kč naplánováno** (82 650 Kč utraceno) · 🧑 **17 hostů** (11 potvrzeno) · 👥 **5 osob** · 📅 změny do 2026-07-29
+<!-- PRD_STATS_END -->
+
+<!-- PRD_VERSION_HISTORY_START -->
+| Datum | Úkolů | Splněno | Plán (Kč) | Hostů | Osob |
+|---|---|---|---|---|---|
+| 29. 7. 2026 | 33 | 11 | 89 500 | 17 | 5 |
+<!-- PRD_VERSION_HISTORY_END -->

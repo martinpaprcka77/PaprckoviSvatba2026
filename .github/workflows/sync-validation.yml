@@ -1,0 +1,21 @@
+name: Documentation Synchronization Validation
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  validate-sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - name: Validate documentation sync
+        run: |
+          chmod +x ./scripts/sync-docs.sh
+          ./scripts/sync-docs.sh --ci-check

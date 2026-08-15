@@ -10,3 +10,7 @@ $null
 .reasonix/
 package*.json
 *.lock
+*.bak
+.pytest_cache/
+__pycache__/
+*.pyc

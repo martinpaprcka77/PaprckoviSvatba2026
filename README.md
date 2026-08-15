@@ -42,6 +42,34 @@ master
 4. GitHub Actions sestaví Pages artifact a nasadí jej na GitHub Pages.
 5. Runtime data se načítají z repozitáře při otevření aplikace.
 
+## 📊 Stav (auto-sync z data/*.csv)
+
+<!-- TASK_STATS_START -->
+✅ **11/33 splněno** · 💰 **89 500 / 100 000 Kč naplánováno** (82 650 Kč utraceno) · 🧑 **17 hostů** (11 potvrzeno) · 📅 změny do 2026-07-29
+<!-- TASK_STATS_END -->
+
+<!-- TASK_CATEGORIES_START -->
+| Kategorie | Úkolů | Plán | Skutečnost |
+|---|---|---|---|
+| 🔴 Povinné | 17 | 84 500 Kč | 78 100 Kč |
+| 🟡 Důležité | 12 | 4 500 Kč | 4 150 Kč |
+| 🟢 Volitelné | 4 | 500 Kč | 400 Kč |
+| **Celkem** | **33** | **89 500 Kč** | **82 650 Kč** |
+<!-- TASK_CATEGORIES_END -->
+
+<!-- GUESTS_START -->
+- hosté celkem: **17**
+- potvrzeno: **11**
+<!-- GUESTS_END -->
+
+<!-- COMPLETED_TASKS_START -->
+**Hotovo (11):** Termín konfirmace — potvrzení data na matrice · Návštěva radnice — podání žádosti · Informování dětí — oznámení všem 4 dcerám · Svědci domluveni — Kikinka + Žanetka · Domluva oddávajícího — 11:15 Nová radnice · Schůzka prstýnky — Mamka+Taťka+Žanetka · Zlatá koliba — finální počet osob pro catering · Oblek a sako — výběr a nákup · Prstýnky — nákup a úprava · Svatební oznámení — rozeslání hostům + RSVP · Svatební šaty — výběr; nákup; úpravy
+<!-- COMPLETED_TASKS_END -->
+
+<!-- OPEN_TASKS_START -->
+**Otevřeno (22):** Rozlučka se svobodou — organizace · Finální seznam hostů — potvrzení pro catering · Svatební cesta a dovolená — termín; ubytování; program · Doplňky — boty; šperky · Dárky pro svědky · Dekorace a květiny na radnici · První tanec — nácvik · Svatební dort — objednat a vyzvednout · Oddací list; podpisy; doklady · Doprava radnice → Zlatá koliba · Dekorace Zlaté koliby — výzdoba sálu · Fotokoutek / selfie zóna — příprava · Dárky na přivítanou pro hosty · Hry pro hosty and zábava · Hudba a playlist · Drobnosti pro hosty — guestbook + favory · Proslovy svědků — příprava · Líčení; nehty; vlasy · Střih a úprava · Confetti a prskavky · Fotograf — mobil; kamera; koordinace · Změna příjmení — matrika po svatbě
+<!-- OPEN_TASKS_END -->
+
 ## 🔧 Lokální vývoj
 
 Bez npm a bez backendu:
@@ -67,9 +95,11 @@ Potom otevři `http://localhost:8080/`.
 
 Hard cap je **100 000 Kč**. Aktuální data v `budget.csv` dávají:
 
+<!-- BUDGET_START -->
 - plán: **89 500 Kč**
 - skutečnost: **82 650 Kč**
 - rezerva proti limitu podle plánu: **10 500 Kč**
+<!-- BUDGET_END -->
 
 Rozpočet se vždy počítá z CSV, nikoli z ručně napsaných čísel v README.
 
