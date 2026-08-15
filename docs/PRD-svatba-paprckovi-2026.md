@@ -265,7 +265,6 @@ Dárky pro svědky · Dárky na přivítanou pro hosty · Drobnosti pro hosty (g
 | Markéta S | 2 | _ | Ano | Ano |
 | Milada S | 1 | _ | Ano | Ano |
 | Mamka | 1 | _ | Ano | Ano |
-| Kikinka | 1 | _ | Ano | Ano |
 
 ### Taťka strana
 
@@ -283,6 +282,7 @@ Dárky pro svědky · Dárky na přivítanou pro hosty · Drobnosti pro hosty (g
 | Hozik P. | 2 | _ | Ano | _ |
 | Bernie | 2 | _ | Ano | Ano |
 | Žanetka | 1 | _ | Ano | Ano |
+| Kikinka | 1 | _ | Ano | Ano |
 | Děti | 4 | _ | Ano | Ano |
 
 **Celkem:** 23 hostů (17 potvrzeno) — dle `data/guests.csv`

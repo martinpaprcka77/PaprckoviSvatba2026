@@ -37,7 +37,7 @@ def test_get_guest_stats():
     stats = extract_stats.get_guest_stats()
     assert stats["total"] == 23
     assert stats["confirmed"] == 17
-    assert stats["by_side"] == {"mamka": 5, "tatka": 5, "spolecni": 13}
+    assert stats["by_side"] == {"mamka": 4, "tatka": 5, "spolecni": 14}
 
 
 def test_get_latest_dates():
