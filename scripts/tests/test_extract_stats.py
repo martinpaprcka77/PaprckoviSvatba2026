@@ -35,9 +35,9 @@ def test_get_budget_stats():
 
 def test_get_guest_stats():
     stats = extract_stats.get_guest_stats()
-    assert stats["total"] == 19
-    assert stats["confirmed"] == 11
-    assert stats["by_side"] == {"mamka": 3, "tatka": 4, "spolecni": 12}
+    assert stats["total"] == 21
+    assert stats["confirmed"] == 15
+    assert stats["by_side"] == {"mamka": 4, "tatka": 4, "spolecni": 13}
 
 
 def test_get_latest_dates():
