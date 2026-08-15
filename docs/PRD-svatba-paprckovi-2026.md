@@ -1,7 +1,7 @@
 # PRD — Svatba Paprčkovi 2026
 
 > Product Requirements Document — 14. 5. 2026
-> Status: active — 16. 8. 2026 (33 úkolů, 5 osob, 89 500 Kč, 21 hostů)
+> Status: active — 16. 8. 2026 (33 úkolů, 5 osob, 89 500 Kč, 23 hostů)
 > Historie rozhodnutí do 28. 5. 2026 v sekci 8 níže; průběžné změny viz [`data/changelog.csv`](../data/changelog.csv) — to je od migrace na CSV (2. 6. 2026) autoritativní zdroj, tenhle dokument je shrnutí/snapshot.
 
 ---
@@ -265,6 +265,7 @@ Dárky pro svědky · Dárky na přivítanou pro hosty · Drobnosti pro hosty (g
 | Markéta S | 2 | _ | Ano | Ano |
 | Milada S | 1 | _ | Ano | Ano |
 | Mamka | 1 | _ | Ano | Ano |
+| Kikinka | 1 | _ | Ano | Ano |
 
 ### Taťka strana
 
@@ -272,6 +273,7 @@ Dárky pro svědky · Dárky na přivítanou pro hosty · Drobnosti pro hosty (g
 |-------|-------|-------|---------------|-----------|
 | Peťa Z | 2 | _ | Ano | _ |
 | Peťa T | 2 | _ | Ano | _ |
+| Taťka | 1 | _ | Ano | Ano |
 
 ### Společní
 
@@ -283,7 +285,7 @@ Dárky pro svědky · Dárky na přivítanou pro hosty · Drobnosti pro hosty (g
 | Žanetka | 1 | _ | Ano | Ano |
 | Děti | 4 | _ | Ano | Ano |
 
-**Celkem:** 21 hostů (15 potvrzeno) — dle `data/guests.csv`
+**Celkem:** 23 hostů (17 potvrzeno) — dle `data/guests.csv`
 
 **Pravidla:**
 - Bez příjmení — jen křestní jména / přezdívky
@@ -314,7 +316,7 @@ Děti jako skupina = 1 filter v appce. Individuální jména pro host list a kon
 ## 📊 Stav (auto-sync z data/*.csv)
 
 <!-- PRD_STATS_START -->
-✅ **11/33 splněno** · 💰 **89 500 / 100 000 Kč naplánováno** (82 650 Kč utraceno) · 🧑 **21 hostů** (15 potvrzeno) · 👥 **5 osob** · 📅 změny do 2026-08-16
+✅ **11/33 splněno** · 💰 **89 500 / 100 000 Kč naplánováno** (82 650 Kč utraceno) · 🧑 **23 hostů** (17 potvrzeno) · 👥 **5 osob** · 📅 změny do 2026-08-16
 <!-- PRD_STATS_END -->
 
 <!-- PRD_VERSION_HISTORY_START -->
@@ -323,4 +325,5 @@ Děti jako skupina = 1 filter v appce. Individuální jména pro host list a kon
 | 29. 7. 2026 | 33 | 11 | 89 500 | 17 | 5 |
 | 16. 8. 2026 | 33 | 11 | 89 500 | 19 | 5 |
 | 16. 8. 2026 | 33 | 11 | 89 500 | 21 | 5 |
+| 16. 8. 2026 | 33 | 11 | 89 500 | 23 | 5 |
 <!-- PRD_VERSION_HISTORY_END -->
