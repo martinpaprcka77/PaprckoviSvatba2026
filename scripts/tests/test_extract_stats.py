@@ -43,7 +43,7 @@ def test_get_guest_stats():
 def test_get_latest_dates():
     stats = extract_stats.get_latest_dates()
     assert stats["wedding_date"] == "2026-08-29"
-    assert stats["latest_changelog"] == "2026-07-29"
+    assert stats["latest_changelog"] == "2026-08-16"
     assert stats["latest_task_completion"] == "2026-07-15"
 
 

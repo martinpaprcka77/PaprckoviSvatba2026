@@ -45,7 +45,7 @@ master
 ## 📊 Stav (auto-sync z data/*.csv)
 
 <!-- TASK_STATS_START -->
-✅ **11/33 splněno** · 💰 **89 500 / 100 000 Kč naplánováno** (82 650 Kč utraceno) · 🧑 **17 hostů** (11 potvrzeno) · 📅 změny do 2026-07-29
+✅ **11/33 splněno** · 💰 **89 500 / 100 000 Kč naplánováno** (82 650 Kč utraceno) · 🧑 **17 hostů** (11 potvrzeno) · 📅 změny do 2026-08-16
 <!-- TASK_STATS_END -->
 
 <!-- TASK_CATEGORIES_START -->
