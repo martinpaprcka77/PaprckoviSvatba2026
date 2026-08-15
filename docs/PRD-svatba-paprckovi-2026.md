@@ -49,9 +49,9 @@
 
 ## 4. Rozpočet
 
-**MAX 100 000 Kč — hard cap.** Aktuálně 80 500 Kč (76 500 + 4 000 + 0). Rezerva 19 500 Kč. Každá změna ceny musí být vyrovnána jinde.
+**MAX 100 000 Kč — hard cap.** Aktuálně 89 500 Kč (84 500 + 4 500 + 500). Rezerva 10 500 Kč. Každá změna ceny musí být vyrovnána jinde.
 
-### POVINNÉ (mandatory) — 16 tasků, 76 500 Kč
+### POVINNÉ (mandatory) — 17 tasků, 84 500 Kč
 
 | Položka | Odhad (Kč) | Kdo |
 |---|---|---|
@@ -68,9 +68,11 @@
 | Oddací list, podpisy, doklady | 0 | Kikinka |
 | Změna příjmení (po svatbě) | 0 | Mamka |
 | Termín, radnice, děti, svědci, oddávající (hotovo ✓) | 0 | — |
-| **Subtotal** | **76 500** | |
+| Ubytování pro hosty (zrušeno) | 5 000 | — |
+| Dekorace a květiny na radnici (zrušeno) | 3 000 | — |
+| **Subtotal** | **84 500** | |
 
-### DŮLEŽITÉ (important) — 10 tasků, 4 000 Kč
+### DŮLEŽITÉ (important) — 12 tasků, 4 500 Kč
 
 | Položka | Odhad (Kč) | Kdo |
 |---|---|---|
@@ -81,17 +83,19 @@
 | Uvítací cedule, první tanec, hry pro hosty, hudba a playlist | 0 | Mamka, Žanetka, Děti |
 | Schůzka — prstýnky (Mamka+Taťka+Žanetka) ✅ hotovo | 0 | Mamka, Taťka, Žanetka |
 | Rozlučka se svobodou ✅ proběhla 24. 7. | 0 | Žanetka |
-| **Subtotal** | **4 000** | |
+| Dárky pro svědky (zrušeno) | 500 | — |
+| **Subtotal** | **4 500** | |
 
-### VOLITELNÉ (optional) — 2 tasky, 0 Kč
+### VOLITELNÉ (optional) — 4 tasky, 500 Kč
 
 | Položka | Odhad (Kč) | Kdo |
 |---|---|---|
 | Fotograf / dokumentace | 0 | Děti |
 | Svatební cesta — termín, ubytování, program | 0 | Taťka |
-| **Subtotal** | **0** | |
+| Drobnosti pro hosty — guestbook + favory (zrušeno) | 500 | — |
+| **Subtotal** | **500** | |
 
-**CELKEM: 27 tasků, 80 500 Kč ✓** (rezerva 19 500 Kč)
+**CELKEM: 33 tasků, 89 500 Kč ✓** (rezerva 10 500 Kč)
 
 **Zrušeno (nedělá se), ušetřeno 8 500 Kč oproti 28. 5. verzi:** ubytování pro hosty (5 000), dekorace a květiny na radnici (3 000), dárky pro svědky (500), guestbook + favory (500) — plus bez rozpočtu: dárky na přivítanou pro hosty, proslovy svědků, confetti a prskavky. Detail viz `data/changelog.csv`.
 
@@ -99,7 +103,7 @@
 
 ## 5. Úkoly — časová osa
 
-> Zdroj pravdy je `data/tasks.csv` (28 řádků, ID T001–T034 s mezerami po zrušených úkolech). Tabulka níže je čitelný přehled, ne autoritativní zdroj.
+> Zdroj pravdy je `data/tasks.csv` (33 řádků, ID T001–T034 s mezerami po zrušených úkolech). Tabulka níže je čitelný přehled, ne autoritativní zdroj.
 
 ### Květen 2026 — ✅ HOTOVO
 
@@ -252,35 +256,31 @@ Dárky pro svědky · Dárky na přivítanou pro hosty · Drobnosti pro hosty (g
 
 ---
 
-## 11. Seznam hostů — 28. 5. 2026 (beze změny k 5. 7. 2026, zdroj `data/guests.csv`)
+## 11. Seznam hostů — 28. 5. 2026 (aktualizováno 16. 8. 2026 dle `data/guests.csv`)
 
 ### Mamka strana
 
 | Jméno | Počet | Jídlo | Pozván osobně | Potvrzeno |
 |-------|-------|-------|---------------|-----------|
-| Markéta S | 2 | _ | Ano | _ |
-| Milada S | 1 | _ | Ano | _ |
+| Markéta S | 2 | _ | Ano | Ano |
+| Milada S | 1 | _ | Ano | Ano |
 
 ### Taťka strana
 
 | Jméno | Počet | Jídlo | Pozván osobně | Potvrzeno |
 |-------|-------|-------|---------------|-----------|
-| Luki | 2 | _ | Ano | _ |
 | Peťa Z | 2 | _ | Ano | _ |
 | Peťa T | 2 | _ | Ano | _ |
-| Andrej | 2 | _ | Ano | _ |
-| Jan Drah | 2 | _ | Ano | _ |
-| Jirka Pok | 2 | _ | Ano | _ |
 
 ### Společní
 
 | Jméno | Počet | Jídlo | Pozván osobně | Potvrzeno |
 |-------|-------|-------|---------------|-----------|
-| Mikesovi | 4 | _ | Ano | _ |
+| Mikesovi | 4 | _ | Ano | Ano |
 | Hozik P. | 2 | _ | Ano | _ |
-| Děti | 4 | _ | Ano | _ |
+| Děti | 4 | _ | Ano | Ano |
 
-**Celkem:** ~25 hostů
+**Celkem:** 17 hostů (11 potvrzeno) — dle `data/guests.csv`
 
 **Pravidla:**
 - Bez příjmení — jen křestní jména / přezdívky
