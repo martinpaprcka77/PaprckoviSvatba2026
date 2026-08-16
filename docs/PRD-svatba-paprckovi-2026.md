@@ -1,7 +1,7 @@
 # PRD — Svatba Paprčkovi 2026
 
 > Product Requirements Document — 14. 5. 2026
-> Status: active — 16. 8. 2026 (33 úkolů, 5 osob, 89 500 Kč, 24 hostů)
+> Status: active — 16. 8. 2026 (33 úkolů, 5 osob, 89 500 Kč, 17 hostů)
 > Historie rozhodnutí do 28. 5. 2026 v sekci 8 níže; průběžné změny viz [`data/changelog.csv`](../data/changelog.csv) — to je od migrace na CSV (2. 6. 2026) autoritativní zdroj, tenhle dokument je shrnutí/snapshot.
 
 ---
@@ -264,7 +264,6 @@ Dárky pro svědky · Dárky na přivítanou pro hosty · Drobnosti pro hosty (g
 |-------|-------|-------|---------------|-----------|
 | Markéta S | 2 | _ | Ano | Ano |
 | Milada S | 1 | _ | Ano | Ano |
-| Mamka | 1 | _ | Ano | Ano |
 
 ### Taťka strana
 
@@ -272,7 +271,6 @@ Dárky pro svědky · Dárky na přivítanou pro hosty · Drobnosti pro hosty (g
 |-------|-------|-------|---------------|-----------|
 | Peťa Z | 2 | _ | Ano | _ |
 | Peťa T | 2 | _ | Ano | _ |
-| Taťka | 1 | _ | Ano | Ano |
 
 ### Společní
 
@@ -280,20 +278,16 @@ Dárky pro svědky · Dárky na přivítanou pro hosty · Drobnosti pro hosty (g
 |-------|-------|-------|---------------|-----------|
 | Mikesovi | 4 | _ | Ano | Ano |
 | Hozik P. | 2 | _ | Ano | _ |
-| Bernie | 2 | _ | Ano | Ano |
-| Žanetka | 1 | _ | Ano | Ano |
 | Děti | 4 | _ | Ano | Ano |
-| Kikinka +1 | 1 | _ | Ano | Ano |
-| Natálka +1 | 1 | _ | Ano | Ano |
 
-**Celkem:** 24 hostů (18 potvrzeno) — dle `data/guests.csv`
+**Celkem:** 17 hostů (11 potvrzeno) — dle `data/guests.csv`
 
 **Pravidla:**
 - Bez příjmení — jen křestní jména / přezdívky
 - +1 počítáno u všech kromě Milady S (sama)
 - Všichni pozváni osobně
 - **Mikesovi** = sestra + manžel + 2 děti
-- **Děti** = Kikinka, Natálka, Kačka, Gabriela — 4 dcery; **Kikinka a Natálka mají +1** (samostatné řádky „Kikinka +1“, „Natálka +1“)
+- **Děti** = Gabriela, Kristýnka, Natálka, Kačka — 4 dcery
 
 ---
 
@@ -317,7 +311,7 @@ Děti jako skupina = 1 filter v appce. Individuální jména pro host list a kon
 ## 📊 Stav (auto-sync z data/*.csv)
 
 <!-- PRD_STATS_START -->
-✅ **11/33 splněno** · 💰 **89 500 / 100 000 Kč naplánováno** (82 650 Kč utraceno) · 🧑 **24 hostů** (18 potvrzeno) · 👥 **5 osob** · 📅 změny do 2026-08-16
+✅ **11/33 splněno** · 💰 **89 500 / 100 000 Kč naplánováno** (82 650 Kč utraceno) · 🧑 **17 hostů** (11 potvrzeno) · 👥 **5 osob** · 📅 změny do 2026-08-16
 <!-- PRD_STATS_END -->
 
 <!-- PRD_VERSION_HISTORY_START -->
@@ -328,4 +322,5 @@ Děti jako skupina = 1 filter v appce. Individuální jména pro host list a kon
 | 16. 8. 2026 | 33 | 11 | 89 500 | 21 | 5 |
 | 16. 8. 2026 | 33 | 11 | 89 500 | 23 | 5 |
 | 16. 8. 2026 | 33 | 11 | 89 500 | 24 | 5 |
+| 16. 8. 2026 | 33 | 11 | 89 500 | 17 | 5 |
 <!-- PRD_VERSION_HISTORY_END -->

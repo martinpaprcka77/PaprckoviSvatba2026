@@ -25,3 +25,4 @@ date,who,what,detail
 2026-08-16,Taťka,Přidáni hosté,Taťka (1, tatka) a Kikinka (1, mamka) přidány do guests.csv — rodina kompletně započítána; celkem 23 hostů (17 potvrzeno)
 2026-08-16,Taťka,Strana hostů,Kikinka přesunuta ze strany mamka na spolecni (Žanetka už byla spolecni)
 2026-08-16,Taťka,Hosté Děti,Kikinka patří do Děti (samostatný řádek odstraněn); Děti = 4 dcery (Kikinka; Natálka; Kačka; Gabriela) + samostatné +1 pro Kikinku a Natálku
+2026-08-16,Taťka,Rollback hostů,guests.csv vrácen do stavu z 8. 8. 2026 — 17 hostů (11 potvrzeno); odebráni Bernie, Mamka, Žanetka, Taťka, Kikinka a +1 (viz předchozí záznamy)
