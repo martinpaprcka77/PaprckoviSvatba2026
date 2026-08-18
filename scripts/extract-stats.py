@@ -49,7 +49,15 @@ def _int(value: str) -> int:
 
 
 def get_task_stats() -> Dict[str, Any]:
-    """Task statistics from tasks.csv (id,deadline,title,assign,category,status,note)."""
+    """Return aggregate task counts from ``data/tasks.csv``.
+
+    Returns a dictionary with the total number of tasks, completed count, and
+    per-category counts for mandatory, important, and optional items.
+
+    Returns:
+        dict: Task totals keyed by ``total``, ``completed`` and
+        ``by_category``.
+    """
     stats: Dict[str, Any] = {
         "completed": 0,
         "total": 0,
@@ -69,7 +77,15 @@ def get_task_stats() -> Dict[str, Any]:
 
 
 def get_budget_stats() -> Dict[str, Any]:
-    """Budget statistics from budget.csv (id,item,category,amount_plan,amount_actual,note)."""
+    """Return budget totals and category splits from ``data/budget.csv``.
+
+    The budget is measured against the hard cap defined in ``BUDGET_CAP`` and
+    includes both planned and actually spent values.
+
+    Returns:
+        dict: Planned/actual totals, remaining reserve, cap value, and category
+        breakdowns.
+    """
     planned_total = 0
     actual_total = 0
     by_category: Dict[str, Dict[str, int]] = {
@@ -99,9 +115,13 @@ def get_budget_stats() -> Dict[str, Any]:
 
 
 def get_guest_stats() -> Dict[str, Any]:
-    """Guest statistics from guests.csv (id,name,side,count,confirmed,note).
+    """Return guest totals from ``data/guests.csv``.
 
-    count is the number of people per row; totals are sums of count.
+    The count field is interpreted as the number of people represented by each
+    row, so totals are aggregated across all guest rows rather than row counts.
+
+    Returns:
+        dict: Total guests, confirmed guests, and per-side counts.
     """
     stats: Dict[str, Any] = {
         "total": 0,
@@ -123,7 +143,12 @@ def get_guest_stats() -> Dict[str, Any]:
 
 
 def get_latest_dates() -> Dict[str, str]:
-    """Latest dates from changelog.csv and done-task deadlines."""
+    """Return the newest changelog and completion dates present in the dataset.
+
+    Returns:
+        dict: Wedding date, latest changelog date, and latest completed-task
+        deadline.
+    """
     stats: Dict[str, str] = {
         "wedding_date": WEDDING_DATE,
         "latest_changelog": "",
@@ -150,7 +175,12 @@ def get_latest_dates() -> Dict[str, str]:
 
 
 def get_version_info() -> Dict[str, Any]:
-    """Version information from git (commit count + describe)."""
+    """Return the current repository version metadata from Git.
+
+    Returns:
+        dict: ``current_version`` from ``git describe`` and ``commit_count`` from
+        ``git rev-list --count HEAD`` when available.
+    """
     stats: Dict[str, Any] = {"current_version": "dev", "commit_count": 0}
     try:
         result = subprocess.run(

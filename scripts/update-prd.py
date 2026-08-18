@@ -74,6 +74,14 @@ def _people_count(es) -> int:
 
 
 def render_status_line(es) -> str:
+    """Build the PRD status line from the current CSV-derived metrics.
+
+    Args:
+        es: Statistics helper module from ``scripts/extract-stats.py``.
+
+    Returns:
+        str: The markdown blockquote used at the top of the PRD.
+    """
     t = es.get_task_stats()
     b = es.get_budget_stats()
     g = es.get_guest_stats()
@@ -87,7 +95,18 @@ def render_status_line(es) -> str:
 
 
 def render_blocks(es) -> dict:
-    """Stats block + version history table (append-only rows)."""
+    """Create the PRD sync blocks for stats and version history.
+
+    The function returns a dictionary of markdown blocks used in the PRD.
+    ``PRD_STATS`` is the short status summary and ``PRD_VERSION_HISTORY`` keeps
+    an append-only history table of the important summary numbers.
+
+    Args:
+        es: Statistics helper module from ``scripts/extract-stats.py``.
+
+    Returns:
+        dict: Mapping of marker names to rendered markdown bodies.
+    """
     t = es.get_task_stats()
     b = es.get_budget_stats()
     g = es.get_guest_stats()
@@ -132,7 +151,15 @@ def render_blocks(es) -> dict:
 
 
 def read_version_history(path: str):
-    """Parse existing version-history data rows -> list of 6-cell rows (incl. date)."""
+    """Parse the version-history table from the PRD.
+
+    Args:
+        path: Absolute or repo-relative path to the PRD markdown file.
+
+    Returns:
+        list: Rows containing six cells: date, task count, completed count,
+        planned budget, guest count, and people count.
+    """
     content = _read_file(path)
     match = re.search(
         r"<!-- PRD_VERSION_HISTORY_START -->\n(.*?)\n<!-- PRD_VERSION_HISTORY_END -->",
@@ -166,6 +193,15 @@ def _as_block(name: str, body: str) -> str:
 
 
 def apply_blocks(content: str, blocks: dict):
+    """Apply the rendered PRD blocks to the document, creating missing sections.
+
+    Args:
+        content: Current markdown document.
+        blocks: Mapping of marker names to markdown contents.
+
+    Returns:
+        tuple: ``(updated_content, changed_names, inserted_names)``.
+    """
     changed = []
     inserted = []
 
@@ -192,6 +228,7 @@ def apply_blocks(content: str, blocks: dict):
 
 
 def main():
+    """Sync the PRD status and metrics blocks from the current data files."""
     parser = argparse.ArgumentParser(description="Sync PRD status/stats from data/*.csv")
     mode = parser.add_mutually_exclusive_group()
     mode.add_argument("--check-only", action="store_true", help="exit 0/1, do not write")
