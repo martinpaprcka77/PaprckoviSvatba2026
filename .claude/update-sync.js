@@ -1,10 +1,5 @@
 #!/usr/bin/env node
-/**
- * Generate data/sync.json from the authoritative CSV files.
- *
- * The public web remains read-only: CSV files are the source of truth and this
- * script only produces a derived JSON snapshot for fast client-side loading.
- */
+/** Generate data/sync.json from the authoritative CSV files. */
 
 const fs = require('fs');
 const path = require('path');
@@ -46,23 +41,26 @@ function build() {
   const budget = parseCsv('budget.csv');
   const guests = parseCsv('guests.csv');
   const changelog = parseCsv('changelog.csv');
-
   const completed = tasks.filter(t => t.status.toLowerCase() === 'done');
   const open = tasks.filter(t => t.status.toLowerCase() === 'open');
   const byCategory = {};
+
   for (const category of ['mandatory', 'important', 'optional']) {
-    const rows = tasks.filter(t => t.category === category);
+    const taskRows = tasks.filter(t => t.category === category);
     const budgetRows = budget.filter(b => b.category === category);
     byCategory[category] = {
-      tasks: rows.length,
-      planned: budgetRows.reduce((s, r) => s + number(r.planned), 0),
-      actual: budgetRows.reduce((s, r) => s + number(r.actual), 0),
+      tasks: taskRows.length,
+      planned: budgetRows.reduce((s, r) => s + number(r.amount_plan), 0),
+      actual: budgetRows.reduce((s, r) => s + number(r.amount_actual), 0),
     };
   }
 
-  const planned = budget.reduce((s, r) => s + number(r.planned), 0);
-  const actual = budget.reduce((s, r) => s + number(r.actual), 0);
-  const confirmed = guests.filter(g => /^(yes|confirmed|ano|true|1)$/i.test(String(g.status || g.confirmed || ''))).length;
+  const planned = budget.reduce((s, r) => s + number(r.amount_plan), 0);
+  const actual = budget.reduce((s, r) => s + number(r.amount_actual), 0);
+  const totalGuests = guests.reduce((s, g) => s + number(g.count || 1), 0);
+  const confirmedGuests = guests
+    .filter(g => /^(confirmed|yes|ano|true|1)$/i.test(String(g.confirmed || '').trim()))
+    .reduce((s, g) => s + number(g.count || 1), 0);
   const latest = changelog.map(r => r.date).filter(Boolean).sort().pop() || null;
 
   return {
@@ -78,7 +76,7 @@ function build() {
       openTitles: open.map(t => t.title),
     },
     budget: { planned, actual, cap: CAP, reserve: CAP - planned },
-    guests: { total: guests.length, confirmed },
+    guests: { total: totalGuests, confirmed: confirmedGuests },
     latestChange: latest,
   };
 }
