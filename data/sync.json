@@ -1,0 +1,22 @@
+{
+  "generatedAt": "2026-08-19T00:20:00.000Z",
+  "source": "data/*.csv",
+  "wedding": {
+    "date": "2026-08-29",
+    "ceremony": "11:15",
+    "city": "Ostrava"
+  },
+  "tasks": {
+    "total": 33,
+    "completed": 11,
+    "open": 22,
+    "byCategory": {
+      "mandatory": { "tasks": 17, "planned": 84500, "actual": 78100 },
+      "important": { "tasks": 12, "planned": 4500, "actual": 4150 },
+      "optional": { "tasks": 4, "planned": 500, "actual": 400 }
+    }
+  },
+  "budget": { "planned": 89500, "actual": 82650, "cap": 100000, "reserve": 10500 },
+  "guests": { "total": 17, "confirmed": 11 },
+  "latestChange": "2026-08-16"
+}
