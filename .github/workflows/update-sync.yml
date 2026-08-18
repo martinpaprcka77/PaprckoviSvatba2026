@@ -1,0 +1,34 @@
+name: Update sync snapshot
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - 'data/*.csv'
+      - '.claude/update-sync.js'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Generate sync.json
+        run: node .claude/update-sync.js
+
+      - name: Commit generated snapshot
+        run: |
+          if git diff --quiet -- data/sync.json; then
+            echo 'sync.json is already up to date.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/sync.json
+          git commit -m 'chore(sync): update generated data snapshot'
+          git push
