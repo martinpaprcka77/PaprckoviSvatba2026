@@ -437,7 +437,13 @@ const REFRESH_INTERVAL = 12 * 60 * 60 * 1000; // 12h
 let tasks = [], guests = { mamka: [], tatka: [], spolecni: [] };
 let currentFilter = 'all';
 
-// ── CSV PARSER ──
+/**
+ * Parse a CSV payload into an array of row objects keyed by the header names.
+ *
+ * @param {string} text Raw CSV content with an optional quoted-field syntax.
+ * @returns {Array<Record<string, string>>} Parsed rows; quoted values and commas are preserved.
+ * @throws {TypeError} When the input is not a string.
+ */
 function parseCSV(text) {
   const lines = text.trim().split('\n');
   const headers = lines[0].split(',').map(h => h.trim());
@@ -457,14 +463,26 @@ function parseCSV(text) {
   });
 }
 
-// ── FETCH ──
+/**
+ * Fetch a CSV file from the public data directory and parse it into a row array.
+ *
+ * @param {string} name CSV file name without the data/ prefix.
+ * @returns {Promise<Array<Record<string, string>>>} Parsed data rows.
+ * @throws {Error} If the HTTP fetch fails or the file is unavailable.
+ */
 async function fetchCSV(name) {
   const r = await fetch(RAW + name + '?_=' + Date.now(), { cache: 'no-store' });
   if (!r.ok) throw new Error(name + ' ' + r.status);
   return parseCSV(await r.text());
 }
 
-// ── COUNTDOWN ──
+/**
+ * Refresh the countdown numbers shown above the main invite layout.
+ *
+ * The timer stops at zero and swaps the numeric display for a celebratory emoji.
+ *
+ * @returns {void}
+ */
 function tick() {
   const diff = WEDDING - new Date();
   if (diff <= 0) {
@@ -481,13 +499,25 @@ function tick() {
   document.getElementById('cd-m').textContent = String(m).padStart(2,'0');
 }
 
-// ── FORMAT DATE ──
+/**
+ * Format a CSV deadline value into a compact Czech day/month string.
+ *
+ * @param {string} s ISO date string from the task dataset.
+ * @returns {string} Human-readable day and month, e.g. ``29. 8.``.
+ */
 function fmtDate(s) {
   const d = new Date(s);
   return d.getDate() + '. ' + (d.getMonth()+1) + '.';
 }
 
-// ── RENDER TASKS ──
+/**
+ * Render the active task list, progress bar, and next mandatory deadlines.
+ *
+ * The function filters by the current category selection and redraws the DOM with
+ * the remaining tasks sorted by deadline.
+ *
+ * @returns {void}
+ */
 function renderTasks() {
   const open = tasks.filter(t => t.status === 'open');
   const filtered = currentFilter === 'all' ? open : open.filter(t => t.category === currentFilter);
@@ -527,7 +557,11 @@ function renderTasks() {
   }
 }
 
-// ── RENDER GUESTS ──
+/**
+ * Render guest groups and the total guest count into the public landing page.
+ *
+ * @returns {void}
+ */
 function renderGuests() {
   const sides = [
     { key: 'mamka', label: 'Mamčina strana' },
@@ -561,7 +595,14 @@ document.getElementById('filters').addEventListener('click', e => {
   renderTasks();
 });
 
-// ── INIT ──
+/**
+ * Load the current task and guest datasets and render the landing page.
+ *
+ * The fetch is intentionally cache-busting and the function re-schedules itself
+ * on a 12-hour interval so the invitation stays in sync with the repository.
+ *
+ * @returns {Promise<void>}
+ */
 async function init() {
   try {
     const [taskData, guestData] = await Promise.all([

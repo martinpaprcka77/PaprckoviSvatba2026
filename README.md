@@ -4,6 +4,16 @@ Svatební plánovač pro **29. srpna 2026, 11:15**, Nová radnice Ostrava → Ko
 
 > **Production:** https://martinpaprcka77.github.io/PaprckoviSvatba2026/
 
+## 🧩 Stack a konvence
+
+Toto repo je v současnosti statická webová aplikace ve stylu HTML/CSS/JavaScript bez build procesu. Primární zdroj dat je sada CSV v `data/`, kterou web čte pouze pro zobrazení; Python skripty v `scripts/` slouží ke statistikám a synchronizaci README/PRD.
+
+- hlavní jazyk: HTML + CSS + JavaScript
+- nástroje pro data/docs: Python 3 (`scripts/*.py`)
+- testy: `python -m pytest scripts/tests/test_extract_stats.py -q`
+- lokální vývoj: `python -m http.server 8080`
+- žádný npm build ani bundler; rozhraní je servírováno jako statický obsah
+
 ## ⚡ Stránky
 
 | Stránka | Odkaz |
@@ -70,15 +80,23 @@ master
 **Otevřeno (22):** Rozlučka se svobodou — organizace · Finální seznam hostů — potvrzení pro catering · Svatební cesta a dovolená — termín; ubytování; program · Doplňky — boty; šperky · Dárky pro svědky · Dekorace a květiny na radnici · První tanec — nácvik · Svatební dort — objednat a vyzvednout · Oddací list; podpisy; doklady · Doprava radnice → Zlatá koliba · Dekorace Zlaté koliby — výzdoba sálu · Fotokoutek / selfie zóna — příprava · Dárky na přivítanou pro hosty · Hry pro hosty and zábava · Hudba a playlist · Drobnosti pro hosty — guestbook + favory · Proslovy svědků — příprava · Líčení; nehty; vlasy · Střih a úprava · Confetti a prskavky · Fotograf — mobil; kamera; koordinace · Změna příjmení — matrika po svatbě
 <!-- OPEN_TASKS_END -->
 
-## 🔧 Lokální vývoj
+## 🔧 Lokální vývoj a ověření
 
-Bez npm a bez backendu:
+Bez npm, bez build systému a bez backendu:
 
 ```bash
 python -m http.server 8080
 ```
 
-Potom otevři `http://localhost:8080/`.
+Potom otevři `http://localhost:8080/` nebo příslušnou stránku (`/planner.html`, `/landing.html`, `/karaoke.html`).
+
+Pro ověření dat a dokumentace použij:
+
+```bash
+python -m pytest scripts/tests/test_extract_stats.py -q
+python scripts/update-readme.py --check-only
+python scripts/update-prd.py --check-only
+```
 
 ## 📋 Editace dat
 
@@ -151,6 +169,11 @@ Deploy obsahuje pouze runtime web, data, média a public assets; vývojové adre
 4. Aktuální stav v dokumentaci nepřepisovat ručně bez kontroly CSV.
 5. Každou důležitou změnu dat commitnout s popisnou zprávou.
 
+## 📝 Changelog dokumentace
+
+- 2026-08-18: doplněn přehled o aktuálním stacku (HTML/CSS/JS + Python helper skripty), aktualizovány pokyny pro lokální běh a testování a vysvětleny validace README/PRD.
+- 2026-08-18: přidány stručné JSDoc a Python docstrings pro veřejné funkce bez změny logiky.
+
 ## 📜 Historie
 
 | Verze | Datum | Popis |
@@ -160,3 +183,4 @@ Deploy obsahuje pouze runtime web, data, média a public assets; vývojové adre
 | **2.0.0** | 2026-06-02 | CSV migrace, romantický design, planner |
 | **2.1.x** | 2026-07 | Reálný progres a úpravy svatebního plánu |
 | **2.2.0** | 2026-08-08 | Repo/Pages repair, kompletní Pages deploy a README cleanup |
+| **2.2.1** | 2026-08-18 | Aktualizace dokumentace, JSDoc a Python docstrings |

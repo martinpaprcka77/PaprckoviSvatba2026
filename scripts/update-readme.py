@@ -69,7 +69,19 @@ def _read_tasks():
 
 
 def render_blocks(es, tasks):
-    """Render the current stat content for every marker block."""
+    """Render the current README stat content for every marker block.
+
+    The README tracks a small set of summary blocks (task counts, guest totals,
+    planned spending, and current task titles). This helper converts live CSV
+    stats into the exact markdown fragment used by each marker block.
+
+    Args:
+        es: The extracted statistics module exposing summary helpers.
+        tasks: Ordered task rows read from ``data/tasks.csv``.
+
+    Returns:
+        dict: Mapping of marker names to markdown block bodies.
+    """
     t = es.get_task_stats()
     b = es.get_budget_stats()
     g = es.get_guest_stats()
@@ -134,9 +146,17 @@ def _as_block(name: str, body: str) -> str:
 
 
 def apply_blocks(content: str, blocks) -> tuple:
-    """Replace (or insert) marker blocks in the README content.
+    """Replace or insert marker blocks inside ``README.md``.
 
-    Returns (new_content, changed_names, inserted_names).
+    The updater only edits content between ``<!-- NAME_START -->`` and
+    ``<!-- NAME_END -->`` markers, leaving the rest of the README untouched.
+
+    Args:
+        content: Full README markdown text.
+        blocks: Mapping of marker names to replacement bodies.
+
+    Returns:
+        tuple: ``(new_content, changed_names, inserted_names)``.
     """
     changed = []
     inserted = []
@@ -170,6 +190,12 @@ def apply_blocks(content: str, blocks) -> tuple:
 
 
 def main():
+    """Sync the README marker blocks from the current CSV data sets.
+
+    The script can run in write, preview, or check-only modes. It validates the
+    README against the source-of-truth CSV files and exits with a non-zero code
+    when the markers are out of sync.
+    """
     parser = argparse.ArgumentParser(description="Sync README.md stats from data/*.csv")
     mode = parser.add_mutually_exclusive_group()
     mode.add_argument("--check-only", action="store_true", help="exit 0/1, do not write")
