@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-19T00:20:00.000Z",
+  "generatedAt": "2026-09-07T17:28:41.085Z",
   "source": "data/*.csv",
   "wedding": {
     "date": "2026-08-29",
@@ -8,15 +8,71 @@
   },
   "tasks": {
     "total": 33,
-    "completed": 11,
-    "open": 22,
+    "completed": 33,
+    "open": 0,
     "byCategory": {
-      "mandatory": { "tasks": 17, "planned": 84500, "actual": 78100 },
-      "important": { "tasks": 12, "planned": 4500, "actual": 4150 },
-      "optional": { "tasks": 4, "planned": 500, "actual": 400 }
-    }
+      "mandatory": {
+        "tasks": 17,
+        "planned": 84500,
+        "actual": 78100
+      },
+      "important": {
+        "tasks": 12,
+        "planned": 4500,
+        "actual": 4150
+      },
+      "optional": {
+        "tasks": 4,
+        "planned": 500,
+        "actual": 400
+      }
+    },
+    "completedTitles": [
+      "Termín konfirmace — potvrzení data na matrice",
+      "Návštěva radnice — podání žádosti",
+      "Informování dětí — oznámení všem 4 dcerám",
+      "Svědci domluveni — Kikinka + Žanetka",
+      "Domluva oddávajícího — 11:15 Nová radnice",
+      "Schůzka prstýnky — Mamka+Taťka+Žanetka",
+      "Oblek a sako — výběr a nákup",
+      "Prstýnky — nákup a úprava",
+      "Svatební oznámení — rozeslání hostům + RSVP",
+      "Zlatá koliba — finální počet osob pro catering",
+      "Finální seznam hostů — potvrzení pro catering",
+      "Svatební šaty — výběr; nákup; úpravy",
+      "Svatební cesta a dovolená — termín; ubytování; program",
+      "Rozlučka se svobodou — organizace",
+      "Doplňky — boty; šperky",
+      "Dárky pro svědky",
+      "Dekorace a květiny na radnici",
+      "První tanec — nácvik",
+      "Svatební dort — objednat a vyzvednout",
+      "Oddací list; podpisy; doklady",
+      "Doprava radnice → Zlatá koliba",
+      "Dekorace Zlaté koliby — výzdoba sálu",
+      "Fotokoutek / selfie zóna — příprava",
+      "Dárky na přivítanou pro hosty",
+      "Hry pro hosty a zábava",
+      "Hudba a playlist",
+      "Drobnosti pro hosty — guestbook + favory",
+      "Proslovy svědků — příprava",
+      "Líčení; nehty; vlasy",
+      "Střih a úprava",
+      "Confetti a prskavky",
+      "Fotograf — mobil; kamera; koordinace",
+      "Změna příjmení — matrika po svatbě"
+    ],
+    "openTitles": []
   },
-  "budget": { "planned": 89500, "actual": 82650, "cap": 100000, "reserve": 10500 },
-  "guests": { "total": 17, "confirmed": 11 },
+  "budget": {
+    "planned": 89500,
+    "actual": 82650,
+    "cap": 100000,
+    "reserve": 10500
+  },
+  "guests": {
+    "total": 17,
+    "confirmed": 11
+  },
   "latestChange": "2026-08-16"
 }

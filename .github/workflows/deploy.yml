@@ -35,11 +35,10 @@ jobs:
           mkdir -p deploy_out
 
           # Public HTML entry points.
+          # Archivní stránky (index_june, karaoke, landing, tests) se na web
+          # NEpublikují — zůstávají jen v repu. Publikují se index.html a planner.html.
           cp index.html deploy_out/
-          cp landing.html deploy_out/
           cp planner.html deploy_out/
-          cp index_june.html deploy_out/
-          cp karaoke.html deploy_out/
 
           # Runtime data and public assets.
           cp -R data deploy_out/data

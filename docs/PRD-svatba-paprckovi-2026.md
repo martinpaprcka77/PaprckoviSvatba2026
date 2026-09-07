@@ -311,7 +311,7 @@ Děti jako skupina = 1 filter v appce. Individuální jména pro host list a kon
 ## 📊 Stav (auto-sync z data/*.csv)
 
 <!-- PRD_STATS_START -->
-✅ **11/33 splněno** · 💰 **89 500 / 100 000 Kč naplánováno** (82 650 Kč utraceno) · 🧑 **17 hostů** (11 potvrzeno) · 👥 **5 osob** · 📅 změny do 2026-08-16
+✅ **33/33 splněno** · 💰 **89 500 / 100 000 Kč naplánováno** (82 650 Kč utraceno) · 🧑 **17 hostů** (11 potvrzeno) · 👥 **5 osob** · 📅 změny do 2026-08-16
 <!-- PRD_STATS_END -->
 
 <!-- PRD_VERSION_HISTORY_START -->
@@ -323,4 +323,5 @@ Děti jako skupina = 1 filter v appce. Individuální jména pro host list a kon
 | 16. 8. 2026 | 33 | 11 | 89 500 | 23 | 5 |
 | 16. 8. 2026 | 33 | 11 | 89 500 | 24 | 5 |
 | 16. 8. 2026 | 33 | 11 | 89 500 | 17 | 5 |
+| 16. 8. 2026 | 33 | 33 | 89 500 | 17 | 5 |
 <!-- PRD_VERSION_HISTORY_END -->

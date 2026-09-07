@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#f5e6dc">
-<title>💍 Svatba Paprčkovi 2026</title>
+<title>Dagmar &amp; Martin — 29. srpna 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Lato:wght@300;400&display=swap" rel="stylesheet">
@@ -30,7 +30,6 @@ body {
   font-family: 'Lato', sans-serif;
   background: var(--bg);
   color: var(--text);
-  padding-bottom: calc(32px + var(--safe-bottom));
   min-height: 100vh;
 }
 
@@ -38,7 +37,7 @@ body {
 .hero {
   background: linear-gradient(160deg, #fdf0e8 0%, #f9e4d4 60%, #f2d5c0 100%);
   text-align: center;
-  padding: calc(40px + var(--safe-top)) 24px 36px;
+  padding: calc(48px + var(--safe-top)) 24px 44px;
   position: relative;
   overflow: hidden;
   border-bottom: 1px solid var(--rose-mid);
@@ -50,17 +49,16 @@ body {
 .hero-floral.tl { top: -20px; left: -20px; transform: rotate(-25deg); }
 .hero-floral.br { bottom: -20px; right: -20px; transform: rotate(15deg); }
 .hero-pre {
-  font-family: 'Lato', sans-serif;
   font-weight: 300;
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 4px;
   text-transform: uppercase;
   color: var(--text-muted);
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 .hero-names {
   font-family: 'Great Vibes', cursive;
-  font-size: clamp(44px, 12vw, 62px);
+  font-size: clamp(46px, 13vw, 66px);
   color: var(--gold);
   line-height: 1.1;
   text-shadow: 0 2px 12px rgba(201,169,110,0.25);
@@ -75,55 +73,65 @@ body {
 .hero-divider {
   width: 100px; height: 1px;
   background: linear-gradient(90deg, transparent, var(--gold), transparent);
-  margin: 14px auto;
+  margin: 16px auto;
 }
 .hero-date {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 20px;
+  font-size: 22px;
   color: var(--text);
   letter-spacing: 1px;
 }
-.hero-place {
+.hero-thanks {
+  max-width: 460px;
+  margin: 18px auto 0;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 18px;
+  color: var(--text);
+  line-height: 1.6;
+}
+
+/* ── COUNT-UP (since the wedding) ── */
+.since-wrap {
+  margin-top: 26px;
+  padding: 18px 12px;
+  background: rgba(255,255,255,0.72);
+  border: 1px solid var(--rose-mid);
+  border-radius: 16px;
+  backdrop-filter: blur(4px);
+}
+.since-label {
   font-size: 10px;
   letter-spacing: 3px;
   text-transform: uppercase;
   color: var(--text-muted);
-  margin-top: 5px;
-  line-height: 1.6;
+  margin-bottom: 12px;
 }
-.hero-countdown {
-  margin-top: 20px;
+.since-grid {
   display: flex;
   justify-content: center;
   gap: 10px;
 }
-.cd-box {
-  background: rgba(255,255,255,0.7);
-  border: 1px solid var(--rose-mid);
-  border-radius: 10px;
-  padding: 8px 12px;
-  min-width: 52px;
-  backdrop-filter: blur(4px);
+.since-box {
+  min-width: 58px;
 }
-.cd-num {
+.since-num {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 26px;
+  font-size: 30px;
   color: var(--gold);
   display: block;
   line-height: 1;
   font-weight: 600;
 }
-.cd-unit {
-  font-size: 8px;
+.since-unit {
+  font-size: 9px;
   letter-spacing: 2px;
   text-transform: uppercase;
   color: var(--text-muted);
 }
 
-/* ── CONTAINER ── */
-.container { max-width: 540px; margin: 0 auto; padding: 0 14px; }
-
-/* ── SECTION ── */
+/* ── CONTAINER / SECTION ── */
+.container { max-width: 540px; margin: 0 auto; padding: 0 14px 40px; }
 .section {
   margin-top: 20px;
   background: var(--white);
@@ -148,101 +156,7 @@ body {
   text-transform: uppercase;
   color: var(--text-muted);
 }
-.section-body { padding: 10px 18px 16px; }
-
-/* ── PROGRESS ── */
-.progress-wrap { margin-bottom: 14px; }
-.progress-row { display: flex; justify-content: space-between; font-size: 11px; color: var(--text-muted); margin-bottom: 4px; }
-.progress-bar { height: 6px; background: var(--rose-light); border-radius: 3px; overflow: hidden; margin-bottom: 8px; }
-.progress-fill { height: 100%; border-radius: 3px; background: linear-gradient(90deg, var(--rose), var(--gold)); transition: width 0.5s; }
-
-/* ── FILTERS ── */
-.filters { display: flex; gap: 6px; flex-wrap: wrap; padding: 10px 18px 0; }
-.filter-btn {
-  padding: 5px 12px;
-  border-radius: 20px;
-  border: 1px solid var(--rose-mid);
-  background: transparent;
-  color: var(--text-muted);
-  font-size: 11px;
-  font-family: 'Lato', sans-serif;
-  cursor: pointer;
-  letter-spacing: 0.5px;
-  transition: all 0.2s;
-}
-.filter-btn.active {
-  background: linear-gradient(135deg, var(--rose), var(--gold));
-  color: white;
-  border-color: transparent;
-}
-
-/* ── TASK ITEM ── */
-.task-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  padding: 11px 0;
-  border-bottom: 1px solid var(--rose-light);
-}
-.task-item:last-child { border-bottom: none; }
-.task-dot {
-  width: 8px; height: 8px;
-  border-radius: 50%;
-  margin-top: 5px;
-  flex-shrink: 0;
-}
-.dot-mandatory { background: var(--rose); }
-.dot-important { background: var(--gold); }
-.dot-optional  { background: var(--rose-mid); }
-.task-content { flex: 1; min-width: 0; }
-.task-name {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 15px;
-  font-weight: 600;
-  color: var(--text);
-  line-height: 1.3;
-}
-.task-meta {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-  margin-top: 3px;
-}
-.task-meta span {
-  font-size: 10px;
-  color: var(--text-muted);
-  letter-spacing: 0.3px;
-}
-.task-deadline { color: var(--rose) !important; font-weight: 400; }
-.task-note {
-  font-size: 11px;
-  color: var(--text-muted);
-  margin-top: 3px;
-  font-style: italic;
-  line-height: 1.4;
-}
-
-/* ── UPCOMING ── */
-.upcoming-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 8px 0;
-  border-bottom: 1px solid var(--rose-light);
-  font-size: 13px;
-}
-.upcoming-item:last-child { border-bottom: none; }
-.upcoming-name { font-family: 'Cormorant Garamond', serif; font-size: 14px; color: var(--text); }
-.upcoming-date {
-  font-size: 10px;
-  color: var(--rose);
-  background: var(--rose-light);
-  padding: 2px 8px;
-  border-radius: 10px;
-  white-space: nowrap;
-  margin-left: 8px;
-  flex-shrink: 0;
-}
+.section-body { padding: 12px 18px 16px; }
 
 /* ── TIMELINE ── */
 .timeline-item { display: flex; gap: 12px; padding: 7px 0; align-items: flex-start; }
@@ -297,27 +211,10 @@ body {
   text-align: right;
 }
 
-/* ── PLANNER LINK ── */
-.planner-link {
-  display: block;
-  text-align: center;
-  margin: 20px 0 0;
-  padding: 13px;
-  background: linear-gradient(135deg, rgba(201,169,110,0.12), rgba(201,117,106,0.08));
-  border: 1px solid var(--rose-mid);
-  border-radius: 16px;
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 14px;
-  color: var(--text-muted);
-  text-decoration: none;
-  letter-spacing: 1px;
-}
-.planner-link span { color: var(--gold); }
-
 /* ── FOOTER ── */
 .footer {
   text-align: center;
-  padding: 24px 16px 8px;
+  padding: 26px 16px calc(20px + var(--safe-bottom));
   font-size: 10px;
   color: var(--text-muted);
   letter-spacing: 1px;
@@ -327,7 +224,7 @@ body {
   font-size: 28px;
   color: var(--gold);
   display: block;
-  margin-bottom: 4px;
+  margin-bottom: 6px;
 }
 
 /* ── LOADING ── */
@@ -340,58 +237,33 @@ body {
 <div class="hero">
   <div class="hero-floral tl">🌸</div>
   <div class="hero-floral br">🌸</div>
-  <div class="hero-pre">Vás srdečně zvou na svatbu</div>
+  <div class="hero-pre">Děkujeme, že jste s námi</div>
   <div class="hero-names">
     Dagmar Sobková
     <span class="hero-amp">&amp;</span>
     Martin Paprčka
   </div>
   <div class="hero-divider"></div>
-  <div class="hero-date">29. srpna 2026</div>
-  <div class="hero-place">Nová radnice Ostrava<br>Koliba U Zlatého Jarouše</div>
-  <div class="hero-countdown" id="countdown">
-    <div class="cd-box"><span class="cd-num" id="cd-d">--</span><span class="cd-unit">dní</span></div>
-    <div class="cd-box"><span class="cd-num" id="cd-h">--</span><span class="cd-unit">hodin</span></div>
-    <div class="cd-box"><span class="cd-num" id="cd-m">--</span><span class="cd-unit">minut</span></div>
+  <div class="hero-date">Vzali jsme se 29. srpna 2026</div>
+  <div class="hero-thanks">Bylo nám ctí oslavit s Vámi náš nejkrásnější den.</div>
+
+  <div class="since-wrap">
+    <div class="since-label">Náš společný čas</div>
+    <div class="since-grid">
+      <div class="since-box"><span class="since-num" id="sc-d">--</span><span class="since-unit">dní</span></div>
+      <div class="since-box"><span class="since-num" id="sc-h">--</span><span class="since-unit">hodin</span></div>
+      <div class="since-box"><span class="since-num" id="sc-m">--</span><span class="since-unit">minut</span></div>
+      <div class="since-box"><span class="since-num" id="sc-s">--</span><span class="since-unit">sekund</span></div>
+    </div>
   </div>
 </div>
 
 <div class="container">
 
-  <!-- UPCOMING -->
-  <div class="section" id="upcomingSection" style="display:none">
-    <div class="section-head">
-      <span class="section-title">Nejbližší</span>
-      <span class="section-sub">termíny</span>
-    </div>
-    <div class="section-body" id="upcomingBody"></div>
-  </div>
-
-  <!-- CHECKLIST -->
-  <div class="section">
-    <div class="section-head">
-      <span class="section-title">Přípravy</span>
-      <span class="section-sub" id="taskCount">načítám…</span>
-    </div>
-    <div class="filters" id="filters">
-      <button class="filter-btn active" data-f="all">Vše</button>
-      <button class="filter-btn" data-f="mandatory">🔴 Povinné</button>
-      <button class="filter-btn" data-f="important">🟡 Důležité</button>
-      <button class="filter-btn" data-f="optional">🟢 Volitelné</button>
-    </div>
-    <div class="section-body">
-      <div class="progress-wrap">
-        <div class="progress-row"><span>Celkový postup</span><span id="pct">0%</span></div>
-        <div class="progress-bar"><div class="progress-fill" id="pctFill" style="width:0%"></div></div>
-      </div>
-      <div id="tasksBody"><div class="loading">načítám…</div></div>
-    </div>
-  </div>
-
   <!-- HARMONOGRAM -->
   <div class="section">
     <div class="section-head">
-      <span class="section-title">Harmonogram</span>
+      <span class="section-title">Harmonogram dne</span>
       <span class="section-sub">29. srpna 2026</span>
     </div>
     <div class="section-body">
@@ -399,27 +271,22 @@ body {
       <div class="timeline-item"><span class="tl-time">11:15</span><div class="tl-dot" style="background:var(--gold)"></div><span class="tl-text">Obřad 💍</span></div>
       <div class="timeline-item"><span class="tl-time">12:00</span><div class="tl-dot"></div><span class="tl-text">Gratulace, společné focení</span></div>
       <div class="timeline-item"><span class="tl-time">12:30</span><div class="tl-dot"></div><span class="tl-text">Přesun do Zlaté koliby (U Miloše)</span></div>
-      <div class="timeline-item"><span class="tl-time">13:00</span><div class="tl-dot"></div><span class="tl-text">Uvítání hostů, welcome drink</span></div>
+      <div class="timeline-item"><span class="tl-time">13:00</span><div class="tl-dot"></div><span class="tl-text">Uvítání hostů, uvítací drink</span></div>
       <div class="timeline-item"><span class="tl-time">14:00</span><div class="tl-dot"></div><span class="tl-text">Hostina — menu od Miloše</span></div>
       <div class="timeline-item"><span class="tl-time">16:00</span><div class="tl-dot"></div><span class="tl-text">První tanec 💃, hry, volná zábava</span></div>
       <div class="timeline-item"><span class="tl-time">19:00</span><div class="tl-dot" style="background:var(--rose)"></div><span class="tl-text">Krájení dortu 🍰, přípitek</span></div>
-      <div class="timeline-item"><span class="tl-time">20:00</span><div class="tl-dot"></div><span class="tl-text">Volný konec, úklid</span></div>
+      <div class="timeline-item"><span class="tl-time">20:00</span><div class="tl-dot"></div><span class="tl-text">Volná zábava do konce</span></div>
     </div>
   </div>
 
   <!-- HOSTÉ -->
   <div class="section">
     <div class="section-head">
-      <span class="section-title">Hosté</span>
+      <span class="section-title">Naši hosté</span>
       <span class="section-sub" id="guestCount">načítám…</span>
     </div>
     <div class="section-body" id="guestsBody"><div class="loading">načítám…</div></div>
   </div>
-
-  <!-- PLANNER LINK -->
-  <a class="planner-link" href="planner.html">
-    🗓 <span>Plánovač</span> — pro organizátory
-  </a>
 
   <!-- FOOTER -->
   <div class="footer">
@@ -430,25 +297,39 @@ body {
 </div>
 
 <script>
-const WEDDING = new Date('2026-08-29T11:15:00');
+const WEDDING = new Date('2026-08-29T11:15:00'); // čas obřadu
 const RAW = 'data/';
-const REFRESH_INTERVAL = 12 * 60 * 60 * 1000; // 12h
 
-let tasks = [], guests = { mamka: [], tatka: [], spolecni: [] };
-let currentFilter = 'all';
+let guests = { mamka: [], tatka: [], spolecni: [] };
 
 /**
- * Parse a CSV payload into an array of row objects keyed by the header names.
- *
- * @param {string} text Raw CSV content with an optional quoted-field syntax.
- * @returns {Array<Record<string, string>>} Parsed rows; quoted values and commas are preserved.
- * @throws {TypeError} When the input is not a string.
+ * Počítadlo nahoru — kolik času uplynulo od svatby (na rozdíl od odpočtu dolů).
+ * Čas běží od okamžiku obřadu dál; nikdy se nezastaví.
+ */
+function tick() {
+  const now = Date.now();
+  let diff = now - WEDDING.getTime();
+  if (diff < 0) diff = 0; // před svatbou ukazuje nuly
+
+  const d = Math.floor(diff / 86400000);
+  const h = Math.floor((diff % 86400000) / 3600000);
+  const m = Math.floor((diff % 3600000) / 60000);
+  const s = Math.floor((diff % 60000) / 1000);
+  document.getElementById('sc-d').textContent = d;
+  document.getElementById('sc-h').textContent = String(h).padStart(2, '0');
+  document.getElementById('sc-m').textContent = String(m).padStart(2, '0');
+  document.getElementById('sc-s').textContent = String(s).padStart(2, '0');
+}
+
+/**
+ * Rozparsuje CSV payload na pole řádků klíčovaných hlavičkami.
+ * @param {string} text Surový CSV text s podporou uvozovaných polí.
+ * @returns {Array<Record<string,string>>}
  */
 function parseCSV(text) {
   const lines = text.trim().split('\n');
   const headers = lines[0].split(',').map(h => h.trim());
   return lines.slice(1).map(line => {
-    // handle commas inside quoted fields
     const cols = [];
     let cur = '', inQ = false;
     for (const ch of line) {
@@ -464,11 +345,8 @@ function parseCSV(text) {
 }
 
 /**
- * Fetch a CSV file from the public data directory and parse it into a row array.
- *
- * @param {string} name CSV file name without the data/ prefix.
- * @returns {Promise<Array<Record<string, string>>>} Parsed data rows.
- * @throws {Error} If the HTTP fetch fails or the file is unavailable.
+ * Načte CSV soubor a rozparsuje ho.
+ * @param {string} name Název CSV souboru bez prefixu data/.
  */
 async function fetchCSV(name) {
   const r = await fetch(RAW + name + '?_=' + Date.now(), { cache: 'no-store' });
@@ -477,90 +355,7 @@ async function fetchCSV(name) {
 }
 
 /**
- * Refresh the countdown numbers shown above the main invite layout.
- *
- * The timer stops at zero and swaps the numeric display for a celebratory emoji.
- *
- * @returns {void}
- */
-function tick() {
-  const diff = WEDDING - new Date();
-  if (diff <= 0) {
-    document.getElementById('cd-d').textContent = '🎉';
-    document.getElementById('cd-h').textContent = '';
-    document.getElementById('cd-m').textContent = '';
-    return;
-  }
-  const d = Math.floor(diff / 86400000);
-  const h = Math.floor((diff % 86400000) / 3600000);
-  const m = Math.floor((diff % 3600000) / 60000);
-  document.getElementById('cd-d').textContent = d;
-  document.getElementById('cd-h').textContent = String(h).padStart(2,'0');
-  document.getElementById('cd-m').textContent = String(m).padStart(2,'0');
-}
-
-/**
- * Format a CSV deadline value into a compact Czech day/month string.
- *
- * @param {string} s ISO date string from the task dataset.
- * @returns {string} Human-readable day and month, e.g. ``29. 8.``.
- */
-function fmtDate(s) {
-  const d = new Date(s);
-  return d.getDate() + '. ' + (d.getMonth()+1) + '.';
-}
-
-/**
- * Render the active task list, progress bar, and next mandatory deadlines.
- *
- * The function filters by the current category selection and redraws the DOM with
- * the remaining tasks sorted by deadline.
- *
- * @returns {void}
- */
-function renderTasks() {
-  const open = tasks.filter(t => t.status === 'open');
-  const filtered = currentFilter === 'all' ? open : open.filter(t => t.category === currentFilter);
-  filtered.sort((a,b) => new Date(a.deadline) - new Date(b.deadline));
-
-  const done = tasks.filter(t => t.status === 'done').length;
-  const pct = tasks.length ? Math.round(done / tasks.length * 100) : 0;
-  document.getElementById('pct').textContent = pct + '%';
-  document.getElementById('pctFill').style.width = pct + '%';
-  document.getElementById('taskCount').textContent = (tasks.length - done) + ' zbývá';
-
-  document.getElementById('tasksBody').innerHTML = filtered.length
-    ? filtered.map(t => `
-      <div class="task-item">
-        <div class="task-dot dot-${t.category}"></div>
-        <div class="task-content">
-          <div class="task-name">${t.title}</div>
-          <div class="task-meta">
-            <span class="task-deadline">⏰ ${fmtDate(t.deadline)}</span>
-            <span>👤 ${t.assign}</span>
-          </div>
-          ${t.note ? `<div class="task-note">${t.note.replace(/;/g, ' ·')}</div>` : ''}
-        </div>
-      </div>`).join('')
-    : '<div style="text-align:center;color:var(--text-muted);padding:16px;font-size:13px;">Vše hotovo ✅</div>';
-
-  // upcoming — next 5 open mandatory tasks
-  const upcoming = tasks.filter(t => t.status === 'open' && t.category === 'mandatory')
-    .sort((a,b) => new Date(a.deadline) - new Date(b.deadline)).slice(0,5);
-  if (upcoming.length) {
-    document.getElementById('upcomingSection').style.display = '';
-    document.getElementById('upcomingBody').innerHTML = upcoming.map(t => `
-      <div class="upcoming-item">
-        <span class="upcoming-name">${t.title}</span>
-        <span class="upcoming-date">${fmtDate(t.deadline)}</span>
-      </div>`).join('');
-  }
-}
-
-/**
- * Render guest groups and the total guest count into the public landing page.
- *
- * @returns {void}
+ * Vykreslí hosty do sekcí podle stran.
  */
 function renderGuests() {
   const sides = [
@@ -586,47 +381,20 @@ function renderGuests() {
   document.getElementById('guestCount').textContent = total + ' hostů';
 }
 
-// ── FILTERS ──
-document.getElementById('filters').addEventListener('click', e => {
-  const btn = e.target.closest('.filter-btn');
-  if (!btn) return;
-  currentFilter = btn.dataset.f;
-  document.querySelectorAll('.filter-btn').forEach(b => b.classList.toggle('active', b === btn));
-  renderTasks();
-});
-
-/**
- * Load the current task and guest datasets and render the landing page.
- *
- * The fetch is intentionally cache-busting and the function re-schedules itself
- * on a 12-hour interval so the invitation stays in sync with the repository.
- *
- * @returns {Promise<void>}
- */
 async function init() {
   try {
-    const [taskData, guestData] = await Promise.all([
-      fetchCSV('tasks.csv'),
-      fetchCSV('guests.csv')
-    ]);
-    tasks = taskData;
-    guestData.forEach(g => {
-      const s = g.side;
-      if (guests[s]) guests[s].push(g);
-    });
-    renderTasks();
+    const guestData = await fetchCSV('guests.csv');
+    guestData.forEach(g => { if (guests[g.side]) guests[g.side].push(g); });
     renderGuests();
-  } catch(e) {
-    document.getElementById('tasksBody').innerHTML = '<div class="loading">⚠️ Nepodařilo se načíst data</div>';
+  } catch (e) {
+    document.getElementById('guestsBody').innerHTML = '<div class="loading">⚠️ Nepodařilo se načíst data</div>';
     console.error(e);
   }
-  // auto-refresh every 12h
-  setTimeout(init, REFRESH_INTERVAL);
 }
 
 document.addEventListener('DOMContentLoaded', () => {
   tick();
-  setInterval(tick, 30000);
+  setInterval(tick, 1000);
   init();
 });
 </script>

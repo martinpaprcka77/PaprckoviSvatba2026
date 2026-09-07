@@ -55,7 +55,7 @@ master
 ## 📊 Stav (auto-sync z data/*.csv)
 
 <!-- TASK_STATS_START -->
-✅ **11/33 splněno** · 💰 **89 500 / 100 000 Kč naplánováno** (82 650 Kč utraceno) · 🧑 **17 hostů** (11 potvrzeno) · 📅 změny do 2026-08-16
+✅ **33/33 splněno** · 💰 **89 500 / 100 000 Kč naplánováno** (82 650 Kč utraceno) · 🧑 **17 hostů** (11 potvrzeno) · 📅 změny do 2026-08-16
 <!-- TASK_STATS_END -->
 
 <!-- TASK_CATEGORIES_START -->
@@ -73,11 +73,11 @@ master
 <!-- GUESTS_END -->
 
 <!-- COMPLETED_TASKS_START -->
-**Hotovo (11):** Termín konfirmace — potvrzení data na matrice · Návštěva radnice — podání žádosti · Informování dětí — oznámení všem 4 dcerám · Svědci domluveni — Kikinka + Žanetka · Domluva oddávajícího — 11:15 Nová radnice · Schůzka prstýnky — Mamka+Taťka+Žanetka · Zlatá koliba — finální počet osob pro catering · Oblek a sako — výběr a nákup · Prstýnky — nákup a úprava · Svatební oznámení — rozeslání hostům + RSVP · Svatební šaty — výběr; nákup; úpravy
+**Hotovo (33):** Termín konfirmace — potvrzení data na matrice · Návštěva radnice — podání žádosti · Informování dětí — oznámení všem 4 dcerám · Svědci domluveni — Kikinka + Žanetka · Domluva oddávajícího — 11:15 Nová radnice · Schůzka prstýnky — Mamka+Taťka+Žanetka · Zlatá koliba — finální počet osob pro catering · Oblek a sako — výběr a nákup · Prstýnky — nákup a úprava · Rozlučka se svobodou — organizace · Svatební oznámení — rozeslání hostům + RSVP · Finální seznam hostů — potvrzení pro catering · Svatební šaty — výběr; nákup; úpravy · Svatební cesta a dovolená — termín; ubytování; program · Doplňky — boty; šperky · Dárky pro svědky · Dekorace a květiny na radnici · První tanec — nácvik · Svatební dort — objednat a vyzvednout · Oddací list; podpisy; doklady · Doprava radnice → Zlatá koliba · Dekorace Zlaté koliby — výzdoba sálu · Fotokoutek / selfie zóna — příprava · Dárky na přivítanou pro hosty · Hry pro hosty a zábava · Hudba a playlist · Drobnosti pro hosty — guestbook + favory · Proslovy svědků — příprava · Líčení; nehty; vlasy · Střih a úprava · Confetti a prskavky · Fotograf — mobil; kamera; koordinace · Změna příjmení — matrika po svatbě
 <!-- COMPLETED_TASKS_END -->
 
 <!-- OPEN_TASKS_START -->
-**Otevřeno (22):** Rozlučka se svobodou — organizace · Finální seznam hostů — potvrzení pro catering · Svatební cesta a dovolená — termín; ubytování; program · Doplňky — boty; šperky · Dárky pro svědky · Dekorace a květiny na radnici · První tanec — nácvik · Svatební dort — objednat a vyzvednout · Oddací list; podpisy; doklady · Doprava radnice → Zlatá koliba · Dekorace Zlaté koliby — výzdoba sálu · Fotokoutek / selfie zóna — příprava · Dárky na přivítanou pro hosty · Hry pro hosty and zábava · Hudba a playlist · Drobnosti pro hosty — guestbook + favory · Proslovy svědků — příprava · Líčení; nehty; vlasy · Střih a úprava · Confetti a prskavky · Fotograf — mobil; kamera; koordinace · Změna příjmení — matrika po svatbě
+**Otevřeno (0):** 
 <!-- OPEN_TASKS_END -->
 
 ## 🔧 Lokální vývoj a ověření
