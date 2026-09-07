@@ -310,7 +310,9 @@ button { font-family: inherit; touch-action: manipulation; }
   filter: drop-shadow(0 2px 1px rgba(255,255,255,0.8));
   width: min(80vw, 460px);
 }
-.hero > * { position: relative; z-index: 1; }
+/* Text v hero posadíme nad watermark; dekorace (květiny, srdce) zůstanou
+   absolutně umístěné, ať neodsouvají obsah. */
+.hero > *:not(.hero-floral):not(.heart-badge) { position: relative; z-index: 1; }
 .hero-floral { z-index: 0; }
 .heart-badge svg { width: 100%; height: auto; display: block; }
 .heart-badge text { font-family: 'Cormorant Garamond', serif; letter-spacing: 3px; }
