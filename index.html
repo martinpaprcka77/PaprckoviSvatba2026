@@ -4,7 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="format-detection" content="telephone=no">
 <meta name="theme-color" content="#f5e6dc">
 <title>Dagmar &amp; Martin — 29. srpna 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -25,13 +27,19 @@
   --safe-bottom: env(safe-area-inset-bottom, 0px);
 }
 * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; margin: 0; padding: 0; }
-html { font-size: 16px; -webkit-text-size-adjust: 100%; }
+html { font-size: 16px; -webkit-text-size-adjust: 100%; overflow-x: hidden; }
 body {
   font-family: 'Lato', sans-serif;
   background: var(--bg);
   color: var(--text);
   min-height: 100vh;
+  min-height: 100dvh; /* iPhone: bez posuvu kvůli dynamické adresní liště */
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  overscroll-behavior-y: none;
 }
+img { max-width: 100%; height: auto; }
+button { font-family: inherit; touch-action: manipulation; }
 
 /* ── HERO ── */
 .hero {
@@ -158,59 +166,6 @@ body {
 }
 .section-body { padding: 12px 18px 16px; }
 
-/* ── TIMELINE ── */
-.timeline-item { display: flex; gap: 12px; padding: 7px 0; align-items: flex-start; }
-.tl-time {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--gold);
-  min-width: 42px;
-  padding-top: 1px;
-}
-.tl-dot {
-  width: 8px; height: 8px;
-  border-radius: 50%;
-  background: var(--rose-mid);
-  margin-top: 5px;
-  flex-shrink: 0;
-}
-.tl-text { font-size: 14px; color: var(--text); line-height: 1.4; }
-
-/* ── GUESTS ── */
-.guest-group-title {
-  font-size: 10px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  margin: 12px 0 6px;
-}
-.guest-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 6px 0;
-  border-bottom: 1px solid var(--rose-light);
-  font-size: 13px;
-}
-.guest-item:last-child { border-bottom: none; }
-.guest-name { font-family: 'Cormorant Garamond', serif; font-size: 14px; }
-.guest-count {
-  font-size: 11px;
-  color: var(--text-muted);
-  background: var(--rose-light);
-  padding: 2px 8px;
-  border-radius: 10px;
-}
-.guest-total {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--gold);
-  margin-top: 10px;
-  text-align: right;
-}
-
 /* ── PHOTO GALLERY ── */
 .gallery-grid {
   display: grid;
@@ -232,43 +187,47 @@ body {
 /* ── LIGHTBOX ── */
 .lightbox {
   position: fixed; inset: 0;
-  background: rgba(20, 10, 8, 0.92);
+  background: rgba(20, 10, 8, 0.94);
   display: none;
   align-items: center;
   justify-content: center;
   z-index: 100;
-  padding: calc(24px + var(--safe-top)) 16px calc(24px + var(--safe-bottom));
+  padding: calc(24px + var(--safe-top)) 12px calc(24px + var(--safe-bottom));
 }
 .lightbox.open { display: flex; }
 .lightbox img {
   max-width: 100%;
   max-height: 100%;
-  border-radius: 10px;
+  object-fit: contain;
+  border-radius: 8px;
   box-shadow: 0 8px 40px rgba(0,0,0,0.5);
 }
 .lightbox-close {
   position: absolute;
-  top: calc(14px + var(--safe-top));
-  right: 20px;
-  font-size: 34px;
+  top: calc(12px + var(--safe-top));
+  right: 12px;
+  font-size: 30px;
   line-height: 1;
   color: var(--rose-light);
   background: none;
   border: none;
   cursor: pointer;
-  padding: 6px;
+  min-width: 44px;
+  min-height: 44px;
 }
 .lightbox-nav {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  font-size: 40px;
+  font-size: 38px;
   color: var(--rose-light);
   background: none;
   border: none;
   cursor: pointer;
-  padding: 10px 16px;
+  padding: 12px;
   line-height: 1;
+  min-width: 48px;
+  min-height: 64px;
 }
 .lightbox-nav.prev { left: 4px; }
 .lightbox-nav.next { right: 4px; }
@@ -297,9 +256,6 @@ body {
   display: block;
   margin-bottom: 6px;
 }
-
-/* ── LOADING ── */
-.loading { text-align: center; padding: 20px; color: var(--text-muted); font-size: 12px; letter-spacing: 2px; }
 </style>
 </head>
 <body>
@@ -331,25 +287,6 @@ body {
 
 <div class="container">
 
-  <!-- HARMONOGRAM -->
-  <div class="section">
-    <div class="section-head">
-      <span class="section-title">Harmonogram dne</span>
-      <span class="section-sub">29. srpna 2026</span>
-    </div>
-    <div class="section-body">
-      <div class="timeline-item"><span class="tl-time">10:45</span><div class="tl-dot"></div><span class="tl-text">Sraz na Nové radnici Ostrava</span></div>
-      <div class="timeline-item"><span class="tl-time">11:15</span><div class="tl-dot" style="background:var(--gold)"></div><span class="tl-text">Obřad 💍</span></div>
-      <div class="timeline-item"><span class="tl-time">12:00</span><div class="tl-dot"></div><span class="tl-text">Gratulace, společné focení</span></div>
-      <div class="timeline-item"><span class="tl-time">12:30</span><div class="tl-dot"></div><span class="tl-text">Přesun do Zlaté koliby (U Miloše)</span></div>
-      <div class="timeline-item"><span class="tl-time">13:00</span><div class="tl-dot"></div><span class="tl-text">Uvítání hostů, uvítací drink</span></div>
-      <div class="timeline-item"><span class="tl-time">14:00</span><div class="tl-dot"></div><span class="tl-text">Hostina — menu od Miloše</span></div>
-      <div class="timeline-item"><span class="tl-time">16:00</span><div class="tl-dot"></div><span class="tl-text">První tanec 💃, hry, volná zábava</span></div>
-      <div class="timeline-item"><span class="tl-time">19:00</span><div class="tl-dot" style="background:var(--rose)"></div><span class="tl-text">Krájení dortu 🍰, přípitek</span></div>
-      <div class="timeline-item"><span class="tl-time">20:00</span><div class="tl-dot"></div><span class="tl-text">Volná zábava do konce</span></div>
-    </div>
-  </div>
-
   <!-- FOTKY -->
   <div class="section">
     <div class="section-head">
@@ -359,15 +296,6 @@ body {
     <div class="section-body">
       <div class="gallery-grid" id="gallery"></div>
     </div>
-  </div>
-
-  <!-- HOSTÉ -->
-  <div class="section">
-    <div class="section-head">
-      <span class="section-title">Naši hosté</span>
-      <span class="section-sub" id="guestCount">načítám…</span>
-    </div>
-    <div class="section-body" id="guestsBody"><div class="loading">načítám…</div></div>
   </div>
 
   <!-- FOOTER -->
@@ -380,9 +308,6 @@ body {
 
 <script>
 const WEDDING = new Date('2026-08-29T11:15:00'); // čas obřadu
-const RAW = 'data/';
-
-let guests = { mamka: [], tatka: [], spolecni: [] };
 
 /**
  * Počítadlo nahoru — kolik času uplynulo od svatby (na rozdíl od odpočtu dolů).
@@ -401,77 +326,6 @@ function tick() {
   document.getElementById('sc-h').textContent = String(h).padStart(2, '0');
   document.getElementById('sc-m').textContent = String(m).padStart(2, '0');
   document.getElementById('sc-s').textContent = String(s).padStart(2, '0');
-}
-
-/**
- * Rozparsuje CSV payload na pole řádků klíčovaných hlavičkami.
- * @param {string} text Surový CSV text s podporou uvozovaných polí.
- * @returns {Array<Record<string,string>>}
- */
-function parseCSV(text) {
-  const lines = text.trim().split('\n');
-  const headers = lines[0].split(',').map(h => h.trim());
-  return lines.slice(1).map(line => {
-    const cols = [];
-    let cur = '', inQ = false;
-    for (const ch of line) {
-      if (ch === '"') { inQ = !inQ; }
-      else if (ch === ',' && !inQ) { cols.push(cur.trim()); cur = ''; }
-      else cur += ch;
-    }
-    cols.push(cur.trim());
-    const obj = {};
-    headers.forEach((h, i) => obj[h] = cols[i] !== undefined ? cols[i] : '');
-    return obj;
-  });
-}
-
-/**
- * Načte CSV soubor a rozparsuje ho.
- * @param {string} name Název CSV souboru bez prefixu data/.
- */
-async function fetchCSV(name) {
-  const r = await fetch(RAW + name + '?_=' + Date.now(), { cache: 'no-store' });
-  if (!r.ok) throw new Error(name + ' ' + r.status);
-  return parseCSV(await r.text());
-}
-
-/**
- * Vykreslí hosty do sekcí podle stran.
- */
-function renderGuests() {
-  const sides = [
-    { key: 'mamka', label: 'Mamčina strana' },
-    { key: 'tatka', label: 'Taťkova strana' },
-    { key: 'spolecni', label: 'Společní' },
-  ];
-  let total = 0, html = '';
-  sides.forEach(s => {
-    const rows = guests[s.key];
-    if (!rows || !rows.length) return;
-    html += `<div class="guest-group-title">${s.label}</div>`;
-    rows.forEach(g => {
-      total += parseInt(g.count) || 0;
-      html += `<div class="guest-item">
-        <span class="guest-name">${g.name}</span>
-        <span class="guest-count">${g.count} os.</span>
-      </div>`;
-    });
-  });
-  html += `<div class="guest-total">Celkem: ${total} hostů</div>`;
-  document.getElementById('guestsBody').innerHTML = html;
-  document.getElementById('guestCount').textContent = total + ' hostů';
-}
-
-async function init() {
-  try {
-    const guestData = await fetchCSV('guests.csv');
-    guestData.forEach(g => { if (guests[g.side]) guests[g.side].push(g); });
-    renderGuests();
-  } catch (e) {
-    document.getElementById('guestsBody').innerHTML = '<div class="loading">⚠️ Nepodařilo se načíst data</div>';
-    console.error(e);
-  }
 }
 
 // ── GALERIE ──
@@ -529,7 +383,6 @@ document.addEventListener('DOMContentLoaded', () => {
   tick();
   setInterval(tick, 1000);
   renderGallery();
-  init();
 
   document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
   document.getElementById('lightboxPrev').addEventListener('click', () => stepLightbox(-1));
