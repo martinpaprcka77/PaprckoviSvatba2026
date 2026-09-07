@@ -211,6 +211,77 @@ body {
   text-align: right;
 }
 
+/* ── PHOTO GALLERY ── */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+}
+.gallery-grid img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 8px;
+  cursor: pointer;
+  border: 1px solid var(--rose-light);
+  display: block;
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+.gallery-grid img:hover { transform: scale(1.02); opacity: 0.92; }
+
+/* ── LIGHTBOX ── */
+.lightbox {
+  position: fixed; inset: 0;
+  background: rgba(20, 10, 8, 0.92);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: calc(24px + var(--safe-top)) 16px calc(24px + var(--safe-bottom));
+}
+.lightbox.open { display: flex; }
+.lightbox img {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 10px;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+}
+.lightbox-close {
+  position: absolute;
+  top: calc(14px + var(--safe-top));
+  right: 20px;
+  font-size: 34px;
+  line-height: 1;
+  color: var(--rose-light);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+}
+.lightbox-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 40px;
+  color: var(--rose-light);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px 16px;
+  line-height: 1;
+}
+.lightbox-nav.prev { left: 4px; }
+.lightbox-nav.next { right: 4px; }
+.lightbox-counter {
+  position: absolute;
+  bottom: calc(16px + var(--safe-bottom));
+  left: 0; right: 0;
+  text-align: center;
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: var(--rose-mid);
+}
+
 /* ── FOOTER ── */
 .footer {
   text-align: center;
@@ -276,6 +347,17 @@ body {
       <div class="timeline-item"><span class="tl-time">16:00</span><div class="tl-dot"></div><span class="tl-text">První tanec 💃, hry, volná zábava</span></div>
       <div class="timeline-item"><span class="tl-time">19:00</span><div class="tl-dot" style="background:var(--rose)"></div><span class="tl-text">Krájení dortu 🍰, přípitek</span></div>
       <div class="timeline-item"><span class="tl-time">20:00</span><div class="tl-dot"></div><span class="tl-text">Volná zábava do konce</span></div>
+    </div>
+  </div>
+
+  <!-- FOTKY -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-title">Fotky z našeho dne</span>
+      <span class="section-sub">pár vzpomínek</span>
+    </div>
+    <div class="section-body">
+      <div class="gallery-grid" id="gallery"></div>
     </div>
   </div>
 
@@ -392,11 +474,86 @@ async function init() {
   }
 }
 
+// ── GALERIE ──
+const PHOTOS = [
+  'media/fotky/foto-1.jpg',
+  'media/fotky/foto-2.jpg',
+  'media/fotky/foto-3.jpg',
+  'media/fotky/foto-4.jpg',
+  'media/fotky/foto-5.jpg',
+];
+let lightboxIndex = 0;
+
+/**
+ * Vytvoří mřížku fotek a propojí kliknutí s lightboxem.
+ */
+function renderGallery() {
+  const grid = document.getElementById('gallery');
+  if (!grid) return;
+  grid.innerHTML = PHOTOS.map((src, i) =>
+    `<img src="${src}" alt="Fotografie ${i + 1} ze svatby" loading="lazy" data-i="${i}">`
+  ).join('');
+
+  grid.addEventListener('click', (e) => {
+    const img = e.target.closest('img');
+    if (!img) return;
+    openLightbox(Number(img.dataset.i));
+  });
+}
+
+function openLightbox(i) {
+  lightboxIndex = i;
+  showLightbox();
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function showLightbox() {
+  const lb = document.getElementById('lightbox');
+  lb.querySelector('img').src = PHOTOS[lightboxIndex];
+  lb.querySelector('.lightbox-counter').textContent =
+    (lightboxIndex + 1) + ' / ' + PHOTOS.length;
+}
+
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function stepLightbox(dir) {
+  lightboxIndex = (lightboxIndex + dir + PHOTOS.length) % PHOTOS.length;
+  showLightbox();
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   tick();
   setInterval(tick, 1000);
+  renderGallery();
   init();
+
+  document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+  document.getElementById('lightboxPrev').addEventListener('click', () => stepLightbox(-1));
+  document.getElementById('lightboxNext').addEventListener('click', () => stepLightbox(1));
+  document.getElementById('lightbox').addEventListener('click', (e) => {
+    if (e.target.id === 'lightbox') closeLightbox();
+  });
+  document.addEventListener('keydown', (e) => {
+    const open = document.getElementById('lightbox').classList.contains('open');
+    if (!open) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') stepLightbox(-1);
+    if (e.key === 'ArrowRight') stepLightbox(1);
+  });
 });
 </script>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" role="dialog" aria-label="Prohlížeč fotografií">
+  <button class="lightbox-close" id="lightboxClose" aria-label="Zavřít">✕</button>
+  <button class="lightbox-nav prev" id="lightboxPrev" aria-label="Předchozí">‹</button>
+  <img src="" alt="Fotografie ze svatby">
+  <button class="lightbox-nav next" id="lightboxNext" aria-label="Další">›</button>
+  <div class="lightbox-counter"></div>
+</div>
 </body>
 </html>
