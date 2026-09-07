@@ -65,14 +65,9 @@ button { font-family: inherit; touch-action: manipulation; }
   border-bottom: 1px solid rgba(178, 90, 78, 0.4);
   box-shadow: inset 0 -18px 30px -20px rgba(122, 62, 45, 0.5);
 }
-.hero-floral {
-  position: absolute; font-size: 130px; opacity: 0.16; pointer-events: none;
-  filter: sepia(35%) saturate(1.2);
-}
-.hero-floral.tl { top: -24px; left: -24px; transform: rotate(-25deg); }
-.hero-floral.br { bottom: -26px; right: -24px; transform: rotate(18deg); }
-.hero-floral.c { top: 30%; left: -40px; transform: rotate(-15deg); font-size: 90px; }
-.hero-floral.c2 { top: 26%; right: -40px; transform: rotate(12deg); font-size: 90px; }
+
+/* Text v hero posadíme nad watermark; watermark zůstane absolutně za ním. */
+.hero > *:not(.heart-badge) { position: relative; z-index: 1; }
 .hero-pre {
   font-family: 'Cormorant Garamond', serif;
   font-weight: 400;
@@ -310,10 +305,8 @@ button { font-family: inherit; touch-action: manipulation; }
   filter: drop-shadow(0 2px 1px rgba(255,255,255,0.8));
   width: min(80vw, 460px);
 }
-/* Text v hero posadíme nad watermark; dekorace (květiny, srdce) zůstanou
-   absolutně umístěné, ať neodsouvají obsah. */
-.hero > *:not(.hero-floral):not(.heart-badge) { position: relative; z-index: 1; }
-.hero-floral { z-index: 0; }
+/* Text v hero posadíme nad watermark; watermark zůstane absolutně za ním. */
+.hero > *:not(.heart-badge) { position: relative; z-index: 1; }
 .heart-badge svg { width: 100%; height: auto; display: block; }
 .heart-badge text { font-family: 'Cormorant Garamond', serif; letter-spacing: 3px; }
 
@@ -333,11 +326,6 @@ button { font-family: inherit; touch-action: manipulation; }
 
 <!-- HERO -->
 <div class="hero">
-  <div class="hero-floral tl">🌸</div>
-  <div class="hero-floral c">🌿</div>
-  <div class="hero-floral c2">🌷</div>
-  <div class="hero-floral br">🌸</div>
-
   <div class="heart-badge" aria-hidden="true">
     <svg viewBox="0 0 520 70" width="520" height="70">
       <defs>
