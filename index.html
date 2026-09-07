@@ -32,10 +32,10 @@
   --safe-bottom: env(safe-area-inset-bottom, 0px);
 }
 * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; margin: 0; padding: 0; }
-html { font-size: 18px; -webkit-text-size-adjust: 100%; overflow-x: hidden; }
+html { font-size: 16px; -webkit-text-size-adjust: 100%; overflow-x: hidden; }
 body {
   font-family: 'Lato', sans-serif;
-  font-size: 18px;
+  font-size: 16px;
   line-height: 1.5;
   background:
     radial-gradient(120% 60% at 10% -5%, rgba(233, 180, 150, 0.35), transparent 60%),
@@ -75,19 +75,23 @@ button { font-family: inherit; touch-action: manipulation; }
 .hero-floral.c2 { top: 26%; right: -40px; transform: rotate(12deg); font-size: 90px; }
 .hero-pre {
   font-family: 'Cormorant Garamond', serif;
-  font-weight: 500;
-  font-size: 15px;
+  font-weight: 400;
+  font-size: 13px;
   letter-spacing: 4px;
   text-transform: uppercase;
   color: var(--rose-deep);
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 .hero-names {
   font-family: 'Great Vibes', cursive;
-  font-size: clamp(38px, 11vw, 84px);
+  font-size: clamp(52px, 14vw, 120px);
   color: var(--gold-dark);
-  line-height: 1.15;
-  text-shadow: 0 2px 0 rgba(255,255,255,0.6), 0 3px 10px rgba(160, 90, 55, 0.25);
+  line-height: 1.1;
+  text-shadow:
+    0 1px 0 #fff,
+    0 2px 0 rgba(255,255,255,0.7),
+    0 4px 0 rgba(160, 90, 55, 0.18),
+    0 7px 18px rgba(160, 90, 55, 0.3);
   display: inline-block;
   max-width: 100%;
 }
@@ -101,7 +105,7 @@ button { font-family: inherit; touch-action: manipulation; }
 }
 /* Úzké displeje (iPhone SE a menší): jméno na jeden řádek, o něco menší písmo */
 @media (max-width: 360px) {
-  .hero-names { font-size: clamp(30px, 9vw, 40px); }
+  .hero-names { font-size: clamp(40px, 11vw, 54px); }
 }
 .hero-divider {
   width: 210px; height: 2px;
@@ -112,21 +116,20 @@ button { font-family: inherit; touch-action: manipulation; }
 .hero-ornament { font-size: 18px; color: var(--gold); letter-spacing: 6px; }
 .hero-date {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 26px;
+  font-size: 22px;
   color: var(--text);
   letter-spacing: 0.5px;
-  font-weight: 600;
 }
 .hero-thanks {
-  max-width: 480px;
+  max-width: 470px;
   margin: 16px auto 0;
   font-family: 'Cormorant Garamond', serif;
   font-style: italic;
-  font-size: 23px;
+  font-size: 19px;
   color: var(--text);
   line-height: 1.6;
   background: linear-gradient(180deg, rgba(255,255,255,0.65), rgba(255,255,255,0.25));
-  padding: 12px 22px;
+  padding: 10px 20px;
   border-radius: 14px;
   border: 1px solid rgba(255,255,255,0.6);
 }
@@ -142,12 +145,12 @@ button { font-family: inherit; touch-action: manipulation; }
   backdrop-filter: blur(6px);
 }
 .since-label {
-  font-size: 14px;
+  font-size: 11px;
   letter-spacing: 3px;
   text-transform: uppercase;
   color: var(--rose-deep);
-  margin-bottom: 12px;
-  font-weight: 500;
+  margin-bottom: 10px;
+  font-weight: 400;
 }
 .since-grid {
   display: flex;
@@ -155,33 +158,32 @@ button { font-family: inherit; touch-action: manipulation; }
   gap: 10px;
 }
 .since-box {
-  min-width: 66px;
+  min-width: 58px;
   background: linear-gradient(170deg, #fffdf6, #f9e7d6);
   border: 1px solid rgba(178, 90, 78, 0.35);
   border-radius: 12px;
-  padding: 10px 8px 8px;
+  padding: 8px 6px 6px;
   box-shadow: 0 4px 12px rgba(122, 62, 45, 0.12);
 }
 .since-num {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 38px;
+  font-size: 30px;
   color: var(--gold-dark);
   display: block;
   line-height: 1;
-  font-weight: 700;
+  font-weight: 600;
 }
 .since-unit {
-  font-size: 11px;
+  font-size: 9px;
   letter-spacing: 1.5px;
   text-transform: uppercase;
   color: var(--rose-deep);
-  font-weight: 500;
 }
 
 /* ── CONTAINER / SECTION ── */
-.container { max-width: 560px; margin: 0 auto; padding: 22px 14px 40px; }
+.container { max-width: 540px; margin: 0 auto; padding: 22px 14px 40px; }
 .section {
-  margin-top: 24px;
+  margin-top: 22px;
   background: var(--card);
   border-radius: 20px;
   border: 1px solid rgba(178, 90, 78, 0.35);
@@ -197,27 +199,26 @@ button { font-family: inherit; touch-action: manipulation; }
 }
 .section > * { position: relative; }
 .section-head {
-  padding: 20px 20px 12px;
+  padding: 18px 20px 0;
   display: flex;
   align-items: baseline;
   gap: 12px;
   border-bottom: 1px dashed rgba(178, 90, 78, 0.35);
-  flex-wrap: wrap;
+  padding-bottom: 12px;
 }
 .section-title {
   font-family: 'Great Vibes', cursive;
-  font-size: 40px;
+  font-size: 30px;
   color: var(--gold-dark);
   text-shadow: 0 1px 0 rgba(255,255,255,0.7);
 }
 .section-sub {
-  font-size: 13px;
+  font-size: 10px;
   letter-spacing: 2px;
   text-transform: uppercase;
   color: var(--text-muted);
-  font-weight: 500;
 }
-.section-body { padding: 18px 20px 20px; }
+.section-body { padding: 16px 20px 18px; }
 
 /* ── PHOTO GALLERY ── */
 .gallery-grid {
@@ -295,48 +296,37 @@ button { font-family: inherit; touch-action: manipulation; }
   color: var(--rose-mid);
 }
 
-/* ── JUST MARRIED HEART ── */
+/* ── JUST MARRIED HEART (watermark layer) ──
+   Srdce je téměř neviditelná embossovaná vrstva za jmény v hero,
+   ne samostatný oddíl. */
 .heart-badge {
-  margin: 26px auto 0;
-  display: inline-block;
-  filter: drop-shadow(0 6px 12px rgba(122, 62, 45, 0.35));
-  animation: heartBeat 2.6s ease-in-out infinite;
-  transform-origin: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -52%);
+  z-index: 0;
+  opacity: 0.16;
+  pointer-events: none;
+  filter: drop-shadow(0 2px 1px rgba(255,255,255,0.7));
 }
+.hero > * { position: relative; z-index: 1; }
+.hero-floral { z-index: 0; }
 .heart-badge svg {
-  width: 170px;
+  width: 240px;
   height: auto;
 }
-@keyframes heartBeat {
-  0%, 40%, 80%, 100% { transform: scale(1); }
-  45%, 55% { transform: scale(1.06); }
-}
-@media (prefers-reduced-motion: reduce) {
-  .heart-badge { animation: none; }
-}
+.heart-badge text { letter-spacing: 1px; }
 
 /* ── FOOTER ── */
 .footer {
   margin-top: 26px;
   text-align: center;
-  padding: 26px 16px calc(24px + var(--safe-bottom));
-  background: linear-gradient(180deg, rgba(178, 90, 78, 0.06), rgba(178, 90, 78, 0.16));
-  border: 1px solid rgba(178, 90, 78, 0.25);
-  border-radius: 20px;
-  box-shadow: var(--shadow);
-  font-size: 15px;
+  padding: 14px 16px calc(20px + var(--safe-bottom));
+  font-size: 11px;
   color: var(--rose-deep);
   letter-spacing: 1px;
 }
-.footer-names {
-  font-family: 'Great Vibes', cursive;
-  font-size: 40px;
-  color: var(--gold-dark);
-  text-shadow: 0 1px 0 rgba(255,255,255,0.7);
-  display: block;
-  margin-bottom: 8px;
-}
-.footer-ornament { display: block; font-size: 15px; color: var(--gold); letter-spacing: 5px; margin-bottom: 8px; }
+.footer-ornament { display: block; font-size: 13px; color: var(--gold); letter-spacing: 5px; margin-bottom: 6px; }
 </style>
 </head>
 <body>
@@ -347,22 +337,6 @@ button { font-family: inherit; touch-action: manipulation; }
   <div class="hero-floral c">🌿</div>
   <div class="hero-floral c2">🌷</div>
   <div class="hero-floral br">🌸</div>
-  <div class="hero-pre">Děkujeme, že jste s námi</div>
-  <div class="hero-names">Dagmar <span class="hero-amp">+</span> Martin Paprčkovi</div>
-  <div class="hero-divider"></div>
-  <div class="hero-ornament">✦ ❀ ✦</div>
-  <div class="hero-date">Vzali jsme se 29. srpna 2026</div>
-  <div class="hero-thanks">Bylo nám ctí oslavit s Vámi náš nejkrásnější den.</div>
-
-  <div class="since-wrap">
-    <div class="since-label">Náš společný čas</div>
-    <div class="since-grid">
-      <div class="since-box"><span class="since-num" id="sc-d">--</span><span class="since-unit">dní</span></div>
-      <div class="since-box"><span class="since-num" id="sc-h">--</span><span class="since-unit">hodin</span></div>
-      <div class="since-box"><span class="since-num" id="sc-m">--</span><span class="since-unit">minut</span></div>
-      <div class="since-box"><span class="since-num" id="sc-s">--</span><span class="since-unit">sekund</span></div>
-    </div>
-  </div>
 
   <div class="heart-badge" aria-hidden="true">
     <svg viewBox="0 0 200 185" width="150" height="139">
@@ -389,6 +363,23 @@ button { font-family: inherit; touch-action: manipulation; }
             font-size="31" fill="#fff7e0" opacity="0.98">married</text>
     </svg>
   </div>
+
+  <div class="hero-pre">Děkujeme, že jste s námi</div>
+  <div class="hero-names">Dagmar <span class="hero-amp">+</span> Martin Paprčkovi</div>
+  <div class="hero-divider"></div>
+  <div class="hero-ornament">✦ ❀ ✦</div>
+  <div class="hero-date">Vzali jsme se 29. srpna 2026</div>
+  <div class="hero-thanks">Bylo nám ctí oslavit s Vámi náš nejkrásnější den.</div>
+
+  <div class="since-wrap">
+    <div class="since-label">Náš společný čas</div>
+    <div class="since-grid">
+      <div class="since-box"><span class="since-num" id="sc-d">--</span><span class="since-unit">dní</span></div>
+      <div class="since-box"><span class="since-num" id="sc-h">--</span><span class="since-unit">hodin</span></div>
+      <div class="since-box"><span class="since-num" id="sc-m">--</span><span class="since-unit">minut</span></div>
+      <div class="since-box"><span class="since-num" id="sc-s">--</span><span class="since-unit">sekund</span></div>
+    </div>
+  </div>
 </div>
 
 <div class="container">
@@ -406,7 +397,6 @@ button { font-family: inherit; touch-action: manipulation; }
 
   <!-- FOOTER -->
   <div class="footer">
-    <span class="footer-names">Dagmar + Martin Paprčkovi</span>
     <span class="footer-ornament">❀ ─── ✦ ─── ❀</span>
     29 · 08 · 2026 · Ostrava
   </div>
