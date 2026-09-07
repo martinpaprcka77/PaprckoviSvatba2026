@@ -66,22 +66,24 @@ button { font-family: inherit; touch-action: manipulation; }
 }
 .hero-names {
   font-family: 'Great Vibes', cursive;
-  font-size: clamp(46px, 13vw, 66px);
+  font-size: clamp(30px, 9vw, 66px);
   color: var(--gold);
-  line-height: 1.1;
+  line-height: 1.15;
   text-shadow: 0 2px 12px rgba(201,169,110,0.25);
+  display: inline-block;
+  max-width: 100%;
 }
-.hero-amp {
-  font-family: 'Great Vibes', cursive;
-  font-size: clamp(28px, 7vw, 38px);
-  color: var(--rose);
-  display: block;
-  margin: 2px 0;
-}
+.hero-amp,
 .hero-surname {
   color: var(--rose);
-  display: block;
-  font-size: clamp(30px, 8vw, 44px);
+  display: inline;
+  font-size: inherit;
+  font-family: inherit;
+  white-space: nowrap;
+}
+/* Úzké displeje (iPhone SE a menší): jméno na jeden řádek, o něco menší písmo */
+@media (max-width: 360px) {
+  .hero-names { font-size: clamp(24px, 7.5vw, 30px); }
 }
 .hero-divider {
   width: 100px; height: 1px;
@@ -270,11 +272,7 @@ button { font-family: inherit; touch-action: manipulation; }
   <div class="hero-floral tl">🌸</div>
   <div class="hero-floral br">🌸</div>
   <div class="hero-pre">Děkujeme, že jste s námi</div>
-  <div class="hero-names">
-    Dagmar
-    <span class="hero-amp">+</span>
-    Martin <span class="hero-surname">Paprčkovi</span>
-  </div>
+  <div class="hero-names">Dagmar <span class="hero-amp">+</span> Martin Paprčkovi</div>
   <div class="hero-divider"></div>
   <div class="hero-date">Vzali jsme se 29. srpna 2026</div>
   <div class="hero-thanks">Bylo nám ctí oslavit s Vámi náš nejkrásnější den.</div>
