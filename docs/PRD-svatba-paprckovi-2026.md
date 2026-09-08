@@ -1,21 +1,22 @@
 # PRD — Svatba Paprčkovi 2026
 
 > Product Requirements Document — 14. 5. 2026
-> Status: active — 16. 8. 2026 (33 úkolů, 5 osob, 89 500 Kč, 17 hostů)
+> Status: active — 7. 9. 2026 (33 úkolů, 5 osob, 89 500 Kč, 17 hostů)
+> Poznámka: svatba proběhla 29. 8. 2026 — dokument je nyní památkový/závěrečný snapshot (viz changelog 2026-09-07).
 > Historie rozhodnutí do 28. 5. 2026 v sekci 8 níže; průběžné změny viz [`data/changelog.csv`](../data/changelog.csv) — to je od migrace na CSV (2. 6. 2026) autoritativní zdroj, tenhle dokument je shrnutí/snapshot.
 
 ---
 
 ## 1. Přehled
 
-- **Událost:** Svatba Paprčkovi 2026
-- **Kdo:** **Taťka + Mamka** — bereme se MY po 29 letech a 3 společných dětech ❤️
-- **Nevěsta:** Mamka (manželka)
-- **Ženich:** Taťka (já)
-- **Kdy:** **29. srpna 2026** (potvrzeno)
-- **Obřad:** 11:15, Nová radnice Ostrava
+- **Událost:** Svatba Paprčkovi 2026 — **PROBĚHLA 29. 8. 2026** ✅
+- **Kdo:** **Dagmar + Martin Paprčkovi** (dříve Dagmar Sobková a Martin Paprčka) — vzali se po 29 letech a 3 společných dětech ❤️
+- **Nevěsta:** Dagmar („Mamka")
+- **Ženich:** Martin („Taťka")
+- **Kdy:** sobota **29. srpna 2026**, obřad 11:15, Nová radnice Ostrava (proběhlo)
 - **Hostina:** U Miloše, Zlatá koliba
-- **Organizuje:** Žanetka (hlavní organizátor) + Mamka + Taťka
+- **Organizovala:** Žanetka (hlavní organizátor) + Mamka + Taťka
+- **Po svatbě:** stránka je památka — úkoly uzavřeny (33/33), veřejný `index.html` = poděkování + galerie fotek; repo veřejné.
 
 ---
 
@@ -162,13 +163,14 @@ Dárky pro svědky · Dárky na přivítanou pro hosty · Drobnosti pro hosty (g
 
 ## 6. Deployment
 
-- **GitHub repo (primární):** `martinpaprcka77/PaprckoviSvatba2026`
+- **GitHub repo (primární):** `martinpaprcka77/PaprckoviSvatba2026` — **repo je veřejné**, GitHub Pages povoleno (build z Actions, 2026-09-07)
 - **Live URL (primární):** https://martinpaprcka77.github.io/PaprckoviSvatba2026/
+- **Veřejná stránka:** po svatbě je to poděkování + galerie fotek (viz README)
 - **Plánovač (PIN chráněno):** https://martinpaprcka77.github.io/PaprckoviSvatba2026/planner.html
-- **Mirror (ruční sync, ne automatický):** `doma77git/PaprckoviSvatba2026` — starší účet, aktualizuje se manuálně kopií souborů + push, GitHub App pro automatický přístup vyžaduje Claude Team/Enterprise plán
-- **Zdrojové soubory:** `index.html` (veřejná), `planner.html` (PIN, organizátoři), `index_june.html` (zamrzlý archiv), `karaoke.html` (Sweet Caroline) — žádný single-file monolit, žádný build krok
-- **Deploy:** Push do `master` → `.github/workflows/deploy.yml` → GitHub Actions → GitHub Pages → live (~1 min)
-- **Storage:** localStorage se používá jen pro PIN gate (`planner_auth_v1`) na plánovači; task/budget/guest stav se vždy fetchuje čerstvě z CSV, nikdy z cache
+- **Publikované HTML:** jen `index.html` (veřejná) + `planner.html` (PIN, organizátoři). Archivní `index_june.html`, `karaoke.html`, `landing.html`, `tests.html` zůstávají v repu, ale `deploy.yml` je **nepublikuje**.
+- **Mirror:** historicky `doma77git/PaprckoviSvatba2026` (starší účet, manuální sync) — v roce 2026-09 **již neexistuje / nepoužívá se**, primární je `martinpaprcka77`.
+- **Deploy:** Push do `master` → `.github/workflows/deploy.yml` → GitHub Actions → GitHub Pages → live (~1 min). Před deployem běží validace sync (`sync-validation.yml`).
+- **Storage:** localStorage se používá jen pro PIN gate (`planner_auth_v1`) na plánovači; data se čtou z CSV, nikdy z cache.
 
 ---
 
@@ -252,7 +254,7 @@ Dárky pro svědky · Dárky na přivítanou pro hosty · Drobnosti pro hosty (g
 
 ### Nasazení
 - Jeden produkční repo/branch (`master`), žádný dual `/`+`/v2/` deploy
-- `.github/workflows/deploy.yml` kopíruje `index.html`, `planner.html`, `index_june.html`, `karaoke.html`, `data/`, `public/*`, `media/` do `deploy_out/` a publikuje na GitHub Pages
+- `.github/workflows/deploy.yml` kopíruje jen **`index.html` + `planner.html`** (plus `data/`, `public/*`, `media/`) do `deploy_out/` a publikuje na GitHub Pages; archivní `index_june.html`, `karaoke.html`, `landing.html`, `tests.html` se **nepublikují**
 
 ---
 
@@ -311,7 +313,7 @@ Děti jako skupina = 1 filter v appce. Individuální jména pro host list a kon
 ## 📊 Stav (auto-sync z data/*.csv)
 
 <!-- PRD_STATS_START -->
-✅ **33/33 splněno** · 💰 **89 500 / 100 000 Kč naplánováno** (82 650 Kč utraceno) · 🧑 **17 hostů** (11 potvrzeno) · 👥 **5 osob** · 📅 změny do 2026-08-16
+✅ **33/33 splněno** · 💰 **89 500 / 100 000 Kč naplánováno** (82 650 Kč utraceno) · 🧑 **17 hostů** (11 potvrzeno) · 👥 **5 osob** · 📅 změny do 2026-09-07
 <!-- PRD_STATS_END -->
 
 <!-- PRD_VERSION_HISTORY_START -->

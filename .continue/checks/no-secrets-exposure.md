@@ -3,6 +3,12 @@ name: No Secrets Exposure
 description: Block accidental commit of API keys, tokens, PIN hashes, or credentials
 ---
 
+> ⚠️ **LEGACY — pozor.** Tento check cílí na zrušené `v2/index.html`
+> a `data/*.md` architekturu. Repo migrovalo na `data/*.csv` (2026-06)
+> a `v2/` zaniklo. Univerzální pravidlo ale platí dál: **žádné tokeny,
+> klíče ani hesla do commitu** (PIN v `planner.html` je hardcoded
+> organizátorská zámka, ne tajemství pro produkci).
+
 ## What to flag
 
 Search all changed files for these patterns (case-insensitive unless noted):

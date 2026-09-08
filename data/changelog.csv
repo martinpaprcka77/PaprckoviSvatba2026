@@ -26,3 +26,7 @@ date,who,what,detail
 2026-08-16,Taťka,Strana hostů,Kikinka přesunuta ze strany mamka na spolecni (Žanetka už byla spolecni)
 2026-08-16,Taťka,Hosté Děti,Kikinka patří do Děti (samostatný řádek odstraněn); Děti = 4 dcery (Kikinka; Natálka; Kačka; Gabriela) + samostatné +1 pro Kikinku a Natálku
 2026-08-16,Taťka,Rollback hostů,guests.csv vrácen do stavu z 8. 8. 2026 — 17 hostů (11 potvrzeno); odebráni Bernie, Mamka, Žanetka, Taťka, Kikinka a +1 (viz předchozí záznamy)
+2026-09-07,Taťka,Svatba proběhla,Ano — 29. 8. 2026 na Nové radnici Ostrava; úkoly uzavřeny (33/33 done)
+2026-09-07,Taťka,Repo veřejné + Pages,Repo martinpaprcka77/PaprckoviSvatba2026 zveřejněno; GitHub Pages povoleno (build z Actions)
+2026-09-07,Taťka,Landing po svatbě,index.html = poděkování + galerie 5 fotek; watermark JUST MARRIED; počítadlo společného času
+2026-09-07,Taťka,Archivace stránek,index_june/karaoke/landing/tests už deploy.yml nepublikuje (jen index.html + planner.html)

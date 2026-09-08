@@ -3,6 +3,11 @@ name: Budget Hard Cap
 description: Enforce 100 000 Kc total budget with correct category targets
 ---
 
+> ⚠️ **LEGACY — pozor.** Tento check cílí na zrušenou MD architekturu
+> (`data/tasks.md`, 36 úkolů). Repo migrovalo na `data/*.csv` (2026-06)
+> a úkoly jsou po svatbě uzavřeny (33/33). Aktuální rozpočet čti
+> z `data/budget.csv`, ne z tasks.md.
+
 If `data/tasks.md` was not changed, no action is needed.
 
 ## Rules

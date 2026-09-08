@@ -3,6 +3,13 @@ name: People Rules
 description: Enforce naming conventions — Deti never removed, no surnames, no hacek on Mikesovi
 ---
 
+---
+
+> ⚠️ **LEGACY — pozor.** Tento check cílí na zrušené `data/*.md`
+> soubory (tasks.md, guests.md) a `v2/`. Dnes jsou data v `data/*.csv`
+> a platná jména pro úkoly: Mamka, Taťka, Žanetka, Kikinka, Děti
+> (novomanželé po svatbě = **Dagmar + Martin Paprčkovi**).
+
 If no file touching person names was changed (`data/tasks.md`, `data/guests.md`, `CLAUDE.md`, `index.html`, `v2/index.html`), no action is needed.
 
 When these files change, verify:

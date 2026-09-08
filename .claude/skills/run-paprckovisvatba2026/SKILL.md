@@ -1,6 +1,6 @@
 ---
 name: run-paprckovisvatba2026
-description: Serve, run, and drive the Paprčkovi 2026 wedding-planner static site (index.html, planner.html). Use when asked to start the site, take a screenshot of it, log into the PIN-gated planner, or click through its tabs/checklist.
+description: Serve, run, and drive the Paprčkovi 2026 wedding static site (index.html thank-you/gallery page + planner.html). Use when asked to start the site, take a screenshot of it, open a photo fullscreen, log into the PIN-gated planner, or click through its tabs.
 ---
 
 Static HTML/CSS/JS, no build step. "Running" it means serving the repo
@@ -48,12 +48,30 @@ Pipe commands to it, one per line:
 ```bash
 node .claude/skills/run-paprckovisvatba2026/driver.cjs <<'EOF'
 nav /index.html
-wait-for .hero-countdown
+wait-for .hero-names
 screenshot index
 console-errors
 quit
 EOF
 ```
+
+### Veřejná stránka (index.html) — po svatbě
+
+`index.html` je památková poděkovací stránka + galerie fotek (žádný checklist/tabs).
+Klíčové prvky, na které se čeká / které se klikají:
+
+| prvek | selektor |
+|---|---|
+| jména v hero | `.hero-names` |
+| počítadlo „společného času" | `.since-wrap` |
+| tlačítko „MASTER STOP" | `#masterStop` |
+| volba viníka incidentu | `.culprit-btn` (data-who="Dagmar"\|"Martin") |
+| galerie fotek | `#gallery` → klikne se na `<img>` a otevře se fullscreen |
+| zavřít fullscreen fotky | `#lightboxClose` nebo `Escape` |
+
+Screenshot fullscreen galerie (po kliknutí na první fotku) funguje v běžném
+režimu; skutečný Fullscreen API se v headless nemusí projevit, ale vrstva
+`.lightbox.open` je vždy v DOM a `screenshot` ji zachytí.
 
 Screenshots land at `$SHOTS_DIR/<name>.png`. `console-errors` prints
 every JS console error seen so far (as a JSON array) — check it's
@@ -126,9 +144,10 @@ Useless headless — only for a human with a display.
 
 ## Test
 
-No test suite (`tests.html` exists but tests a retired markdown
-parser, not the live `parseCSV` — see CLAUDE.md's "Known stale docs").
-There is nothing to run beyond the driver smoke flow above.
+No live test suite. `tests.html` exists but tests a retired markdown
+parser (not the live `parseCSV`) and is **archived** — `deploy.yml`
+doesn't publish it. Run `python -m pytest scripts/tests/...` for the
+data-script tests, plus the driver smoke flow above.
 
 ## Gotchas
 

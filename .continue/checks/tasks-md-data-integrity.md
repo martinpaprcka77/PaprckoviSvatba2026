@@ -3,6 +3,13 @@ name: Task Data Integrity
 description: Verify tasks.md internal consistency — counts, budget math, header sync
 ---
 
+---
+
+> ⚠️ **LEGACY — pozor.** Tento check cílí na zrušené `data/tasks.md`
+> (36 úkolů). Repo migrovalo na `data/tasks.csv` (2026-06) a po svatbě
+> jsou úkoly uzavřeny (33/33). Aktuální data čti z `data/tasks.csv`,
+> `data/budget.csv`, `data/guests.csv`, `data/changelog.csv`.
+
 If `data/tasks.md` was not changed, no action is needed.
 
 When `data/tasks.md` is in the diff, verify these invariants:
