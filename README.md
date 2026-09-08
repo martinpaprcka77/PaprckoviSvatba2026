@@ -23,7 +23,7 @@ Statická HTML/CSS/JS stránka, bez build systému a bez backendu.
 python -m http.server 8080      # pak otevři http://localhost:8080/
 ```
 
-Data jsou v `data/*.csv` a web je čte read-only. Vývojové adresáře (`docs/`, `.github/`, `.claude/`, `.continue/`) se na web nepublikují.
+Data jsou v `data/*.csv` a web je čte read-only. Vývojové adresáře (`docs/`, `.github/`) se na web nepublikují.
 
 ## 📄 Stránky
 
