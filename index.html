@@ -146,8 +146,15 @@ button { font-family: inherit; touch-action: manipulation; }
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  flex-wrap: wrap;
+  gap: 10px 12px;
   margin-bottom: 12px;
+}
+.incident-line {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
 }
 .incident-light {
   width: 11px;
@@ -171,11 +178,73 @@ button { font-family: inherit; touch-action: manipulation; }
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 100%;
+  max-width: 62vw;
 }
 @media (prefers-reduced-motion: reduce) {
   .incident-light { animation: none; }
 }
+
+/* ── MASTER STOP ── */
+.master-stop {
+  font-family: 'Lato', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #fff;
+  background: linear-gradient(180deg, #e5483f, #b51f16);
+  border: none;
+  border-radius: 9px;
+  padding: 9px 13px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(181, 31, 22, 0.45), inset 0 1px 0 rgba(255,255,255,0.35);
+  white-space: nowrap;
+}
+.master-stop:active { transform: translateY(1px); }
+.master-stop:disabled { opacity: 0.5; }
+
+/* ── VÝBĚR VINÍKA ── */
+.culprit-picker {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: -2px 0 12px;
+}
+.culprit-picker[hidden] { display: none; }
+.culprit-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+.culprit-btn {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--rose-deep);
+  background: #fff;
+  border: 1.5px solid var(--rose-mid);
+  border-radius: 20px;
+  padding: 6px 16px;
+  cursor: pointer;
+}
+.culprit-btn:active { background: var(--rose-light); }
+
+/* ── TOAST ── */
+.incident-toast {
+  margin-top: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #fff;
+  background: linear-gradient(135deg, var(--rose-deep), var(--rose));
+  border-radius: 10px;
+  padding: 10px 14px;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  text-align: center;
+}
+.incident-toast.show { opacity: 1; transform: none; }
 .since-grid {
   display: flex;
   justify-content: center;
@@ -264,50 +333,65 @@ button { font-family: inherit; touch-action: manipulation; }
 }
 .gallery-grid img:hover { transform: scale(1.03); box-shadow: 0 8px 20px rgba(122, 62, 45, 0.32); }
 
-/* ── LIGHTBOX ── */
+/* ── LIGHTBOX / FULLSCREEN PHOTO VIEWER ── */
 .lightbox {
   position: fixed; inset: 0;
-  background: rgba(20, 10, 8, 0.94);
+  background: #120806;
   display: none;
   align-items: center;
   justify-content: center;
   z-index: 100;
-  padding: calc(24px + var(--safe-top)) 12px calc(24px + var(--safe-bottom));
+  padding: 0;
 }
 .lightbox.open { display: flex; }
 .lightbox img {
-  max-width: 100%;
-  max-height: 100%;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
   object-fit: contain;
-  border-radius: 8px;
-  box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+  display: block;
+}
+/* Ve skutečném fullscreen vyplň celou obrazovku */
+.lightbox:fullscreen,
+.lightbox:-webkit-full-screen {
+  background: #000;
+  padding: 0;
+}
+.lightbox:fullscreen img,
+.lightbox:-webkit-full-screen img {
+  width: 100vw;
+  height: 100vh;
+  object-fit: contain;
 }
 .lightbox-close {
   position: absolute;
-  top: calc(12px + var(--safe-top));
-  right: 12px;
+  top: calc(14px + var(--safe-top));
+  right: 14px;
   font-size: 30px;
   line-height: 1;
-  color: var(--rose-light);
-  background: none;
-  border: none;
+  color: #fff;
+  background: rgba(0,0,0,0.45);
+  border: 1px solid rgba(255,255,255,0.4);
+  border-radius: 50%;
   cursor: pointer;
-  min-width: 44px;
-  min-height: 44px;
+  min-width: 46px;
+  min-height: 46px;
+  z-index: 5;
 }
 .lightbox-nav {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  font-size: 38px;
-  color: var(--rose-light);
-  background: none;
+  font-size: 40px;
+  color: #fff;
+  background: rgba(0,0,0,0.35);
   border: none;
   cursor: pointer;
-  padding: 12px;
+  padding: 10px 16px;
   line-height: 1;
-  min-width: 48px;
-  min-height: 64px;
+  min-width: 50px;
+  min-height: 70px;
+  z-index: 5;
 }
 .lightbox-nav.prev { left: 4px; }
 .lightbox-nav.next { right: 4px; }
@@ -386,9 +470,17 @@ button { font-family: inherit; touch-action: manipulation; }
   <div class="hero-thanks">Bylo nám ctí oslavit s Vámi náš nejkrásnější den.</div>
 
   <div class="since-wrap">
-    <div class="incident-sign" aria-hidden="true">
-      <span class="incident-light"></span>
-      <span class="incident-text" id="incidentText">Dnů bez incidentu:</span>
+    <div class="incident-sign">
+      <span class="incident-line">
+        <span class="incident-light"></span>
+        <span class="incident-text" id="incidentText">Dnů bez incidentu:</span>
+      </span>
+      <button type="button" class="master-stop" id="masterStop" aria-label="Nahlásit incident">MASTER STOP</button>
+    </div>
+    <div class="culprit-picker" id="culpritPicker" hidden>
+      <span class="culprit-title">Kdo to zavinil?</span>
+      <button type="button" class="culprit-btn" data-who="Dagmar">Dagmar</button>
+      <button type="button" class="culprit-btn" data-who="Martin">Martin</button>
     </div>
     <div class="since-grid">
       <div class="since-box"><span class="since-num" id="sc-d">--</span><span class="since-unit">dní</span></div>
@@ -396,6 +488,7 @@ button { font-family: inherit; touch-action: manipulation; }
       <div class="since-box"><span class="since-num" id="sc-m">--</span><span class="since-unit">minut</span></div>
       <div class="since-box"><span class="since-num" id="sc-s">--</span><span class="since-unit">sekund</span></div>
     </div>
+    <div class="incident-toast" id="incidentToast" role="status" aria-live="polite"></div>
   </div>
 </div>
 
@@ -422,15 +515,16 @@ button { font-family: inherit; touch-action: manipulation; }
 
 <script>
 const WEDDING = new Date('2026-08-29T11:15:00'); // čas obřadu
+let countBaseline = WEDDING.getTime(); // počítadlo jede od data svatby; incident ji posune na "teď"
 
 /**
- * Počítadlo nahoru — kolik času uplynulo od svatby (na rozdíl od odpočtu dolů).
- * Čas běží od okamžiku obřadu dál; nikdy se nezastaví.
+ * Počítadlo nahoru — kolik času uplynulo od reference (svatby, příp. od
+ * posledního nahlášeného incidentu). Čas běží vždy dál, nikdy se nezastaví.
  */
 function tick() {
   const now = Date.now();
-  let diff = now - WEDDING.getTime();
-  if (diff < 0) diff = 0; // před svatbou ukazuje nuly
+  let diff = now - countBaseline;
+  if (diff < 0) diff = 0; // před referencí ukazuje nuly
 
   const d = Math.floor(diff / 86400000);
   const h = Math.floor((diff % 86400000) / 3600000);
@@ -458,6 +552,43 @@ function rotateIncident() {
   if (!el) return;
   incidentIdx = (incidentIdx + 1) % INCIDENT_LINES.length;
   el.textContent = INCIDENT_LINES[incidentIdx];
+}
+
+// ── MASTER STOP: nahlášení incidentu ──
+const INCIDENT_BLAME = {
+  Dagmar: [
+    'Dagmar to měla na svědomí. Incident zapsán. 🙈',
+    'Hlásí Dagmar. Zapsáno do kroniky. ✍️',
+    'Incident: Dagmar. Neříkáme nic. 🙊',
+  ],
+  Martin: [
+    'Martin to má na tričku. Incident zapsán. 🙈',
+    'Hlásí Martin. Odborná porota už jede. ✍️',
+    'Incident: Martin. Budiž mu to přičteno. 😅',
+  ],
+};
+let toastTimer = null;
+
+function blameWho(who) {
+  countBaseline = Date.now(); // vynuluj počítadlo
+  tick();
+
+  // schovej výběr a tlačítko
+  document.getElementById('culpritPicker').hidden = true;
+  document.getElementById('masterStop').disabled = false;
+
+  const list = INCIDENT_BLAME[who] || INCIDENT_BLAME.Martin;
+  const msg = list[Math.floor(Math.random() * list.length)];
+  showToast(msg);
+}
+
+function showToast(msg) {
+  const toast = document.getElementById('incidentToast');
+  if (!toast) return;
+  toast.textContent = msg;
+  toast.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => toast.classList.remove('show'), 3200);
 }
 
 // ── GALERIE ──
@@ -490,8 +621,16 @@ function renderGallery() {
 function openLightbox(i) {
   lightboxIndex = i;
   showLightbox();
-  document.getElementById('lightbox').classList.add('open');
+  const lb = document.getElementById('lightbox');
+  lb.classList.add('open');
   document.body.style.overflow = 'hidden';
+  // Skutečný fullscreen (celá obrazovka, fotka se škáluje) — není modální dialog.
+  try {
+    const rfs = lb.requestFullscreen
+      || lb.webkitRequestFullscreen
+      || lb.msRequestFullscreen;
+    if (rfs) rfs.call(lb);
+  } catch (_) { /* fullscreen není dostupný — zůstane fixní vrstva */ }
 }
 
 function showLightbox() {
@@ -504,6 +643,12 @@ function showLightbox() {
 function closeLightbox() {
   document.getElementById('lightbox').classList.remove('open');
   document.body.style.overflow = '';
+  try {
+    if (document.fullscreenElement || document.webkitFullscreenElement) {
+      const exfs = document.exitFullscreen || document.webkitExitFullscreen;
+      if (exfs) exfs.call(document);
+    }
+  } catch (_) { /* ok */ }
 }
 
 function stepLightbox(dir) {
@@ -517,6 +662,21 @@ document.addEventListener('DOMContentLoaded', () => {
   setInterval(rotateIncident, 4000);
   renderGallery();
 
+  // MASTER STOP
+  document.getElementById('masterStop').addEventListener('click', () => {
+    const picker = document.getElementById('culpritPicker');
+    if (picker.hidden) {
+      picker.hidden = false;
+      document.getElementById('masterStop').disabled = true;
+    } else {
+      picker.hidden = true;
+      document.getElementById('masterStop').disabled = false;
+    }
+  });
+  document.querySelectorAll('.culprit-btn').forEach((btn) => {
+    btn.addEventListener('click', () => blameWho(btn.dataset.who));
+  });
+
   document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
   document.getElementById('lightboxPrev').addEventListener('click', () => stepLightbox(-1));
   document.getElementById('lightboxNext').addEventListener('click', () => stepLightbox(1));
@@ -529,6 +689,13 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.key === 'Escape') closeLightbox();
     if (e.key === 'ArrowLeft') stepLightbox(-1);
     if (e.key === 'ArrowRight') stepLightbox(1);
+  });
+  // Když uživatel ukončí fullscreen (Esc), zavři prohlížeč fotek.
+  document.addEventListener('fullscreenchange', () => {
+    if (!document.fullscreenElement) closeLightbox();
+  });
+  document.addEventListener('webkitfullscreenchange', () => {
+    if (!document.webkitFullscreenElement) closeLightbox();
   });
 });
 </script>
