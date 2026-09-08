@@ -245,6 +245,38 @@ button { font-family: inherit; touch-action: manipulation; }
   text-align: center;
 }
 .incident-toast.show { opacity: 1; transform: none; }
+
+/* ── Dočasný čítač „od incidentu“ (po čase zmizí) ── */
+.incident-ago {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 10px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--rose-deep);
+  animation: agoFadeIn 0.3s ease;
+}
+.incident-ago[hidden] { display: none; }
+.incident-ago strong { font-family: 'Cormorant Garamond', serif; font-size: 16px; }
+.incident-ago-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #e5483f;
+  animation: incidentPulse 1.2s ease-out infinite;
+  flex-shrink: 0;
+}
+@keyframes agoFadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .incident-ago-dot { animation: none; }
+  .incident-ago { animation: none; }
+}
+
 .since-grid {
   display: flex;
   justify-content: center;
@@ -488,6 +520,11 @@ button { font-family: inherit; touch-action: manipulation; }
       <div class="since-box"><span class="since-num" id="sc-m">--</span><span class="since-unit">minut</span></div>
       <div class="since-box"><span class="since-num" id="sc-s">--</span><span class="since-unit">sekund</span></div>
     </div>
+    <!-- Dočasný druhý čítač: od posledního incidentu (po čase zmizí) -->
+    <div class="incident-ago" id="incidentAgo" hidden>
+      <span class="incident-ago-dot"></span>
+      <span>Od incidentu: <strong id="incidentAgoTime">--:--</strong></span>
+    </div>
     <div class="incident-toast" id="incidentToast" role="status" aria-live="polite"></div>
   </div>
 </div>
@@ -515,16 +552,15 @@ button { font-family: inherit; touch-action: manipulation; }
 
 <script>
 const WEDDING = new Date('2026-08-29T11:15:00'); // čas obřadu
-let countBaseline = WEDDING.getTime(); // počítadlo jede od data svatby; incident ji posune na "teď"
 
 /**
- * Počítadlo nahoru — kolik času uplynulo od reference (svatby, příp. od
- * posledního nahlášeného incidentu). Čas běží vždy dál, nikdy se nezastaví.
+ * Hlavní počítadlo — kolik času uplynulo od svatby. Nikdy se neresetuje;
+ * incident se jen zaznamená do dočasného druhého čítače (viz MASTER STOP).
  */
 function tick() {
   const now = Date.now();
-  let diff = now - countBaseline;
-  if (diff < 0) diff = 0; // před referencí ukazuje nuly
+  let diff = now - WEDDING.getTime();
+  if (diff < 0) diff = 0; // před svatbou ukazuje nuly
 
   const d = Math.floor(diff / 86400000);
   const h = Math.floor((diff % 86400000) / 3600000);
@@ -555,6 +591,8 @@ function rotateIncident() {
 }
 
 // ── MASTER STOP: nahlášení incidentu ──
+// Hlavní počítadlo (od svatby) se NERESETUJE. Incident se jen zaznamená —
+// na pár vteřin se ukáže druhý malý čítač „od incidentu“, který pak zmizí.
 const INCIDENT_BLAME = {
   Dagmar: [
     'Dagmar to měla na svědomí. Incident zapsán. 🙈',
@@ -568,18 +606,47 @@ const INCIDENT_BLAME = {
   ],
 };
 let toastTimer = null;
+let agoTimer = null;
+let agoHideTimer = null;
+let lastIncidentAt = 0;
 
 function blameWho(who) {
-  countBaseline = Date.now(); // vynuluj počítadlo
-  tick();
-
-  // schovej výběr a tlačítko
+  // schovej výběr a znovu aktivuj tlačítko
   document.getElementById('culpritPicker').hidden = true;
   document.getElementById('masterStop').disabled = false;
+
+  // zaznamenej incident (hlavní počítadlo necháme běžet)
+  lastIncidentAt = Date.now();
+  const ago = document.getElementById('incidentAgo');
+  ago.hidden = false;
+  updateIncidentAgo();
+  clearInterval(agoTimer);
+  agoTimer = setInterval(updateIncidentAgo, 1000);
+
+  // dočasný čítač po chvíli zmizí
+  clearTimeout(agoHideTimer);
+  agoHideTimer = setTimeout(() => {
+    clearInterval(agoTimer);
+    ago.hidden = true;
+  }, 10000);
 
   const list = INCIDENT_BLAME[who] || INCIDENT_BLAME.Martin;
   const msg = list[Math.floor(Math.random() * list.length)];
   showToast(msg);
+}
+
+function updateIncidentAgo() {
+  const el = document.getElementById('incidentAgoTime');
+  if (!el) return;
+  if (!lastIncidentAt) { el.textContent = '--:--'; return; }
+  let diff = Math.max(0, Date.now() - lastIncidentAt);
+  const d = Math.floor(diff / 86400000);
+  const h = Math.floor((diff % 86400000) / 3600000);
+  const m = Math.floor((diff % 3600000) / 60000);
+  const s = Math.floor((diff % 60000) / 1000);
+  el.textContent = d > 0
+    ? `${d} d ${h}:${String(m).padStart(2,'0')}`
+    : `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
 }
 
 function showToast(msg) {
