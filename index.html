@@ -142,13 +142,39 @@ button { font-family: inherit; touch-action: manipulation; }
   box-shadow: 0 8px 24px rgba(122, 62, 45, 0.18);
   backdrop-filter: blur(6px);
 }
-.since-label {
-  font-size: 11px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--rose-deep);
-  margin-bottom: 10px;
-  font-weight: 500;
+.incident-sign {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.incident-light {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #43b649;
+  box-shadow: 0 0 0 0 rgba(67, 182, 73, 0.6);
+  animation: incidentPulse 1.6s ease-out infinite;
+  flex-shrink: 0;
+}
+@keyframes incidentPulse {
+  0% { box-shadow: 0 0 0 0 rgba(67, 182, 73, 0.55); }
+  70% { box-shadow: 0 0 0 9px rgba(67, 182, 73, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(67, 182, 73, 0); }
+}
+.incident-text {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+@media (prefers-reduced-motion: reduce) {
+  .incident-light { animation: none; }
 }
 .since-grid {
   display: flex;
@@ -360,7 +386,10 @@ button { font-family: inherit; touch-action: manipulation; }
   <div class="hero-thanks">Bylo nám ctí oslavit s Vámi náš nejkrásnější den.</div>
 
   <div class="since-wrap">
-    <div class="since-label">Náš společný čas</div>
+    <div class="incident-sign" aria-hidden="true">
+      <span class="incident-light"></span>
+      <span class="incident-text" id="incidentText">Dnů bez incidentu:</span>
+    </div>
     <div class="since-grid">
       <div class="since-box"><span class="since-num" id="sc-d">--</span><span class="since-unit">dní</span></div>
       <div class="since-box"><span class="since-num" id="sc-h">--</span><span class="since-unit">hodin</span></div>
@@ -411,6 +440,24 @@ function tick() {
   document.getElementById('sc-h').textContent = String(h).padStart(2, '0');
   document.getElementById('sc-m').textContent = String(m).padStart(2, '0');
   document.getElementById('sc-s').textContent = String(s).padStart(2, '0');
+}
+
+// ── Vtipné hlášky nad počítadlem (tovární cedule „bez incidentu“) ──
+const INCIDENT_LINES = [
+  'Dnů bez incidentu:',
+  'Dnů bez sporu:',
+  'Dnů bez připomínek k jídlu:',
+  'Dnů bez „já jsem to říkala“:',
+  'Dnů bez „kam dáváš ten hrnek“:',
+  'Dnů bez neshody o deku:',
+];
+let incidentIdx = 0;
+
+function rotateIncident() {
+  const el = document.getElementById('incidentText');
+  if (!el) return;
+  incidentIdx = (incidentIdx + 1) % INCIDENT_LINES.length;
+  el.textContent = INCIDENT_LINES[incidentIdx];
 }
 
 // ── GALERIE ──
@@ -467,6 +514,7 @@ function stepLightbox(dir) {
 document.addEventListener('DOMContentLoaded', () => {
   tick();
   setInterval(tick, 1000);
+  setInterval(rotateIncident, 4000);
   renderGallery();
 
   document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
