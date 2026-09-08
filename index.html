@@ -14,20 +14,22 @@
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Lato:wght@300;400&display=swap" rel="stylesheet">
 <style>
 :root {
-  --rose: #b25a4e;
-  --rose-deep: #93443b;
-  --rose-light: #f7e3da;
-  --rose-mid: #e6b9a6;
-  --gold: #b8943f;
-  --gold-light: #d9bc7a;
-  --gold-dark: #8f6f26;
-  --cream: #fbf1e7;
-  --text: #43241d;
-  --text-muted: #8a5f52;
-  --bg: #f5e7da;
-  --white: #fffdf9;
-  --card: linear-gradient(160deg, #fffdf7 0%, #fdeeda 55%, #f8e0cd 100%);
-  --shadow: 0 10px 30px rgba(122, 62, 45, 0.14);
+  --rose: #c2534a;
+  --rose-deep: #9c332b;
+  --rose-soft: #e89aa6;
+  --rose-light: #f9e2dc;
+  --rose-mid: #e7b3a4;
+  --gold: #c1902f;
+  --gold-light: #e5c881;
+  --gold-soft: #f3dfae;
+  --gold-dark: #93690f;
+  --cream: #fdf3e6;
+  --text: #47221c;
+  --text-muted: #99634f;
+  --bg: #f7e6d3;
+  --white: #fffcf6;
+  --card: linear-gradient(165deg, #fffdf4 0%, #fdecd2 48%, #f9dcc0 100%);
+  --shadow: 0 10px 28px rgba(146, 62, 46, 0.18);
   --safe-top: env(safe-area-inset-top, 0px);
   --safe-bottom: env(safe-area-inset-bottom, 0px);
 }
@@ -38,9 +40,9 @@ body {
   font-size: 16px;
   line-height: 1.5;
   background:
-    radial-gradient(120% 60% at 10% -5%, rgba(233, 180, 150, 0.35), transparent 60%),
-    radial-gradient(120% 60% at 100% 20%, rgba(216, 190, 150, 0.28), transparent 55%),
-    linear-gradient(180deg, #f6e3d3 0%, #f3ddcb 45%, #f0d7c2 100%);
+    radial-gradient(120% 55% at 8% -8%, rgba(238, 150, 130, 0.4), transparent 58%),
+    radial-gradient(120% 60% at 100% 18%, rgba(232, 196, 110, 0.38), transparent 55%),
+    linear-gradient(180deg, #f8e4cf 0%, #f3d7bd 45%, #efcdb0 100%);
   background-attachment: fixed;
   color: var(--text);
   min-height: 100vh;
@@ -55,9 +57,10 @@ button { font-family: inherit; touch-action: manipulation; }
 /* ── HERO ── */
 .hero {
   background:
-    radial-gradient(80% 50% at 50% 0%, rgba(255, 252, 245, 0.9), transparent 60%),
-    radial-gradient(120% 120% at 50% 120%, rgba(224, 150, 120, 0.4), transparent 55%),
-    linear-gradient(165deg, #fbe9d8 0%, #f5d3bd 55%, #edbd9f 100%);
+    radial-gradient(85% 55% at 50% 0%, rgba(255, 252, 240, 0.95), transparent 60%),
+    radial-gradient(60% 45% at 50% 38%, rgba(255, 240, 190, 0.55), transparent 70%),
+    radial-gradient(120% 120% at 50% 125%, rgba(214, 120, 96, 0.55), transparent 58%),
+    linear-gradient(165deg, #fcecd8 0%, #f6d3b4 50%, #efb896 100%);
   text-align: center;
   padding: calc(18px + var(--safe-top)) 24px 40px;
   position: relative;
@@ -145,20 +148,20 @@ button { font-family: inherit; touch-action: manipulation; }
   text-transform: uppercase;
   color: var(--rose-deep);
   margin-bottom: 10px;
-  font-weight: 400;
+  font-weight: 500;
 }
 .since-grid {
   display: flex;
   justify-content: center;
-  gap: 10px;
+  gap: 8px;
 }
 .since-box {
-  min-width: 58px;
-  background: linear-gradient(170deg, #fffdf6, #f9e7d6);
-  border: 1px solid rgba(178, 90, 78, 0.35);
+  min-width: 62px;
+  background: linear-gradient(170deg, #fff9ec, #fbe3c0);
+  border: 1px solid rgba(194, 83, 74, 0.45);
   border-radius: 12px;
-  padding: 8px 6px 6px;
-  box-shadow: 0 4px 12px rgba(122, 62, 45, 0.12);
+  padding: 9px 7px 7px;
+  box-shadow: 0 4px 12px rgba(146, 62, 46, 0.16);
 }
 .since-num {
   font-family: 'Cormorant Garamond', serif;
@@ -166,13 +169,14 @@ button { font-family: inherit; touch-action: manipulation; }
   color: var(--gold-dark);
   display: block;
   line-height: 1;
-  font-weight: 600;
+  font-weight: 700;
 }
 .since-unit {
   font-size: 9px;
   letter-spacing: 1.5px;
   text-transform: uppercase;
   color: var(--rose-deep);
+  font-weight: 500;
 }
 
 /* ── CONTAINER / SECTION ── */
